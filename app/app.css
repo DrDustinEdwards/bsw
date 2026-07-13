@@ -1,15 +1,95 @@
 @import "tailwindcss" source(".");
 
+/*
+  BioScience Writers design tokens.
+  Values taken verbatim from bsw/design-system.md and the build spec.
+  No em dashes anywhere per house conventions.
+*/
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+
+  /* Core palette */
+  --color-ink: #1a2b3c;
+  --color-muted: #475569;
+  --color-band: #3f4e5c;
+  --color-footer: #2b3846;
+
+  /* Brand blue (buttons, links) */
+  --color-brand: #0066a1;
+  --color-brand-hover: #004d7a;
+
+  /* Hexagon palette */
+  --color-hex-blue: #006db7;
+  --color-hex-green: #8dc63f;
+  --color-hex-orange: #f58220;
+
+  /* Editing-demo annotation categories */
+  --color-anno-sci: #0066a1;
+  --color-anno-edit: #b75b15;
+  --color-anno-impact: #577e20;
+  --color-anno-rhet: #475569;
+
+  --radius-btn: 10px;
 }
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-white text-[color:var(--color-muted)];
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+/* Hero hexagon drift. Positions and sizes are set per element in HexField. */
+@keyframes hex-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -15px);
+  }
+  50% {
+    transform: translate(-15px, 20px);
+  }
+  75% {
+    transform: translate(-20px, -10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Scroll reveal. Sections start hidden and fade up when observed. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Marquee for logo rows. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hex,
+  .marquee-track {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
