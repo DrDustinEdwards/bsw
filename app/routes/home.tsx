@@ -194,9 +194,9 @@ export default function Home() {
                     src={FLAGSHIP.photo}
                     alt="A BioScience Writers editor reviewing a grant with a researcher"
                     loading="lazy"
-                    className="h-52 w-full object-cover"
+                    className="min-h-[13rem] w-full flex-1 object-cover"
                   />
-                  <div className="flex flex-1 flex-col p-8">
+                  <div className="flex flex-col p-8">
                     <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#6cb2e6]">
                       Flagship Service
                     </p>
