@@ -91,12 +91,14 @@ const SERVICE_CARDS = [
   },
 ];
 
+// Each card's caption panel carries a soft accent glow, matching the reference:
+// the row runs orange, blue, blue, green, green across the five members.
 const TEAM = [
-  { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp" },
-  { name: "Charlene Emerson", role: "Director of Business Development", photo: "/team/Charlene-Emerson.webp" },
-  { name: "Julie Edwards", role: "Director of Publication Services", photo: "/team/Julie-Edwards.webp" },
-  { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp" },
-  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp" },
+  { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp", accent: "#b75b15" },
+  { name: "Charlene Emerson", role: "Director of Business Development", photo: "/team/Charlene-Emerson.webp", accent: "#0066a1" },
+  { name: "Julie Edwards", role: "Director of Publication Services", photo: "/team/Julie-Edwards.webp", accent: "#0066a1" },
+  { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp", accent: "#577e20" },
+  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp", accent: "#577e20" },
 ];
 
 export default function Home() {
@@ -369,17 +371,26 @@ export default function Home() {
             <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
               {TEAM.map((member, i) => (
                 <Reveal key={member.name} delay={i * 50}>
-                  <div className="text-center">
+                  <div className="mx-auto flex h-full max-w-[220px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm shadow-slate-900/5 sm:max-w-none">
                     <img
                       src={member.photo}
                       alt={member.name}
                       loading="lazy"
-                      className="mx-auto aspect-[4/5] w-full max-w-[160px] rounded-2xl object-cover object-top"
+                      className="aspect-[4/5] w-full object-cover object-top"
                     />
-                    <h3 className="mt-4 font-display text-lg font-semibold text-ink">
-                      {member.name}
-                    </h3>
-                    <p className="text-sm text-muted">{member.role}</p>
+                    <div
+                      className="flex flex-1 flex-col justify-center px-4 py-5 text-center"
+                      style={{
+                        background: `linear-gradient(180deg, #ffffff 0%, ${member.accent}26 100%)`,
+                      }}
+                    >
+                      <h3 className="font-display text-lg font-bold text-ink">
+                        {member.name}
+                      </h3>
+                      <p className="mt-1 text-sm leading-snug text-muted">
+                        {member.role}
+                      </p>
+                    </div>
                   </div>
                 </Reveal>
               ))}
