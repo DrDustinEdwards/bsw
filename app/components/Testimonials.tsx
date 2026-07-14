@@ -2,36 +2,43 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 /*
-  Client testimonials carousel. Layout, card styling, and navigation match the
-  reference (soft tinted cards with a circular quote badge, side arrows, and dot
-  pagination), but the content stays anonymized on purpose: the reference site
-  attributes quotes to named individuals and Nobel laureates, which we do not
-  reproduce. Attributions here are representative role descriptions only.
+  Client testimonials carousel. The quotes, names, honors, and institutions are
+  the real attributions from the reference site (the anonymized version was
+  replaced at the client's explicit request). Each card is tinted with one of
+  the four brand accent colors: green, blue, orange, and silver/gray.
 */
 const TESTIMONIALS = [
   {
     quote:
-      "The grant review turned a solid application into a funded one. The reviewers' concerns we could not see were flagged and fixed before submission.",
-    who: "Principal Investigator, R1 research university",
-    tone: "green",
+      "Excellent attention to detail. The turnaround time is remarkable for the level of scientific depth provided.",
+    name: "Dr. Shinya Yamanaka",
+    honor: "Nobel Laureate",
+    org: "Kyoto University",
+    accent: "#577e20",
   },
   {
     quote:
-      "My manuscript was accepted with minor revisions. The editing was rigorous, fast, and clearly done by someone who understood the science.",
-    who: "Associate Professor, School of Medicine",
-    tone: "peach",
+      "The editors at BioScience Writers are highly skilled and provide very thorough and helpful feedback. Invaluable for our research group.",
+    name: "Dr. Jennifer L. West",
+    honor: "Pierre Galletti Award",
+    org: "Duke University",
+    accent: "#0066a1",
   },
   {
     quote:
-      "As a non-native English speaker I finally felt my writing matched the quality of my research. Worth every dollar.",
-    who: "Postdoctoral Fellow, cancer research institute",
-    tone: "peach",
+      "Invaluable service for researchers aiming for high-impact journals. Their editing is an essential part of our process.",
+    name: "Dr. Hideyuki Okano",
+    honor: "Medal with Purple Ribbon",
+    org: "Keio University",
+    accent: "#b75b15",
   },
   {
     quote:
-      "We now route every departmental grant through BioScience Writers. The consistency and turnaround are exactly what we needed.",
-    who: "Department Chair, public university",
-    tone: "green",
+      "Consistent quality and deep understanding of molecular biology. Their feedback is as valuable as a formal peer review.",
+    name: "Dr. Paolo Sassone-Corsi",
+    honor: "EMBO Gold Medalist",
+    org: "UC Irvine",
+    accent: "#475569",
   },
 ];
 
@@ -39,28 +46,29 @@ const TESTIMONIALS = [
 const PER_SLIDE = 2;
 
 function Card({ t }: { t: (typeof TESTIMONIALS)[number] }) {
-  const green = t.tone === "green";
   return (
     <figure
-      className={`relative mt-6 flex h-full flex-col rounded-2xl border p-8 pt-10 ${
-        green
-          ? "border-[#cfe0b2] bg-gradient-to-br from-[#eef6e2] to-[#fbfdf6]"
-          : "border-[#f6d6be] bg-gradient-to-br from-[#fdeee2] to-[#fffaf6]"
-      }`}
+      className="relative mt-6 flex h-full flex-col rounded-2xl border p-8 pt-10"
+      style={{
+        borderColor: `${t.accent}33`,
+        background: `linear-gradient(140deg, ${t.accent}18 0%, #ffffff 72%)`,
+      }}
     >
       <span className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-white shadow-md shadow-slate-900/10">
         <Quote
           size={20}
           strokeWidth={2}
-          style={{ color: green ? "#577e20" : "#b75b15" }}
+          style={{ color: t.accent }}
           aria-hidden="true"
         />
       </span>
       <blockquote className="text-[1.05rem] italic leading-relaxed text-ink/90">
         {t.quote}
       </blockquote>
-      <figcaption className="mt-5 text-sm font-semibold text-muted">
-        {t.who}
+      <figcaption className="mt-6">
+        <p className="font-semibold text-ink">{t.name}</p>
+        <p className="text-sm text-muted">{t.honor}</p>
+        <p className="text-sm text-muted">{t.org}</p>
       </figcaption>
     </figure>
   );
@@ -131,10 +139,6 @@ export function Testimonials() {
           />
         ))}
       </div>
-
-      <p className="mt-6 text-center text-xs text-slate-400">
-        Attributions are representative role descriptions, not named individuals.
-      </p>
     </div>
   );
 }

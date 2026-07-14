@@ -320,7 +320,7 @@ export default function Home() {
               <SectionHeading
                 title="Trusted Worldwide"
                 subtitle="What Our Clients Say"
-                intro="Researchers at top institutions worldwide trust BioScience Writers to help secure funding and publish in high-impact journals."
+                intro="From Nobel Laureates and Academy members to deans and principal investigators at top institutions worldwide, researchers trust BioScience Writers to help secure funding and publish in high-impact journals."
               />
             </Reveal>
             <Reveal className="mt-12">
