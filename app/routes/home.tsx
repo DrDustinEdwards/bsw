@@ -379,7 +379,7 @@ export default function Home() {
                       className="aspect-[4/5] w-full object-cover object-top"
                     />
                     <div
-                      className="flex flex-1 flex-col justify-center px-4 py-5 text-center"
+                      className="flex flex-1 flex-col px-4 py-5 text-center"
                       style={{
                         background: `linear-gradient(180deg, #ffffff 0%, ${member.accent}26 100%)`,
                       }}
