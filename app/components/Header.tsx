@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { primaryNav } from "../data/nav";
 import { Wordmark } from "./Logo";
+import { PrimaryButton } from "./ui";
 
 export function Header() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -88,12 +89,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <a
+          <PrimaryButton
             href="/pricing/"
-            className="hidden rounded-[var(--radius-btn)] bg-brand px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-hover sm:inline-block"
+            arrow={false}
+            className="btn-sm hidden sm:inline-flex"
           >
             Get a Quote
-          </a>
+          </PrimaryButton>
 
           {/* Mobile toggle */}
           <button
@@ -136,13 +138,13 @@ export function Header() {
                 </ul>
               </div>
             ))}
-            <a
+            <PrimaryButton
               href="/pricing/"
-              className="mt-4 block rounded-[var(--radius-btn)] bg-brand px-4 py-3 text-center text-sm font-bold text-white"
-              onClick={() => setMobileOpen(false)}
+              arrow={false}
+              className="mt-4 w-full"
             >
               Get a Quote
-            </a>
+            </PrimaryButton>
           </nav>
         </div>
       )}

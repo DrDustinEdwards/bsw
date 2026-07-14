@@ -1,24 +1,42 @@
+import { ArrowRight } from "lucide-react";
+
 /*
   Small shared building blocks. Avatars and logo tiles are placeholders,
   standing in for team webp headshots and institution / journal SVG logos that
   will be pulled from the WordPress export. No real names or marks are asserted.
 */
 
+/*
+  The single button used everywhere. One dimensional style (gradient face,
+  color-matched shadow, hover lift, trailing arrow) with three brand colors:
+  blue is the default; green and orange are used where a section leans that way
+  (careers / learning, and grant / deadline work). All visual detail lives in
+  the .btn / .btn-{color} classes in app.css so there is one source of truth.
+*/
 export function PrimaryButton({
   href,
   children,
+  color = "blue",
+  arrow = true,
   className = "",
 }: {
   href: string;
   children: React.ReactNode;
+  color?: "blue" | "green" | "orange";
+  arrow?: boolean;
   className?: string;
 }) {
   return (
-    <a
-      href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-[var(--radius-btn)] bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-hover ${className}`}
-    >
+    <a href={href} className={`btn btn-${color} ${className}`}>
       {children}
+      {arrow && (
+        <ArrowRight
+          size={16}
+          strokeWidth={2.5}
+          className="btn-arrow"
+          aria-hidden="true"
+        />
+      )}
     </a>
   );
 }

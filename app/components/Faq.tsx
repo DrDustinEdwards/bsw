@@ -56,7 +56,7 @@ export function Faq() {
                 {item.q}
               </span>
               <span
-                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-300 text-brand transition-transform ${
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-300 text-brand transition-transform duration-300 ease-out ${
                   isOpen ? "rotate-180" : ""
                 }`}
                 aria-hidden="true"

@@ -19,10 +19,12 @@ const HEX_CLIP =
 
 // Fairly solid fills, matching the reference where the hexes read as crisp
 // color shapes (the ones behind the glass card soften via its backdrop blur).
+// The three brand hues reference the mark palette tokens (app.css) so the hero
+// hexagons stay in sync with the logo; color-mix applies the fill opacity.
 const COLORS = [
-  "rgba(0,109,183,0.78)", // blue
-  "rgba(141,198,63,0.78)", // green
-  "rgba(245,130,32,0.78)", // orange
+  "color-mix(in srgb, var(--color-hex-blue) 78%, transparent)", // blue
+  "color-mix(in srgb, var(--color-hex-green) 78%, transparent)", // green
+  "color-mix(in srgb, var(--color-hex-orange) 78%, transparent)", // orange
   "rgba(255,255,255,0.85)", // white
 ];
 

@@ -107,7 +107,7 @@ export function Testimonials() {
         {/* Slide track */}
         <div className="overflow-hidden px-2">
           <div
-            className="flex transition-transform duration-500 ease-out"
+            className="flex transition-transform duration-300 ease-out"
             style={{ transform: `translateX(-${page * 100}%)` }}
           >
             {slides.map((group, gi) => (

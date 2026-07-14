@@ -134,7 +134,7 @@ export default function KnowledgeHub() {
               Ready to elevate your scientific writing?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us/" color="green">
                 Explore the Full Resource Library
               </PrimaryButton>
             </div>

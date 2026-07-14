@@ -117,7 +117,7 @@ export default function CareerDevelopment() {
               Ready to accelerate your academic career?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us/" color="green">
                 Submit Your Career Materials
               </PrimaryButton>
             </div>

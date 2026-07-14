@@ -22,14 +22,36 @@
   --color-band: #3f4e5c;
   --color-footer: #2b3846;
 
-  /* Brand blue (buttons, links) */
+  /* Brand blue (buttons, links). Deliberately a shade darker than the mark's
+     blue below so white text on it clears contrast. */
   --color-brand: #0066a1;
   --color-brand-hover: #004d7a;
 
-  /* Hexagon palette */
-  --color-hex-blue: #006db7;
+  /*
+    Brand mark palette. Sampled directly from the four-cube logo. Each cube is a
+    single hue with a lit "base" face, a lighter highlight, and a shadow face.
+    The shadow faces are hue-shifted (blue->indigo, green->emerald,
+    orange->red), which is what gives the mark its depth. The orange cube's
+    shadow doubles as the scheme's red accent (--color-hex-red). These are the
+    single source of truth for the hero hexagons and any brand-color usage.
+  */
+  --color-hex-blue: #0079c4;
+  --color-hex-blue-light: #0183cb;
+  --color-hex-blue-dark: #2b3492; /* indigo shadow face */
+
   --color-hex-green: #8dc63f;
-  --color-hex-orange: #f58220;
+  --color-hex-green-light: #b6d434;
+  --color-hex-green-dark: #00a652; /* emerald shadow face */
+
+  --color-hex-orange: #f7951d;
+  --color-hex-orange-light: #fba719; /* amber highlight */
+  --color-hex-orange-dark: #ec1c24; /* red shadow face */
+
+  --color-hex-silver: #c4c5c8;
+  --color-hex-silver-light: #d1d2d4;
+  --color-hex-silver-dark: #b7b8bc;
+
+  --color-hex-red: #ec1c24; /* accent, shared with orange's shadow face */
 
   /* Editing-demo annotation categories */
   --color-anno-sci: #0066a1;
@@ -38,6 +60,22 @@
   --color-anno-rhet: #475569;
 
   --radius-btn: 10px;
+}
+
+/*
+  Motion scale. One shared set of durations and easings so equivalent gestures
+  animate at the same speed across every section. Hover feedback is fast, one-off
+  content transitions are a touch slower, and scroll entrances are slowest. Two
+  easings only: a standard ease-out for most moves and a single gentle overshoot
+  (--ease-back) reused wherever motion should "settle" with a small bounce.
+*/
+:root {
+  --dur-fast: 150ms; /* small state: links, chevrons, control hovers, dropdowns */
+  --dur-hover: 200ms; /* hover feedback on interactive surfaces (buttons, cards) */
+  --dur-content: 300ms; /* one-off content transitions: panels, carousel slides */
+  --dur-reveal: 600ms; /* scroll-in entrances */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-back: cubic-bezier(0.2, 1.12, 0.32, 1);
 }
 
 html,
@@ -75,7 +113,8 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(-28px);
-  transition: opacity 0.55s ease, transform 0.6s cubic-bezier(0.2, 1.12, 0.32, 1);
+  transition: opacity var(--dur-reveal) var(--ease-out),
+    transform var(--dur-reveal) var(--ease-back);
   will-change: opacity, transform;
 }
 .reveal.is-visible {
@@ -206,21 +245,82 @@ body {
 /*
   Dark impact/trust band with diagonal top and bottom edges, matching the
   reference. The band overlaps its neighbors with negative margins and a higher
-  stacking context so the clipped corner triangles reveal the hero gradient
-  above and the services background below (no white notches).
+  stacking context so the diagonal edges reveal the hero gradient above and the
+  services background below (no white notches).
+
+  Three stacked layers build the reference's layered slant: a solid dark slab
+  in the middle, and a translucent ribbon hugging each diagonal edge. Because
+  the ribbons are semi-transparent, the hero hexagons (top) and the services
+  background (bottom) read faintly through them, so each edge looks like two
+  parallel slants rather than one hard cut. Layers are pointer-events:none so
+  the content on top stays fully interactive.
 */
 .band-cut {
   position: relative;
   z-index: 10;
-  margin-top: -3.5rem;
-  margin-bottom: -3rem;
-  clip-path: polygon(0 3.5rem, 100% 0, 100% calc(100% - 3rem), 0 100%);
+  margin-top: -6rem;
+  margin-bottom: -5.5rem;
+}
+.band-slab,
+.band-ghost {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.band-slab {
+  z-index: 2;
+  background: var(--color-band);
+  clip-path: polygon(
+    0 6rem,
+    100% 2.5rem,
+    100% calc(100% - 5.5rem),
+    0 calc(100% - 2.5rem)
+  );
+}
+.band-ghost {
+  z-index: 1;
+  /* --color-band (#3f4e5c) at half opacity; background stays faintly visible. */
+  background: rgba(63, 78, 92, 0.5);
+}
+/*
+  The ghost ribbons are wedges, not parallel bands: each one meets the solid
+  edge exactly at one side (zero thickness) and rises above it at the other,
+  and the top and bottom wedges point opposite ways. Top: flush at the left
+  corner, opening up toward the right (over the hero hexagons). Bottom: flush
+  at the right corner, opening down toward the left.
+*/
+.band-ghost--top {
+  clip-path: polygon(0 6rem, 100% 0, 100% 2.5rem);
+}
+.band-ghost--bottom {
+  clip-path: polygon(
+    0 calc(100% - 2.5rem),
+    0 100%,
+    100% calc(100% - 5.5rem)
+  );
 }
 @media (max-width: 767px) {
   .band-cut {
-    margin-top: -1.25rem;
-    margin-bottom: -1.25rem;
-    clip-path: polygon(0 1.25rem, 100% 0, 100% calc(100% - 1.25rem), 0 100%);
+    margin-top: -2.5rem;
+    margin-bottom: -2.5rem;
+  }
+  .band-slab {
+    clip-path: polygon(
+      0 2.5rem,
+      100% 1.25rem,
+      100% calc(100% - 2.5rem),
+      0 calc(100% - 1.25rem)
+    );
+  }
+  .band-ghost--top {
+    clip-path: polygon(0 2.5rem, 100% 0, 100% 1.25rem);
+  }
+  .band-ghost--bottom {
+    clip-path: polygon(
+      0 calc(100% - 1.25rem),
+      0 100%,
+      100% calc(100% - 2.5rem)
+    );
   }
 }
 
@@ -285,6 +385,95 @@ body {
 .page-prose strong {
   color: var(--color-ink);
   font-weight: 700;
+}
+
+/*
+  Buttons. Glassy light treatment ported from the old site: a near-white face
+  tinted with the brand color, a soft color-matched outer glow plus inset
+  highlights for a raised glass look, brand-colored text with a matching halo,
+  and a lift on hover. Three colors (blue default, green, orange) chosen per
+  context. Each color sets three custom properties: --btn-tint1/--btn-tint2
+  (the gradient tint), --btn-ink (text/arrow color), and --btn-glow (the RGB
+  triple used for the glow, inset shade, and text halo).
+*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-btn);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--btn-ink);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  text-shadow: 0 0 10px rgba(var(--btn-glow), 0.25);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    var(--btn-tint1) 45%,
+    var(--btn-tint2) 100%
+  );
+  box-shadow: 0 4px 22px rgba(var(--btn-glow), 0.22), inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
+  transition: transform var(--dur-hover) var(--ease-out),
+    box-shadow var(--dur-hover) var(--ease-out),
+    filter var(--dur-hover) var(--ease-out);
+  will-change: transform;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(var(--btn-glow), 0.3), inset 0 1px 0 #fff,
+    inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
+  filter: brightness(1.02);
+}
+.btn:active {
+  transform: translateY(0);
+  filter: brightness(0.98);
+}
+.btn .btn-arrow {
+  transition: transform var(--dur-hover) var(--ease-out);
+}
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+/* Compact variant for dense spots like the header. */
+.btn-sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+}
+
+.btn-blue {
+  --btn-tint1: rgba(195, 220, 240, 0.88);
+  --btn-tint2: rgba(170, 208, 232, 0.8);
+  --btn-ink: #0066a1;
+  --btn-glow: 0, 102, 161;
+}
+.btn-green {
+  --btn-tint1: rgba(225, 240, 195, 0.88);
+  --btn-tint2: rgba(205, 230, 165, 0.8);
+  --btn-ink: #46691a;
+  --btn-glow: 87, 126, 32;
+}
+.btn-orange {
+  --btn-tint1: rgba(255, 228, 200, 0.88);
+  --btn-tint2: rgba(250, 212, 175, 0.8);
+  --btn-ink: #b3560f;
+  --btn-glow: 200, 96, 15;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn .btn-arrow {
+    transition: none;
+  }
+  .btn:hover {
+    transform: none;
+  }
+  .btn:hover .btn-arrow {
+    transform: none;
+  }
 }
 
 /*
@@ -530,8 +719,8 @@ body {
   );
 }
 .psms-pill.psms-snapping {
-  transition: transform 0.38s cubic-bezier(0.34, 1.3, 0.64, 1),
-    width 0.38s cubic-bezier(0.34, 1.3, 0.64, 1), background 0.38s ease,
+  transition: transform 0.38s var(--ease-back),
+    width 0.38s var(--ease-back), background 0.38s ease,
     box-shadow 0.38s ease;
 }
 

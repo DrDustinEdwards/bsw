@@ -136,8 +136,11 @@ export default function Home() {
           continuous dark band with diagonal top/bottom edges, so they are a
           single section here. The band-cut class (app.css) draws the slants.
         */}
-        <section className="band-cut overflow-hidden bg-[color:var(--color-band)]">
-          <div className="mx-auto max-w-6xl px-5 pb-16 pt-20 sm:pt-24">
+        <section className="band-cut overflow-hidden">
+          <span aria-hidden="true" className="band-ghost band-ghost--top" />
+          <span aria-hidden="true" className="band-slab" />
+          <span aria-hidden="true" className="band-ghost band-ghost--bottom" />
+          <div className="relative z-[3] mx-auto max-w-6xl px-5 pb-20 pt-24 sm:pt-28">
             <Reveal>
               <SectionHeading dark title="Our Impact, by the Numbers" />
             </Reveal>
@@ -215,12 +218,9 @@ export default function Home() {
                       {FLAGSHIP.note}
                     </p>
                     <div className="mt-6">
-                      <a
-                        href={FLAGSHIP.href}
-                        className="inline-block rounded-[var(--radius-btn)] bg-gradient-to-b from-[#dbeafc] to-[#b9d8f5] px-6 py-3 text-sm font-bold text-brand shadow-sm transition-colors hover:from-[#cbe0fa] hover:to-[#a9cef2]"
-                      >
+                      <PrimaryButton href={FLAGSHIP.href}>
                         {FLAGSHIP.cta}
-                      </a>
+                      </PrimaryButton>
                     </div>
                   </div>
                 </div>
@@ -232,13 +232,13 @@ export default function Home() {
                   {SERVICE_CARDS.map((s, i) => (
                     <Reveal key={s.title} delay={(i % 2) * 60}>
                       <div
-                        className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
+                        className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
                         style={{ "--accent": s.accent } as React.CSSProperties}
                       >
                         {/* Accent inner glow (bottom + right), revealed on hover */}
                         <span
                           aria-hidden="true"
-                          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100"
+                          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
                           style={{
                             background: `radial-gradient(125% 115% at 100% 100%, ${s.accent}3d 0%, ${s.accent}00 68%)`,
                           }}
@@ -255,7 +255,7 @@ export default function Home() {
                           </p>
                           <div className="mt-6 flex flex-1 items-end justify-end">
                             <span
-                              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-[#8a8f98] transition-colors duration-500 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
+                              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-[#8a8f98] transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
                               aria-hidden="true"
                             >
                               <ArrowRight size={16} strokeWidth={2} />
@@ -418,12 +418,9 @@ export default function Home() {
               <p className="mt-1 text-sm text-muted">
                 Our team responds within one business day.
               </p>
-              <a
-                href="/contact-us/"
-                className="mt-4 inline-block rounded-[var(--radius-btn)] bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-hover"
-              >
+              <PrimaryButton href="/contact-us/" className="mt-4">
                 Ask Us a Question
-              </a>
+              </PrimaryButton>
             </Reveal>
           </div>
         </section>
