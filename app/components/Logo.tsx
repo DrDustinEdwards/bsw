@@ -26,18 +26,15 @@ export function LogoMark({ className = "" }: { className?: string }) {
   );
 }
 
+// Real horizontal logo lockup (cube mark plus wordmark) from the WP media
+// library. Falls back to nothing special; the SVG LogoMark above remains
+// available if the asset is ever missing.
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <span className={`flex items-center gap-2.5 ${className}`}>
-      <LogoMark className="h-8 w-auto" />
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-[1.05rem] font-semibold tracking-tight text-ink">
-          BioScience Writers
-        </span>
-        <span className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-brand">
-          Grants and Manuscripts
-        </span>
-      </span>
-    </span>
+    <img
+      src="/brand/bsw-logo-web.webp"
+      alt="BioScience Writers"
+      className={`h-9 w-auto ${className}`}
+    />
   );
 }

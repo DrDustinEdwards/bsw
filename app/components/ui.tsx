@@ -96,23 +96,28 @@ export function Avatar({
   );
 }
 
-export function LogoTile({ name }: { name: string }) {
+export function LogoTile({ src, name }: { src: string; name: string }) {
   return (
-    <div className="flex h-14 w-40 shrink-0 items-center justify-center rounded-lg border border-white/15 px-4">
-      <span className="text-center font-display text-sm font-semibold tracking-tight text-white/85">
-        {name}
-      </span>
+    <div className="flex h-16 w-40 shrink-0 items-center justify-center rounded-xl bg-white px-5">
+      <img
+        src={src}
+        alt={name}
+        loading="lazy"
+        className="max-h-9 max-w-[80%] object-contain"
+      />
     </div>
   );
 }
 
-// Duplicated track so the marquee loops seamlessly (translateX(-50%)).
-export function Marquee({ items }: { items: string[] }) {
+// Duplicated track so the marquee loops seamlessly (translateX(-50%)). Real
+// institution and journal SVG logos sit on white tiles to stay legible on the
+// dark band.
+export function Marquee({ items }: { items: { src: string; name: string }[] }) {
   return (
     <div className="relative overflow-hidden">
       <div className="marquee-track flex w-max gap-4" style={{ animation: "marquee 38s linear infinite" }}>
-        {[...items, ...items].map((name, i) => (
-          <LogoTile key={i} name={name} />
+        {[...items, ...items].map((logo, i) => (
+          <LogoTile key={i} src={logo.src} name={logo.name} />
         ))}
       </div>
     </div>

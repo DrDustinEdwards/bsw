@@ -5,12 +5,8 @@ import { HexField } from "../components/HexField";
 import { EditingDemo } from "../components/EditingDemo";
 import { Faq } from "../components/Faq";
 import { Reveal } from "../components/Reveal";
-import {
-  Avatar,
-  Marquee,
-  PrimaryButton,
-  SectionHeading,
-} from "../components/ui";
+import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
+import { institutions, journals } from "../data/logos";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -35,28 +31,6 @@ const STATS = [
   { value: "7,000+", label: "Clients in 185 countries" },
   { value: "2,400+", label: "Institutions served" },
   { value: "5,000+", label: "Journals published in" },
-];
-
-const INSTITUTIONS = [
-  "Mayo Clinic",
-  "MD Anderson",
-  "Memorial Sloan Kettering",
-  "Baylor College of Medicine",
-  "UCSF",
-  "Johns Hopkins",
-  "Stanford Medicine",
-  "Yale School of Medicine",
-];
-
-const JOURNALS = [
-  "Cell",
-  "Nature",
-  "Science Advances",
-  "PNAS",
-  "The Lancet",
-  "NEJM",
-  "JAMA",
-  "eLife",
 ];
 
 const SUB_SERVICES = [
@@ -102,11 +76,11 @@ const PROCESS = [
 ];
 
 const TEAM = [
-  { name: "Susan Marriott", role: "President" },
-  { name: "Charlene Emerson", role: "Business Development" },
-  { name: "Julie Edwards", role: "Publication Services" },
-  { name: "Lisa Giles", role: "Lead Technical Writer" },
-  { name: "Laura Marinelli", role: "Senior Technical Writer" },
+  { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp" },
+  { name: "Charlene Emerson", role: "Business Development", photo: "/team/Charlene-Emerson.webp" },
+  { name: "Julie Edwards", role: "Publication Services", photo: "/team/Julie-Edwards.webp" },
+  { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp" },
+  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp" },
 ];
 
 // Placeholder attributions only. The source testimonials are unverified and
@@ -207,13 +181,13 @@ export default function Home() {
               <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
                 Trusted by researchers at
               </p>
-              <Marquee items={INSTITUTIONS} />
+              <Marquee items={institutions} />
             </Reveal>
             <Reveal delay={80}>
               <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
                 Published in
               </p>
-              <Marquee items={JOURNALS} />
+              <Marquee items={journals} />
             </Reveal>
           </div>
         </section>
@@ -277,28 +251,17 @@ export default function Home() {
                     </a>
                   </div>
                 </div>
-                {/* Image placeholder area with hex-accented gradient */}
-                <div className="relative min-h-[240px] overflow-hidden bg-gradient-to-br from-[#0066a1] via-[#0f6aa8] to-[#004d7a]">
-                  <div className="absolute inset-0 opacity-30">
-                    <div
-                      className="absolute right-8 top-10 h-40 w-40"
-                      style={{
-                        background: "rgba(141,198,63,0.6)",
-                        clipPath:
-                          "polygon(0% 25%,0% 75%,50% 100%,100% 75%,100% 25%,50% 0%)",
-                      }}
-                    />
-                    <div
-                      className="absolute bottom-6 left-12 h-28 w-28"
-                      style={{
-                        background: "rgba(245,130,32,0.6)",
-                        clipPath:
-                          "polygon(0% 25%,0% 75%,50% 100%,100% 75%,100% 25%,50% 0%)",
-                      }}
-                    />
-                  </div>
+                {/* Real grant-review photo with a dark overlay for the caption */}
+                <div className="relative min-h-[240px] overflow-hidden">
+                  <img
+                    src="/services/grant-review.webp"
+                    alt="A BioScience Writers editor reviewing a grant with a researcher"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1a2a]/85 via-[#0b1a2a]/20 to-transparent" />
                   <div className="relative flex h-full items-end p-9">
-                    <p className="font-display text-2xl font-semibold leading-snug text-white/95">
+                    <p className="font-display text-2xl font-semibold leading-snug text-white">
                       Written by scientists who have won the grants you are
                       applying for.
                     </p>
@@ -454,10 +417,11 @@ export default function Home() {
               {TEAM.map((member, i) => (
                 <Reveal key={member.name} delay={i * 50}>
                   <div className="text-center">
-                    <Avatar
-                      name={member.name}
-                      index={i}
-                      className="mx-auto aspect-square w-full max-w-[160px] rounded-2xl"
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      loading="lazy"
+                      className="mx-auto aspect-[4/5] w-full max-w-[160px] rounded-2xl object-cover object-top"
                     />
                     <h3 className="mt-4 font-display text-lg font-semibold text-ink">
                       {member.name}

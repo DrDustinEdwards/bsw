@@ -1,5 +1,4 @@
 import { footerGroups } from "../data/nav";
-import { LogoMark } from "./Logo";
 
 const social = [
   {
@@ -26,7 +25,11 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
           <div>
             <div className="flex items-center gap-2.5">
-              <LogoMark className="h-9 w-auto" />
+              <img
+                src="/brand/bsw-cube-mark.png"
+                alt=""
+                className="h-9 w-auto"
+              />
               <span className="font-display text-lg font-semibold text-white">
                 BioScience Writers
               </span>
