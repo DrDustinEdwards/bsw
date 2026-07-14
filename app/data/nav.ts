@@ -29,7 +29,7 @@ export const primaryNav: NavGroup[] = [
   {
     label: "Resources",
     links: [
-      { label: "PhD / MD Editors", href: "/our-experts/" },
+      { label: "PhD/MD Editors", href: "/our-experts/" },
       { label: "Knowledge Hub", href: "/knowledge-hub/" },
     ],
   },

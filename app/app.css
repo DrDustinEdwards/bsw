@@ -225,6 +225,69 @@ body {
 }
 
 /*
+  Interior page prose. Styles the exact reference copy rendered as semantic
+  markup on the header/footer menu pages, so each page reads consistently
+  without a typography plugin.
+*/
+.page-prose {
+  color: var(--color-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.page-prose > *:first-child {
+  margin-top: 0;
+}
+.page-prose h2 {
+  margin-top: 2.75rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--color-ink);
+}
+.page-prose h3 {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.page-prose p {
+  margin-top: 1.1rem;
+}
+.page-prose ul,
+.page-prose ol {
+  margin-top: 1.1rem;
+  padding-left: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.page-prose ul {
+  list-style: disc;
+}
+.page-prose ol {
+  list-style: decimal;
+}
+.page-prose li {
+  padding-left: 0.25rem;
+}
+.page-prose li::marker {
+  color: var(--color-brand);
+}
+.page-prose a {
+  color: var(--color-brand);
+  font-weight: 600;
+}
+.page-prose a:hover {
+  text-decoration: underline;
+}
+.page-prose strong {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+/*
   Vertical process timeline. Ported verbatim from the source; the fill line
   grows once the timeline scrolls into view (height set from JS in Timeline.tsx).
 */
