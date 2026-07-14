@@ -1,24 +1,19 @@
 import type { Route } from "./+types/editing-process";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Our Process: The BSW Scientific Pipeline | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "A four-phase editing pipeline with PhD-led editing, rush turnaround, multi-stage quality control, and submission-ready delivery.",
-    },
-  ];
+  return pageMeta({
+    title: "Our Process: The BSW Scientific Pipeline",
+    description:
+      "A four-phase editing pipeline with PhD-led editing, rush turnaround, multi-stage quality control, and submission-ready delivery.",
+    path: "/editing-process/",
+  });
 }
 
 export default function EditingProcess() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Our Process: The BSW Scientific Pipeline" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -135,8 +130,6 @@ export default function EditingProcess() {
             </ul>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

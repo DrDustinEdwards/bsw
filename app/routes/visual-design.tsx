@@ -1,25 +1,20 @@
 import type { Route } from "./+types/visual-design";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Visual Design | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Publication-ready figures, tables, medical illustration, and journal formatting for scientific content.",
-    },
-  ];
+  return pageMeta({
+    title: "Visual Design",
+    description:
+      "Publication-ready figures, tables, medical illustration, and journal formatting for scientific content.",
+    path: "/visual-design/",
+  });
 }
 
 export default function VisualDesign() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Visual Design" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -123,8 +118,6 @@ export default function VisualDesign() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

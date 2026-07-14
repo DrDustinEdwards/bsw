@@ -1,25 +1,20 @@
 import type { Route } from "./+types/grant-proposal-support";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Grant and Proposal Support | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Strategic grant review, consulting, and writing support for NIH, NSF, DoD, and private foundation applications.",
-    },
-  ];
+  return pageMeta({
+    title: "Grant and Proposal Support",
+    description:
+      "Strategic grant review, consulting, and writing support for NIH, NSF, DoD, and private foundation applications.",
+    path: "/grant-proposal-support/",
+  });
 }
 
 export default function GrantProposalSupport() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Grant and Proposal Support" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -111,8 +106,6 @@ export default function GrantProposalSupport() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

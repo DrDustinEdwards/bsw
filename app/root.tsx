@@ -21,6 +21,15 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap",
   },
+  // Header wordmark is above the fold on every page; preload it to steady LCP.
+  {
+    rel: "preload",
+    as: "image",
+    href: "/brand/bsw-logo-web.webp",
+    type: "image/webp",
+  },
+  { rel: "icon", href: "/favicon.ico", sizes: "any" },
+  { rel: "apple-touch-icon", href: "/brand/bsw-cube-mark.png" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -29,6 +38,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#3f4e5c" />
+        <meta name="robots" content="index, follow" />
         <Meta />
         <Links />
       </head>

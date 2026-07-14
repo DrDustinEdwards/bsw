@@ -1,24 +1,19 @@
 import type { Route } from "./+types/editing-guarantee";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Editing Guarantee | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Our quality guarantee, re-editing promise, certificates of scientific editing, and satisfaction policy for MD/PhD-reviewed manuscripts.",
-    },
-  ];
+  return pageMeta({
+    title: "Editing Guarantee",
+    description:
+      "Our quality guarantee, re-editing promise, certificates of scientific editing, and satisfaction policy for MD/PhD-reviewed manuscripts.",
+    path: "/editing-guarantee/",
+  });
 }
 
 export default function EditingGuarantee() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Editing Guarantee" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -102,8 +97,6 @@ export default function EditingGuarantee() {
             </p>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

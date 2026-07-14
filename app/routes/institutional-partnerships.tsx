@@ -1,25 +1,20 @@
 import type { Route } from "./+types/institutional-partnerships";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Institutional Partnerships | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Enterprise-grade scientific support for universities, biotech, and research hospitals, including MSAs, consolidated billing, and bulk credits.",
-    },
-  ];
+  return pageMeta({
+    title: "Institutional Partnerships",
+    description:
+      "Enterprise-grade scientific support for universities, biotech, and research hospitals, including MSAs, consolidated billing, and bulk credits.",
+    path: "/institutional-partnerships/",
+  });
 }
 
 export default function InstitutionalPartnerships() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Institutional Partnerships" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -121,8 +116,6 @@ export default function InstitutionalPartnerships() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

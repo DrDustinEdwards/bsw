@@ -1,9 +1,8 @@
 import { ArrowRight } from "lucide-react";
 
 /*
-  Small shared building blocks. Avatars and logo tiles are placeholders,
-  standing in for team webp headshots and institution / journal SVG logos that
-  will be pulled from the WordPress export. No real names or marks are asserted.
+  Small shared building blocks: the site button, section heading, and the logo
+  tile / marquee used by the trust rows.
 */
 
 /*
@@ -86,39 +85,6 @@ export function SectionHeading({
           {intro}
         </p>
       )}
-    </div>
-  );
-}
-
-const AVATAR_GRADIENTS = [
-  "linear-gradient(135deg,var(--color-hex-blue),var(--color-accent-blue))",
-  "linear-gradient(135deg,var(--color-hex-green),var(--color-accent-green))",
-  "linear-gradient(135deg,var(--color-hex-orange),var(--color-accent-orange))",
-  "linear-gradient(135deg,var(--color-band),var(--color-ink))",
-  "linear-gradient(135deg,var(--color-accent-blue),var(--color-hex-green))",
-];
-
-export function Avatar({
-  name,
-  index,
-  className = "",
-}: {
-  name: string;
-  index: number;
-  className?: string;
-}) {
-  const initials = name
-    .split(" ")
-    .map((p) => p[0])
-    .slice(0, 2)
-    .join("");
-  return (
-    <div
-      className={`flex items-center justify-center font-display text-2xl font-semibold text-white ${className}`}
-      style={{ background: AVATAR_GRADIENTS[index % AVATAR_GRADIENTS.length] }}
-      aria-hidden="true"
-    >
-      {initials}
     </div>
   );
 }

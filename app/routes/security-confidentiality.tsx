@@ -1,24 +1,19 @@
 import type { Route } from "./+types/security-confidentiality";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Security and Confidentiality | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Our multi-layered security framework protects your unpublished research with 256-bit encryption, mandatory NDAs, and a zero-distribution policy.",
-    },
-  ];
+  return pageMeta({
+    title: "Security and Confidentiality",
+    description:
+      "Our multi-layered security framework protects your unpublished research with 256-bit encryption, mandatory NDAs, and a zero-distribution policy.",
+    path: "/security-confidentiality/",
+  });
 }
 
 export default function SecurityConfidentiality() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Security and Confidentiality" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -119,8 +114,6 @@ export default function SecurityConfidentiality() {
             </p>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

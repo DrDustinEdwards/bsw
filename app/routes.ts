@@ -1,33 +1,44 @@
-import { type RouteConfig, index, route } from "@react-router/dev/routes";
+import {
+  type RouteConfig,
+  index,
+  layout,
+  route,
+} from "@react-router/dev/routes";
 
 export default [
-  index("routes/home.tsx"),
+  // Resource route: dynamic sitemap (no shared layout).
+  route("sitemap.xml", "routes/sitemap.xml.ts"),
 
-  // Services
-  route("grant-proposal-support", "routes/grant-proposal-support.tsx"),
-  route("manuscript-editing", "routes/manuscript-editing.tsx"),
-  route("visual-design", "routes/visual-design.tsx"),
-  route("language-support", "routes/language-support.tsx"),
-  route("career-development", "routes/career-development.tsx"),
+  // All pages share the header/footer shell via the pathless layout.
+  layout("routes/layout.tsx", [
+    index("routes/home.tsx"),
 
-  // Operations
-  route("editing-process", "routes/editing-process.tsx"),
-  route("institutional-partnerships", "routes/institutional-partnerships.tsx"),
-  route("pricing", "routes/pricing.tsx"),
+    // Services
+    route("grant-proposal-support", "routes/grant-proposal-support.tsx"),
+    route("manuscript-editing", "routes/manuscript-editing.tsx"),
+    route("visual-design", "routes/visual-design.tsx"),
+    route("language-support", "routes/language-support.tsx"),
+    route("career-development", "routes/career-development.tsx"),
 
-  // Resources
-  route("our-experts", "routes/our-experts.tsx"),
-  route("knowledge-hub", "routes/knowledge-hub.tsx"),
+    // Operations
+    route("editing-process", "routes/editing-process.tsx"),
+    route("institutional-partnerships", "routes/institutional-partnerships.tsx"),
+    route("pricing", "routes/pricing.tsx"),
 
-  // Company
-  route("about-us", "routes/about-us.tsx"),
-  route("careers", "routes/careers.tsx"),
-  route("contact-us", "routes/contact-us.tsx"),
+    // Resources
+    route("our-experts", "routes/our-experts.tsx"),
+    route("knowledge-hub", "routes/knowledge-hub.tsx"),
 
-  // Legal and Support
-  route("editing-guarantee", "routes/editing-guarantee.tsx"),
-  route("security-confidentiality", "routes/security-confidentiality.tsx"),
-  route("privacy-policy", "routes/privacy-policy.tsx"),
-  route("terms-of-service", "routes/terms-of-service.tsx"),
-  route("cookie-policy", "routes/cookie-policy.tsx"),
+    // Company
+    route("about-us", "routes/about-us.tsx"),
+    route("careers", "routes/careers.tsx"),
+    route("contact-us", "routes/contact-us.tsx"),
+
+    // Legal and Support
+    route("editing-guarantee", "routes/editing-guarantee.tsx"),
+    route("security-confidentiality", "routes/security-confidentiality.tsx"),
+    route("privacy-policy", "routes/privacy-policy.tsx"),
+    route("terms-of-service", "routes/terms-of-service.tsx"),
+    route("cookie-policy", "routes/cookie-policy.tsx"),
+  ]),
 ] satisfies RouteConfig;

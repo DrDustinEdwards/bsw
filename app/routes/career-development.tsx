@@ -1,25 +1,20 @@
 import type { Route } from "./+types/career-development";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Career Development | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "PhD-level editorial support for dissertations, theses, CV and biosketch formatting, monographs, and faculty development.",
-    },
-  ];
+  return pageMeta({
+    title: "Career Development",
+    description:
+      "PhD-level editorial support for dissertations, theses, CV and biosketch formatting, monographs, and faculty development.",
+    path: "/career-development/",
+  });
 }
 
 export default function CareerDevelopment() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Career Development" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -123,8 +118,6 @@ export default function CareerDevelopment() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -1,51 +1,17 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { TESTIMONIALS, type Testimonial } from "../data/content";
 
 /*
-  Client testimonials carousel. The quotes, names, honors, and institutions are
-  the real attributions from the reference site (the anonymized version was
-  replaced at the client's explicit request). Each card is tinted with one of
-  the four brand accent colors: green, blue, orange, and silver/gray.
+  Client testimonials carousel. Quotes, names, honors, and institutions come
+  from app/data/content. Each card is tinted with one of the four brand accent
+  colors: green, blue, orange, and slate.
 */
-const TESTIMONIALS = [
-  {
-    quote:
-      "Excellent attention to detail. The turnaround time is remarkable for the level of scientific depth provided.",
-    name: "Dr. Shinya Yamanaka",
-    honor: "Nobel Laureate",
-    org: "Kyoto University",
-    accent: "var(--color-accent-green)",
-  },
-  {
-    quote:
-      "The editors at BioScience Writers are highly skilled and provide very thorough and helpful feedback. Invaluable for our research group.",
-    name: "Dr. Jennifer L. West",
-    honor: "Pierre Galletti Award",
-    org: "Duke University",
-    accent: "var(--color-accent-blue)",
-  },
-  {
-    quote:
-      "Invaluable service for researchers aiming for high-impact journals. Their editing is an essential part of our process.",
-    name: "Dr. Hideyuki Okano",
-    honor: "Medal with Purple Ribbon",
-    org: "Keio University",
-    accent: "var(--color-accent-orange)",
-  },
-  {
-    quote:
-      "Consistent quality and deep understanding of molecular biology. Their feedback is as valuable as a formal peer review.",
-    name: "Dr. Paolo Sassone-Corsi",
-    honor: "EMBO Gold Medalist",
-    org: "UC Irvine",
-    accent: "var(--color-accent-slate)",
-  },
-];
 
 // Two cards per slide, matching the reference carousel.
 const PER_SLIDE = 2;
 
-function Card({ t }: { t: (typeof TESTIMONIALS)[number] }) {
+function Card({ t }: { t: Testimonial }) {
   return (
     <figure
       className="relative mt-6 flex h-full flex-col rounded-2xl border p-8 pt-10"
@@ -124,8 +90,9 @@ export function Testimonials() {
         </div>
       </div>
 
-      {/* Dot pagination */}
-      <div className="mt-8 flex justify-center gap-2.5">
+      {/* Dot pagination. Buttons carry a 24px min hit target (WCAG 2.5.8)
+          around the smaller visual bar. */}
+      <div className="mt-6 flex justify-center">
         {slides.map((_, i) => (
           <button
             key={i}
@@ -133,10 +100,16 @@ export function Testimonials() {
             onClick={() => setPage(i)}
             aria-label={`Go to testimonial slide ${i + 1}`}
             aria-current={page === i}
-            className={`h-2.5 rounded-full transition-all ${
-              page === i ? "w-6 bg-brand" : "w-2.5 bg-slate-300 hover:bg-slate-400"
-            }`}
-          />
+            className="group flex h-6 w-6 items-center justify-center"
+          >
+            <span
+              className={`block h-2.5 rounded-full transition-all ${
+                page === i
+                  ? "w-6 bg-brand"
+                  : "w-2.5 bg-slate-300 group-hover:bg-slate-400"
+              }`}
+            />
+          </button>
         ))}
       </div>
     </div>

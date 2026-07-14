@@ -1,24 +1,19 @@
 import type { Route } from "./+types/privacy-policy";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Privacy Policy | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "How BioScience Writers collects, uses, and safeguards your personal and research data, including GDPR and CCPA compliance.",
-    },
-  ];
+  return pageMeta({
+    title: "Privacy Policy",
+    description:
+      "How BioScience Writers collects, uses, and safeguards your personal and research data, including GDPR and CCPA compliance.",
+    path: "/privacy-policy/",
+  });
 }
 
 export default function PrivacyPolicy() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Privacy Policy" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -127,8 +122,6 @@ export default function PrivacyPolicy() {
             </p>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

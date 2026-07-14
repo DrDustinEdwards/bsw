@@ -1,24 +1,19 @@
 import type { Route } from "./+types/pricing";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Pricing | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Flat-rate, per-word scientific editing pricing with no hidden fees across Standard, Accelerated, and Critical Rush turnaround tiers.",
-    },
-  ];
+  return pageMeta({
+    title: "Pricing",
+    description:
+      "Flat-rate, per-word scientific editing pricing with no hidden fees across Standard, Accelerated, and Critical Rush turnaround tiers.",
+    path: "/pricing/",
+  });
 }
 
 export default function Pricing() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Pricing" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -152,8 +147,6 @@ export default function Pricing() {
             </ul>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

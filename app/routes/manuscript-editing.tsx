@@ -1,25 +1,20 @@
 import type { Route } from "./+types/manuscript-editing";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Manuscript Editing | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Expert MD/PhD editing for medical, scientific, and academic manuscripts, presentations, and posters.",
-    },
-  ];
+  return pageMeta({
+    title: "Manuscript Editing",
+    description:
+      "Expert MD/PhD editing for medical, scientific, and academic manuscripts, presentations, and posters.",
+    path: "/manuscript-editing/",
+  });
 }
 
 export default function ManuscriptEditing() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Manuscript Editing" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -106,8 +101,6 @@ export default function ManuscriptEditing() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

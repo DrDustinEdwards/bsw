@@ -1,25 +1,20 @@
 import type { Route } from "./+types/language-support";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Language Support | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Scientific translation and ESL language polishing for international researchers.",
-    },
-  ];
+  return pageMeta({
+    title: "Language Support",
+    description:
+      "Scientific translation and ESL language polishing for international researchers.",
+    path: "/language-support/",
+  });
 }
 
 export default function LanguageSupport() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Language Support" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -121,8 +116,6 @@ export default function LanguageSupport() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

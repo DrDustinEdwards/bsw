@@ -1,24 +1,19 @@
 import type { Route } from "./+types/contact-us";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Contact Us | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Reach BioScience Writers by phone, fax, email, or our online document submission form. Business office located in Houston, Texas.",
-    },
-  ];
+  return pageMeta({
+    title: "Contact Us",
+    description:
+      "Reach BioScience Writers by phone, fax, email, or our online document submission form. Business office located in Houston, Texas.",
+    path: "/contact-us/",
+  });
 }
 
 export default function ContactUs() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Contact Us" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -117,8 +112,6 @@ export default function ContactUs() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

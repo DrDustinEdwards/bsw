@@ -1,24 +1,19 @@
 import type { Route } from "./+types/about-us";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "About Us | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "Founded in 2001, BioScience Writers is a team of research scientists and physicians providing scientific editing, writing, and grant support.",
-    },
-  ];
+  return pageMeta({
+    title: "About Us",
+    description:
+      "Founded in 2001, BioScience Writers is a team of research scientists and physicians providing scientific editing, writing, and grant support.",
+    path: "/about-us/",
+  });
 }
 
 export default function AboutUs() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="About Us" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -82,8 +77,6 @@ export default function AboutUs() {
             </p>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

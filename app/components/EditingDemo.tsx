@@ -4,10 +4,12 @@ import { useEffect, useRef } from "react";
   Precision Editing Demonstrated: a faithful port of the real interactive
   editor. The document versions and comment cards are the verbatim source
   markup (injected as static HTML so the tracked-changes and highlight spans
-  stay exact). The glass draggable pill tab switcher and the two-way
-  card <-> highlight linking are ported from the source script into a scoped
-  effect. Styling lives in app.css (.psms-*). prefers-reduced-motion disables
-  smooth scroll and the spring snap.
+  stay exact and are server-rendered for crawlers). The glass draggable pill
+  tab switcher, keyboard tablist, and two-way card <-> highlight linking live in
+  editingDemoBehavior.ts, which is dynamically imported after mount so it
+  code-splits out of the home route chunk and never blocks first paint. Styling
+  lives in app.css (.psms-*). prefers-reduced-motion disables smooth scroll and
+  the spring snap.
 */
 
 const PSMS_HTML = `
@@ -91,7 +93,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-scientific-icon">S</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-scientific-label">Scientific</div>
-      <div class="psms-card-text">Clarify why children and older adults are the focus &mdash; e.g., heightened vulnerability &mdash; before introducing these groups.</div>
+      <div class="psms-card-text">Clarify why children and older adults are the focus (e.g., heightened vulnerability) before introducing these groups.</div>
     </div>
   </div>
 
@@ -123,7 +125,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-scientific-icon">S</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-scientific-label">Scientific</div>
-      <div class="psms-card-text">Edit clarifies that non-protective antibodies drive suppression &mdash; confirm this matches your intent.</div>
+      <div class="psms-card-text">Edit clarifies that non-protective antibodies drive suppression; confirm this matches your intent.</div>
     </div>
   </div>
 
@@ -131,7 +133,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-rhetorical-icon">R</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-rhetorical-label">Rhetorical</div>
-      <div class="psms-card-text">Repetitive sentences consolidated &mdash; confirm the edit retains your meaning.</div>
+      <div class="psms-card-text">Repetitive sentences consolidated; confirm the edit retains your meaning.</div>
     </div>
   </div>
 
@@ -163,7 +165,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-rhetorical-icon">R</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-rhetorical-label">Rhetorical</div>
-      <div class="psms-card-text">Model name restated here for clarity &mdash; adjust if the connection to the earlier description is already clear.</div>
+      <div class="psms-card-text">Model name restated here for clarity; adjust if the connection to the earlier description is already clear.</div>
     </div>
   </div>
 
@@ -179,7 +181,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-rhetorical-icon">R</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-rhetorical-label">Rhetorical</div>
-      <div class="psms-card-text">Repetition removed and aim description streamlined &mdash; confirm edits retain your intent.</div>
+      <div class="psms-card-text">Repetition removed and aim description streamlined; confirm edits retain your intent.</div>
     </div>
   </div>
 
@@ -219,7 +221,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-scientific-icon">S</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-scientific-label">Scientific</div>
-      <div class="psms-card-text">Aim 3 is underdeveloped &mdash; add detail on how the hypothesis will be tested and how subdominant antigens will be identified.</div>
+      <div class="psms-card-text">Aim 3 is underdeveloped; add detail on how the hypothesis will be tested and how subdominant antigens will be identified.</div>
     </div>
   </div>
 
@@ -235,7 +237,7 @@ const PSMS_HTML = `
     <div class="psms-card-icon psms-impact-icon">I</div>
     <div class="psms-card-body">
       <div class="psms-card-label psms-impact-label">Impact / Framing</div>
-      <div class="psms-card-text">State how common prior SA exposure is &mdash; reviewers need this to gauge whether immune imprinting plausibly undermines current vaccine efforts.</div>
+      <div class="psms-card-text">State how common prior SA exposure is; reviewers need this to gauge whether immune imprinting plausibly undermines current vaccine efforts.</div>
     </div>
   </div>
 
@@ -251,234 +253,19 @@ export function EditingDemo() {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!rootRef.current) return;
-    // Non-null for the hoisted closures below (control-flow narrowing of a
-    // guarded const is not preserved inside function declarations).
-    const root: HTMLDivElement = rootRef.current;
-
-    const TABS = 3;
-    const TAB_NAMES = ["original", "simple", "all"];
-    let current = 1;
-
-    const layout = root.querySelector("#psms-layout") as HTMLElement;
-    const track = root.querySelector("#psms-track") as HTMLElement;
-    const pill = root.querySelector("#psms-pill") as HTMLElement;
-    const labels = Array.from(
-      track.querySelectorAll(".psms-track-label"),
-    ) as HTMLElement[];
-    if (!layout || !track || !pill || labels.length !== TABS) return;
-
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const scrollBehavior: ScrollBehavior = reduce ? "auto" : "smooth";
-
-    function clearAll() {
-      root
-        .querySelectorAll(".psms-card-lit,.psms-lit")
-        .forEach((el) => el.classList.remove("psms-card-lit", "psms-lit"));
-    }
-
-    function switchTab(name: string) {
-      root.querySelectorAll(".psms-tab-panel").forEach((p) => {
-        p.classList.toggle("psms-active", p.id === "psms-panel-" + name);
-      });
-      layout.setAttribute("data-tab", name);
-      current = TAB_NAMES.indexOf(name);
-      clearAll();
-    }
-
-    function pillXForIdx(i: number) {
-      return (
-        labels[i].getBoundingClientRect().left -
-        track.getBoundingClientRect().left -
-        6
-      );
-    }
-
-    function pillTo(idx: number, animate: boolean) {
-      pill.classList.toggle("psms-snapping", !!animate && !reduce);
-      pill.style.width = labels[idx].getBoundingClientRect().width + "px";
-      pill.style.transform = "translateX(" + pillXForIdx(idx) + "px)";
-      pill.classList.remove("psms-color-1", "psms-color-2");
-      if (idx === 1) pill.classList.add("psms-color-1");
-      if (idx === 2) pill.classList.add("psms-color-2");
-      labels.forEach((l, i) => l.classList.toggle("psms-active", i === idx));
-    }
-
-    const onPillTransitionEnd = () => pill.classList.remove("psms-snapping");
-    pill.addEventListener("transitionend", onPillTransitionEnd);
-
-    function goTo(idx: number, animate: boolean) {
-      idx = Math.max(0, Math.min(TABS - 1, idx));
-      pillTo(idx, animate !== false);
-      switchTab(TAB_NAMES[idx]);
-    }
-
-    function nearestIdx(x: number) {
-      let best = 0;
-      let bd = Infinity;
-      for (let i = 0; i < TABS; i++) {
-        const d = Math.abs(x - pillXForIdx(i));
-        if (d < bd) {
-          bd = d;
-          best = i;
-        }
-      }
-      return best;
-    }
-
-    let dragStartX = 0;
-    let dragCurX = 0;
-    let dragging = false;
-    let startIdx = 0;
-    let pillBaseX = 0;
-    let pillBaseW = 0;
-    const getX = (e: any) => (e.touches ? e.touches[0].clientX : e.clientX);
-
-    function onMove(e: any) {
-      if (e.cancelable) e.preventDefault();
-      dragCurX = getX(e);
-      const delta = dragCurX - dragStartX;
-      if (Math.abs(delta) > 4) dragging = true;
-      if (!dragging) return;
-      const minX = pillXForIdx(0);
-      const maxX = pillXForIdx(TABS - 1);
-      const rawX = Math.max(minX, Math.min(maxX, pillBaseX + delta));
-      const ni = nearestIdx(rawX);
-      pill.style.transform = "translateX(" + rawX + "px)";
-      pill.style.width = pillBaseW + "px";
-      pill.classList.remove("psms-color-1", "psms-color-2");
-      if (ni === 1) pill.classList.add("psms-color-1");
-      if (ni === 2) pill.classList.add("psms-color-2");
-      labels.forEach((l, i) => l.classList.toggle("psms-active", i === ni));
-    }
-
-    function onEnd() {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchmove", onMove);
-      window.removeEventListener("mouseup", onEnd);
-      window.removeEventListener("touchend", onEnd);
-      if (!dragging) {
-        const cx = dragStartX;
-        let best = startIdx;
-        let bd = Infinity;
-        labels.forEach((l, i) => {
-          const r = l.getBoundingClientRect();
-          const d = Math.abs(cx - (r.left + r.width / 2));
-          if (d < bd) {
-            bd = d;
-            best = i;
-          }
-        });
-        goTo(best, true);
-        return;
-      }
-      const rawX = Math.max(
-        pillXForIdx(0),
-        Math.min(pillXForIdx(TABS - 1), pillBaseX + (dragCurX - dragStartX)),
-      );
-      dragging = false;
-      goTo(nearestIdx(rawX), true);
-    }
-
-    function onStart(e: any) {
-      dragStartX = dragCurX = getX(e);
-      dragging = false;
-      startIdx = current;
-      pillBaseX = pillXForIdx(startIdx);
-      pillBaseW = labels[startIdx].getBoundingClientRect().width;
-      pill.classList.remove("psms-snapping");
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("touchmove", onMove, { passive: false });
-      window.addEventListener("mouseup", onEnd);
-      window.addEventListener("touchend", onEnd);
-    }
-
-    track.addEventListener("mousedown", onStart);
-    track.addEventListener("touchstart", onStart, { passive: true });
-
-    function activateCard(card: HTMLElement) {
-      const id = card.getAttribute("data-comment");
-      const already = card.classList.contains("psms-card-lit");
-      clearAll();
-      if (already) return;
-      card.classList.add("psms-card-lit");
-      const panel = root.querySelector(
-        ".psms-tab-panel.psms-active",
-      ) as HTMLElement | null;
-      if (!panel) return;
-      const targets = panel.querySelectorAll(
-        '[data-highlight="' + id + '"]',
-      ) as NodeListOf<HTMLElement>;
-      if (!targets.length) return;
-      targets.forEach((el) => el.classList.add("psms-lit"));
-      const box = panel.querySelector(".psms-scroll-box") as HTMLElement | null;
-      if (box && targets[0]) {
-        box.scrollTo({
-          top:
-            targets[0].getBoundingClientRect().top -
-            box.getBoundingClientRect().top +
-            box.scrollTop -
-            40,
-          behavior: scrollBehavior,
-        });
-      }
-      const col = root.querySelector(
-        "#psms-comments-scroll",
-      ) as HTMLElement | null;
-      if (col) {
-        col.scrollTo({
-          top:
-            card.getBoundingClientRect().top -
-            col.getBoundingClientRect().top +
-            col.scrollTop -
-            60,
-          behavior: scrollBehavior,
-        });
-      }
-    }
-
-    function onClick(e: Event) {
-      const target = e.target as HTMLElement;
-      const card = target.closest(".psms-card") as HTMLElement | null;
-      if (card) {
-        activateCard(card);
-        return;
-      }
-      const hl = target.closest("[data-highlight]") as HTMLElement | null;
-      if (hl) {
-        const m = root.querySelector(
-          '.psms-card[data-comment="' + hl.getAttribute("data-highlight") + '"]',
-        ) as HTMLElement | null;
-        if (m) activateCard(m);
-      }
-    }
-    root.addEventListener("click", onClick);
-
-    const onResize = () => pillTo(current, false);
-    window.addEventListener("resize", onResize);
-
-    let raf2 = 0;
-    const raf1 = requestAnimationFrame(() => {
-      raf2 = requestAnimationFrame(() => {
-        pillTo(1, false);
-        switchTab("simple");
-      });
+    const root = rootRef.current;
+    if (!root) return;
+    let cleanup: (() => void) | undefined;
+    let cancelled = false;
+    // Load the interaction behavior after paint (separate chunk). If the
+    // component unmounts before it resolves, run cleanup immediately.
+    import("./editingDemoBehavior").then((m) => {
+      if (cancelled) return;
+      cleanup = m.initEditingDemo(root);
     });
-
     return () => {
-      pill.removeEventListener("transitionend", onPillTransitionEnd);
-      track.removeEventListener("mousedown", onStart);
-      track.removeEventListener("touchstart", onStart);
-      root.removeEventListener("click", onClick);
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("touchmove", onMove);
-      window.removeEventListener("mouseup", onEnd);
-      window.removeEventListener("touchend", onEnd);
-      cancelAnimationFrame(raf1);
-      cancelAnimationFrame(raf2);
+      cancelled = true;
+      cleanup?.();
     };
   }, []);
 
@@ -490,3 +277,4 @@ export function EditingDemo() {
     />
   );
 }
+

@@ -1,24 +1,19 @@
 import type { Route } from "./+types/cookie-policy";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Cookie Policy | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "How BioScience Writers uses cookies and similar tracking technologies, and how you can manage your preferences.",
-    },
-  ];
+  return pageMeta({
+    title: "Cookie Policy",
+    description:
+      "How BioScience Writers uses cookies and similar tracking technologies, and how you can manage your preferences.",
+    path: "/cookie-policy/",
+  });
 }
 
 export default function CookiePolicy() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Cookie Policy" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -131,8 +126,6 @@ export default function CookiePolicy() {
             </p>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

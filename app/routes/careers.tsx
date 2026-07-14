@@ -1,24 +1,19 @@
 import type { Route } from "./+types/careers";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Careers | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "BioScience Writers is seeking editors and writers with advanced scientific degrees and extensive grant editing experience.",
-    },
-  ];
+  return pageMeta({
+    title: "Careers",
+    description:
+      "BioScience Writers is seeking editors and writers with advanced scientific degrees and extensive grant editing experience.",
+    path: "/careers/",
+  });
 }
 
 export default function Careers() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="Careers" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -74,8 +69,6 @@ export default function Careers() {
             </p>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

@@ -1,25 +1,20 @@
 import type { Route } from "./+types/our-experts";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
+import { pageMeta } from "../config/site";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "PhD/MD Editors | BioScience Writers" },
-    {
-      name: "description",
-      content:
-        "An elite network of MD and PhD editors providing subject-matter expert review across every scientific discipline.",
-    },
-  ];
+  return pageMeta({
+    title: "PhD/MD Editors",
+    description:
+      "An elite network of MD and PhD editors providing subject-matter expert review across every scientific discipline.",
+    path: "/our-experts/",
+  });
 }
 
 export default function OurExperts() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
-      <Header />
-      <main className="flex-1">
+    <>
         <PageHero title="PhD/MD Editors" />
         <section>
           <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
@@ -148,8 +143,6 @@ export default function OurExperts() {
             </div>
           </div>
         </section>
-      </main>
-      <Footer />
-    </div>
+    </>
   );
 }

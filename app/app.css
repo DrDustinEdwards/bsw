@@ -90,6 +90,12 @@
   --color-surface-alt: #e9ebee; /* alternating section background */
   --color-surface-sunken: #e5e7eb; /* inset panels, timeline node ring */
 
+  /* Hero gradient stops (pastel wash behind the hex field). */
+  --color-hero-1: #d9e8f3;
+  --color-hero-2: #e6eeec;
+  --color-hero-3: #fce7d5;
+  --color-hero-4: #eef4dd;
+
   /* Editing-demo tracked-changes markup. */
   --color-markup-del: #cc2020;
   --color-markup-ins: #0d7a6e;
@@ -123,6 +129,28 @@ body {
   @apply bg-white text-[color:var(--color-muted)];
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+/*
+  Visible keyboard focus for every interactive element. Uses :focus-visible so
+  it only shows for keyboard/AT users, not mouse clicks. One token-driven ring
+  site-wide (WCAG 2.4.7, 2.4.11).
+*/
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Hero pastel wash behind the hex field (tokenized gradient stops). */
+.hero-surface {
+  background: linear-gradient(
+    115deg,
+    var(--color-hero-1) 0%,
+    var(--color-hero-2) 32%,
+    var(--color-hero-3) 66%,
+    var(--color-hero-4) 100%
+  );
 }
 
 /* Hero hexagon drift. Positions and sizes are set per element in HexField. */

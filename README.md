@@ -1,79 +1,42 @@
-# Welcome to React Router!
+# BioScience Writers
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Standalone, Cloudflare-native marketing site for BioScience Writers, a scientific editing and medical writing company. Built with React Router v8 (SSR) running in the Workers runtime via the Cloudflare Vite plugin.
 
-## Features
+## Stack
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- React Router v8, server-side rendered
+- Cloudflare Workers (via `@cloudflare/vite-plugin`)
+- Tailwind CSS v4 with a tokenized theme in `app/app.css`
+- TypeScript throughout
 
-## Getting Started
+## Develop
 
-### Installation
-
-Install the dependencies:
-
-```bash
+```sh
 npm install
+npm run dev        # react-router dev on http://localhost:5173
 ```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Previewing the Production Build
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-Deployment is done using the Wrangler CLI.
-
-To build and deploy directly to production:
+## Build and deploy
 
 ```sh
-npm run deploy
+npm run typecheck  # wrangler types + react-router typegen + tsc
+npm run build      # production build
+npm run deploy     # build + wrangler deploy (production Worker)
 ```
 
-To deploy a preview URL:
+Live at https://bsw.dustin-edwards.workers.dev
 
-```sh
-npx wrangler versions upload
-```
+## Structure
 
-You can then promote a version to production after verification or roll it out progressively.
+- `app/routes/` one file per page; `routes/layout.tsx` is the shared header/main/footer shell
+- `app/components/` presentational components (cards, marquee, editing demo, timeline, ...)
+- `app/data/` typed content modules (nav, logos, stats, services, team, faq, testimonials)
+- `app/config/site.ts` single source of the base URL and per-route SEO meta helper
+- `workers/app.ts` request handler plus security response headers
+- `public/` static assets, logos, `robots.txt`, `llms.txt`
 
-```sh
-npx wrangler versions deploy
-```
+## Conventions
 
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+- No em dashes anywhere (code, copy, comments, commits)
+- Every color, radius, and motion value is a token in `app/app.css`; no inline hex or duration literals
+- Base URL lives only in `app/config/site.ts`, `public/robots.txt`, and `public/llms.txt`
