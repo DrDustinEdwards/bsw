@@ -15,17 +15,19 @@ import {
   FileText,
   Building2,
   BookOpen,
-  Check,
   ArrowRight,
 } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "BioScience Writers | Grant Review and Manuscript Editing by PhD and MD Experts" },
+    {
+      title:
+        "BioScience Writers | Scientific editing and medical proofreading services for the global research community",
+    },
     {
       name: "description",
       content:
-        "Strategic grant review and manuscript editing by PhD and MD experts. Funding secured, science perfected. Serving researchers worldwide since 2001.",
+        "PhD & MD editors providing scientific editing, grant writing, and manuscript proofreading services. Fast turnaround for researchers worldwide.",
     },
   ];
 }
@@ -38,37 +40,51 @@ export function meta({}: Route.MetaArgs) {
   37,000+ documents, 2,400+ institutions, 5,000+ journals).
 */
 const STATS = [
-  { Icon: Banknote, value: "$300M+", label: "In grants funded (last 5 years)" },
-  { Icon: Repeat, value: "58%", label: "Repeat clients" },
-  { Icon: Globe, value: "7,000+", label: "Clients in 185 countries" },
-  { Icon: FileText, value: "37,000+", label: "Documents edited" },
-  { Icon: Building2, value: "2,400+", label: "Institutions served" },
-  { Icon: BookOpen, value: "5,000+", label: "Journals published in" },
+  { Icon: Banknote, value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
+  { Icon: Repeat, value: "58%", label: "Repeat Clients" },
+  { Icon: Globe, value: "7,000+", label: "Clients in 185 Countries" },
+  { Icon: FileText, value: "37,000+", label: "Documents" },
+  { Icon: Building2, value: "2,400+", label: "Institutions" },
+  { Icon: BookOpen, value: "5,000+", label: "Journals" },
 ];
 
-const SUB_SERVICES = [
+// Five service items with their descriptive subheadings, verbatim from the
+// reference site. The first item carries the rapid-turnaround note and a quote CTA.
+const SERVICES = [
+  {
+    title: "Grant Review and Editing",
+    subhead: "Maximize Your Funding Potential",
+    desc: "Strategic PhD-level review, writing, and alignment for NIH, NSF, and Foundation submissions.",
+    note: "Rapid Turnaround – Most returned in 7-10 days.",
+    cta: "Your Quote",
+    href: "/pricing/",
+  },
   {
     title: "Manuscript Writing",
-    desc: "Full drafting and structural editing that gets your findings past reviewers the first time.",
+    subhead: "Journal-Ready Editing",
+    desc: "Precision polishing for clarity, logic, and impact to secure acceptance in top-tier journals.",
   },
   {
     title: "Medical Writing",
-    desc: "Regulatory documents, clinical summaries, and study reports written to standard.",
+    subhead: "Clinical & Regulatory Writing",
+    desc: "Expert documentation for Pharma and Biotech, fully compliant with global regulatory standards.",
   },
   {
     title: "Journal Formatting",
-    desc: "Submission-ready formatting matched to any target journal's guidelines.",
+    subhead: "Zero-Error Formatting",
+    desc: "We handle the technical layout requirements for any target journal, guaranteed.",
   },
   {
     title: "Scientific Translation",
-    desc: "Precise translation into publication-quality scientific English.",
+    subhead: "Multilingual Support",
+    desc: "Nuance-aware translation that preserves scientific accuracy.",
   },
 ];
 
 const TEAM = [
   { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp" },
-  { name: "Charlene Emerson", role: "Business Development", photo: "/team/Charlene-Emerson.webp" },
-  { name: "Julie Edwards", role: "Publication Services", photo: "/team/Julie-Edwards.webp" },
+  { name: "Charlene Emerson", role: "Director of Business Development", photo: "/team/Charlene-Emerson.webp" },
+  { name: "Julie Edwards", role: "Director of Publication Services", photo: "/team/Julie-Edwards.webp" },
   { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp" },
   { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp" },
 ];
@@ -119,8 +135,12 @@ export default function Home() {
                 Experts.
               </p>
               <p className="hero-body mt-4 max-w-xl">
-                Fast, confidential turnaround from a terminal-degree editor in
-                your field, with a 100% satisfaction guarantee on every project.
+                Fast turnaround, 100% confidentiality, and an uncompromising
+                quality guarantee.
+              </p>
+              <p className="hero-body mt-3 max-w-xl">
+                Trusted by PIs at top-tier universities and global research
+                institutions for NIH, NSF, and high-impact journal submissions.
               </p>
               <div className="mt-8">
                 <PrimaryButton href="/pricing/">View Pricing</PrimaryButton>
@@ -133,11 +153,7 @@ export default function Home() {
         <section className="bg-[color:var(--color-band)]">
           <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
             <Reveal>
-              <SectionHeading
-                dark
-                eyebrow="Our Impact"
-                title="Our Impact, by the Numbers"
-              />
+              <SectionHeading dark title="Our Impact, by the Numbers" />
             </Reveal>
             <Reveal className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-3">
               {STATS.map((s) => (
@@ -163,13 +179,13 @@ export default function Home() {
           <div className="space-y-10">
             <Reveal>
               <p className="mx-auto mb-4 max-w-6xl px-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                Trusted by researchers at
+                Trusted by Researchers At
               </p>
               <Marquee items={institutions} direction="left" />
             </Reveal>
             <Reveal delay={80}>
               <p className="mx-auto mb-4 max-w-6xl px-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
-                Published in
+                Published In
               </p>
               <Marquee items={journals} direction="right" />
             </Reveal>
@@ -182,89 +198,40 @@ export default function Home() {
             <Reveal>
               <SectionHeading
                 eyebrow="Our Services"
-                title="Everything from first draft to funded and published"
-                intro="One team of terminal-degree experts across the full research communication workflow."
+                title="Personal Expert Scientists for High-Impact Research"
+                intro="We provide the highest quality scientific editing, writing, and strategy services. Our editors are PhD and MD-credentialed professionals who understand that competing successfully for grant funding is critical to your career success."
               />
             </Reveal>
 
-            {/* Flagship dark card */}
-            <Reveal className="mt-12">
-              <div className="grid overflow-hidden rounded-3xl bg-[color:var(--color-band)] lg:grid-cols-2">
-                <div className="flex flex-col justify-center p-9 sm:p-12">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-hex-green">
-                    Flagship service
-                  </p>
-                  <h3 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
-                    Grant Review and Editing
-                  </h3>
-                  <p className="mt-4 leading-relaxed text-slate-300">
-                    A former study-section reviewer reads your proposal the way
-                    the panel will, then edits for significance, approach, and
-                    clarity. Strategic feedback that changes outcomes, not just
-                    grammar.
-                  </p>
-                  <ul className="mt-6 space-y-2.5 text-sm text-slate-200">
-                    {[
-                      "Reviewer-perspective critique of aims and significance",
-                      "Line editing for clarity and flow",
-                      "Response-to-reviewers strategy for resubmissions",
-                    ].map((li) => (
-                      <li key={li} className="flex items-start gap-2.5">
-                        <Check
-                          className="mt-0.5 shrink-0 text-white"
-                          size={18}
-                          strokeWidth={2}
-                          aria-hidden="true"
-                        />
-                        {li}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8">
-                    <a
-                      href="/grant-proposal-support/"
-                      className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-white px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-slate-100"
-                    >
-                      Learn more
-                      <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-                    </a>
-                  </div>
-                </div>
-                {/* Real grant-review photo with a dark overlay for the caption */}
-                <div className="relative min-h-[240px] overflow-hidden">
-                  <img
-                    src="/services/grant-review.webp"
-                    alt="A BioScience Writers editor reviewing a grant with a researcher"
-                    className="absolute inset-0 h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1a2a]/85 via-[#0b1a2a]/20 to-transparent" />
-                  <div className="relative flex h-full items-end p-9">
-                    <p className="font-display text-2xl font-semibold leading-snug text-white">
-                      Written by scientists who have won the grants you are
-                      applying for.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* 2x2 grid */}
-            <div className="mt-6 grid gap-6 sm:grid-cols-2">
-              {SUB_SERVICES.map((s, i) => (
-                <Reveal key={s.title} delay={i * 60}>
-                  <div className="group h-full rounded-2xl border border-slate-200 bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg hover:shadow-slate-900/5">
-                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[color:color-mix(in_srgb,var(--color-brand)_10%,white)] text-brand">
-                      <span className="font-display text-lg font-bold">
-                        {i + 1}
-                      </span>
-                    </div>
+            {/* Five service items */}
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {SERVICES.map((s, i) => (
+                <Reveal key={s.title} delay={(i % 3) * 60}>
+                  <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg hover:shadow-slate-900/5">
                     <h3 className="font-display text-xl font-semibold text-ink">
                       {s.title}
                     </h3>
-                    <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">
+                    <p className="mt-1 text-sm font-semibold text-brand">
+                      {s.subhead}
+                    </p>
+                    <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
                       {s.desc}
                     </p>
+                    {s.note && (
+                      <p className="mt-4 text-sm font-semibold text-[#577e20]">
+                        {s.note}
+                      </p>
+                    )}
+                    {s.cta && (
+                      <div className="mt-5">
+                        <a
+                          href={s.href}
+                          className="inline-block rounded-[var(--radius-btn)] bg-brand px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-hover"
+                        >
+                          {s.cta}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </Reveal>
               ))}
@@ -278,18 +245,19 @@ export default function Home() {
                     BSW Academy
                   </p>
                   <h3 className="mt-1 font-display text-2xl font-semibold text-ink">
-                    Learn to write like a funded scientist
+                    Elite Scientific Writing Curriculum
                   </h3>
                   <p className="mt-1 text-[0.95rem] text-muted">
-                    Workshops and self-paced courses on grant and manuscript
-                    writing, taught by our editors.
+                    Master the mechanics of high-impact publishing and
+                    grant-winning through our expert-led eCourses.
                   </p>
                 </div>
                 <a
                   href="/knowledge-hub/"
-                  className="shrink-0 rounded-[var(--radius-btn)] bg-[#577e20] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#466618]"
+                  className="inline-flex shrink-0 items-center gap-1.5 rounded-[var(--radius-btn)] bg-[#577e20] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#466618]"
                 >
-                  Explore the Academy
+                  Explore courses
+                  <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
                 </a>
               </div>
             </Reveal>
@@ -301,9 +269,9 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="See the difference"
-                title="Precision Editing Demonstrated"
-                intro="Drag the switch between Original, Simple Markup, and All Markup, then click any comment to see the passage it addresses on a real grant excerpt."
+                eyebrow="Precision Editing, Demonstrated"
+                title="The Difference Expert Editing Makes"
+                intro="Every manuscript edited by BioScience Writers receives both line-level editorial review and field-specific scientific commentary from a credentialed PhD or MD expert. Select any highlighted passage to examine the rationale behind each revision."
               />
             </Reveal>
             <Reveal className="mt-12">
@@ -317,8 +285,8 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="What researchers say"
-                title="Outcomes our clients came back for"
+                eyebrow="Trusted Worldwide"
+                title="What Our Clients Say"
               />
             </Reveal>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -356,9 +324,9 @@ export default function Home() {
           <div className="mx-auto max-w-3xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="How it works"
-                title="A streamlined four-step process"
-                intro="From upload to guarantee, you always know where your project stands."
+                eyebrow="Streamlined process, start to finish"
+                title="Your Path from Submission to Success"
+                intro="Every order follows our proven four-step workflow: expert matching, comprehensive editing, track changes delivery, and our satisfaction guarantee. See exactly what happens from the moment you submit your document."
               />
             </Reveal>
             <div className="mt-14">
@@ -372,9 +340,9 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Our team"
-                title="Scientists and editors behind your work"
-                intro="A small, senior team you work with directly. No account managers, no hand-offs."
+                eyebrow="Behind every edit"
+                title="Experienced Professionals Managing Every Detail"
+                intro="Our core team personally oversees every project from first submission to final delivery. Each document is matched with a field-specific PhD or MD specialist, ensuring your work receives the scientific expertise it deserves."
               />
             </Reveal>
             <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
@@ -403,12 +371,27 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Questions"
-                title="Frequently asked questions"
+                eyebrow="Clear answers, no surprises"
+                title="Frequently Asked Questions"
+                intro="Find quick answers to the most common questions about our editing process, turnaround times, credentials, and satisfaction guarantee."
               />
             </Reveal>
             <Reveal className="mt-12">
               <Faq />
+            </Reveal>
+            <Reveal className="mt-8 text-center">
+              <p className="font-display text-lg font-semibold text-ink">
+                Still have questions?
+              </p>
+              <p className="mt-1 text-sm text-muted">
+                Our team responds within one business day.
+              </p>
+              <a
+                href="/contact-us/"
+                className="mt-4 inline-block rounded-[var(--radius-btn)] bg-brand px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-brand-hover"
+              >
+                Ask Us a Question
+              </a>
             </Reveal>
           </div>
         </section>
@@ -417,31 +400,22 @@ export default function Home() {
         <section className="bg-brand">
           <div className="mx-auto max-w-4xl px-5 py-20 text-center">
             <Reveal>
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/70">
+              <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
                 The BSW Commitment
-              </p>
-              <h2 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
-                Founded in 2001. Terminal-degree editors. A 100% satisfaction
-                guarantee on every project.
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-white/80">
-                We exist to help researchers secure funding and publish their
-                best work. If we do not meet that standard, we make it right.
+              <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-white/85">
+                Since 2001, we have helped the international research community
+                maximize the accuracy and impact of their documents. Every
+                editor on our team is a native English speaker with a terminal
+                degree (PhD, MD, or DVM) and active expertise in your specific
+                field of research. We combine elite scientific precision with
+                personal attention and rapid turnaround to ensure your work
+                stands out.
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <a
-                  href="/pricing/"
-                  className="rounded-[var(--radius-btn)] bg-white px-6 py-3 text-sm font-bold text-brand transition-colors hover:bg-slate-100"
-                >
-                  Get a Quote
-                </a>
-                <a
-                  href="/contact-us/"
-                  className="rounded-[var(--radius-btn)] border border-white/40 px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-white/10"
-                >
-                  Talk to an editor
-                </a>
-              </div>
+              <p className="mx-auto mt-6 inline-block rounded-[var(--radius-btn)] bg-white/10 px-5 py-3 text-sm font-semibold text-white">
+                100% Satisfaction Guarantee – Free re-edits for language issues
+                raised by reviewers.
+              </p>
             </Reveal>
           </div>
         </section>

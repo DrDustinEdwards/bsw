@@ -49,7 +49,7 @@ export const footerGroups: NavGroup[] = [
     ],
   },
   {
-    label: "Legal and Support",
+    label: "Legal & Support",
     links: [
       { label: "Editing Guarantee", href: "/editing-guarantee/" },
       { label: "Security and Confidentiality", href: "/security-confidentiality/" },
