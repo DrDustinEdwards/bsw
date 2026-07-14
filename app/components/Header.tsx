@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { primaryNav } from "../data/nav";
 import { Wordmark } from "./Logo";
 
@@ -53,22 +54,14 @@ export function Header() {
                 className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-ink transition-colors hover:text-brand"
               >
                 {group.label}
-                <svg
-                  className={`h-3.5 w-3.5 transition-transform ${
+                <ChevronDown
+                  size={14}
+                  strokeWidth={2}
+                  className={`transition-transform ${
                     openGroup === group.label ? "rotate-180" : ""
                   }`}
-                  viewBox="0 0 12 12"
-                  fill="none"
                   aria-hidden="true"
-                >
-                  <path
-                    d="M2.5 4.5 6 8l3.5-3.5"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                />
               </button>
               <div
                 className={`absolute left-0 top-full w-64 pt-2 transition-all duration-150 ${
@@ -110,23 +103,11 @@ export function Header() {
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((o) => !o)}
           >
-            <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
-              {mobileOpen ? (
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              ) : (
-                <path
-                  d="M4 7h16M4 12h16M4 17h16"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-              )}
-            </svg>
+            {mobileOpen ? (
+              <X size={24} strokeWidth={2} aria-hidden="true" />
+            ) : (
+              <Menu size={24} strokeWidth={2} aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>

@@ -8,6 +8,16 @@ import { Faq } from "../components/Faq";
 import { Reveal } from "../components/Reveal";
 import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
 import { institutions, journals } from "../data/logos";
+import {
+  Banknote,
+  Repeat,
+  Globe,
+  FileText,
+  Building2,
+  BookOpen,
+  Check,
+  ArrowRight,
+} from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -28,10 +38,12 @@ export function meta({}: Route.MetaArgs) {
   37,000+ documents, 2,400+ institutions, 5,000+ journals).
 */
 const STATS = [
-  { value: "37,000+", label: "Documents edited" },
-  { value: "7,000+", label: "Clients in 185 countries" },
-  { value: "2,400+", label: "Institutions served" },
-  { value: "5,000+", label: "Journals published in" },
+  { Icon: Banknote, value: "$300M+", label: "In grants funded (last 5 years)" },
+  { Icon: Repeat, value: "58%", label: "Repeat clients" },
+  { Icon: Globe, value: "7,000+", label: "Clients in 185 countries" },
+  { Icon: FileText, value: "37,000+", label: "Documents edited" },
+  { Icon: Building2, value: "2,400+", label: "Institutions served" },
+  { Icon: BookOpen, value: "5,000+", label: "Journals published in" },
 ];
 
 const SUB_SERVICES = [
@@ -119,20 +131,24 @@ export default function Home() {
 
         {/* 2. Impact stats */}
         <section className="bg-[color:var(--color-band)]">
-          <div className="mx-auto max-w-6xl px-5 py-16">
-            <Reveal className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="lg:row-span-1">
-                <div className="font-display text-5xl font-semibold text-white sm:text-6xl">
-                  $300M+
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                  In research funding secured by our clients over the last five
-                  years, with 58% returning for their next project.
-                </p>
-              </div>
+          <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+            <Reveal>
+              <SectionHeading
+                dark
+                eyebrow="Our Impact"
+                title="Our Impact, by the Numbers"
+              />
+            </Reveal>
+            <Reveal className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-3">
               {STATS.map((s) => (
-                <div key={s.label} className="border-l border-white/15 pl-6">
-                  <div className="font-display text-4xl font-semibold text-white">
+                <div key={s.label} className="text-center">
+                  <s.Icon
+                    className="mx-auto text-white"
+                    size={30}
+                    strokeWidth={2}
+                    aria-hidden="true"
+                  />
+                  <div className="mt-3 font-display text-4xl font-semibold text-white sm:text-5xl">
                     {s.value}
                   </div>
                   <p className="mt-1 text-sm text-slate-300">{s.label}</p>
@@ -194,17 +210,12 @@ export default function Home() {
                       "Response-to-reviewers strategy for resubmissions",
                     ].map((li) => (
                       <li key={li} className="flex items-start gap-2.5">
-                        <span className="mt-1 h-4 w-4 shrink-0 text-hex-green">
-                          <svg viewBox="0 0 16 16" fill="none">
-                            <path
-                              d="M3 8.5 6.5 12 13 4.5"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </span>
+                        <Check
+                          className="mt-0.5 shrink-0 text-white"
+                          size={18}
+                          strokeWidth={2}
+                          aria-hidden="true"
+                        />
                         {li}
                       </li>
                     ))}
@@ -215,7 +226,7 @@ export default function Home() {
                       className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-white px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-slate-100"
                     >
                       Learn more
-                      <span aria-hidden="true">-&gt;</span>
+                      <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
                     </a>
                   </div>
                 </div>

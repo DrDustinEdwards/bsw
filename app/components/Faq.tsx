@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 
 const FAQS = [
   {
@@ -43,18 +44,11 @@ export function Faq() {
               </span>
               <span
                 className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-300 text-brand transition-transform ${
-                  isOpen ? "rotate-45" : ""
+                  isOpen ? "rotate-180" : ""
                 }`}
                 aria-hidden="true"
               >
-                <svg viewBox="0 0 16 16" className="h-4 w-4" fill="none">
-                  <path
-                    d="M8 3v10M3 8h10"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <ChevronDown size={16} strokeWidth={2} />
               </span>
             </button>
             <div
