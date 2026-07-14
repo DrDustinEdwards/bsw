@@ -96,26 +96,42 @@ export function Avatar({
   );
 }
 
+// Logos sit directly on the dark band with no card or border. Every mark is
+// forced to solid white with brightness(0) invert(1) so colored (UCSF blue,
+// nature wordmarks) and black logos alike read uniformly on the band.
 export function LogoTile({ src, name }: { src: string; name: string }) {
   return (
-    <div className="flex h-16 w-40 shrink-0 items-center justify-center rounded-xl bg-white px-5">
-      <img
-        src={src}
-        alt={name}
-        loading="lazy"
-        className="max-h-9 max-w-[80%] object-contain"
-      />
-    </div>
+    <img
+      src={src}
+      alt={name}
+      loading="lazy"
+      className="h-10 w-auto shrink-0 object-contain opacity-80 transition-opacity duration-200 hover:opacity-100"
+      style={{ filter: "brightness(0) invert(1)" }}
+    />
   );
 }
 
-// Duplicated track so the marquee loops seamlessly (translateX(-50%)). Real
-// institution and journal SVG logos sit on white tiles to stay legible on the
-// dark band.
-export function Marquee({ items }: { items: { src: string; name: string }[] }) {
+// Shared duration for both rows; only the scroll direction differs. Content is
+// duplicated so translateX(-50%) loops seamlessly. Hovering the row pauses it,
+// and prefers-reduced-motion halts it (both handled via .marquee-track).
+const MARQUEE_DURATION = "48s";
+
+export function Marquee({
+  items,
+  direction = "left",
+}: {
+  items: { src: string; name: string }[];
+  direction?: "left" | "right";
+}) {
   return (
-    <div className="relative overflow-hidden">
-      <div className="marquee-track flex w-max gap-4" style={{ animation: "marquee 38s linear infinite" }}>
+    <div className="group relative overflow-hidden">
+      <div
+        className="marquee-track flex w-max items-center gap-14 group-hover:[animation-play-state:paused]"
+        style={{
+          animation: `marquee ${MARQUEE_DURATION} linear infinite`,
+          animationDirection: direction === "right" ? "reverse" : "normal",
+        }}
+      >
         {[...items, ...items].map((logo, i) => (
           <LogoTile key={i} src={logo.src} name={logo.name} />
         ))}

@@ -181,13 +181,13 @@ export default function Home() {
               <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
                 Trusted by researchers at
               </p>
-              <Marquee items={institutions} />
+              <Marquee items={institutions} direction="left" />
             </Reveal>
             <Reveal delay={80}>
               <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
                 Published in
               </p>
-              <Marquee items={journals} />
+              <Marquee items={journals} direction="right" />
             </Reveal>
           </div>
         </section>
