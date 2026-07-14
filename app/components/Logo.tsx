@@ -12,11 +12,20 @@ export function LogoMark({ className = "" }: { className?: string }) {
       aria-label="BioScience Writers"
     >
       {/* top face */}
-      <polygon points="50,0 100,28.75 50,57.5 0,28.75" fill="#8dc63f" />
+      <polygon
+        points="50,0 100,28.75 50,57.5 0,28.75"
+        style={{ fill: "var(--color-hex-green)" }}
+      />
       {/* left face */}
-      <polygon points="0,28.75 50,57.5 50,115 0,86.25" fill="#006db7" />
+      <polygon
+        points="0,28.75 50,57.5 50,115 0,86.25"
+        style={{ fill: "var(--color-hex-blue)" }}
+      />
       {/* right face */}
-      <polygon points="100,28.75 100,86.25 50,115 50,57.5" fill="#f58220" />
+      <polygon
+        points="100,28.75 100,86.25 50,115 50,57.5"
+        style={{ fill: "var(--color-hex-orange)" }}
+      />
       {/* seams */}
       <g stroke="#ffffff" strokeWidth="3" strokeLinejoin="round" fill="none">
         <polygon points="50,0 100,28.75 100,86.25 50,115 0,86.25 0,28.75" />

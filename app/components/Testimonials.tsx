@@ -14,7 +14,7 @@ const TESTIMONIALS = [
     name: "Dr. Shinya Yamanaka",
     honor: "Nobel Laureate",
     org: "Kyoto University",
-    accent: "#577e20",
+    accent: "var(--color-accent-green)",
   },
   {
     quote:
@@ -22,7 +22,7 @@ const TESTIMONIALS = [
     name: "Dr. Jennifer L. West",
     honor: "Pierre Galletti Award",
     org: "Duke University",
-    accent: "#0066a1",
+    accent: "var(--color-accent-blue)",
   },
   {
     quote:
@@ -30,7 +30,7 @@ const TESTIMONIALS = [
     name: "Dr. Hideyuki Okano",
     honor: "Medal with Purple Ribbon",
     org: "Keio University",
-    accent: "#b75b15",
+    accent: "var(--color-accent-orange)",
   },
   {
     quote:
@@ -38,7 +38,7 @@ const TESTIMONIALS = [
     name: "Dr. Paolo Sassone-Corsi",
     honor: "EMBO Gold Medalist",
     org: "UC Irvine",
-    accent: "#475569",
+    accent: "var(--color-accent-slate)",
   },
 ];
 
@@ -50,8 +50,8 @@ function Card({ t }: { t: (typeof TESTIMONIALS)[number] }) {
     <figure
       className="relative mt-6 flex h-full flex-col rounded-2xl border p-8 pt-10"
       style={{
-        borderColor: `${t.accent}33`,
-        background: `linear-gradient(140deg, ${t.accent}18 0%, #ffffff 72%)`,
+        borderColor: `color-mix(in srgb, ${t.accent} 20%, transparent)`,
+        background: `linear-gradient(140deg, color-mix(in srgb, ${t.accent} 9%, transparent) 0%, #ffffff 72%)`,
       }}
     >
       <span className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-white shadow-md shadow-slate-900/10">

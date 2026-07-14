@@ -71,7 +71,7 @@ export function SectionHeading({
       {subtitle && (
         <p
           className={`mt-2 text-2xl font-normal leading-snug sm:text-[1.9rem] ${
-            dark ? "text-slate-200" : "text-[#3f4e5c]"
+            dark ? "text-slate-200" : "text-band"
           }`}
         >
           {subtitle}
@@ -91,11 +91,11 @@ export function SectionHeading({
 }
 
 const AVATAR_GRADIENTS = [
-  "linear-gradient(135deg,#006db7,#0066a1)",
-  "linear-gradient(135deg,#8dc63f,#577e20)",
-  "linear-gradient(135deg,#f58220,#b75b15)",
-  "linear-gradient(135deg,#3f4e5c,#1a2b3c)",
-  "linear-gradient(135deg,#0066a1,#8dc63f)",
+  "linear-gradient(135deg,var(--color-hex-blue),var(--color-accent-blue))",
+  "linear-gradient(135deg,var(--color-hex-green),var(--color-accent-green))",
+  "linear-gradient(135deg,var(--color-hex-orange),var(--color-accent-orange))",
+  "linear-gradient(135deg,var(--color-band),var(--color-ink))",
+  "linear-gradient(135deg,var(--color-accent-blue),var(--color-hex-green))",
 ];
 
 export function Avatar({

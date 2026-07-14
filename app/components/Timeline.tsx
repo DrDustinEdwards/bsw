@@ -25,28 +25,28 @@ const STEPS: {
   {
     num: "01",
     title: "Submit Your Document",
-    color: "#0066A1",
+    color: "var(--color-accent-blue)",
     desc: "Upload your manuscript or grant proposal. Select your turnaround time and any special requirements.",
     Icon: Upload,
   },
   {
     num: "02",
     title: "Matched with Your Expert",
-    color: "#577E20",
+    color: "var(--color-accent-green)",
     desc: "We pair you with a PhD/MD editor in your field. Receive confirmation with estimated completion date.",
     Icon: UserCheck,
   },
   {
     num: "03",
     title: "Receive Track Changes Edits",
-    color: "#B75B15",
+    color: "var(--color-accent-orange)",
     desc: "Download two versions: one showing all changes, and one clean copy with all edits accepted.",
     Icon: FileText,
   },
   {
     num: "04",
     title: "100% Satisfaction Guarantee",
-    color: "#0066A1",
+    color: "var(--color-accent-blue)",
     desc: "If reviewers request revisions, we re-edit at no charge. Your success is our guarantee.",
     Icon: ShieldCheck,
   },
@@ -114,7 +114,7 @@ export function Timeline() {
           </div>
           <div className="timeline-content">
             <div className="step-icon">
-              <s.Icon size={40} strokeWidth={2} color={s.color} />
+              <s.Icon size={40} strokeWidth={2} style={{ color: s.color }} />
             </div>
             <h3 className="step-title">{s.title}</h3>
             <p className="step-description">{s.desc}</p>

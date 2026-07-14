@@ -6,19 +6,19 @@ const social = [
   {
     label: "Facebook",
     href: "https://facebook.com/BioScienceWriters",
-    color: "#3b5998",
+    color: "var(--color-social-facebook)",
     path: "M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.5-1.5h1.6V3.6C17.8 3.55 16.9 3.5 15.8 3.5c-2.3 0-3.9 1.4-3.9 4v2.4H9.2V13h2.7v8z",
   },
   {
     label: "X",
     href: "https://x.com/biosciencewrite",
-    color: "#000000",
+    color: "var(--color-social-x)",
     path: "M17.9 3.5h2.9l-6.35 7.26L22 20.5h-5.9l-4.6-6-5.3 6H3.3l6.8-7.77L2.7 3.5h6.05l4.16 5.5zm-1 15.24h1.6L8.2 5.16H6.5z",
   },
   {
     label: "LinkedIn",
     href: "https://linkedin.com/company/bioscience-writers-llc",
-    color: "#0077b5",
+    color: "var(--color-social-linkedin)",
     path: "M6.94 5a1.94 1.94 0 1 1-3.88 0 1.94 1.94 0 0 1 3.88 0zM3.5 8.5h3.3V21H3.5zm5.6 0h3.16v1.7h.05c.44-.83 1.5-1.7 3.1-1.7 3.32 0 3.93 2.18 3.93 5v6.5h-3.3v-5.76c0-1.37-.02-3.14-1.9-3.14-1.92 0-2.2 1.5-2.2 3.04V21H9.1z",
   },
 ];

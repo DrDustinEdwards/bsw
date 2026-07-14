@@ -69,36 +69,36 @@ const SERVICE_CARDS = [
     title: "Manuscript Writing",
     subhead: "Journal-Ready Editing",
     desc: "Precision polishing for clarity, logic, and impact to secure acceptance in top-tier journals.",
-    accent: "#0066a1",
+    accent: "var(--color-accent-blue)",
   },
   {
     title: "Medical Writing",
     subhead: "Clinical & Regulatory Writing",
     desc: "Expert documentation for Pharma and Biotech, fully compliant with global regulatory standards.",
-    accent: "#0066a1",
+    accent: "var(--color-accent-blue)",
   },
   {
     title: "Journal Formatting",
     subhead: "Zero-Error Formatting",
     desc: "We handle the technical layout requirements for any target journal, guaranteed.",
-    accent: "#577e20",
+    accent: "var(--color-accent-green)",
   },
   {
     title: "Scientific Translation",
     subhead: "Multilingual Support",
     desc: "Nuance-aware translation that preserves scientific accuracy.",
-    accent: "#b75b15",
+    accent: "var(--color-accent-orange)",
   },
 ];
 
 // Each card's caption panel carries a soft accent glow, matching the reference:
 // the row runs orange, blue, blue, green, green across the five members.
 const TEAM = [
-  { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp", accent: "#b75b15" },
-  { name: "Charlene Emerson", role: "Director of Business Development", photo: "/team/Charlene-Emerson.webp", accent: "#0066a1" },
-  { name: "Julie Edwards", role: "Director of Publication Services", photo: "/team/Julie-Edwards.webp", accent: "#0066a1" },
-  { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp", accent: "#577e20" },
-  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp", accent: "#577e20" },
+  { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp", accent: "var(--color-accent-orange)" },
+  { name: "Charlene Emerson", role: "Director of Business Development", photo: "/team/Charlene-Emerson.webp", accent: "var(--color-accent-blue)" },
+  { name: "Julie Edwards", role: "Director of Publication Services", photo: "/team/Julie-Edwards.webp", accent: "var(--color-accent-blue)" },
+  { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp", accent: "var(--color-accent-green)" },
+  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp", accent: "var(--color-accent-green)" },
 ];
 
 export default function Home() {
@@ -181,7 +181,7 @@ export default function Home() {
         </section>
 
         {/* 3. Services: flagship card + 2x2 grid + BSW Academy banner */}
-        <section id="services" className="bg-[#e9ebee]">
+        <section id="services" className="bg-surface-alt">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
@@ -202,7 +202,7 @@ export default function Home() {
                     className="min-h-[13rem] w-full flex-1 object-cover"
                   />
                   <div className="flex flex-col p-8">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#6cb2e6]">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-blue-soft">
                       Flagship Service
                     </p>
                     <h3 className="mt-2 font-display text-2xl font-bold text-white">
@@ -240,7 +240,7 @@ export default function Home() {
                           aria-hidden="true"
                           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
                           style={{
-                            background: `radial-gradient(125% 115% at 100% 100%, ${s.accent}3d 0%, ${s.accent}00 68%)`,
+                            background: `radial-gradient(125% 115% at 100% 100%, color-mix(in srgb, ${s.accent} 24%, transparent) 0%, transparent 68%)`,
                           }}
                         />
                         <div className="relative flex flex-1 flex-col p-7">
@@ -255,7 +255,7 @@ export default function Home() {
                           </p>
                           <div className="mt-6 flex flex-1 items-end justify-end">
                             <span
-                              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-[#8a8f98] transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
+                              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-icon-muted transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
                               aria-hidden="true"
                             >
                               <ArrowRight size={16} strokeWidth={2} />
@@ -270,7 +270,7 @@ export default function Home() {
                 {/* BSW Academy banner */}
                 <Reveal className="mt-6">
                   <div className="rounded-2xl bg-[color:var(--color-band)] p-8">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a4d65e]">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-green-soft">
                       eCourse &middot; Self-Paced Learning
                     </p>
                     <h3 className="mt-2 font-display text-2xl font-bold text-white">
@@ -284,7 +284,7 @@ export default function Home() {
                       grant-winning through our expert-led eCourses.{" "}
                       <a
                         href="/knowledge-hub/"
-                        className="inline-flex items-center gap-1 font-semibold text-[#a4d65e] hover:underline"
+                        className="inline-flex items-center gap-1 font-semibold text-accent-green-soft hover:underline"
                       >
                         Explore courses
                         <ArrowRight size={15} strokeWidth={2} aria-hidden="true" />
@@ -314,7 +314,7 @@ export default function Home() {
         </section>
 
         {/* 5. Testimonials (anonymized content, reference carousel styling) */}
-        <section className="bg-[#e9ebee]">
+        <section className="bg-surface-alt">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
@@ -359,7 +359,7 @@ export default function Home() {
         </section>
 
         {/* 7. Team */}
-        <section className="bg-[#e9ebee]">
+        <section className="bg-surface-alt">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
@@ -381,7 +381,7 @@ export default function Home() {
                     <div
                       className="flex flex-1 flex-col px-4 py-5 text-center"
                       style={{
-                        background: `linear-gradient(180deg, #ffffff 0%, ${member.accent}26 100%)`,
+                        background: `linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, ${member.accent} 15%, transparent) 100%)`,
                       }}
                     >
                       <h3 className="font-display text-lg font-bold text-ink">

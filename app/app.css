@@ -35,7 +35,7 @@
     shadow doubles as the scheme's red accent (--color-hex-red). These are the
     single source of truth for the hero hexagons and any brand-color usage.
   */
-  --color-hex-blue: #0079c4;
+  --color-hex-blue: #006db7; /* matches the SVG logo mark (Logo.tsx) */
   --color-hex-blue-light: #0183cb;
   --color-hex-blue-dark: #2b3492; /* indigo shadow face */
 
@@ -43,7 +43,7 @@
   --color-hex-green-light: #b6d434;
   --color-hex-green-dark: #00a652; /* emerald shadow face */
 
-  --color-hex-orange: #f7951d;
+  --color-hex-orange: #f58220; /* matches the SVG logo mark (Logo.tsx) */
   --color-hex-orange-light: #fba719; /* amber highlight */
   --color-hex-orange-dark: #ec1c24; /* red shadow face */
 
@@ -53,11 +53,51 @@
 
   --color-hex-red: #ec1c24; /* accent, shared with orange's shadow face */
 
-  /* Editing-demo annotation categories */
-  --color-anno-sci: #0066a1;
-  --color-anno-edit: #b75b15;
-  --color-anno-impact: #577e20;
-  --color-anno-rhet: #475569;
+  /*
+    Brand accent scale. The four text-safe accent hues used across service
+    cards, team captions, the timeline, testimonials, and the editing-demo
+    categories. Single source of truth: adjust a hue here and every usage,
+    plus the annotation aliases below, follow. All four clear WCAG 2.2 AA
+    (4.5:1) as text on white and 3:1 as icons.
+  */
+  --color-accent-blue: #0066a1;
+  --color-accent-green: #577e20;
+  --color-accent-orange: #b75b15;
+  --color-accent-slate: #475569;
+  /* Darker inks so accent-colored button text stays AA on the glass face. */
+  --color-accent-green-ink: #46691a;
+  --color-accent-orange-ink: #b3560f;
+  /*
+    Light accent tints for eyebrow text and links on the dark band. Values are
+    tuned to clear WCAG 2.2 AA (4.5:1) against --color-band: blue #93c7f0 is
+    lightened from the reference #6cb2e6 (which failed at 3.73:1).
+  */
+  --color-accent-blue-soft: #93c7f0;
+  --color-accent-green-soft: #a4d65e;
+
+  /* Editing-demo annotation categories, aliased to the accent scale. */
+  --color-anno-sci: var(--color-accent-blue);
+  --color-anno-edit: var(--color-accent-orange);
+  --color-anno-impact: var(--color-accent-green);
+  --color-anno-rhet: var(--color-accent-slate);
+
+  /* Secondary text greys. */
+  --color-ink-soft: #4f5e6b; /* hero subtitle, timeline step title */
+  --color-body-soft: #5a7581; /* hero body, AA on white (was #607d8b, 4.37:1) */
+  --color-icon-muted: #8a8f98; /* inactive UI arrow glyphs */
+
+  /* Neutral surfaces. */
+  --color-surface-alt: #e9ebee; /* alternating section background */
+  --color-surface-sunken: #e5e7eb; /* inset panels, timeline node ring */
+
+  /* Editing-demo tracked-changes markup. */
+  --color-markup-del: #cc2020;
+  --color-markup-ins: #0d7a6e;
+
+  /* Social brand tiles (third-party brand colors, footer). */
+  --color-social-facebook: #3b5998;
+  --color-social-x: #000000;
+  --color-social-linkedin: #0077b5;
 
   --radius-btn: 10px;
 }
@@ -213,19 +253,19 @@ body {
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
 }
 .hero-title {
-  color: #1a2b3c;
+  color: var(--color-ink);
   font-weight: 800;
   font-size: 3.2rem;
   line-height: 1.1;
 }
 .hero-subtitle {
-  color: #4f5e6b;
+  color: var(--color-ink-soft);
   font-weight: 600;
   font-size: 1.6rem;
   line-height: 1.3;
 }
 .hero-body {
-  color: #607d8b;
+  color: var(--color-body-soft);
   font-size: 1.1rem;
   line-height: 1.6;
 }
@@ -447,19 +487,19 @@ body {
 .btn-blue {
   --btn-tint1: rgba(195, 220, 240, 0.88);
   --btn-tint2: rgba(170, 208, 232, 0.8);
-  --btn-ink: #0066a1;
+  --btn-ink: var(--color-accent-blue);
   --btn-glow: 0, 102, 161;
 }
 .btn-green {
   --btn-tint1: rgba(225, 240, 195, 0.88);
   --btn-tint2: rgba(205, 230, 165, 0.8);
-  --btn-ink: #46691a;
+  --btn-ink: var(--color-accent-green-ink);
   --btn-glow: 87, 126, 32;
 }
 .btn-orange {
   --btn-tint1: rgba(255, 228, 200, 0.88);
   --btn-tint2: rgba(250, 212, 175, 0.8);
-  --btn-ink: #b3560f;
+  --btn-ink: var(--color-accent-orange-ink);
   --btn-glow: 200, 96, 15;
 }
 
@@ -501,10 +541,10 @@ body {
   height: 0;
   background: linear-gradient(
     180deg,
-    #0066a1 0%,
-    #577e20 33%,
-    #b75b15 66%,
-    #0066a1 100%
+    var(--color-accent-blue) 0%,
+    var(--color-accent-green) 33%,
+    var(--color-accent-orange) 66%,
+    var(--color-accent-blue) 100%
   );
   z-index: 2;
   transition: height 6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -523,7 +563,7 @@ body {
   width: 64px;
   height: 64px;
   background: #ffffff;
-  border: 3px solid #e5e7eb;
+  border: 3px solid var(--color-surface-sunken);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -533,7 +573,7 @@ body {
 .step-number {
   font-size: 22px;
   font-weight: 700;
-  color: #1a2332;
+  color: var(--color-ink);
 }
 .timeline-content {
   flex: 1;
@@ -546,14 +586,14 @@ body {
 .step-title {
   font-size: 22px;
   font-weight: 600;
-  color: #4f5e6b;
+  color: var(--color-ink-soft);
   margin-bottom: 4px;
   line-height: 1.4;
 }
 .step-description {
   font-size: 16px;
   line-height: 1.7;
-  color: #475569;
+  color: var(--color-muted);
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -590,10 +630,10 @@ body {
   cards with two-way highlight linking. Behavior lives in EditingDemo.tsx.
 */
 :root {
-  --c-ed: #b75b15;
-  --c-sc: #0066a1;
-  --c-rh: #475569;
-  --c-im: #577e20;
+  --c-ed: var(--color-anno-edit);
+  --c-sc: var(--color-anno-sci);
+  --c-rh: var(--color-anno-rhet);
+  --c-im: var(--color-anno-impact);
 }
 .psms-section {
   padding: 0 20px;
@@ -653,15 +693,15 @@ body {
   transition: color 0.3s, text-shadow 0.3s;
 }
 .psms-track-label[data-idx="0"].psms-active {
-  color: #0066a1;
+  color: var(--color-anno-sci);
   text-shadow: 0 0 10px rgba(0, 102, 161, 0.25);
 }
 .psms-track-label[data-idx="1"].psms-active {
-  color: #577e20;
+  color: var(--color-anno-impact);
   text-shadow: 0 0 10px rgba(87, 126, 32, 0.25);
 }
 .psms-track-label[data-idx="2"].psms-active {
-  color: #b75b15;
+  color: var(--color-anno-edit);
   text-shadow: 0 0 10px rgba(183, 91, 21, 0.25);
 }
 
@@ -726,7 +766,7 @@ body {
 
 /* layout */
 .psms-gray-wrap {
-  background: #e5e7eb;
+  background: var(--color-surface-sunken);
   border-radius: 12px;
   padding: 24px;
 }
@@ -781,11 +821,11 @@ body {
 /* tracked changes */
 #psms-panel-all .psms-del {
   text-decoration: line-through;
-  color: #cc2020;
+  color: var(--color-markup-del);
 }
 #psms-panel-all .psms-ins {
-  border-bottom: 1.5px solid #0d7a6e;
-  color: #0d7a6e;
+  border-bottom: 1.5px solid var(--color-markup-ins);
+  color: var(--color-markup-ins);
 }
 
 /* highlights */
@@ -798,32 +838,32 @@ body {
   transition: background 0.3s;
 }
 .hl-editorial {
-  background: rgba(183, 91, 21, 0.18);
+  background: color-mix(in srgb, var(--color-anno-edit) 18%, transparent);
 }
 .hl-scientific {
-  background: rgba(0, 102, 161, 0.15);
+  background: color-mix(in srgb, var(--color-anno-sci) 15%, transparent);
 }
 .hl-rhetorical {
-  background: rgba(71, 85, 105, 0.13);
+  background: color-mix(in srgb, var(--color-anno-rhet) 13%, transparent);
 }
 .hl-impact {
-  background: rgba(87, 126, 32, 0.15);
+  background: color-mix(in srgb, var(--color-anno-impact) 15%, transparent);
 }
 .hl-editorial.psms-lit {
-  background: rgba(183, 91, 21, 0.3);
-  outline: 2px solid rgba(183, 91, 21, 0.5);
+  background: color-mix(in srgb, var(--color-anno-edit) 30%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--color-anno-edit) 50%, transparent);
 }
 .hl-scientific.psms-lit {
-  background: rgba(0, 102, 161, 0.3);
-  outline: 2px solid rgba(0, 102, 161, 0.5);
+  background: color-mix(in srgb, var(--color-anno-sci) 30%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--color-anno-sci) 50%, transparent);
 }
 .hl-rhetorical.psms-lit {
-  background: rgba(71, 85, 105, 0.28);
-  outline: 2px solid rgba(71, 85, 105, 0.5);
+  background: color-mix(in srgb, var(--color-anno-rhet) 28%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--color-anno-rhet) 50%, transparent);
 }
 .hl-impact.psms-lit {
-  background: rgba(87, 126, 32, 0.3);
-  outline: 2px solid rgba(87, 126, 32, 0.5);
+  background: color-mix(in srgb, var(--color-anno-impact) 30%, transparent);
+  outline: 2px solid color-mix(in srgb, var(--color-anno-impact) 50%, transparent);
 }
 
 /* comments column */
