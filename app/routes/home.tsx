@@ -233,12 +233,12 @@ export default function Home() {
                         className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
                         style={{ "--accent": s.accent } as React.CSSProperties}
                       >
-                        {/* Accent inner glow, revealed on hover */}
+                        {/* Accent inner glow (bottom + right), revealed on hover */}
                         <span
                           aria-hidden="true"
                           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100"
                           style={{
-                            background: `radial-gradient(130% 90% at 50% 120%, ${s.accent}30 0%, ${s.accent}00 62%)`,
+                            background: `radial-gradient(125% 115% at 100% 100%, ${s.accent}3d 0%, ${s.accent}00 68%)`,
                           }}
                         />
                         <div className="relative flex flex-1 flex-col p-7">
@@ -251,7 +251,7 @@ export default function Home() {
                           <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
                             {s.desc}
                           </p>
-                          <div className="mt-6 flex flex-1 items-end">
+                          <div className="mt-6 flex flex-1 items-end justify-end">
                             <span
                               className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-[#8a8f98] transition-colors duration-500 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
                               aria-hidden="true"
