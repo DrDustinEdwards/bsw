@@ -23,36 +23,45 @@ export function PrimaryButton({
   );
 }
 
+/*
+  Section heading matched to the reference: a large uppercase title, an optional
+  lighter-weight subtitle beneath it, and an optional intro paragraph. `intro`
+  accepts a node so a section (e.g. the process) can inline a trailing link.
+*/
 export function SectionHeading({
-  eyebrow,
   title,
+  subtitle,
   intro,
   center = true,
   dark = false,
 }: {
-  eyebrow?: string;
   title: string;
-  intro?: string;
+  subtitle?: string;
+  intro?: React.ReactNode;
   center?: boolean;
   dark?: boolean;
 }) {
   return (
-    <div className={`${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}>
-      {eyebrow && (
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-brand">
-          {eyebrow}
-        </p>
-      )}
+    <div className={`${center ? "mx-auto max-w-4xl text-center" : "max-w-4xl"}`}>
       <h2
-        className={`font-display text-3xl font-semibold tracking-tight sm:text-4xl ${
+        className={`font-display text-3xl font-extrabold uppercase leading-tight tracking-[0.01em] sm:text-4xl lg:text-5xl ${
           dark ? "text-white" : "text-ink"
         }`}
       >
         {title}
       </h2>
+      {subtitle && (
+        <p
+          className={`mt-2 text-2xl font-normal leading-snug sm:text-[1.9rem] ${
+            dark ? "text-slate-200" : "text-[#3f4e5c]"
+          }`}
+        >
+          {subtitle}
+        </p>
+      )}
       {intro && (
         <p
-          className={`mt-4 text-[1.05rem] leading-relaxed ${
+          className={`mx-auto mt-5 max-w-3xl text-[1.05rem] leading-relaxed ${
             dark ? "text-slate-300" : "text-muted"
           }`}
         >

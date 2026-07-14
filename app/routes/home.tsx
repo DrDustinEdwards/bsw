@@ -5,6 +5,7 @@ import { HexField } from "../components/HexField";
 import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
 import { Faq } from "../components/Faq";
+import { Testimonials } from "../components/Testimonials";
 import { Reveal } from "../components/Reveal";
 import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
 import { institutions, journals } from "../data/logos";
@@ -48,17 +49,20 @@ const STATS = [
   { Icon: BookOpen, value: "5,000+", label: "Journals" },
 ];
 
-// Five service items with their descriptive subheadings, verbatim from the
-// reference site. The first item carries the rapid-turnaround note and a quote CTA.
-const SERVICES = [
-  {
-    title: "Grant Review and Editing",
-    subhead: "Maximize Your Funding Potential",
-    desc: "Strategic PhD-level review, writing, and alignment for NIH, NSF, and Foundation submissions.",
-    note: "Rapid Turnaround – Most returned in 7-10 days.",
-    cta: "Your Quote",
-    href: "/pricing/",
-  },
+// Services, structured to match the reference: one flagship card (with photo)
+// on the left, a 2x2 grid of secondary service cards on the right, and the BSW
+// Academy banner beneath the grid. Copy is verbatim from the reference site.
+const FLAGSHIP = {
+  title: "Grant Review and Editing",
+  subhead: "Maximize Your Funding Potential",
+  desc: "Strategic PhD-level review, writing, and alignment for NIH, NSF, and Foundation submissions.",
+  note: "Rapid Turnaround, most returned in 7-10 days.",
+  cta: "Your Quote",
+  href: "/pricing/",
+  photo: "/services/grant-review.webp",
+};
+
+const SERVICE_CARDS = [
   {
     title: "Manuscript Writing",
     subhead: "Journal-Ready Editing",
@@ -89,43 +93,13 @@ const TEAM = [
   { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp" },
 ];
 
-// Placeholder attributions only. The source testimonials are unverified and
-// were attributed to named individuals on the live site; do not reintroduce
-// real names or a Nobel laureate here.
-const TESTIMONIALS = [
-  {
-    quote:
-      "The grant review turned a solid application into a funded one. The reviewers' concerns we could not see were flagged and fixed before submission.",
-    who: "Principal Investigator, R1 research university",
-    tone: "green",
-  },
-  {
-    quote:
-      "My manuscript was accepted with minor revisions. The editing was rigorous, fast, and clearly done by someone who understood the science.",
-    who: "Associate Professor, School of Medicine",
-    tone: "peach",
-  },
-  {
-    quote:
-      "As a non-native English speaker I finally felt my writing matched the quality of my research. Worth every dollar.",
-    who: "Postdoctoral Fellow, cancer research institute",
-    tone: "peach",
-  },
-  {
-    quote:
-      "We now route every departmental grant through BioScience Writers. The consistency and turnaround are exactly what we needed.",
-    who: "Department Chair, public university",
-    tone: "green",
-  },
-];
-
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <Header />
       <main className="flex-1">
         {/* 1. Hero */}
-        <section className="relative overflow-hidden bg-gradient-to-b from-[#eef4f8] to-white">
+        <section className="relative overflow-hidden bg-[linear-gradient(115deg,#d9e8f3_0%,#e6eeec_32%,#fce7d5_66%,#eef4dd_100%)]">
           <HexField />
           <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-5 py-24 sm:py-32">
             <div className="hero-card max-w-2xl">
@@ -149,128 +123,166 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 2. Impact stats */}
-        <section className="bg-[color:var(--color-band)]">
-          <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+        {/*
+          2. Impact stats + trust marquees. On the reference these sit in one
+          continuous dark band with diagonal top/bottom edges, so they are a
+          single section here. The band-cut class (app.css) draws the slants.
+        */}
+        <section className="band-cut overflow-hidden bg-[color:var(--color-band)]">
+          <div className="mx-auto max-w-6xl px-5 pb-16 pt-20 sm:pt-24">
             <Reveal>
               <SectionHeading dark title="Our Impact, by the Numbers" />
             </Reveal>
-            <Reveal className="mt-12 grid grid-cols-2 gap-8 lg:grid-cols-3">
+            <Reveal className="mt-14 grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-3">
               {STATS.map((s) => (
                 <div key={s.label} className="text-center">
                   <s.Icon
-                    className="mx-auto text-white"
+                    className="mx-auto text-white/80"
                     size={30}
                     strokeWidth={2}
                     aria-hidden="true"
                   />
-                  <div className="mt-3 font-display text-4xl font-semibold text-white sm:text-5xl">
+                  <div className="mt-3 font-display text-4xl font-bold text-white sm:text-5xl">
                     {s.value}
                   </div>
-                  <p className="mt-1 text-sm text-slate-300">{s.label}</p>
+                  <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300 sm:text-sm">
+                    {s.label}
+                  </p>
                 </div>
               ))}
             </Reveal>
           </div>
-        </section>
 
-        {/* 3. Trusted by / Published in (full-bleed marquees) */}
-        <section className="overflow-hidden bg-ink py-14">
-          <div className="space-y-10">
+          <div className="space-y-8 pb-20">
             <Reveal>
-              <p className="mx-auto mb-4 max-w-6xl px-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
+              <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
                 Trusted by Researchers At
-              </p>
+              </h2>
               <Marquee items={institutions} direction="left" />
             </Reveal>
             <Reveal delay={80}>
-              <p className="mx-auto mb-4 max-w-6xl px-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
+              <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
                 Published In
-              </p>
+              </h2>
               <Marquee items={journals} direction="right" />
             </Reveal>
           </div>
         </section>
 
-        {/* 4. Services */}
-        <section id="services" className="bg-white">
+        {/* 3. Services: flagship card + 2x2 grid + BSW Academy banner */}
+        <section id="services" className="bg-[#e9ebee]">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Our Services"
-                title="Personal Expert Scientists for High-Impact Research"
+                title="Our Services"
+                subtitle="Personal Expert Scientists for High-Impact Research"
                 intro="We provide the highest quality scientific editing, writing, and strategy services. Our editors are PhD and MD-credentialed professionals who understand that competing successfully for grant funding is critical to your career success."
               />
             </Reveal>
 
-            {/* Five service items */}
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {SERVICES.map((s, i) => (
-                <Reveal key={s.title} delay={(i % 3) * 60}>
-                  <div className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg hover:shadow-slate-900/5">
-                    <h3 className="font-display text-xl font-semibold text-ink">
-                      {s.title}
+            <div className="mt-14 grid gap-6 lg:grid-cols-12">
+              {/* Flagship card */}
+              <Reveal className="lg:col-span-5">
+                <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-[color:var(--color-band)] shadow-lg shadow-slate-900/10">
+                  <img
+                    src={FLAGSHIP.photo}
+                    alt="A BioScience Writers editor reviewing a grant with a researcher"
+                    loading="lazy"
+                    className="h-52 w-full object-cover"
+                  />
+                  <div className="flex flex-1 flex-col p-8">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#6cb2e6]">
+                      Flagship Service
+                    </p>
+                    <h3 className="mt-2 font-display text-2xl font-bold text-white">
+                      {FLAGSHIP.title}
                     </h3>
-                    <p className="mt-1 text-sm font-semibold text-brand">
-                      {s.subhead}
+                    <p className="mt-1 text-sm font-bold text-white/90">
+                      {FLAGSHIP.subhead}
                     </p>
-                    <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
-                      {s.desc}
+                    <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-200">
+                      {FLAGSHIP.desc}
                     </p>
-                    {s.note && (
-                      <p className="mt-4 text-sm font-semibold text-[#577e20]">
-                        {s.note}
-                      </p>
-                    )}
-                    {s.cta && (
-                      <div className="mt-5">
-                        <a
-                          href={s.href}
-                          className="inline-block rounded-[var(--radius-btn)] bg-brand px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-brand-hover"
-                        >
-                          {s.cta}
-                        </a>
+                    <p className="mt-4 text-[0.95rem] text-slate-200">
+                      {FLAGSHIP.note}
+                    </p>
+                    <div className="mt-6">
+                      <a
+                        href={FLAGSHIP.href}
+                        className="inline-block rounded-[var(--radius-btn)] bg-gradient-to-b from-[#dbeafc] to-[#b9d8f5] px-6 py-3 text-sm font-bold text-brand shadow-sm transition-colors hover:from-[#cbe0fa] hover:to-[#a9cef2]"
+                      >
+                        {FLAGSHIP.cta}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* 2x2 grid of secondary services + Academy banner */}
+              <div className="lg:col-span-7">
+                <div className="grid gap-6 sm:grid-cols-2">
+                  {SERVICE_CARDS.map((s, i) => (
+                    <Reveal key={s.title} delay={(i % 2) * 60}>
+                      <div className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
+                        <h3 className="font-display text-xl font-bold text-ink">
+                          {s.title}
+                        </h3>
+                        <p className="mt-1 text-sm font-bold text-ink/80">
+                          {s.subhead}
+                        </p>
+                        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
+                          {s.desc}
+                        </p>
+                        <div className="mt-6 flex flex-1 items-end">
+                          <span
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-ink"
+                            aria-hidden="true"
+                          >
+                            <ArrowRight size={16} strokeWidth={2} />
+                          </span>
+                        </div>
                       </div>
-                    )}
+                    </Reveal>
+                  ))}
+                </div>
+
+                {/* BSW Academy banner */}
+                <Reveal className="mt-6">
+                  <div className="rounded-2xl bg-[color:var(--color-band)] p-8">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#a4d65e]">
+                      eCourse &middot; Self-Paced Learning
+                    </p>
+                    <h3 className="mt-2 font-display text-2xl font-bold text-white">
+                      BSW Academy
+                    </h3>
+                    <p className="mt-1 text-sm font-bold text-white/90">
+                      Elite Scientific Writing Curriculum
+                    </p>
+                    <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-200">
+                      Master the mechanics of high-impact publishing and
+                      grant-winning through our expert-led eCourses.{" "}
+                      <a
+                        href="/knowledge-hub/"
+                        className="inline-flex items-center gap-1 font-semibold text-[#a4d65e] hover:underline"
+                      >
+                        Explore courses
+                        <ArrowRight size={15} strokeWidth={2} aria-hidden="true" />
+                      </a>
+                    </p>
                   </div>
                 </Reveal>
-              ))}
-            </div>
-
-            {/* BSW Academy banner */}
-            <Reveal className="mt-6">
-              <div className="flex flex-col items-center justify-between gap-5 rounded-2xl border border-[#8dc63f]/40 bg-[color:color-mix(in_srgb,#8dc63f_10%,white)] p-7 sm:flex-row">
-                <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#577e20]">
-                    BSW Academy
-                  </p>
-                  <h3 className="mt-1 font-display text-2xl font-semibold text-ink">
-                    Elite Scientific Writing Curriculum
-                  </h3>
-                  <p className="mt-1 text-[0.95rem] text-muted">
-                    Master the mechanics of high-impact publishing and
-                    grant-winning through our expert-led eCourses.
-                  </p>
-                </div>
-                <a
-                  href="/knowledge-hub/"
-                  className="inline-flex shrink-0 items-center gap-1.5 rounded-[var(--radius-btn)] bg-[#577e20] px-5 py-3 text-sm font-bold text-white transition-colors hover:bg-[#466618]"
-                >
-                  Explore courses
-                  <ArrowRight size={16} strokeWidth={2} aria-hidden="true" />
-                </a>
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
-        {/* 5. Precision Editing Demonstrated */}
-        <section className="bg-[#f7f9fb]">
+        {/* 4. Precision Editing Demonstrated */}
+        <section className="bg-white">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Precision Editing, Demonstrated"
-                title="The Difference Expert Editing Makes"
+                title="Precision Editing, Demonstrated"
+                subtitle="The Difference Expert Editing Makes"
                 intro="Every manuscript edited by BioScience Writers receives both line-level editorial review and field-specific scientific commentary from a credentialed PhD or MD expert. Select any highlighted passage to examine the rationale behind each revision."
               />
             </Reveal>
@@ -280,53 +292,43 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 6. Testimonials */}
-        <section className="bg-white">
+        {/* 5. Testimonials (anonymized content, reference carousel styling) */}
+        <section className="bg-[#e9ebee]">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Trusted Worldwide"
-                title="What Our Clients Say"
+                title="Trusted Worldwide"
+                subtitle="What Our Clients Say"
+                intro="Researchers at top institutions worldwide trust BioScience Writers to help secure funding and publish in high-impact journals."
               />
             </Reveal>
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {TESTIMONIALS.map((t, i) => (
-                <Reveal key={i} delay={(i % 2) * 80}>
-                  <figure
-                    className={`h-full rounded-2xl p-8 ${
-                      t.tone === "green"
-                        ? "bg-gradient-to-br from-[#eef6e2] to-[#fbfdf6]"
-                        : "bg-gradient-to-br from-[#fdeee2] to-[#fffaf6]"
-                    }`}
-                  >
-                    <div className="font-display text-4xl leading-none text-brand/30" aria-hidden="true">
-                      &ldquo;
-                    </div>
-                    <blockquote className="mt-2 text-[1.05rem] leading-relaxed text-ink">
-                      {t.quote}
-                    </blockquote>
-                    <figcaption className="mt-5 text-sm font-semibold text-muted">
-                      {t.who}
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </div>
-            <p className="mt-6 text-center text-xs text-slate-400">
-              Attributions are representative role descriptions, not named
-              individuals.
-            </p>
+            <Reveal className="mt-12">
+              <Testimonials />
+            </Reveal>
           </div>
         </section>
 
-        {/* 7. Streamlined four-step process (vertical timeline) */}
-        <section className="bg-[#f7f9fb]">
+        {/* 6. Streamlined four-step process (vertical timeline) */}
+        <section className="bg-white">
           <div className="mx-auto max-w-3xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Streamlined process, start to finish"
-                title="Your Path from Submission to Success"
-                intro="Every order follows our proven four-step workflow: expert matching, comprehensive editing, track changes delivery, and our satisfaction guarantee. See exactly what happens from the moment you submit your document."
+                title="Streamlined Process, Start to Finish"
+                subtitle="Your Path from Submission to Success"
+                intro={
+                  <>
+                    Every order follows our proven four-step workflow: expert
+                    matching, comprehensive editing, track changes delivery, and
+                    our satisfaction guarantee. See exactly what happens from the
+                    moment you submit your document.{" "}
+                    <a
+                      href="/editing-process/"
+                      className="font-semibold text-brand hover:underline"
+                    >
+                      See our full process &rarr;
+                    </a>
+                  </>
+                }
               />
             </Reveal>
             <div className="mt-14">
@@ -335,13 +337,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 8. Team */}
-        <section className="bg-white">
+        {/* 7. Team */}
+        <section className="bg-[#e9ebee]">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Behind every edit"
-                title="Experienced Professionals Managing Every Detail"
+                title="Behind Every Edit"
+                subtitle="Experienced Professionals Managing Every Detail"
                 intro="Our core team personally oversees every project from first submission to final delivery. Each document is matched with a field-specific PhD or MD specialist, ensuring your work receives the scientific expertise it deserves."
               />
             </Reveal>
@@ -366,13 +368,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 9. FAQ */}
-        <section className="bg-[#f7f9fb]">
+        {/* 8. FAQ */}
+        <section className="bg-white">
           <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                eyebrow="Clear answers, no surprises"
-                title="Frequently Asked Questions"
+                title="Clear Answers, No Surprises"
+                subtitle="Frequently Asked Questions"
                 intro="Find quick answers to the most common questions about our editing process, turnaround times, credentials, and satisfaction guarantee."
               />
             </Reveal>
@@ -396,14 +398,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 10. BSW Commitment band */}
-        <section className="bg-brand">
+        {/* 9. BSW Commitment band */}
+        <section className="bg-[color:var(--color-band)]">
           <div className="mx-auto max-w-4xl px-5 py-20 text-center">
             <Reveal>
-              <h2 className="font-display text-3xl font-semibold text-white sm:text-4xl">
+              <h2 className="font-display text-3xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-4xl lg:text-5xl">
                 The BSW Commitment
               </h2>
-              <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-white/85">
+              <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-white/85">
                 Since 2001, we have helped the international research community
                 maximize the accuracy and impact of their documents. Every
                 editor on our team is a native English speaker with a terminal
@@ -413,7 +415,7 @@ export default function Home() {
                 stands out.
               </p>
               <p className="mx-auto mt-6 inline-block rounded-[var(--radius-btn)] bg-white/10 px-5 py-3 text-sm font-semibold text-white">
-                100% Satisfaction Guarantee – Free re-edits for language issues
+                100% Satisfaction Guarantee, free re-edits for language issues
                 raised by reviewers.
               </p>
             </Reveal>

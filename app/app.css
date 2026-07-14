@@ -8,7 +8,13 @@
 @theme {
   --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  /*
+    The reference site sets every heading in Open Sans (no serif display face).
+    --font-display therefore points at the same sans stack so section headings,
+    stat values, and card titles match the reference typography.
+  */
+  --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Core palette */
   --color-ink: #1a2b3c;
@@ -189,6 +195,27 @@ body {
   }
   .hero-subtitle {
     font-size: 1.3rem;
+  }
+}
+
+/*
+  Dark impact/trust band with diagonal top and bottom edges, matching the
+  reference. The band overlaps its neighbors with negative margins and a higher
+  stacking context so the clipped corner triangles reveal the hero gradient
+  above and the services background below (no white notches).
+*/
+.band-cut {
+  position: relative;
+  z-index: 10;
+  margin-top: -3.5rem;
+  margin-bottom: -3rem;
+  clip-path: polygon(0 3.5rem, 100% 0, 100% calc(100% - 3rem), 0 100%);
+}
+@media (max-width: 767px) {
+  .band-cut {
+    margin-top: -1.25rem;
+    margin-bottom: -1.25rem;
+    clip-path: polygon(0 1.25rem, 100% 0, 100% calc(100% - 1.25rem), 0 100%);
   }
 }
 

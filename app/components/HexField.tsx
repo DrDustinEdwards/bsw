@@ -17,11 +17,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const HEX_CLIP =
   "polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%)";
 
+// Fairly solid fills, matching the reference where the hexes read as crisp
+// color shapes (the ones behind the glass card soften via its backdrop blur).
 const COLORS = [
-  "rgba(0,109,183,0.5)", // blue
-  "rgba(141,198,63,0.5)", // green
-  "rgba(245,130,32,0.5)", // orange
-  "rgba(255,255,255,0.6)", // white
+  "rgba(0,109,183,0.78)", // blue
+  "rgba(141,198,63,0.78)", // green
+  "rgba(245,130,32,0.78)", // orange
+  "rgba(255,255,255,0.85)", // white
 ];
 
 type Hex = {
