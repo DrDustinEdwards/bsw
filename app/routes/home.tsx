@@ -164,7 +164,7 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="space-y-8 pb-20">
+          <div className="relative z-[3] space-y-8 pb-20">
             <Reveal>
               <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
                 Trusted by Researchers At
