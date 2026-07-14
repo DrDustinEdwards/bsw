@@ -62,26 +62,32 @@ const FLAGSHIP = {
   photo: "/services/grant-review.webp",
 };
 
+// Each card carries an accent color used for its hover inner-glow and arrow,
+// matching the reference: the two top cards glow blue, then green and orange.
 const SERVICE_CARDS = [
   {
     title: "Manuscript Writing",
     subhead: "Journal-Ready Editing",
     desc: "Precision polishing for clarity, logic, and impact to secure acceptance in top-tier journals.",
+    accent: "#0066a1",
   },
   {
     title: "Medical Writing",
     subhead: "Clinical & Regulatory Writing",
     desc: "Expert documentation for Pharma and Biotech, fully compliant with global regulatory standards.",
+    accent: "#0066a1",
   },
   {
     title: "Journal Formatting",
     subhead: "Zero-Error Formatting",
     desc: "We handle the technical layout requirements for any target journal, guaranteed.",
+    accent: "#577e20",
   },
   {
     title: "Scientific Translation",
     subhead: "Multilingual Support",
     desc: "Nuance-aware translation that preserves scientific accuracy.",
+    accent: "#b75b15",
   },
 ];
 
@@ -223,23 +229,36 @@ export default function Home() {
                 <div className="grid gap-6 sm:grid-cols-2">
                   {SERVICE_CARDS.map((s, i) => (
                     <Reveal key={s.title} delay={(i % 2) * 60}>
-                      <div className="flex h-full flex-col rounded-2xl bg-white p-7 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-900/5">
-                        <h3 className="font-display text-xl font-bold text-ink">
-                          {s.title}
-                        </h3>
-                        <p className="mt-1 text-sm font-bold text-ink/80">
-                          {s.subhead}
-                        </p>
-                        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
-                          {s.desc}
-                        </p>
-                        <div className="mt-6 flex flex-1 items-end">
-                          <span
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-ink"
-                            aria-hidden="true"
-                          >
-                            <ArrowRight size={16} strokeWidth={2} />
-                          </span>
+                      <div
+                        className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-[transform,box-shadow] duration-500 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
+                        style={{ "--accent": s.accent } as React.CSSProperties}
+                      >
+                        {/* Accent inner glow, revealed on hover */}
+                        <span
+                          aria-hidden="true"
+                          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100"
+                          style={{
+                            background: `radial-gradient(130% 90% at 50% 120%, ${s.accent}30 0%, ${s.accent}00 62%)`,
+                          }}
+                        />
+                        <div className="relative flex flex-1 flex-col p-7">
+                          <h3 className="font-display text-xl font-bold text-ink">
+                            {s.title}
+                          </h3>
+                          <p className="mt-1 text-sm font-bold text-ink/80">
+                            {s.subhead}
+                          </p>
+                          <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
+                            {s.desc}
+                          </p>
+                          <div className="mt-6 flex flex-1 items-end">
+                            <span
+                              className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-[#8a8f98] transition-colors duration-500 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
+                              aria-hidden="true"
+                            >
+                              <ArrowRight size={16} strokeWidth={2} />
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </Reveal>
