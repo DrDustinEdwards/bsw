@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { HexField } from "../components/HexField";
 import { EditingDemo } from "../components/EditingDemo";
+import { Timeline } from "../components/Timeline";
 import { Faq } from "../components/Faq";
 import { Reveal } from "../components/Reveal";
 import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
@@ -52,29 +53,6 @@ const SUB_SERVICES = [
   },
 ];
 
-const PROCESS = [
-  {
-    step: "01",
-    title: "Submit",
-    desc: "Upload your draft and deadline. You receive a free assessment and a firm quote the same business day.",
-  },
-  {
-    step: "02",
-    title: "Matched",
-    desc: "We pair you with a PhD or MD editor whose expertise fits your subject area and target venue.",
-  },
-  {
-    step: "03",
-    title: "Track Changes",
-    desc: "Your editor returns tracked, categorized edits so you keep control and learn from every change.",
-  },
-  {
-    step: "04",
-    title: "Guarantee",
-    desc: "Review the result, request revisions, and rely on a 100% satisfaction guarantee on every project.",
-  },
-];
-
 const TEAM = [
   { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp" },
   { name: "Charlene Emerson", role: "Business Development", photo: "/team/Charlene-Emerson.webp" },
@@ -121,29 +99,19 @@ export default function Home() {
         {/* 1. Hero */}
         <section className="relative overflow-hidden bg-gradient-to-b from-[#eef4f8] to-white">
           <HexField />
-          <div className="relative mx-auto flex max-w-6xl flex-col items-start px-5 py-24 sm:py-32">
-            <div className="max-w-2xl rounded-[20px] border border-white/60 bg-white/50 p-8 backdrop-blur-md sm:p-11">
-              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-brand">
-                PhD and MD Experts Since 2001
+          <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-5 py-24 sm:py-32">
+            <div className="hero-card max-w-2xl">
+              <h1 className="hero-title">Funding Secured. Science Perfected.</h1>
+              <p className="hero-subtitle mt-4">
+                Strategic Grant Review &amp; Manuscript Editing by PhD/MD
+                Experts.
               </p>
-              <h1 className="font-display text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-6xl">
-                Funding Secured.
-                <br />
-                Science Perfected.
-              </h1>
-              <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-                Strategic grant review and manuscript editing by scientists who
-                have sat on study sections and published in the journals you are
-                targeting. We help you win funding and get published.
+              <p className="hero-body mt-4 max-w-xl">
+                Fast, confidential turnaround from a terminal-degree editor in
+                your field, with a 100% satisfaction guarantee on every project.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="mt-8">
                 <PrimaryButton href="/pricing/">View Pricing</PrimaryButton>
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center rounded-[var(--radius-btn)] border border-slate-300 bg-white/80 px-6 py-3 text-sm font-bold text-ink transition-colors hover:border-brand hover:text-brand"
-                >
-                  Explore Services
-                </a>
               </div>
             </div>
           </div>
@@ -174,17 +142,17 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. Trusted by / Published in */}
-        <section className="bg-ink">
-          <div className="mx-auto max-w-6xl space-y-10 px-5 py-14">
+        {/* 3. Trusted by / Published in (full-bleed marquees) */}
+        <section className="overflow-hidden bg-ink py-14">
+          <div className="space-y-10">
             <Reveal>
-              <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
+              <p className="mx-auto mb-4 max-w-6xl px-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
                 Trusted by researchers at
               </p>
               <Marquee items={institutions} direction="left" />
             </Reveal>
             <Reveal delay={80}>
-              <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
+              <p className="mx-auto mb-4 max-w-6xl px-5 text-center text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
                 Published in
               </p>
               <Marquee items={journals} direction="right" />
@@ -324,7 +292,7 @@ export default function Home() {
               <SectionHeading
                 eyebrow="See the difference"
                 title="Precision Editing Demonstrated"
-                intro="Toggle the markup and click a category to see exactly what our editors change, and why, on a real grant excerpt."
+                intro="Drag the switch between Original, Simple Markup, and All Markup, then click any comment to see the passage it addresses on a real grant excerpt."
               />
             </Reveal>
             <Reveal className="mt-12">
@@ -372,33 +340,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 7. Process */}
-        <section className="bg-[color:var(--color-band)]">
-          <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+        {/* 7. Streamlined four-step process (vertical timeline) */}
+        <section className="bg-[#f7f9fb]">
+          <div className="mx-auto max-w-3xl px-5 py-20 sm:py-24">
             <Reveal>
               <SectionHeading
-                dark
                 eyebrow="How it works"
                 title="A streamlined four-step process"
                 intro="From upload to guarantee, you always know where your project stands."
               />
             </Reveal>
-            <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              {PROCESS.map((p, i) => (
-                <Reveal key={p.step} delay={i * 70}>
-                  <div className="relative">
-                    <div className="font-display text-5xl font-semibold text-white/15">
-                      {p.step}
-                    </div>
-                    <h3 className="mt-2 font-display text-xl font-semibold text-white">
-                      {p.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-300">
-                      {p.desc}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
+            <div className="mt-14">
+              <Timeline />
             </div>
           </div>
         </section>

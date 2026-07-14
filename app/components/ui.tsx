@@ -96,26 +96,21 @@ export function Avatar({
   );
 }
 
-// Logos sit directly on the dark band with no card or border. Every mark is
-// forced to solid white with brightness(0) invert(1) so colored (UCSF blue,
-// nature wordmarks) and black logos alike read uniformly on the band.
+// Transparent logo box, no card. The img is forced solid white via
+// brightness(0) invert(1) (in .logo-box img) so colored and black marks read
+// uniformly on the dark band. Sizing/spacing live in app.css.
 export function LogoTile({ src, name }: { src: string; name: string }) {
   return (
-    <img
-      src={src}
-      alt={name}
-      loading="lazy"
-      className="h-10 w-auto shrink-0 object-contain opacity-80 transition-opacity duration-200 hover:opacity-100"
-      style={{ filter: "brightness(0) invert(1)" }}
-    />
+    <div className="logo-box">
+      <img src={src} alt={name} loading="lazy" />
+    </div>
   );
 }
 
-// Shared duration for both rows; only the scroll direction differs. Content is
-// duplicated so translateX(-50%) loops seamlessly. Hovering the row pauses it,
-// and prefers-reduced-motion halts it (both handled via .marquee-track).
-const MARQUEE_DURATION = "48s";
-
+// Both rows share one duration (240s desktop / 120s mobile, in .logo-track);
+// the journal row runs in reverse. The full list is duplicated so the
+// translateX(-50%) loop is seamless. Pause-on-hover and prefers-reduced-motion
+// are handled in app.css.
 export function Marquee({
   items,
   direction = "left",
@@ -124,14 +119,8 @@ export function Marquee({
   direction?: "left" | "right";
 }) {
   return (
-    <div className="group relative overflow-hidden">
-      <div
-        className="marquee-track flex w-max items-center gap-14 group-hover:[animation-play-state:paused]"
-        style={{
-          animation: `marquee ${MARQUEE_DURATION} linear infinite`,
-          animationDirection: direction === "right" ? "reverse" : "normal",
-        }}
-      >
+    <div className="logo-marquee">
+      <div className={`logo-track ${direction === "right" ? "reverse" : ""}`}>
         {[...items, ...items].map((logo, i) => (
           <LogoTile key={i} src={logo.src} name={logo.name} />
         ))}
