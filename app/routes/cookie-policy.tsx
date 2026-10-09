@@ -58,9 +58,9 @@ export default function CookiePolicy() {
                 ability to upload files for editing.
               </li>
               <li>
-                <strong>Performance &amp; Analytics:</strong> We use tools like
-                Google Analytics to understand how visitors interact with our
-                site. This data is aggregated and anonymized; it helps us identify
+                <strong>Performance &amp; Analytics:</strong> We use Cloudflare
+                Web Analytics to measure aggregate visits and page speed. It
+                does not use cookies or track you across other sites. This helps us identify
                 which resources (like grant writing guides) are most helpful so we
                 can improve our content.
               </li>
