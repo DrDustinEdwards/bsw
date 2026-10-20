@@ -10,7 +10,7 @@ Standalone marketing site for BioScience Writers. RR8 rebuild of the old WordPre
 
 End: write a `session-YYYY-MM-DD.md` episodic (type `episodic`, under ~2KB) to the bsw namespace.
 
-Deeper context in the typed docs: `bsw/decisions.md`, `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
+Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
 ## Stack
 
