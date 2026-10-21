@@ -14,6 +14,13 @@ export const SITE = {
     "Scientific editing, grant writing, and manuscript proofreading by PhD and MD experts for the global research community.",
   ogImage: "/og-image.png",
   twitter: "@biosciencewrite",
+  email: "info@biosciencewriters.com",
+  telephone: "+1-832-517-3001",
+  social: {
+    facebook: "https://facebook.com/BioScienceWriters",
+    x: "https://x.com/biosciencewrite",
+    linkedin: "https://linkedin.com/company/bioscience-writers-llc",
+  },
   locality: "Houston",
   region: "TX",
   country: "US",
