@@ -6,7 +6,7 @@
   present in the uploads folder.
 */
 
-export type Logo = { src: string; name: string };
+type Logo = { src: string; name: string };
 
 const inst = (file: string, name: string): Logo => ({
   src: `/logos/institutions/${file}.svg`,

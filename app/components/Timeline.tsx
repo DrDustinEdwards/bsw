@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 /*
-  Vertical process timeline, ported faithfully from the source HTML/CSS/JS.
+  Vertical process timeline.
   The fill line grows from 0 to (container height - circle size) once the
   timeline scrolls into view, via a 6s height transition (styles in app.css).
   Recomputes on resize. prefers-reduced-motion shows the fill at full height

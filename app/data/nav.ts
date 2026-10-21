@@ -4,8 +4,8 @@
   for the standalone rebuild and light up as routes are added.
 */
 
-export type NavLink = { label: string; href: string };
-export type NavGroup = { label: string; links: NavLink[] };
+type NavLink = { label: string; href: string };
+type NavGroup = { label: string; links: NavLink[] };
 
 export const primaryNav: NavGroup[] = [
   {
