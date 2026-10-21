@@ -32,11 +32,10 @@ Live at https://bsw.dustin-edwards.workers.dev
 - `app/components/` presentational components (cards, marquee, editing demo, timeline, ...)
 - `app/data/` typed content modules (nav, logos, stats, services, team, faq, testimonials)
 - `app/config/site.ts` single source of the base URL and per-route SEO meta helper
-- `workers/app.ts` request handler plus security response headers
+- `workers/app.ts` request handler plus security response headers (site-runtime's set and the site's CSP)
 - `public/` static assets, logos, `robots.txt`, `llms.txt`
 
 ## Conventions
 
-- No em dashes anywhere (code, copy, comments, commits)
 - Every color, radius, and motion value is a token in `app/app.css`; no inline hex or duration literals
 - Base URL lives only in `app/config/site.ts`, `public/robots.txt`, and `public/llms.txt`
