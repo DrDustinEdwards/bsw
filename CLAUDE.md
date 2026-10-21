@@ -1,14 +1,12 @@
 # CLAUDE.md - BioScience Writers (bsw)
 
-Portfolio-wide rules live in Capsid, not here. Read `capsid/conventions.md` first, then `bsw/core.md`. This file holds only what is true of this repo.
+Current state is `bsw/core.md` in Capsid. This file holds only what is true of this repo.
 
 ## What this is
 
 Standalone marketing site for BioScience Writers. RR8 rebuild of the old WordPress install (dustinedwards.info/bsw on HostGator, retired after cutover). Live at https://bsw.dustin-edwards.workers.dev.
 
-## Session ritual
-
-End: write a `session-YYYY-MM-DD.md` episodic (type `episodic`, under ~2KB) to the bsw namespace.
+- Tests: keep the minimal set (a few browser tests for flows that must never break, one integration test per real behaviour, unit tests only for tricky logic, shared code tested once where it lives), and remove any test that pins design, repeats coverage or has never caught a real mistake, unless it guards a harm that cannot be undone.
 
 Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
