@@ -27,7 +27,7 @@ export const STATS: Stat[] = [
   { Icon: BookOpen, value: "5,000+", label: "Journals" },
 ];
 
-export type Flagship = {
+type Flagship = {
   title: string;
   subhead: string;
   desc: string;
@@ -98,7 +98,7 @@ export const TEAM: TeamMember[] = [
   { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp", accent: "var(--color-accent-green)" },
 ];
 
-export type Faq = { q: string; a: string };
+type Faq = { q: string; a: string };
 
 // Question set and answers verbatim from the reference site.
 export const FAQS: Faq[] = [

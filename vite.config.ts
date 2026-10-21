@@ -9,6 +9,8 @@ export default defineConfig({
     tailwindcss(),
     reactRouter(),
   ],
+  // The Worker bundle; Vite leaves SSR output unminified by default.
+  environments: { ssr: { build: { minify: true } } },
   resolve: {
     tsconfigPaths: true,
   },
