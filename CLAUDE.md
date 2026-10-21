@@ -4,22 +4,18 @@ Current state is `bsw/core.md` in Capsid. This file holds only what is true of t
 
 ## What this is
 
-Standalone marketing site for BioScience Writers. RR8 rebuild of the old WordPress install (dustinedwards.info/bsw on HostGator, retired after cutover). Live at https://bsw.dustin-edwards.workers.dev.
+Standalone marketing site for BioScience Writers, rebuilt from the old WordPress install. Live at https://bsw.dustin-edwards.workers.dev.
 
 - Tests: keep the minimal set (a few browser tests for flows that must never break, one integration test per real behaviour, unit tests only for tricky logic, shared code tested once where it lives), and remove any test that pins design, repeats coverage or has never caught a real mistake, unless it guards a harm that cannot be undone.
 
 Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
-## Stack
-
-- React Router v8 framework mode, SSR on Cloudflare Workers via `@cloudflare/vite-plugin`
-- Tailwind v4, Open Sans, lucide-react
-- Single production Worker, no staging, no CI. D1/KV/R2/DO deliberately not used yet.
+Stack and layout are in README.md. Single production Worker, no staging, no CI; D1/KV/R2/DO deliberately not used yet.
 
 ## Commands
 
 - `npm run dev` local dev
-- `npx tsc --noEmit` type check before any commit
+- `npm run typecheck` before any commit (the Stop hook runs it too)
 - `npm run deploy` deploys to the production Worker. Confirm the new Version ID and that the site responds before reporting done.
 
 ## Hard rules
