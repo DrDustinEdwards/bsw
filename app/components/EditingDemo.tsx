@@ -259,7 +259,7 @@ export function EditingDemo() {
     let cancelled = false;
     // Load the interaction behavior after paint (separate chunk). If the
     // component unmounts before it resolves, run cleanup immediately.
-    import("./editingDemoBehavior").then((m) => {
+    void import("./editingDemoBehavior").then((m) => {
       if (cancelled) return;
       cleanup = m.initEditingDemo(root);
     });

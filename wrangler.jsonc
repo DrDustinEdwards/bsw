@@ -4,7 +4,8 @@
 	"compatibility_date": "2026-07-13",
 	"main": "./workers/app.ts",
 	"observability": {
-		"enabled": true
+		"enabled": true,
+		"traces": { "enabled": true, "head_sampling_rate": 0.1 }
 	},
 	"upload_source_maps": true,
 	"compatibility_flags": [

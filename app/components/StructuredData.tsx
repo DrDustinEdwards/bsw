@@ -36,15 +36,11 @@ export function OrganizationJsonLd() {
         },
         contactPoint: {
           "@type": "ContactPoint",
-          telephone: "+1-832-517-3001",
+          telephone: SITE.telephone,
           contactType: "customer service",
-          email: "info@biosciencewriters.com",
+          email: SITE.email,
         },
-        sameAs: [
-          "https://facebook.com/BioScienceWriters",
-          "https://x.com/biosciencewrite",
-          "https://linkedin.com/company/bioscience-writers-llc",
-        ],
+        sameAs: Object.values(SITE.social),
       }}
     />
   );
