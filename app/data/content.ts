@@ -17,7 +17,8 @@ import {
 
 export type Stat = { Icon: LucideIcon; value: string; label: string };
 
-// UNVERIFIED impact figures. Confirm against a defensible source before launch.
+// Impact figures. The $300,000,000+ grants figure is confirmed (Dustin, 2026-10-22);
+// the rest are UNVERIFIED. Confirm against a defensible source before launch.
 export const STATS: Stat[] = [
   { Icon: Banknote, value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
   { Icon: Repeat, value: "58%", label: "Repeat Clients" },
@@ -145,10 +146,10 @@ export type Testimonial = {
 };
 
 /*
-  UNVERIFIED named attributions. These are the real attributions from the
-  reference site (the anonymized version was replaced at the client's explicit
-  request). Named endorsements, including a Nobel laureate, must be confirmed
-  as genuine and consented before public launch.
+  Named attributions from the reference site (the anonymized version was
+  replaced at the client's explicit request). The Nobel laureate endorsement
+  (Dr. Shinya Yamanaka) is confirmed (Dustin, 2026-10-22); the other three are
+  UNVERIFIED and must be confirmed as genuine and consented before launch.
 */
 export const TESTIMONIALS: Testimonial[] = [
   {
