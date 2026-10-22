@@ -4,13 +4,15 @@ import { FAQS } from "../data/content";
 /*
   JSON-LD structured data. Rendered server-side into <script> tags so search
   and AI answer engines can read the facts directly. Content is static and
-  trusted (no user input), so dangerouslySetInnerHTML is safe here.
+  trusted (no user input), so dangerouslySetInnerHTML is safe here. "<" is
+  escaped anyway, so a "</script>" in a later FAQ or testimonial edit cannot
+  close the tag.
 */
 function JsonLd({ data }: { data: unknown }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }

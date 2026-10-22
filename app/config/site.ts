@@ -1,8 +1,7 @@
 /*
   Single source of truth for site-wide constants used by SEO, social, and
-  structured-data helpers. Change the base URL in ONE place here when the
-  custom domain is decided and every canonical tag, sitemap entry, robots
-  directive, OG/Twitter tag, and llms.txt line follows.
+  structured-data helpers. When the custom domain is decided, change the base
+  URL here and in public/robots.txt and public/llms.txt (README.md).
 */
 export const SITE = {
   name: "BioScience Writers",
