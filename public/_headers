@@ -10,6 +10,7 @@
   Cross-Origin-Resource-Policy: same-origin
   Cross-Origin-Opener-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
+  X-Robots-Tag: noindex
 
 # Built files carry a content hash in their name, so they never change.
 /assets/*
