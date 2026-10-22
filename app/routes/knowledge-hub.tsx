@@ -130,7 +130,7 @@ export default function KnowledgeHub() {
             </p>
             <div className="mt-5">
               <PrimaryButton href="/contact-us/" color="green">
-                Explore the Full Resource Library
+                Ask About Our Resources
               </PrimaryButton>
             </div>
           </div>

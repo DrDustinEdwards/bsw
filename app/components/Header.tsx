@@ -4,6 +4,11 @@ import { primaryNav } from "../data/nav";
 import { Wordmark } from "./Logo";
 import { PrimaryButton } from "./ui";
 
+// A stable id for a nav group's panel, for aria-controls.
+function groupId(label: string): string {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
 export function Header() {
   const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -45,10 +50,17 @@ export function Header() {
               className="relative"
               onMouseEnter={() => setOpenGroup(group.label)}
               onMouseLeave={() => setOpenGroup(null)}
+              onKeyDown={(e) => {
+                if (e.key === "Escape" && openGroup === group.label) {
+                  setOpenGroup(null);
+                  e.currentTarget.querySelector("button")?.focus();
+                }
+              }}
             >
               <button
                 type="button"
                 aria-expanded={openGroup === group.label}
+                aria-controls={`nav-${groupId(group.label)}`}
                 onClick={() =>
                   setOpenGroup((g) => (g === group.label ? null : group.label))
                 }
@@ -65,6 +77,7 @@ export function Header() {
                 />
               </button>
               <div
+                id={`nav-${groupId(group.label)}`}
                 className={`absolute left-0 top-full w-64 pt-2 transition-all duration-150 ${
                   openGroup === group.label
                     ? "visible translate-y-0 opacity-100"

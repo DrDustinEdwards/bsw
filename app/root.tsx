@@ -39,7 +39,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#3f4e5c" />
-        <meta name="robots" content="index, follow" />
         <Meta />
         <Links />
       </head>
@@ -74,6 +73,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="pt-16 p-4 container mx-auto">
+      {/* React hoists this into <head>: error pages are never indexed. */}
+      <meta name="robots" content="noindex" />
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (

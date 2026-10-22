@@ -1,7 +1,6 @@
 /*
-  Navigation and footer sitemap, taken from bsw/content-inventory.md.
-  Only the home route exists so far; these hrefs describe the intended sitemap
-  for the standalone rebuild and light up as routes are added.
+  Navigation and footer sitemap, taken from bsw/content-inventory.md. Every
+  href is a route in app/routes.ts.
 */
 
 type NavLink = { label: string; href: string };
