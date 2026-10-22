@@ -10,13 +10,13 @@ Standalone marketing site for BioScience Writers, rebuilt from the old WordPress
 
 Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
-Stack and layout are in README.md. Single production Worker, no staging, no CI; D1/KV/R2/DO deliberately not used yet.
+Stack and layout are in README.md. Single production Worker, no staging; D1/KV/R2/DO deliberately not used yet. CI (`.github/workflows/ci.yml`) typechecks, builds and audits every PR and push to main.
 
 ## Commands
 
 - `npm run dev` local dev
 - `npm run typecheck` before any commit (the Stop hook runs it too)
-- `npm run deploy` deploys to the production Worker. Confirm the new Version ID and that the site responds before reporting done.
+- A merge to main deploys (CI's `deploy` job, while the repo variable `CF_DEPLOY` is `true`). `npm run deploy` deploys by hand. Confirm the new Version ID and that the site responds before reporting done.
 
 ## Hard rules
 
