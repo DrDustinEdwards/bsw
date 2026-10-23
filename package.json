@@ -12,7 +12,7 @@
     "postinstall": "wrangler types"
   },
   "dependencies": {
-    "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.7.0",
+    "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.8.0",
     "isbot": "5.2.0",
     "lucide-react": "1.24.0",
     "react": "19.2.7",
