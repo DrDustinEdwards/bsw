@@ -59,7 +59,7 @@ export function Footer() {
                 className="h-11 w-auto"
               />
               <span className="font-display text-xl font-semibold text-white">
-                BioScience Writers
+                {SITE.name}
               </span>
             </div>
             <div className="flex gap-3">
@@ -88,7 +88,7 @@ export function Footer() {
         </div>
 
         <p className="mt-14 text-center text-sm text-slate-400">
-          &copy; 2026 BioScience Writers LLC. All rights reserved.
+          &copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
         </p>
       </div>
     </footer>
