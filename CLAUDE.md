@@ -20,5 +20,5 @@ Stack and layout are in README.md. Single production Worker, no staging; D1/KV/R
 
 ## Hard rules
 
-1. Content claims are a launch blocker. `bsw/content-notes.md` lists unverified factual claims (turnaround and guarantee copy) and the testimonial anonymization policy. Do not restore named endorsements or add new factual claims without verification.
+1. The site's content claims (stats, endorsements, turnaround, guarantee, pricing) are Dustin's to change (`bsw/content-notes.md`). Do not add new factual claims without his confirmation.
 2. UI mechanisms have documented gotchas (marquee loop, band-slab z-index, HexField hydration). Read `bsw/architecture.md` before touching them.
