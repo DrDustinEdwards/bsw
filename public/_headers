@@ -1,7 +1,7 @@
 # Static files (robots.txt, llms.txt, images, built assets) are served without
 # running the Worker, so workers/app.ts never adds its header set to them. These
 # are the non-CSP headers of @dustinedwards/site-runtime's set, copied as they
-# stand at v0.7.0; HTML gets the full set, CSP included, from the Worker.
+# stand at v0.11.0; HTML gets the full set, CSP included, from the Worker.
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains
   X-Content-Type-Options: nosniff
@@ -10,6 +10,8 @@
   Cross-Origin-Resource-Policy: same-origin
   Cross-Origin-Opener-Policy: same-origin
   X-Permitted-Cross-Domain-Policies: none
+  X-DNS-Prefetch-Control: off
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(self), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), clipboard-write=(), gamepad=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), unload=()
   X-Robots-Tag: noindex
 
 # Built files carry a content hash in their name, so they never change.
