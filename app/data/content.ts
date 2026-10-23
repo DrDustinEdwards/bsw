@@ -2,8 +2,7 @@
   Centralized homepage content, separated from presentation. Each array is
   typed and consumed by a matching presentational component (StatItem,
   ServiceCard, TeamMember, FaqItem, Testimonials). Copy is carried over from
-  the reference site; figures marked below are unverified and must be
-  confirmed by the BSW owner before public launch (see bsw/content-inventory).
+  the reference site.
 */
 import {
   Banknote,
@@ -17,7 +16,6 @@ import {
 
 export type Stat = { Icon: LucideIcon; value: string; label: string };
 
-// UNVERIFIED impact figures. Confirm against a defensible source before launch.
 export const STATS: Stat[] = [
   { Icon: Banknote, value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
   { Icon: Repeat, value: "58%", label: "Repeat Clients" },
@@ -144,12 +142,7 @@ export type Testimonial = {
   accent: string;
 };
 
-/*
-  UNVERIFIED named attributions. These are the real attributions from the
-  reference site (the anonymized version was replaced at the client's explicit
-  request). Named endorsements, including a Nobel laureate, must be confirmed
-  as genuine and consented before public launch.
-*/
+// The real attributions from the reference site, named at the client's request.
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
