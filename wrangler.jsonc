@@ -12,5 +12,9 @@
 	"upload_source_maps": true,
 	"compatibility_flags": [
 		"nodejs_compat"
+	],
+	// The CSP report sink (workers/app.ts). namespace_id is this site's own: sites sharing one share counters.
+	"ratelimits": [
+		{ "name": "CSP_REPORT_RATE_LIMIT", "namespace_id": "7601", "simple": { "limit": 60, "period": 60 } }
 	]
 }

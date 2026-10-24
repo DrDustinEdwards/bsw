@@ -9,8 +9,12 @@ import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
   Google Fonts stylesheet). The Cloudflare Web Analytics beacon, injected at
   the edge from static.cloudflareinsights.com, is allowed in script-src; it
   reports to the site's own /cdn-cgi/rum, so connect-src stays 'self'.
-  Everything else is locked to 'self'.
+  Everything else is locked to 'self'. Violations go to /csp-report
+  (workers/app.ts), by report-uri and by report-to.
 */
+export const CSP_REPORT_PATH = "/csp-report";
+const CSP_REPORT_GROUP = "csp-endpoint";
+
 const CSP = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -24,6 +28,8 @@ const CSP = [
   "connect-src 'self'",
   "manifest-src 'self'",
   "upgrade-insecure-requests",
+  `report-uri ${CSP_REPORT_PATH}`,
+  `report-to ${CSP_REPORT_GROUP}`,
 ].join("; ");
 
 // The house set (OWASP defaults) plus this site's CSP, which stays hand-written:
@@ -32,3 +38,8 @@ export const SECURITY_HEADERS = {
   ...buildSecurityHeaders(),
   "Content-Security-Policy": CSP,
 };
+
+/** The report-to group's endpoint. Absolute: Reporting-Endpoints ignores a relative one. */
+export function reportingEndpoints(origin: string): string {
+  return `${CSP_REPORT_GROUP}="${origin}${CSP_REPORT_PATH}"`;
+}
