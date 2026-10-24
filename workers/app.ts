@@ -35,10 +35,14 @@ export default {
     // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
     // same line in public/_headers.
     headers.set("X-Robots-Tag", "noindex");
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers,
-    });
+    const page = new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+    // `vite dev` only: Vite's client injects app.css as a <style> and takes its nonce from this meta,
+    // so the nonce-based style-src lets it through. A production build drops this branch.
+    if (import.meta.env.DEV) {
+      return new HTMLRewriter()
+        .on("head", { element: (head) => void head.prepend(`<meta property="csp-nonce" nonce="${nonce}">`, { html: true }) })
+        .transform(page);
+    }
+    return page;
   },
 } satisfies ExportedHandler<Env>;

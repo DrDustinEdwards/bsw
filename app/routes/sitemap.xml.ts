@@ -1,3 +1,4 @@
+import { sitemapDocument } from "@drdustinedwards/site-helpers/sitemap";
 import { absUrl } from "../config/site";
 
 /*
@@ -27,12 +28,10 @@ const PATHS = [
 ];
 
 export function loader() {
-  const urls = PATHS.map((p) => {
-    const priority = p === "/" ? "1.0" : "0.7";
-    return `  <url>\n    <loc>${absUrl(p)}</loc>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
-  }).join("\n");
-
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
+  const xml = sitemapDocument(
+    PATHS.map((p) => ({ loc: absUrl(p), changefreq: "monthly", priority: p === "/" ? 1 : 0.7 })),
+    { layout: "expanded" },
+  );
 
   return new Response(xml, {
     headers: {
