@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { TESTIMONIALS, type Testimonial } from "../data/content";
+import { DOT_OFF, DOT_ON } from "./carousel";
 
 /*
   Client testimonials carousel. Quotes, names, honors, and institutions come
@@ -45,17 +45,14 @@ export function Testimonials() {
   for (let i = 0; i < TESTIMONIALS.length; i += PER_SLIDE) {
     slides.push(TESTIMONIALS.slice(i, i + PER_SLIDE));
   }
-  const [page, setPage] = useState(0);
-  const go = (dir: number) =>
-    setPage((p) => (p + dir + slides.length) % slides.length);
-
+  // Server-rendered on the first slide; app/site.ts (enhanceCarousel) moves the track and the dots.
   return (
-    <div>
+    <div data-carousel>
       <div className="relative">
         {/* Prev / next arrows */}
         <button
           type="button"
-          onClick={() => go(-1)}
+          data-dir="-1"
           aria-label="Previous testimonials"
           className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-x-1 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-ink shadow-sm transition-colors hover:text-brand sm:-translate-x-4 lg:-translate-x-12"
         >
@@ -63,7 +60,7 @@ export function Testimonials() {
         </button>
         <button
           type="button"
-          onClick={() => go(1)}
+          data-dir="1"
           aria-label="Next testimonials"
           className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 translate-x-1 items-center justify-center rounded-full border border-slate-200 bg-white text-ink shadow-sm transition-colors hover:text-brand sm:translate-x-4 lg:translate-x-12"
         >
@@ -74,7 +71,7 @@ export function Testimonials() {
         <div className="overflow-hidden px-2">
           <div
             className="flex transition-transform duration-300 ease-out"
-            style={{ transform: `translateX(-${page * 100}%)` }}
+            data-track
           >
             {slides.map((group, gi) => (
               <div
@@ -97,16 +94,14 @@ export function Testimonials() {
           <button
             key={i}
             type="button"
-            onClick={() => setPage(i)}
+            data-dot={i}
             aria-label={`Go to testimonial slide ${i + 1}`}
-            aria-current={page === i}
+            aria-current={i === 0}
             className="group flex h-6 w-6 items-center justify-center"
           >
             <span
               className={`block h-2.5 rounded-full transition-all ${
-                page === i
-                  ? "w-6 bg-brand"
-                  : "w-2.5 bg-slate-300 group-hover:bg-slate-400"
+                i === 0 ? DOT_ON : DOT_OFF
               }`}
             />
           </button>

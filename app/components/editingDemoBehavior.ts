@@ -1,15 +1,14 @@
 /*
-  Interactive behavior for the Precision Editing demo, split into its own module
-  so it can be dynamically imported after first paint (code-split out of the
-  home route chunk). The demo's document text is server-rendered in
-  EditingDemo.tsx for crawlers; only this drag/keyboard/link behavior is
-  deferred. Returns a cleanup function.
+  Interactive behavior for the Precision Editing demo, run by app/site.ts. The
+  demo's document text is server-rendered in EditingDemo.tsx for crawlers; this
+  adds only the drag/keyboard/link behavior. It lives as long as the page, so
+  it needs no cleanup.
 
   Accessibility: the glass pill switcher is exposed as an ARIA tablist. The
   three views are tabs with roving tabindex, arrow-key / Home / End navigation,
   and aria-selected, in addition to the pointer drag interaction.
 */
-export function initEditingDemo(root: HTMLDivElement): () => void {
+export function initEditingDemo(root: HTMLElement): void {
   const TABS = 3;
   const TAB_NAMES = ["original", "simple", "all"];
   let current = 1;
@@ -20,7 +19,7 @@ export function initEditingDemo(root: HTMLDivElement): () => void {
   const labels = Array.from(
     track?.querySelectorAll(".psms-track-label") ?? [],
   ) as HTMLElement[];
-  if (!layout || !track || !pill || labels.length !== TABS) return () => {};
+  if (!layout || !track || !pill || labels.length !== TABS) return;
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const scrollBehavior: ScrollBehavior = reduce ? "auto" : "smooth";
@@ -246,26 +245,10 @@ export function initEditingDemo(root: HTMLDivElement): () => void {
   const onResize = () => pillTo(current, false);
   window.addEventListener("resize", onResize);
 
-  let raf2 = 0;
-  const raf1 = requestAnimationFrame(() => {
-    raf2 = requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
       pillTo(1, false);
       switchTab("simple");
     });
   });
-
-  return () => {
-    pill.removeEventListener("transitionend", onPillTransitionEnd);
-    track.removeEventListener("keydown", onKeyDown);
-    track.removeEventListener("mousedown", onStart);
-    track.removeEventListener("touchstart", onStart);
-    root.removeEventListener("click", onClick);
-    window.removeEventListener("resize", onResize);
-    window.removeEventListener("mousemove", onMove);
-    window.removeEventListener("touchmove", onMove);
-    window.removeEventListener("mouseup", onEnd);
-    window.removeEventListener("touchend", onEnd);
-    cancelAnimationFrame(raf1);
-    cancelAnimationFrame(raf2);
-  };
 }

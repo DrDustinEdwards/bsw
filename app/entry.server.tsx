@@ -1,6 +1,7 @@
+// The whole page is rendered before it is sent: the site ships no React to the browser (no <Scripts />),
+// so there is nothing to stream toward. /site.js (app/site.ts) is the page's only script.
 import type { EntryContext, RouterContextProvider } from "react-router";
 import { ServerRouter } from "react-router";
-import { isbot } from "isbot";
 import { renderToReadableStream } from "react-dom/server";
 import { nonceContext } from "../workers/security-headers";
 
@@ -11,8 +12,6 @@ export default async function handleRequest(
   routerContext: EntryContext,
   loadContext: RouterContextProvider,
 ) {
-  let shellRendered = false;
-  const userAgent = request.headers.get("user-agent");
   const nonce = loadContext.get(nonceContext);
 
   const body = await renderToReadableStream(
@@ -21,22 +20,11 @@ export default async function handleRequest(
       nonce,
       onError(error: unknown) {
         responseStatusCode = 500;
-        // Log streaming rendering errors from inside the shell.  Don't log
-        // errors encountered during initial shell rendering since they'll
-        // reject and get logged in handleDocumentRequest.
-        if (shellRendered) {
-          console.error(error);
-        }
+        console.error(error);
       },
     },
   );
-  shellRendered = true;
-
-  // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
-  // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
-  if ((userAgent && isbot(userAgent)) || routerContext.isSpaMode) {
-    await body.allReady;
-  }
+  await body.allReady;
 
   responseHeaders.set("Content-Type", "text/html");
   return new Response(body, {

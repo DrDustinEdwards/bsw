@@ -3,8 +3,6 @@ import {
   Links,
   Meta,
   Outlet,
-  Scripts,
-  ScrollRestoration,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -44,8 +42,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-        <ScrollRestoration />
-        <Scripts />
+        {/* The page's only script: app/site.ts, bundled by vite.config.ts. No React reaches the browser. */}
+        <script src="/site.js" defer />
       </body>
     </html>
   );
