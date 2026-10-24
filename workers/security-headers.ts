@@ -1,34 +1,34 @@
 // Every security header bsw sends, in one place; workers/app.ts applies it to every response.
 import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
+import { buildContentSecurityPolicy } from "@dustinedwards/site-runtime/csp";
+import { createContext } from "react-router";
+
+export const CSP_REPORT_PATH = "/csp-report";
+export const CSP_REPORT_GROUP = "csp-endpoint";
+
+// The house set (OWASP defaults); the CSP is per request, below.
+export const SECURITY_HEADERS = buildSecurityHeaders();
 
 /*
-  Content Security Policy. The site is first-party except Google Fonts and the
-  analytics beacon.
-  'unsafe-inline' is required for scripts (React Router injects an inline
-  hydration script) and for styles (React inline style attributes plus the
-  Google Fonts stylesheet). The Cloudflare Web Analytics beacon, injected at
-  the edge from static.cloudflareinsights.com, is allowed in script-src; it
-  reports to the site's own /cdn-cgi/rum, so connect-src stays 'self'.
-  Everything else is locked to 'self'.
+  First-party except Google Fonts and the analytics beacon. Pages are rendered
+  per request and never shared-cached, so React Router's inline scripts carry
+  this request's nonce, which app/entry.server.tsx reads from nonceContext.
+  Style attributes, which a nonce cannot cover, get style-src-attr.
 */
-const CSP = [
-  "default-src 'self'",
-  "base-uri 'self'",
-  "object-src 'none'",
-  "frame-ancestors 'none'",
-  "form-action 'self'",
-  "img-src 'self' data:",
-  "script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
-  "connect-src 'self'",
-  "manifest-src 'self'",
-  "upgrade-insecure-requests",
-].join("; ");
+export const nonceContext = createContext<string>();
 
-// The house set (OWASP defaults) plus this site's CSP, which stays hand-written:
-// the shared builder refuses 'unsafe-inline' in script-src.
-export const SECURITY_HEADERS = {
-  ...buildSecurityHeaders(),
-  "Content-Security-Policy": CSP,
-};
+export function contentSecurityPolicy(nonce: string) {
+  return buildContentSecurityPolicy({
+    nonce,
+    sources: {
+      img: ["data:"],
+      style: ["https://fonts.googleapis.com"],
+      font: ["https://fonts.gstatic.com"],
+    },
+    styleAttributesInline: true,
+    cloudflareWebAnalytics: true,
+    extraDirectives: ["manifest-src 'self'", "upgrade-insecure-requests"],
+    reportUri: CSP_REPORT_PATH,
+    reportTo: CSP_REPORT_GROUP,
+  });
+}
