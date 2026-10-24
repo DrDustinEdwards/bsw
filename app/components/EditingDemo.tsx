@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 
 /*
   Precision Editing Demonstrated: a faithful port of the real interactive
@@ -249,32 +248,13 @@ const PSMS_HTML = `
 </div>
 `;
 
+// The document text is server-rendered for crawlers; app/site.ts runs initEditingDemo on it.
 export function EditingDemo() {
-  const rootRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    let cleanup: (() => void) | undefined;
-    let cancelled = false;
-    // Load the interaction behavior after paint (separate chunk). If the
-    // component unmounts before it resolves, run cleanup immediately.
-    void import("./editingDemoBehavior").then((m) => {
-      if (cancelled) return;
-      cleanup = m.initEditingDemo(root);
-    });
-    return () => {
-      cancelled = true;
-      cleanup?.();
-    };
-  }, []);
-
   return (
     <div
       className="psms-section"
-      ref={rootRef}
+      data-editing-demo
       dangerouslySetInnerHTML={{ __html: PSMS_HTML }}
     />
   );
 }
-

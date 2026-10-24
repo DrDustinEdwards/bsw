@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import {
   Upload,
   UserCheck,
@@ -10,8 +9,8 @@ import {
 /*
   Vertical process timeline.
   The fill line grows from 0 to (container height - circle size) once the
-  timeline scrolls into view, via a 6s height transition (styles in app.css).
-  Recomputes on resize. prefers-reduced-motion shows the fill at full height
+  timeline scrolls into view, via a 6s height transition (styles in app.css),
+  set by app/site.ts (enhanceTimeline). Recomputes on resize. prefers-reduced-motion shows the fill at full height
   with no animation. Icons are Lucide; each step keeps its accent color.
 */
 
@@ -53,60 +52,10 @@ const STEPS: {
 ];
 
 export function Timeline() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const fillRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    const fill = fillRef.current;
-    if (!container || !fill) return;
-
-    const circleSize = () =>
-      window.matchMedia("(max-width: 768px)").matches ? 48 : 64;
-    const grow = () => {
-      fill.style.height = container.offsetHeight - circleSize() + "px";
-    };
-
-    // Reduced motion: full height, no 6s animation.
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      fill.style.transition = "none";
-      grow();
-      return;
-    }
-
-    let resizeTimer: ReturnType<typeof setTimeout>;
-    const onResize = () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(grow, 150);
-    };
-
-    let started = false;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !started) {
-            started = true;
-            grow();
-            observer.unobserve(entry.target);
-            window.addEventListener("resize", onResize);
-          }
-        });
-      },
-      { threshold: 0 },
-    );
-    observer.observe(container);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("resize", onResize);
-      clearTimeout(resizeTimer);
-    };
-  }, []);
-
   return (
-    <div className="vertical-timeline" ref={containerRef}>
+    <div className="vertical-timeline" data-timeline>
       <div className="timeline-line-bg" />
-      <div className="timeline-line-fill" ref={fillRef} />
+      <div className="timeline-line-fill" />
       {STEPS.map((s) => (
         <div className="timeline-step" key={s.num}>
           <div className="timeline-circle">

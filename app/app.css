@@ -178,16 +178,41 @@ body {
   reference's fadeTop microinteraction). The overshoot in the transform easing
   gives the small "drop into place" bounce.
 */
-.reveal {
-  opacity: 0;
-  transform: translateY(-28px);
-  transition: opacity var(--dur-reveal) var(--ease-out),
-    transform var(--dur-reveal) var(--ease-back);
-  will-change: opacity, transform;
+/* Only when scripting is on: without /site.js nothing would ever reveal them. */
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(-28px);
+    transition: opacity var(--dur-reveal) var(--ease-out),
+      transform var(--dur-reveal) var(--ease-back);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.reveal.is-visible {
+
+/*
+  FAQ answers (Faq.tsx, native <details>): the answer slides open and fades in where the browser can
+  animate ::details-content to an auto height, and simply appears elsewhere.
+*/
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item {
+  interpolate-size: allow-keywords;
+}
+.faq-item::details-content {
+  block-size: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: block-size 300ms var(--ease-out), opacity 300ms var(--ease-out),
+    content-visibility 300ms allow-discrete;
+}
+.faq-item[open]::details-content {
+  block-size: auto;
   opacity: 1;
-  transform: translateY(0);
 }
 
 /*
@@ -1070,6 +1095,9 @@ body {
   .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+  .faq-item::details-content {
     transition: none;
   }
   .psms-scroll-box {

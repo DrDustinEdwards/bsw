@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { primaryNav } from "../data/nav";
 import { Wordmark } from "./Logo";
@@ -9,33 +8,13 @@ function groupId(label: string): string {
   return label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 }
 
+// Server-rendered closed; app/site.ts (enhanceHeader) opens the dropdowns and the phone drawer,
+// and switches the bar's border once the page scrolls.
 export function Header() {
-  const [openGroup, setOpenGroup] = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Lock body scroll while the mobile drawer is open.
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
   return (
     <header
-      className={`sticky top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled
-          ? "border-slate-200 bg-white/90 backdrop-blur"
-          : "border-transparent bg-white/70 backdrop-blur"
-      }`}
+      data-header
+      className="sticky top-0 z-50 border-b border-transparent bg-white/70 backdrop-blur transition-colors duration-300"
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
         <a href="/" className="shrink-0" aria-label="BioScience Writers home">
@@ -48,41 +27,25 @@ export function Header() {
             <div
               key={group.label}
               className="relative"
-              onMouseEnter={() => setOpenGroup(group.label)}
-              onMouseLeave={() => setOpenGroup(null)}
-              onKeyDown={(e) => {
-                if (e.key === "Escape" && openGroup === group.label) {
-                  setOpenGroup(null);
-                  e.currentTarget.querySelector("button")?.focus();
-                }
-              }}
+              data-nav-group
             >
               <button
                 type="button"
-                aria-expanded={openGroup === group.label}
+                aria-expanded="false"
                 aria-controls={`nav-${groupId(group.label)}`}
-                onClick={() =>
-                  setOpenGroup((g) => (g === group.label ? null : group.label))
-                }
                 className="flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-ink transition-colors hover:text-brand"
               >
                 {group.label}
                 <ChevronDown
                   size={14}
                   strokeWidth={2}
-                  className={`transition-transform ${
-                    openGroup === group.label ? "rotate-180" : ""
-                  }`}
+                  className="transition-transform"
                   aria-hidden="true"
                 />
               </button>
               <div
                 id={`nav-${groupId(group.label)}`}
-                className={`absolute left-0 top-full w-64 pt-2 transition-all duration-150 ${
-                  openGroup === group.label
-                    ? "visible translate-y-0 opacity-100"
-                    : "invisible -translate-y-1 opacity-0"
-                }`}
+                className="invisible absolute left-0 top-full w-64 -translate-y-1 pt-2 opacity-0 transition-all duration-150"
               >
                 <ul className="overflow-hidden rounded-xl border border-slate-200 bg-white p-1.5 shadow-lg shadow-slate-900/5">
                   {group.links.map((link) => (
@@ -114,22 +77,19 @@ export function Header() {
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg text-ink lg:hidden"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-            onClick={() => setMobileOpen((o) => !o)}
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+            data-menu-toggle
           >
-            {mobileOpen ? (
-              <X size={24} strokeWidth={2} aria-hidden="true" />
-            ) : (
-              <Menu size={24} strokeWidth={2} aria-hidden="true" />
-            )}
+            <Menu size={24} strokeWidth={2} aria-hidden="true" data-icon="open" />
+            <X size={24} strokeWidth={2} aria-hidden="true" data-icon="close" className="hidden" />
           </button>
         </div>
       </div>
 
       {/* Mobile drawer */}
-      {mobileOpen && (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
+      <div id="mobile-nav" hidden className="border-t border-slate-200 bg-white lg:hidden">
           <nav className="mx-auto max-w-6xl px-5 py-4">
             {primaryNav.map((group) => (
               <div key={group.label} className="border-b border-slate-100 py-3 last:border-0">
@@ -142,7 +102,6 @@ export function Header() {
                       <a
                         href={link.href}
                         className="block py-2 text-[0.95rem] text-ink"
-                        onClick={() => setMobileOpen(false)}
                       >
                         {link.label}
                       </a>
@@ -159,8 +118,7 @@ export function Header() {
               Get a Quote
             </PrimaryButton>
           </nav>
-        </div>
-      )}
+      </div>
     </header>
   );
 }
