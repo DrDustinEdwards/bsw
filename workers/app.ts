@@ -1,7 +1,8 @@
 import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
-import { createRequestHandler } from "react-router";
-import { CSP_REPORT_PATH, reportingEndpoints, SECURITY_HEADERS } from "./security-headers";
+import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
+import { createRequestHandler, RouterContextProvider } from "react-router";
+import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, SECURITY_HEADERS } from "./security-headers";
 
 const requestHandler = createRequestHandler(
   () => import("virtual:react-router/server-build"),
@@ -20,11 +21,16 @@ export default {
       });
     }
 
-    const response = await requestHandler(request);
+    const nonce = generateNonce();
+    const context = new RouterContextProvider();
+    context.set(nonceContext, nonce);
+    const response = await requestHandler(request, context);
     // Attach security headers without disturbing the (possibly streaming) body.
     const headers = new Headers(response.headers);
     applyHeaderSet(headers, SECURITY_HEADERS);
-    headers.set("Reporting-Endpoints", reportingEndpoints(url.origin));
+    const csp = contentSecurityPolicy(nonce);
+    headers.set(csp.name, csp.value);
+    headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
     // Pre-launch: keep the mockup out of search until BioScience Writers has
     // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
     // same line in public/_headers.
