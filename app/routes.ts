@@ -6,9 +6,10 @@ import {
 } from "@react-router/dev/routes";
 
 export default [
-  // Resource routes: dynamic sitemap and robots.txt (no shared layout).
+  // Resource routes: dynamic sitemap, robots.txt and ai.txt (no shared layout).
   route("sitemap.xml", "routes/sitemap.xml.ts"),
   route("robots.txt", "routes/robots.txt.ts"),
+  route("ai.txt", "routes/ai.txt.ts"),
 
   // All pages share the header/footer shell via the pathless layout.
   layout("routes/layout.tsx", [

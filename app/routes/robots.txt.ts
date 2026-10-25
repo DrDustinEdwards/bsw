@@ -5,7 +5,7 @@ import { robotsDocument } from "@drdustinedwards/site-helpers/robots";
 import { SITE } from "../config/site";
 
 export function loader() {
-  return new Response(robotsDocument({ origin: SITE.url, notes: [`LLM guide: ${SITE.url}/llms.txt`] }), {
+  return new Response(robotsDocument({ origin: SITE.url, notes: [`AI usage policy: ${SITE.url}/ai.txt`, `LLM guide: ${SITE.url}/llms.txt`] }), {
     headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "public, max-age=3600" },
   });
 }
