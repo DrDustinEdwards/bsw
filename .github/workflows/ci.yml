@@ -1,5 +1,5 @@
 # Typecheck, build and a production audit on every pull request and on main, then a deploy from main.
-# A run on main is never cancelled, so a deploy cannot stop halfway.
+# A run on main is never canceled, so a deploy cannot stop halfway.
 
 name: CI
 
@@ -67,3 +67,13 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: npm run deploy
+
+      # Prelum's prelum-indexnow with the live sitemap. Skipped while the site answers noindex (pre-launch), so it
+      # starts on its own at launch. A refused ping is a warning, never a failed deploy.
+      - name: Tell IndexNow
+        run: |
+          origin=$(sed -n 's/^  url: "\(.*\)",$/\1/p' app/config/site.ts)
+          key=$(sed -n 's/^export const INDEXNOW_KEY = "\(.*\)";$/\1/p' app/config/site.ts)
+          if curl -sfI "$origin/" | grep -qi '^x-robots-tag:.*noindex'; then echo "noindex: not sent"; exit 0; fi
+          curl -sf "$origin/sitemap.xml" -o "$RUNNER_TEMP/sitemap.xml"
+          npx prelum-indexnow --origin "$origin" --key "$key" --sitemap "$RUNNER_TEMP/sitemap.xml"

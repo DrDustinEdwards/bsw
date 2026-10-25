@@ -54,7 +54,7 @@ export const journals: Logo[] = [
   jrnl("logo-cancer-cell", "Cancer Cell"),
   jrnl("nature-communications", "Nature Communications"),
   jrnl("logo-nature-immunology", "Nature Immunology"),
-  jrnl("logo-nature-human-behavior", "Nature Human Behaviour"),
+  jrnl("logo-nature-human-behavior", "Nature Human Behaviour"), // codespell:ignore (the journal's own name)
   jrnl("logo-pnas", "PNAS"),
   jrnl("logo-sciadv", "Science Advances"),
   jrnl("logo-stm", "Science Translational Medicine"),
