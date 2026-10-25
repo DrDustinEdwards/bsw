@@ -5,7 +5,6 @@
 */
 import { absoluteUrl, headTags } from "@drdustinedwards/site-helpers/head";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
-import type { MetaDescriptor } from "react-router";
 import { organizationLd } from "./structured-data";
 
 export const SITE = {
@@ -51,7 +50,7 @@ export function pageMeta({
   path: string;
   /** Set true when `title` is already the complete <title>. */
   fullTitle?: boolean;
-}): MetaDescriptor[] {
+}): Record<string, unknown>[] {
   return [
     ...headTags({
       origin: SITE.url,
