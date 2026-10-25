@@ -1,0 +1,6 @@
+{
+  "waive": {
+    "health": "No D1, KV, R2 or backups: the Worker has nothing to probe, so a /health would only say the Worker answered.",
+    "capsomer": "BioScience Writers is a client's site with its own brand, kept on its own look (Dustin, 2026-10-25)."
+  }
+}

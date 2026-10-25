@@ -81,7 +81,7 @@
   --color-anno-impact: var(--color-accent-green);
   --color-anno-rhet: var(--color-accent-slate);
 
-  /* Secondary text greys. */
+  /* Secondary text grays. */
   --color-ink-soft: #4f5e6b; /* hero subtitle, timeline step title */
   --color-body-soft: #5a7581; /* hero body, AA on white (was #607d8b, 4.37:1) */
   --color-icon-muted: #8a8f98; /* inactive UI arrow glyphs */

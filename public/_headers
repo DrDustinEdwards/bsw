@@ -1,4 +1,4 @@
-# Static files (robots.txt, llms.txt, images, built assets) are served without
+# Static files (images, built assets) are served without
 # running the Worker, so workers/app.ts never adds its header set to them. These
 # are the non-CSP headers of @dustinedwards/site-runtime's set, copied as they
 # stand at v0.11.0, and Prelum's TDMRep header; HTML gets the full set, CSP
