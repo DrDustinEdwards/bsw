@@ -7,27 +7,30 @@ import { Testimonials } from "../components/Testimonials";
 import { Reveal } from "../components/Reveal";
 import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
 import { StatItem, ServiceCard, TeamMember } from "../components/cards";
-import { HomeJsonLd } from "../components/StructuredData";
+import { homeLd } from "../config/structured-data";
+import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { institutions, journals } from "../data/logos";
 import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM } from "../data/content";
 import { pageMeta } from "../config/site";
 import { ArrowRight } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title:
-      "BioScience Writers | Scientific editing and medical proofreading services for the global research community",
-    fullTitle: true,
-    description:
-      "PhD & MD editors providing scientific editing, grant writing, and manuscript proofreading services. Fast turnaround for researchers worldwide.",
-    path: "/",
-  });
+  return [
+    ...pageMeta({
+      title:
+        "BioScience Writers | Scientific editing and medical proofreading services for the global research community",
+      fullTitle: true,
+      description:
+        "PhD & MD editors providing scientific editing, grant writing, and manuscript proofreading services. Fast turnaround for researchers worldwide.",
+      path: "/",
+    }),
+    ...homeLd().map(jsonLd),
+  ];
 }
 
 export default function Home() {
   return (
     <>
-      <HomeJsonLd />
       {/* 1. Hero */}
       <section className="hero-surface relative overflow-hidden">
         <HexField />
