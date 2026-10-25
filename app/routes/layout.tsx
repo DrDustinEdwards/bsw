@@ -1,7 +1,6 @@
 import { Outlet } from "react-router";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { OrganizationJsonLd } from "../components/StructuredData";
 
 /*
   Pathless layout shared by every route. Renders the sticky header, the single
@@ -11,7 +10,6 @@ import { OrganizationJsonLd } from "../components/StructuredData";
 export default function SiteLayout() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      <OrganizationJsonLd />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-ink focus:shadow-lg"

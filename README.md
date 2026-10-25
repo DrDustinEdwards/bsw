@@ -33,9 +33,9 @@ Live at https://bsw.dustin-edwards.workers.dev
 - `app/data/` typed content modules (nav, logos, stats, services, team, faq, testimonials)
 - `app/config/site.ts` single source of the base URL and per-route SEO meta helper
 - `workers/app.ts` request handler plus security response headers (site-runtime's set and the site's CSP) and the CSP report sink at `/csp-report` (site-runtime's receiver, rate-limited by the `CSP_REPORT_RATE_LIMIT` binding)
-- `public/` static assets, logos, `robots.txt`, `llms.txt`
+- `public/` static assets, logos, `llms.txt`
 
 ## Conventions
 
 - Every color, radius, and motion value is a token in `app/app.css`; no inline hex or duration literals
-- Base URL lives only in `app/config/site.ts`, `public/robots.txt`, and `public/llms.txt`
+- Base URL lives only in `app/config/site.ts` and `public/llms.txt`

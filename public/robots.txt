@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://bsw.dustin-edwards.workers.dev/sitemap.xml
