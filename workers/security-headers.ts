@@ -1,4 +1,5 @@
 // Every security header bsw sends, in one place; workers/app.ts applies it to every response.
+import { TDM_RESERVATION_HEADERS } from "@drdustinedwards/site-helpers/robots";
 import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
 import { buildContentSecurityPolicy } from "@dustinedwards/site-runtime/csp";
 import { createContext } from "react-router";
@@ -6,8 +7,9 @@ import { createContext } from "react-router";
 export const CSP_REPORT_PATH = "/csp-report";
 export const CSP_REPORT_GROUP = "csp-endpoint";
 
-// The house set (OWASP defaults); the CSP is per request, below.
-export const SECURITY_HEADERS = buildSecurityHeaders();
+// The house set (OWASP defaults) plus Prelum's TDMRep header, which reserves training rights as /ai.txt says; the
+// CSP is per request, below.
+export const SECURITY_HEADERS = { ...buildSecurityHeaders(), ...TDM_RESERVATION_HEADERS };
 
 /*
   First-party except Google Fonts and the analytics beacon. Pages are rendered
