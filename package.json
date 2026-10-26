@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.14.0",
-    "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.23.0",
+    "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.24.0",
     "lucide-react": "1.24.0",
     "react": "19.2.7",
     "react-dom": "19.2.7",
