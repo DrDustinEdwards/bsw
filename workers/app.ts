@@ -21,6 +21,16 @@ export default {
       });
     }
 
+    // The deployed commit, for devkit's shared deploy: it waits for this to report the commit it shipped. bsw has no
+    // database or bucket to probe, so this says only that the Worker answers and what it runs (CI passes DEPLOY_SHA).
+    if (url.pathname === "/health") {
+      const sha = (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA;
+      return Response.json(
+        { ok: true, ...(sha ? { sha } : {}), time: new Date().toISOString() },
+        { headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } },
+      );
+    }
+
     const nonce = generateNonce();
     const context = new RouterContextProvider();
     context.set(nonceContext, nonce);
