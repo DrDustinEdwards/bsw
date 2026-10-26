@@ -3,7 +3,7 @@
   structured-data helpers. When the custom domain is decided, change the base
   URL here (README.md).
 */
-import { absoluteUrl, headTags } from "@drdustinedwards/site-helpers/head";
+import { absoluteUrl, headTags, searchTitle } from "@drdustinedwards/site-helpers/head";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { organizationLd } from "./structured-data";
 
@@ -62,7 +62,9 @@ export function pageMeta({
     ...headTags({
       origin: SITE.url,
       path,
-      title: fullTitle ? title : `${title} | ${SITE.name}`,
+      // A long title drops the suffix and is cut at a word for search; the share card keeps it whole.
+      title: fullTitle ? title : searchTitle(title, ` | ${SITE.name}`),
+      socialTitle: fullTitle ? title : `${title} | ${SITE.name}`,
       description,
       image: { url: SITE.ogImage, width: 1200, height: 630, alt: `${SITE.name} logo and tagline` },
       siteName: SITE.name,
