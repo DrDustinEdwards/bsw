@@ -17,8 +17,7 @@ import { ArrowRight } from "lucide-react";
 export function meta({}: Route.MetaArgs) {
   return [
     ...pageMeta({
-      title:
-        "BioScience Writers | Scientific editing and medical proofreading services for the global research community",
+      title: "BioScience Writers | Scientific and Medical Editing",
       fullTitle: true,
       description:
         "PhD & MD editors providing scientific editing, grant writing, and manuscript proofreading services. Fast turnaround for researchers worldwide.",
