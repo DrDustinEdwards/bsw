@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.64.0",
-    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.13.3",
+    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.15.0",
     "@react-router/dev": "8.3.1",
     "@tailwindcss/vite": "4.3.2",
     "@types/node": "22.20.1",
