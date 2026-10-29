@@ -1,14 +1,15 @@
 /*
-  Interactive behavior for the Precision Editing demo, run by app/site.ts. The
-  demo's document text is server-rendered in EditingDemo.tsx for crawlers; this
-  adds only the drag/keyboard/link behavior. It lives as long as the page, so
-  it needs no cleanup.
+  Interactive behavior for the Precision Editing demo, an island (devkit's
+  startIslands, app/site.ts) the home page loads as the demo nears the
+  viewport. The demo's document text is server-rendered in EditingDemo.tsx for
+  crawlers; this adds only the drag/keyboard/link behavior. It lives as long as
+  the page, so it needs no cleanup.
 
   Accessibility: the glass pill switcher is exposed as an ARIA tablist. The
   three views are tabs with roving tabindex, arrow-key / Home / End navigation,
   and aria-selected, in addition to the pointer drag interaction.
 */
-export function initEditingDemo(root: HTMLElement): void {
+export default function initEditingDemo(root: HTMLElement): void {
   const TABS = 3;
   const TAB_NAMES = ["original", "simple", "all"];
   let current = 1;

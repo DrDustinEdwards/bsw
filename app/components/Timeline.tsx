@@ -10,7 +10,7 @@ import {
   Vertical process timeline.
   The fill line grows from 0 to (container height - circle size) once the
   timeline scrolls into view, via a 6s height transition (styles in app.css),
-  set by app/site.ts (enhanceTimeline). Recomputes on resize. prefers-reduced-motion shows the fill at full height
+  set by the timeline island (app/islands/timeline.ts). Recomputes on resize. prefers-reduced-motion shows the fill at full height
   with no animation. Icons are Lucide; each step keeps its accent color.
 */
 
@@ -53,7 +53,12 @@ const STEPS: {
 
 export function Timeline() {
   return (
-    <div className="vertical-timeline" data-timeline>
+    <div
+      className="vertical-timeline"
+      data-island="timeline"
+      data-client="visible"
+      data-client-root-margin="200px"
+    >
       <div className="timeline-line-bg" />
       <div className="timeline-line-fill" />
       {STEPS.map((s) => (

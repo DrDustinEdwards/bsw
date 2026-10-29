@@ -42,7 +42,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         {children}
-        {/* The page's only script: app/site.ts, bundled by vite.config.ts. No React reaches the browser. */}
+        {/* The page's one script tag: app/site.ts, bundled by vite.config.ts, which loads the page's islands. No React reaches the browser. */}
         <script src="/site.js" defer />
       </body>
     </html>
