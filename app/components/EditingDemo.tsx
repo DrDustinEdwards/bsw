@@ -5,8 +5,9 @@
   markup (injected as static HTML so the tracked-changes and highlight spans
   stay exact and are server-rendered for crawlers). The glass draggable pill
   tab switcher, keyboard tablist, and two-way card <-> highlight linking live in
-  editingDemoBehavior.ts, which is dynamically imported after mount so it
-  code-splits out of the home route chunk and never blocks first paint. Styling
+  the editing-demo island (app/islands/editing-demo.ts), which the home page
+  loads only as the demo nears the viewport, so no other page downloads it and
+  it never blocks first paint. Styling
   lives in app.css (.psms-*). prefers-reduced-motion disables smooth scroll and
   the spring snap.
 */
@@ -248,12 +249,14 @@ const PSMS_HTML = `
 </div>
 `;
 
-// The document text is server-rendered for crawlers; app/site.ts runs initEditingDemo on it.
+// The document text is server-rendered for crawlers; the editing-demo island adds the behavior.
 export function EditingDemo() {
   return (
     <div
       className="psms-section"
-      data-editing-demo
+      data-island="editing-demo"
+      data-client="visible"
+      data-client-root-margin="200px"
       dangerouslySetInnerHTML={{ __html: PSMS_HTML }}
     />
   );

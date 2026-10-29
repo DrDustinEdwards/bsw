@@ -45,9 +45,10 @@ export function Testimonials() {
   for (let i = 0; i < TESTIMONIALS.length; i += PER_SLIDE) {
     slides.push(TESTIMONIALS.slice(i, i + PER_SLIDE));
   }
-  // Server-rendered on the first slide; app/site.ts (enhanceCarousel) moves the track and the dots.
+  // Server-rendered on the first slide; the carousel island (app/islands/carousel.ts), started as it
+  // nears the viewport, moves the track and the dots.
   return (
-    <div data-carousel>
+    <div data-island="carousel" data-client="visible" data-client-root-margin="200px">
       <div className="relative">
         {/* Prev / next arrows */}
         <button

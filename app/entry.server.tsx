@@ -1,5 +1,6 @@
 // The whole page is rendered before it is sent: the site ships no React to the browser (no <Scripts />),
-// so there is nothing to stream toward. /site.js (app/site.ts) is the page's only script.
+// so there is nothing to stream toward. /site.js (app/site.ts) is the page's one script tag; it loads the islands
+// (app/islands/) a page names.
 import type { EntryContext, RouterContextProvider } from "react-router";
 import { ServerRouter } from "react-router";
 import { renderToReadableStream } from "react-dom/server";
