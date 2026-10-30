@@ -1,9 +1,9 @@
-// /llms.txt (llmstxt.org): Prelum's llmsDocument, the company in plain prose for AI readers. Its claims are
+// /llms.txt (llmstxt.org): Prelum's llmsResponse, the company in plain prose for AI readers. Its claims are
 // Dustin's to change (CLAUDE.md, hard rule 1).
-import { llmsDocument } from "@drdustinedwards/site-helpers/llms";
+import { llmsResponse } from "@drdustinedwards/site-helpers/llms";
 import { SITE } from "../config/site";
 
-const BODY = llmsDocument({
+const CONTENT = {
   title: SITE.name,
   summary: "BioScience Writers is a scientific editing and medical writing company founded in 2001, serving the international research community. All editors are native English-speaking scientists holding terminal degrees (PhD, MD, or DVM) with active expertise in the author's specific field of research.",
   sections: [
@@ -29,8 +29,8 @@ const BODY = llmsDocument({
     },
     { heading: "Contact", body: [`- Website: ${SITE.url}\n- Editing and Writing Operations: 832-517-3001 or 713-516-7228`] },
   ],
-});
+};
 
-export function loader() {
-  return new Response(BODY, { headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "public, max-age=3600" } });
+export function loader({ request }: { request: Request }) {
+  return llmsResponse({ origin: SITE.url, request, ...CONTENT });
 }
