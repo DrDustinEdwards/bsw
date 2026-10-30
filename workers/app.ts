@@ -1,6 +1,7 @@
 import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
+import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
 import { createRequestHandler, RouterContextProvider } from "react-router";
 import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, SECURITY_HEADERS } from "./security-headers";
 
@@ -19,6 +20,14 @@ export default {
         allow: async (r) =>
           (await env.CSP_REPORT_RATE_LIMIT.limit({ key: r.headers.get("cf-connecting-ip") ?? "unknown" })).success,
       });
+    }
+
+    // Hover prefetch (site-runtime ./prefetch): the next page starts loading while the pointer rests on its link. One
+    // rules file, named by a header on every page, so the CSP needs no allowance for it.
+    if (url.pathname === SPECULATION_RULES_PATH) {
+      const rules = speculationRulesResponse();
+      applyHeaderSet(rules.headers, SECURITY_HEADERS);
+      return rules;
     }
 
     // The deployed commit, for devkit's shared deploy: it waits for this to report the commit it shipped. bsw has no
@@ -40,6 +49,9 @@ export default {
     const csp = contentSecurityPolicy(nonce);
     headers.set(csp.name, csp.value);
     headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
+    if ((headers.get("content-type") ?? "").startsWith("text/html")) {
+      headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
+    }
     // Pre-launch: keep the mockup out of search until BioScience Writers has
     // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
     // same line in public/_headers.

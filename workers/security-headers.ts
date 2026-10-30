@@ -12,7 +12,7 @@ export const CSP_REPORT_GROUP = "csp-endpoint";
 export const SECURITY_HEADERS = { ...buildSecurityHeaders(), ...TDM_RESERVATION_HEADERS };
 
 /*
-  First-party except Google Fonts and the analytics beacon. Pages are rendered
+  First-party except the analytics beacon. Pages are rendered
   per request and never shared-cached, so React Router's inline scripts carry
   this request's nonce, which app/entry.server.tsx reads from nonceContext.
   Style attributes, which a nonce cannot cover, get style-src-attr.
@@ -24,8 +24,6 @@ export function contentSecurityPolicy(nonce: string) {
     nonce,
     sources: {
       img: ["data:"],
-      style: ["https://fonts.googleapis.com"],
-      font: ["https://fonts.gstatic.com"],
     },
     styleAttributesInline: true,
     cloudflareWebAnalytics: true,
