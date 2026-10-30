@@ -13,6 +13,15 @@
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
+	// Edge page cache (site-runtime ./edge-cache, workers/app.ts): the default export is the gateway and is never
+	// stored; it calls the Renderer with the path and query as the cache key, and the Renderer's responses are stored.
+	// Only a page routes/layout.tsx marks shared is kept; the rest are sent no-store. bsw has no writes, so nothing
+	// purges: no `cross_version_cache`, so the Worker version stays in the key and every deploy starts cold.
+	"cache": { "enabled": true },
+	"exports": {
+		"default": { "type": "worker", "cache": { "enabled": false } },
+		"Renderer": { "type": "worker", "cache": { "enabled": true } }
+	},
 	// The CSP report sink (workers/app.ts). namespace_id is this site's own: sites sharing one share counters.
 	"ratelimits": [
 		{ "name": "CSP_REPORT_RATE_LIMIT", "namespace_id": "7601", "simple": { "limit": 60, "period": 60 } }

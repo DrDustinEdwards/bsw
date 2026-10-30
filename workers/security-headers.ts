@@ -8,20 +8,26 @@ export const CSP_REPORT_PATH = "/csp-report";
 export const CSP_REPORT_GROUP = "csp-endpoint";
 
 // The house set (OWASP defaults) plus Prelum's TDMRep header, which reserves training rights as /ai.txt says; the
-// CSP is per request, below.
+// CSP is below.
 export const SECURITY_HEADERS = { ...buildSecurityHeaders(), ...TDM_RESERVATION_HEADERS };
 
 /*
-  First-party except the analytics beacon. Pages are rendered
-  per request and never shared-cached, so React Router's inline scripts carry
-  this request's nonce, which app/entry.server.tsx reads from nonceContext.
-  Style attributes, which a nonce cannot cover, get style-src-attr.
-*/
-export const nonceContext = createContext<string>();
+  First-party except the analytics beacon. Pages are stored at the edge and handed
+  to every reader (workers/app.ts), so the policy carries no per-request nonce. A
+  page has no inline script to hash: React reaches no browser (no <Scripts />),
+  /site.js is the one script and 'self' covers it, and the JSON-LD blocks are data,
+  which script-src does not govern. An inline script added later is blocked and
+  reported to /csp-report; trust it with scriptHashes (site-runtime ./csp
+  scriptHash), never a nonce. Style attributes get style-src-attr.
 
-export function contentSecurityPolicy(nonce: string) {
+  `vite dev` alone still uses a nonce: Vite's client injects app.css as a <style>
+  and takes its nonce from a meta tag (workers/app.ts). Nothing in dev is stored.
+*/
+export const nonceContext = createContext<string | undefined>(undefined);
+
+export function contentSecurityPolicy(nonce?: string) {
   return buildContentSecurityPolicy({
-    nonce,
+    ...(nonce ? { nonce } : {}),
     sources: {
       img: ["data:"],
     },

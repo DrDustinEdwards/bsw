@@ -32,7 +32,7 @@ Live at https://bsw.dustin-edwards.workers.dev
 - `app/components/` presentational components (cards, marquee, editing demo, timeline, ...)
 - `app/data/` typed content modules (nav, logos, stats, services, team, faq, testimonials)
 - `app/config/site.ts` single source of the base URL and per-route SEO meta helper
-- `workers/app.ts` request handler plus security response headers (site-runtime's set and the site's CSP) and the CSP report sink at `/csp-report` (site-runtime's receiver, rate-limited by the `CSP_REPORT_RATE_LIMIT` binding)
+- `workers/app.ts` request handler plus security response headers (site-runtime's set and the site's CSP) and the CSP report sink at `/csp-report` (site-runtime's receiver, rate-limited by the `CSP_REPORT_RATE_LIMIT` binding). Two entrypoints: the gateway (default export, never stored) and `Renderer`, whose pages are stored at the edge (site-runtime `./edge-cache`, `wrangler.jsonc` `cache` and `exports`); every page under `routes/layout.tsx` is marked shared, with a CSP that carries no nonce.
 - `public/` static assets and logos
 
 ## Conventions
