@@ -86,14 +86,8 @@ export default {
     // Hover prefetch (site-runtime ./prefetch): the next page starts loading while the pointer rests on its link. One
     // rules file, named by a header on every page, so the CSP needs no allowance for it.
     if (url.pathname === SPECULATION_RULES_PATH) {
-      const rules = speculationRulesResponse();
+      const rules = speculationRulesResponse(undefined, request);
       applyHeaderSet(rules.headers, SECURITY_HEADERS);
-      // Cloudflare compresses only the media types on its list, and application/speculationrules+json is not one, so
-      // the Worker names the encoding and the runtime encodes the body.
-      const accepted = request.headers.get("Accept-Encoding") ?? "";
-      const encoding = /\bbr\b/.test(accepted) ? "br" : /\bgzip\b/.test(accepted) ? "gzip" : null;
-      if (encoding) rules.headers.set("Content-Encoding", encoding);
-      rules.headers.append("Vary", "Accept-Encoding");
       return rules;
     }
 
