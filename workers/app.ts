@@ -2,6 +2,7 @@ import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
 import { createRequestHandler, RouterContextProvider } from "react-router";
+import { PRELOADS } from "../app/preloads";
 import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, SECURITY_HEADERS } from "./security-headers";
 
 const requestHandler = createRequestHandler(
@@ -41,6 +42,9 @@ export default {
     const csp = contentSecurityPolicy(nonce);
     headers.set(csp.name, csp.value);
     headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
+    // HTML pages: the preloads root.tsx links, as the `Link` header Cloudflare Early Hints reads. Appended, so a
+    // route's own Link stays.
+    if ((headers.get("Content-Type") ?? "").startsWith("text/html")) headers.append("Link", PRELOADS.header);
     // Pre-launch: keep the mockup out of search until BioScience Writers has
     // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
     // same line in public/_headers.

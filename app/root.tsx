@@ -7,24 +7,14 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { PRELOADS } from "./preloads";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
+  // The Google Fonts preconnects and the wordmark preload, also sent as the Early Hints `Link` header (preloads.ts).
+  ...PRELOADS.links,
   {
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap",
-  },
-  // Header wordmark is above the fold on every page; preload it to steady LCP.
-  {
-    rel: "preload",
-    as: "image",
-    href: "/brand/bsw-logo-web.webp",
-    type: "image/webp",
   },
   { rel: "icon", href: "/favicon.ico", sizes: "any" },
   { rel: "apple-touch-icon", href: "/brand/bsw-cube-mark.png" },
