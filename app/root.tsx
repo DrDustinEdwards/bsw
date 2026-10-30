@@ -11,15 +11,11 @@ import type { Route } from "./+types/root";
 import "@fontsource-variable/open-sans/wght.css";
 import "@fontsource-variable/open-sans/wght-italic.css";
 import "./app.css";
+import { PRELOADS } from "./preloads";
 
 export const links: Route.LinksFunction = () => [
-  // Header wordmark is above the fold on every page; preload it to steady LCP.
-  {
-    rel: "preload",
-    as: "image",
-    href: "/brand/bsw-logo-web.webp",
-    type: "image/webp",
-  },
+  // The wordmark preload, also sent as the Early Hints `Link` header (preloads.ts).
+  ...PRELOADS.links,
   { rel: "icon", href: "/favicon.ico", sizes: "any" },
   { rel: "apple-touch-icon", href: "/brand/bsw-cube-mark.png" },
 ];

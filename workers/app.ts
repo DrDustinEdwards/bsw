@@ -3,6 +3,7 @@ import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
 import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
 import { createRequestHandler, RouterContextProvider } from "react-router";
+import { PRELOADS } from "../app/preloads";
 import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, SECURITY_HEADERS } from "./security-headers";
 
 const requestHandler = createRequestHandler(
@@ -50,8 +51,11 @@ export default {
     const csp = contentSecurityPolicy(nonce);
     headers.set(csp.name, csp.value);
     headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
+    // HTML pages: hover prefetch, and the preloads root.tsx links as the `Link` header Cloudflare Early Hints
+    // reads (appended, so a route's own Link stays).
     if ((headers.get("content-type") ?? "").startsWith("text/html")) {
       headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
+      headers.append("Link", PRELOADS.header);
     }
     // Pre-launch: keep the mockup out of search until BioScience Writers has
     // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
