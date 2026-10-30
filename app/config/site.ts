@@ -3,7 +3,7 @@
   structured-data helpers. When the custom domain is decided, change the base
   URL here (README.md).
 */
-import { absoluteUrl, headTags, searchTitle } from "@drdustinedwards/site-helpers/head";
+import { absoluteUrl, defineHead } from "@drdustinedwards/site-helpers/head";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { organizationLd } from "./structured-data";
 
@@ -41,10 +41,17 @@ export function absUrl(path: string): string {
   return absoluteUrl(SITE.url, path.startsWith("/") ? path : `/${path}`);
 }
 
+/** Prelum's head builder with the site card: `<title>` gets the " | BioScience Writers" suffix (dropped where it does not fit). */
+const head = defineHead({
+  origin: SITE.url,
+  siteName: SITE.name,
+  image: { url: SITE.ogImage, width: 1200, height: 630, alt: `${SITE.name} logo and tagline` },
+  suffix: ` | ${SITE.name}`,
+});
+
 /*
-  Per-route meta builder: Prelum's headTags (title, description, canonical, Open Graph, Twitter) with
-  the site card, plus the site-wide Organization JSON-LD. Every route calls this so the social and
-  canonical surface stays consistent.
+  Per-route meta: the head tags (title, description, canonical, Open Graph, Twitter), plus the site-wide Organization
+  JSON-LD. Every route calls this so the social and canonical surface stays consistent.
 */
 export function pageMeta({
   title,
@@ -59,16 +66,8 @@ export function pageMeta({
   fullTitle?: boolean;
 }): Record<string, unknown>[] {
   return [
-    ...headTags({
-      origin: SITE.url,
-      path,
-      // A long title drops the suffix and is cut at a word for search; the share card keeps it whole.
-      title: fullTitle ? title : searchTitle(title, ` | ${SITE.name}`),
-      socialTitle: fullTitle ? title : `${title} | ${SITE.name}`,
-      description,
-      image: { url: SITE.ogImage, width: 1200, height: 630, alt: `${SITE.name} logo and tagline` },
-      siteName: SITE.name,
-    }),
+    // The share card keeps the whole title with the site name.
+    ...head({ title, description, path, fullTitle, socialTitle: fullTitle ? undefined : `${title} | ${SITE.name}` }),
     { name: "twitter:site", content: SITE.twitter },
     jsonLd(organizationLd()),
   ];
