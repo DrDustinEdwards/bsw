@@ -6,14 +6,14 @@
   No em dashes anywhere per house conventions.
 */
 @theme {
-  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif,
+  --font-sans: "Open Sans Variable", "Open Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /*
     The reference site sets every heading in Open Sans (no serif display face).
     --font-display therefore points at the same sans stack so section headings,
     stat values, and card titles match the reference typography.
   */
-  --font-display: "Open Sans", ui-sans-serif, system-ui, sans-serif,
+  --font-display: "Open Sans Variable", "Open Sans", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Core palette */
