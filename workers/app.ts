@@ -3,6 +3,7 @@ import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
 import { cacheKey, forReader, settleCacheHeaders, UNCACHED } from "@dustinedwards/site-runtime/edge-cache";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
+import { canonicalRedirect } from "@dustinedwards/site-runtime/url";
 import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
 import { createRequestHandler, RouterContextProvider } from "react-router";
 import { PRELOADS } from "../app/preloads";
@@ -61,12 +62,12 @@ export class Renderer extends WorkerEntrypoint<Env> {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    // workers.dev answers plain http too; send it to https on the same host (local dev is http://localhost).
-    if (url.protocol === "http:" && url.hostname !== "localhost") {
-      url.protocol = "https:";
-      const headers = new Headers({ Location: url.href, "Cache-Control": UNCACHED });
-      applyHeaderSet(headers, SECURITY_HEADERS);
-      return new Response(null, { status: 301, headers });
+    // workers.dev answers plain http too: one redirect to https on the same host (loopback stays http). The pages' URLs
+    // end in a slash, so every path keeps its own.
+    const canonical = canonicalRedirect(request, { except: ["*"] });
+    if (canonical) {
+      applyHeaderSet(canonical.headers, SECURITY_HEADERS);
+      return canonical;
     }
     if (url.pathname === CSP_REPORT_PATH) {
       // Keyed on the edge-set client address; a refusal drops the report (still 204).

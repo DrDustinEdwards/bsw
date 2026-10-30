@@ -2,6 +2,7 @@ import { reactRouter } from "@react-router/dev/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 import { siteScript } from "@dustinedwards/devkit/vite/site-script";
+import { writeFileSync } from "node:fs";
 import { headersFile } from "@dustinedwards/site-runtime/headers";
 import { defineConfig, type Plugin } from "vite";
 import { PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./workers/security-headers.ts";
@@ -10,17 +11,20 @@ import { PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./workers/security-headers
 const IMMUTABLE = { "Cache-Control": "public, max-age=31536000, immutable" };
 
 /**
- * Static files are served without the Worker, so the built client gets a `_headers` file holding the Worker's own set
- * (site-runtime headersFile; the page policy stays the Worker's) and the cache rules.
+ * Static files are served without the Worker, so every build rewrites public/_headers (committed, so the family check
+ * reads its cache rules) from the Worker's own set with site-runtime headersFile; the page policy stays the Worker's.
  */
 function staticHeaders(): Plugin {
   return {
     name: "bsw-static-headers",
     apply: "build",
-    generateBundle() {
+    buildStart() {
       if (this.environment.name !== "client") return;
-      const source = headersFile({ ...SECURITY_HEADERS, ...PRE_LAUNCH_HEADERS }, { paths: { "/assets/*": IMMUTABLE, "/islands/*": IMMUTABLE } });
-      this.emitFile({ type: "asset", fileName: "_headers", source });
+      const file = headersFile(
+        { ...SECURITY_HEADERS, ...PRE_LAUNCH_HEADERS },
+        { comment: "Written by vite.config.ts on every build from workers/security-headers.ts; do not edit.", paths: { "/assets/*": IMMUTABLE, "/islands/*": IMMUTABLE } },
+      );
+      writeFileSync("public/_headers", file);
     },
   };
 }

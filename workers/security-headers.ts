@@ -12,7 +12,7 @@ export const CSP_REPORT_GROUP = "csp-endpoint";
 export const SECURITY_HEADERS = { ...buildSecurityHeaders(), ...TDM_RESERVATION_HEADERS };
 
 // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
-// The Worker and the static files' _headers (vite.config.ts) both send it; remove it here at launch.
+// The Worker and public/_headers (written by vite.config.ts) both send it; remove it here at launch.
 export const PRE_LAUNCH_HEADERS = { "X-Robots-Tag": "noindex" };
 
 /*
