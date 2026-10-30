@@ -6,7 +6,7 @@ import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/c
 import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
 import { createRequestHandler, RouterContextProvider } from "react-router";
 import { PRELOADS } from "../app/preloads";
-import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, SECURITY_HEADERS } from "./security-headers";
+import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./security-headers";
 
 const requestHandler = createRequestHandler(
   () => import("virtual:react-router/server-build"),
@@ -39,10 +39,7 @@ export class Renderer extends WorkerEntrypoint<Env> {
       headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
       headers.append("Link", PRELOADS.header);
     }
-    // Pre-launch: keep the mockup out of search until BioScience Writers has
-    // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
-    // same line in public/_headers.
-    headers.set("X-Robots-Tag", "noindex");
+    applyHeaderSet(headers, PRE_LAUNCH_HEADERS);
     // Last header step: a page layout.tsx marks shared that rendered 200 is stored; anything else leaves private,
     // no-store.
     const page = settleCacheHeaders(new Response(response.body, { status: response.status, statusText: response.statusText, headers }));
@@ -64,6 +61,13 @@ export class Renderer extends WorkerEntrypoint<Env> {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    // workers.dev answers plain http too; send it to https on the same host (local dev is http://localhost).
+    if (url.protocol === "http:" && url.hostname !== "localhost") {
+      url.protocol = "https:";
+      const headers = new Headers({ Location: url.href, "Cache-Control": UNCACHED });
+      applyHeaderSet(headers, SECURITY_HEADERS);
+      return new Response(null, { status: 301, headers });
+    }
     if (url.pathname === CSP_REPORT_PATH) {
       // Keyed on the edge-set client address; a refusal drops the report (still 204).
       return receiveCspReport(request, {

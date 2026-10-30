@@ -11,6 +11,10 @@ export const CSP_REPORT_GROUP = "csp-endpoint";
 // CSP is below.
 export const SECURITY_HEADERS = { ...buildSecurityHeaders(), ...TDM_RESERVATION_HEADERS };
 
+// Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
+// The Worker and the static files' _headers (vite.config.ts) both send it; remove it here at launch.
+export const PRE_LAUNCH_HEADERS = { "X-Robots-Tag": "noindex" };
+
 /*
   First-party except the analytics beacon. Pages are stored at the edge and handed
   to every reader (workers/app.ts), so the policy carries no per-request nonce. A
