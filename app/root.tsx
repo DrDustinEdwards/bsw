@@ -6,19 +6,13 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
+// Open Sans from the site's own origin (Fontsource, the files Google Fonts serves, bundled under /assets/): no
+// stylesheet from fonts.googleapis.com blocking the first paint, and no second origin to connect to.
+import "@fontsource-variable/open-sans/wght.css";
+import "@fontsource-variable/open-sans/wght-italic.css";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "preconnect", href: "https://fonts.googleapis.com" },
-  {
-    rel: "preconnect",
-    href: "https://fonts.gstatic.com",
-    crossOrigin: "anonymous",
-  },
-  {
-    rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap",
-  },
   // Header wordmark is above the fold on every page; preload it to steady LCP.
   {
     rel: "preload",
