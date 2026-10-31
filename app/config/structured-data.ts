@@ -1,6 +1,6 @@
 // JSON-LD, built with Prelum's schema helpers and written into the head through each route's meta
 // (React Router escapes it). Content is static and trusted.
-import { faqPage, thing } from "@drdustinedwards/site-helpers/schema";
+import { faqPage, thing, website } from "@drdustinedwards/site-helpers/schema";
 import { FAQS } from "../data/content";
 import { SITE, absUrl } from "./site";
 
@@ -29,9 +29,10 @@ export function organizationLd() {
   });
 }
 
-/** Home-page Service and FAQPage. */
+/** Home-page WebSite (the node every page's WebPage names by its @id), Service and FAQPage. */
 export function homeLd() {
   return [
+    website({ origin: SITE.url, name: SITE.name, description: SITE.description }),
     thing("Service", {
       serviceType: "Scientific editing and grant writing",
       provider: { "@type": "Organization", name: SITE.name, url: SITE.url },
