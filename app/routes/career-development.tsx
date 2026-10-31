@@ -1,15 +1,11 @@
 import type { Route } from "./+types/career-development";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Career Development",
-    description:
-      "PhD-level editorial support for dissertations, theses, CV and biosketch formatting, monographs, and faculty development.",
-    path: "/career-development",
-  });
+  return pageMeta(page("/career-development"));
 }
 
 export default function CareerDevelopment() {

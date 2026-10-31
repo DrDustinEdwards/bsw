@@ -1,14 +1,10 @@
 import type { Route } from "./+types/cookie-policy";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Cookie Policy",
-    description:
-      "How BioScience Writers uses cookies and similar tracking technologies, and how you can manage your preferences.",
-    path: "/cookie-policy",
-  });
+  return pageMeta(page("/cookie-policy"));
 }
 
 export default function CookiePolicy() {

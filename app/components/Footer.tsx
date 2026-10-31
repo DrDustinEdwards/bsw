@@ -1,5 +1,7 @@
 import { SITE } from "../config/site";
 import { footerGroups } from "../data/nav";
+import { sitePicture } from "../lib/media/images";
+import { Picture } from "./Picture";
 
 // Real BioScience Writers social profiles, with brand-colored square tiles to
 // match the reference footer. Brand glyph paths (Lucide has no brand icons).
@@ -53,15 +55,7 @@ export function Footer() {
           {/* Logo + social */}
           <div className="flex flex-col items-start gap-6">
             <div className="flex items-center gap-2.5">
-              <img
-                src="/brand/bsw-cube-mark-88.f455c15f.webp"
-                srcSet="/brand/bsw-cube-mark-44.95c5ee6a.webp 1x, /brand/bsw-cube-mark-88.f455c15f.webp 2x"
-                alt=""
-                width={44}
-                height={44}
-                loading="lazy"
-                className="h-11 w-auto"
-              />
+              <Picture {...sitePicture({ src: "/brand/bsw-cube-mark-88.f455c15f.webp", width: 88, height: 88 }, "mark", { alt: "", className: "h-11 w-auto" })} />
               <span className="font-display text-xl font-semibold text-white">
                 {SITE.name}
               </span>

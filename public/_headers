@@ -9,6 +9,8 @@
   X-DNS-Prefetch-Control: off
   X-Frame-Options: deny
   X-Permitted-Cross-Domain-Policies: none
+  Cross-Origin-Embedder-Policy: credentialless; report-to="csp-endpoint"
+  Integrity-Policy-Report-Only: blocked-destinations=(script), endpoints=(csp-endpoint)
   tdm-reservation: 1
   X-Robots-Tag: noindex
 
@@ -59,3 +61,17 @@
 
 /brand/*
   Cache-Control: public, max-age=31536000, immutable
+
+/team/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/services/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og-image.png
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
+/og/*
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin

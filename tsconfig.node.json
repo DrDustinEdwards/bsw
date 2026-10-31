@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["vite.config.ts", "workers/security-headers.ts"],
+  "include": ["vite.config.ts", "workers/security-headers.ts", "scripts/share-cards.ts", "app/config/pages.ts"],
   "compilerOptions": {
     "composite": true,
     "allowImportingTsExtensions": true,

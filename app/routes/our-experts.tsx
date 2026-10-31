@@ -1,15 +1,11 @@
 import type { Route } from "./+types/our-experts";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "PhD/MD Editors",
-    description:
-      "An elite network of MD and PhD editors providing subject-matter expert review across every scientific discipline.",
-    path: "/our-experts",
-  });
+  return pageMeta(page("/our-experts"));
 }
 
 export default function OurExperts() {

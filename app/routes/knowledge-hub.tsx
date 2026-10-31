@@ -1,15 +1,11 @@
 import type { Route } from "./+types/knowledge-hub";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Knowledge Hub",
-    description:
-      "A centralized library of articles, video tutorials, FAQs, and tools for scientific writing and grant applications.",
-    path: "/knowledge-hub",
-  });
+  return pageMeta(page("/knowledge-hub"));
 }
 
 export default function KnowledgeHub() {

@@ -1,14 +1,10 @@
 import type { Route } from "./+types/pricing";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Pricing",
-    description:
-      "Flat-rate, per-word scientific editing pricing with no hidden fees across Standard, Accelerated, and Critical Rush turnaround tiers.",
-    path: "/pricing",
-  });
+  return pageMeta(page("/pricing"));
 }
 
 export default function Pricing() {

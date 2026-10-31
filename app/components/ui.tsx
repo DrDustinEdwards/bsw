@@ -92,11 +92,12 @@ export function SectionHeading({
 
 // Transparent logo box, no card. The img is forced solid white via
 // brightness(0) invert(1) (in .logo-box img) so colored and black marks read
-// uniformly on the dark band. Sizing/spacing live in app.css.
+// uniformly on the dark band. Sizing/spacing live in app.css. An SVG, so no sizes to offer; role="img" so every
+// browser names it by its alt as one picture.
 function LogoTile({ src, name, width, height }: Logo) {
   return (
     <div className="logo-box">
-      <img src={src} alt={name} width={width} height={height} loading="lazy" />
+      <img src={src} alt={name} width={width} height={height} loading="lazy" decoding="async" role="img" />
     </div>
   );
 }

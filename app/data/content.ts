@@ -13,6 +13,7 @@ import {
   BookOpen,
   type LucideIcon,
 } from "lucide-react";
+import type { SitePhoto } from "../lib/media/images";
 
 export type Stat = { Icon: LucideIcon; value: string; label: string };
 
@@ -32,7 +33,7 @@ type Flagship = {
   note: string;
   cta: string;
   href: string;
-  photo: string;
+  photo: SitePhoto;
 };
 
 export const FLAGSHIP: Flagship = {
@@ -42,7 +43,7 @@ export const FLAGSHIP: Flagship = {
   note: "Rapid Turnaround, most returned in 7-10 days.",
   cta: "Your Quote",
   href: "/pricing",
-  photo: "/services/grant-review.webp",
+  photo: { src: "/services/grant-review.6b238865.webp", width: 512, height: 512 },
 };
 
 export type ServiceCard = {
@@ -83,17 +84,17 @@ export const SERVICE_CARDS: ServiceCard[] = [
 export type TeamMember = {
   name: string;
   role: string;
-  photo: string;
+  photo: SitePhoto;
   accent: string;
 };
 
 // Caption panel accent glow runs orange, blue, blue, green, green.
 export const TEAM: TeamMember[] = [
-  { name: "Susan Marriott", role: "President", photo: "/team/Susan-Marriott.webp", accent: "var(--color-accent-orange)" },
-  { name: "Charlene Emerson", role: "Director of Business Development", photo: "/team/Charlene-Emerson.webp", accent: "var(--color-accent-blue)" },
-  { name: "Julie Edwards", role: "Director of Publication Services", photo: "/team/Julie-Edwards.webp", accent: "var(--color-accent-blue)" },
-  { name: "Lisa Giles", role: "Lead Technical Writer", photo: "/team/Lisa-Giles.webp", accent: "var(--color-accent-green)" },
-  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: "/team/Laura-Marinelli.webp", accent: "var(--color-accent-green)" },
+  { name: "Susan Marriott", role: "President", photo: { src: "/team/Susan-Marriott.845ab814.webp", width: 200, height: 300 }, accent: "var(--color-accent-orange)" },
+  { name: "Charlene Emerson", role: "Director of Business Development", photo: { src: "/team/Charlene-Emerson.627d30e3.webp", width: 200, height: 300 }, accent: "var(--color-accent-blue)" },
+  { name: "Julie Edwards", role: "Director of Publication Services", photo: { src: "/team/Julie-Edwards.ceed20d5.webp", width: 200, height: 300 }, accent: "var(--color-accent-blue)" },
+  { name: "Lisa Giles", role: "Lead Technical Writer", photo: { src: "/team/Lisa-Giles.630f0b9c.webp", width: 200, height: 300 }, accent: "var(--color-accent-green)" },
+  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: { src: "/team/Laura-Marinelli.f07ccc1d.webp", width: 200, height: 300 }, accent: "var(--color-accent-green)" },
 ];
 
 type Faq = { q: string; a: string };

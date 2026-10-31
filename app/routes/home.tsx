@@ -7,22 +7,19 @@ import { Testimonials } from "../components/Testimonials";
 import { Reveal } from "../components/Reveal";
 import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
 import { StatItem, ServiceCard, TeamMember } from "../components/cards";
+import { Picture } from "../components/Picture";
+import { sitePicture } from "../lib/media/images";
 import { homeLd } from "../config/structured-data";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { institutions, journals } from "../data/logos";
 import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM } from "../data/content";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { ArrowRight } from "lucide-react";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    ...pageMeta({
-      title: "BioScience Writers | Scientific and Medical Editing",
-      fullTitle: true,
-      description:
-        "PhD & MD editors providing scientific editing, grant writing, and manuscript proofreading services. Fast turnaround for researchers worldwide.",
-      path: "/",
-    }),
+    ...pageMeta(page("/")),
     ...homeLd().map(jsonLd),
   ];
 }
@@ -105,13 +102,11 @@ export default function Home() {
             {/* Flagship card */}
             <Reveal className="lg:col-span-5">
               <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-[color:var(--color-band)] shadow-lg shadow-slate-900/10">
-                <img
-                  src={FLAGSHIP.photo}
-                  alt="A BioScience Writers editor reviewing a grant with a researcher"
-                  width={512}
-                  height={512}
-                  loading="lazy"
-                  className="min-h-[13rem] w-full flex-1 object-cover"
+                <Picture
+                  {...sitePicture(FLAGSHIP.photo, "flagship", {
+                    alt: "A BioScience Writers editor reviewing a grant with a researcher",
+                    className: "min-h-[13rem] w-full flex-1 object-cover",
+                  })}
                 />
                 <div className="flex flex-col p-8">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-blue-soft">
