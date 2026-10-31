@@ -10,7 +10,7 @@ export function organizationLd() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
-    logo: absUrl("/brand/bsw-cube-mark.png"),
+    logo: absUrl("/brand/apple-touch-icon-180.e581bbfc.png"),
     foundingDate: SITE.founded,
     description: SITE.description,
     address: {

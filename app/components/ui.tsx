@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import type { Logo } from "../data/logos";
 
 /*
   Small shared building blocks: the site button, section heading, and the logo
@@ -92,10 +93,10 @@ export function SectionHeading({
 // Transparent logo box, no card. The img is forced solid white via
 // brightness(0) invert(1) (in .logo-box img) so colored and black marks read
 // uniformly on the dark band. Sizing/spacing live in app.css.
-function LogoTile({ src, name }: { src: string; name: string }) {
+function LogoTile({ src, name, width, height }: Logo) {
   return (
     <div className="logo-box">
-      <img src={src} alt={name} loading="lazy" />
+      <img src={src} alt={name} width={width} height={height} loading="lazy" />
     </div>
   );
 }
@@ -108,14 +109,14 @@ export function Marquee({
   items,
   direction = "left",
 }: {
-  items: { src: string; name: string }[];
+  items: Logo[];
   direction?: "left" | "right";
 }) {
   return (
     <div className="logo-marquee">
       <div className={`logo-track ${direction === "right" ? "reverse" : ""}`}>
         {[...items, ...items].map((logo, i) => (
-          <LogoTile key={i} src={logo.src} name={logo.name} />
+          <LogoTile key={i} {...logo} />
         ))}
       </div>
     </div>

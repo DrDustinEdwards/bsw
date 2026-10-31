@@ -17,7 +17,7 @@ export const links: Route.LinksFunction = () => [
   // The wordmark preload, also sent as the Early Hints `Link` header (preloads.ts).
   ...PRELOADS.links,
   { rel: "icon", href: "/favicon.ico", sizes: "any" },
-  { rel: "apple-touch-icon", href: "/brand/bsw-cube-mark.png" },
+  { rel: "apple-touch-icon", href: "/brand/apple-touch-icon-180.e581bbfc.png", sizes: "180x180" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
