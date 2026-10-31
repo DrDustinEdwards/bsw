@@ -22,7 +22,7 @@
     "@dustinedwards/site-api": "github:DrDustinEdwards/site-api#v0.18.0",
     "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.66.0",
     "@fontsource-variable/open-sans": "5.3.0",
-    "capsomer": "github:DrDustinEdwards/capsomer#v0.56.0",
+    "capsomer": "github:DrDustinEdwards/capsomer#v0.57.0",
     "drizzle-orm": "0.45.4",
     "lucide-react": "1.24.0",
     "react": "19.2.7",
