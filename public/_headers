@@ -1,27 +1,57 @@
-# Static files (images, built assets) are served without
-# running the Worker, so workers/app.ts never adds its header set to them. These
-# are the non-CSP headers of @dustinedwards/site-runtime's set, copied as they
-# stand at v0.11.0, and Prelum's TDMRep header; HTML gets the full set, CSP
-# included, from the Worker.
+# Written by vite.config.ts on every build from workers/security-headers.ts; do not edit.
 /*
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(self), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), clipboard-write=(), gamepad=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), unload=()
+  Referrer-Policy: no-referrer
   Strict-Transport-Security: max-age=63072000; includeSubDomains
   X-Content-Type-Options: nosniff
-  X-Frame-Options: deny
-  Referrer-Policy: no-referrer
-  Cross-Origin-Resource-Policy: same-origin
-  Cross-Origin-Opener-Policy: same-origin
-  X-Permitted-Cross-Domain-Policies: none
   X-DNS-Prefetch-Control: off
-  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), cross-origin-isolated=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), keyboard-map=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), sync-xhr=(self), usb=(), web-share=(), xr-spatial-tracking=(), clipboard-read=(), clipboard-write=(), gamepad=(), hid=(), idle-detection=(), interest-cohort=(), serial=(), unload=()
-  X-Robots-Tag: noindex
+  X-Frame-Options: deny
+  X-Permitted-Cross-Domain-Policies: none
   tdm-reservation: 1
+  X-Robots-Tag: noindex
 
-# Built files carry a content hash in their name, so they never change.
+/*.html
+  Content-Type: text/html; charset=utf-8
+
+/*.css
+  Content-Type: text/css; charset=utf-8
+
+/*.js
+  Content-Type: text/javascript; charset=utf-8
+
+/*.mjs
+  Content-Type: text/javascript; charset=utf-8
+
+/*.txt
+  Content-Type: text/plain; charset=utf-8
+
+/*.xml
+  Content-Type: application/xml; charset=utf-8
+
+/*.svg
+  Content-Type: image/svg+xml; charset=utf-8
+
+/*.css
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
+/*.js
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
+/*.mjs
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
+/*.woff2
+  ! Cross-Origin-Resource-Policy
+  Cross-Origin-Resource-Policy: cross-origin
+
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
-# The islands and the chunks they share (devkit's siteScript): each file is named by its content too. /site.js, which
-# carries their URLs, is not hashed and keeps the default revalidation.
 /islands/*
   Cache-Control: public, max-age=31536000, immutable
 
