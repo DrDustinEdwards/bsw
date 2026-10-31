@@ -7,7 +7,8 @@
 /.react-router/
 /build/
 
-# Cloudflare
+# Cloudflare: wrangler.jsonc holds the D1 id; only the .example is committed (public repo).
+wrangler.jsonc
 .mf
 .wrangler
 .dev.vars*

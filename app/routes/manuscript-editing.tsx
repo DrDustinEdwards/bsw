@@ -1,15 +1,11 @@
 import type { Route } from "./+types/manuscript-editing";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Manuscript Editing",
-    description:
-      "Expert MD/PhD editing for medical, scientific, and academic manuscripts, presentations, and posters.",
-    path: "/manuscript-editing",
-  });
+  return pageMeta(page("/manuscript-editing"));
 }
 
 export default function ManuscriptEditing() {

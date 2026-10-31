@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import type { Stat, ServiceCard as ServiceCardData, TeamMember as TeamMemberData } from "../data/content";
+import { sitePicture } from "../lib/media/images";
+import { Picture } from "./Picture";
 
 /*
   Small presentational cards used by the home page, extracted so each repeated
@@ -63,14 +65,7 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
 export function TeamMember({ member }: { member: TeamMemberData }) {
   return (
     <div className="mx-auto flex h-full max-w-[220px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm shadow-slate-900/5 sm:max-w-none">
-      <img
-        src={member.photo}
-        alt={member.name}
-        width={200}
-        height={300}
-        loading="lazy"
-        className="aspect-[4/5] w-full object-cover object-top"
-      />
+      <Picture {...sitePicture(member.photo, "team", { alt: member.name, className: "aspect-[4/5] w-full object-cover object-top" })} />
       <div
         className="flex flex-1 flex-col px-4 py-5 text-center"
         style={{

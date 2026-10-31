@@ -1,15 +1,11 @@
 import type { Route } from "./+types/grant-proposal-support";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Grant and Proposal Support",
-    description:
-      "Strategic grant review, consulting, and writing support for NIH, NSF, DoD, and private foundation applications.",
-    path: "/grant-proposal-support",
-  });
+  return pageMeta(page("/grant-proposal-support"));
 }
 
 export default function GrantProposalSupport() {

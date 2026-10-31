@@ -1,14 +1,10 @@
 import type { Route } from "./+types/careers";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Careers",
-    description:
-      "BioScience Writers is seeking editors and writers with advanced scientific degrees and extensive grant editing experience.",
-    path: "/careers",
-  });
+  return pageMeta(page("/careers"));
 }
 
 export default function Careers() {

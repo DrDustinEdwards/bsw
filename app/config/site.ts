@@ -5,6 +5,7 @@
 */
 import { absoluteUrl, defineHead } from "@drdustinedwards/site-helpers/head";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
+import { shareCardPath, type Page } from "./pages";
 import { organizationLd } from "./structured-data";
 
 export const SITE = {
@@ -51,23 +52,14 @@ const head = defineHead({
 
 /*
   Per-route meta: the head tags (title, description, canonical, Open Graph, Twitter), plus the site-wide Organization
-  JSON-LD. Every route calls this so the social and canonical surface stays consistent.
+  JSON-LD. Every route calls this with its entry in config/pages.ts so the social and canonical surface stays
+  consistent. The home page shares the site card; every other page its own.
 */
-export function pageMeta({
-  title,
-  description,
-  path,
-  fullTitle,
-}: {
-  title: string;
-  description: string;
-  path: string;
-  /** Set true when `title` is already the complete <title>. */
-  fullTitle?: boolean;
-}): Record<string, unknown>[] {
+export function pageMeta({ title, description, path, fullTitle }: Page): Record<string, unknown>[] {
+  const image = path === "/" ? undefined : { url: shareCardPath(path), width: 1200, height: 630, type: "image/png", alt: `${title}, ${SITE.name}` };
   return [
     // The share card keeps the whole title with the site name.
-    ...head({ title, description, path, fullTitle, socialTitle: fullTitle ? undefined : `${title} | ${SITE.name}` }),
+    ...head({ title, description, path, fullTitle, image, socialTitle: fullTitle ? undefined : `${title} | ${SITE.name}` }),
     { name: "twitter:site", content: SITE.twitter },
     jsonLd(organizationLd()),
   ];

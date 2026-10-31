@@ -1,15 +1,11 @@
 import type { Route } from "./+types/language-support";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Language Support",
-    description:
-      "Scientific translation and ESL language polishing for international researchers.",
-    path: "/language-support",
-  });
+  return pageMeta(page("/language-support"));
 }
 
 export default function LanguageSupport() {

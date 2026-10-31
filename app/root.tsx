@@ -16,7 +16,7 @@ import "./app.css";
 import { PRELOADS } from "./preloads";
 
 export const links: Route.LinksFunction = () => [
-  // The wordmark preload, also sent as the Early Hints `Link` header (preloads.ts).
+  // The font preload, also sent as the Early Hints `Link` header (preloads.ts).
   ...PRELOADS.links,
   ...iconLinks(),
 ];

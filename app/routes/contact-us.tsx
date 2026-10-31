@@ -1,14 +1,10 @@
 import type { Route } from "./+types/contact-us";
 import { SITE, pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Contact Us",
-    description:
-      "Reach BioScience Writers by phone, fax, or email. Business office located in Houston, Texas.",
-    path: "/contact-us",
-  });
+  return pageMeta(page("/contact-us"));
 }
 
 // A US phone or fax number as a tel: link.
