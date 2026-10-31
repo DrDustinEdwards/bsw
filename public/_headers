@@ -1,4 +1,4 @@
-# Written by vite.config.ts on every build from workers/security-headers.ts; do not edit.
+# Written by site-runtime-headers from the site registry (@dustinedwards/site-runtime/sites, bsw). Do not edit.
 /*
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-origin
@@ -61,17 +61,3 @@
 
 /brand/*
   Cache-Control: public, max-age=31536000, immutable
-
-/team/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/services/*
-  Cache-Control: public, max-age=31536000, immutable
-
-/og-image.png
-  ! Cross-Origin-Resource-Policy
-  Cross-Origin-Resource-Policy: cross-origin
-
-/og/*
-  ! Cross-Origin-Resource-Policy
-  Cross-Origin-Resource-Policy: cross-origin
