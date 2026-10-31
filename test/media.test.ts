@@ -48,5 +48,6 @@ test("/media serves a library upload and a site photograph, and nothing else", a
   for (const path of [`history/${UPLOAD}/0a1b2c3d`, "logos/institutions/logo-mayo-clinic.svg", "team/Lisa-Giles.webp", "uploads/../history/x.jpg"]) {
     assert.equal((await get(path)).status, 404, path);
   }
-  assert.equal((await get(`${PHOTO}?w=999`)).status, 400);
+  // A size URL as the page writes it names its format after the stored key: found (then refused for its width), not 404.
+  assert.equal((await get(`${PHOTO}.avif?w=999`)).status, 400);
 });
