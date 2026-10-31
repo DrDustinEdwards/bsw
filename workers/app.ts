@@ -10,7 +10,7 @@ import { timedRender } from "@dustinedwards/site-runtime/server-timing";
 import { canonicalRedirect } from "@dustinedwards/site-runtime/url";
 import { createRequestHandler, RouterContextProvider, type ServerBuild } from "react-router";
 import { PRELOADS } from "../app/preloads";
-import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, SECURITY_HEADERS } from "./security-headers";
+import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./security-headers";
 
 const serverBuild = () => import("virtual:react-router/server-build") as Promise<ServerBuild>;
 const requestHandler = createRequestHandler(serverBuild, import.meta.env.MODE);
@@ -35,12 +35,14 @@ export class Renderer extends WorkerEntrypoint<Env> {
     const csp = contentSecurityPolicy(nonce);
     headers.set(csp.name, csp.value);
     headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
+    const type = headers.get("content-type") ?? "";
+    // React Router names no charset; a browser must not have to guess one.
+    if (type === "text/html") headers.set("content-type", "text/html; charset=utf-8");
     // HTML pages: hover prefetch.
-    if ((headers.get("content-type") ?? "").startsWith("text/html")) headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
-    // Pre-launch: keep the mockup out of search until BioScience Writers has
-    // confirmed its claims (bsw/content-notes.md). Remove at launch, with the
-    // same line in public/_headers.
-    headers.set("X-Robots-Tag", "noindex");
+    if (type.startsWith("text/html")) headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
+    // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims
+    // (bsw/content-notes.md). public/_headers takes the same set, so removing it at launch is one edit.
+    applyHeaderSet(headers, PRE_LAUNCH_HEADERS);
     // The preloads root.tsx links and the root stylesheet, as the `Link` header Cloudflare Early Hints reads
     // (HTML only, appended, so a route's own Link stays).
     const hinted = withPreloadHeader(
