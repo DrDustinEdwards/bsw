@@ -12,7 +12,7 @@
     "postinstall": "devkit-bootstrap"
   },
   "dependencies": {
-    "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.23.0",
+    "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.24.0",
     "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.50.0",
     "@fontsource-variable/open-sans": "5.3.0",
     "capsomer": "github:DrDustinEdwards/capsomer#v0.55.0",
