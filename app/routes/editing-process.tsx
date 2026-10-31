@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Our Process: The BSW Scientific Pipeline",
     description:
       "A four-phase editing pipeline with PhD-led editing, rush turnaround, multi-stage quality control, and submission-ready delivery.",
-    path: "/editing-process/",
+    path: "/editing-process",
   });
 }
 

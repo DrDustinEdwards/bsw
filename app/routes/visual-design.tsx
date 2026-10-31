@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Visual Design",
     description:
       "Publication-ready figures, tables, medical illustration, and journal formatting for scientific content.",
-    path: "/visual-design/",
+    path: "/visual-design",
   });
 }
 
@@ -112,7 +112,7 @@ export default function VisualDesign() {
               Ready to professionalize your research visuals?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us">
                 Submit Your Project
               </PrimaryButton>
             </div>

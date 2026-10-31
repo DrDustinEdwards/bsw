@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "About Us",
     description:
       "Founded in 2001, BioScience Writers is a team of research scientists and physicians providing scientific editing, writing, and grant support.",
-    path: "/about-us/",
+    path: "/about-us",
   });
 }
 

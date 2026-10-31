@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Security and Confidentiality",
     description:
       "Our multi-layered security framework protects your unpublished research with 256-bit encryption, mandatory NDAs, and a zero-distribution policy.",
-    path: "/security-confidentiality/",
+    path: "/security-confidentiality",
   });
 }
 

@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Manuscript Editing",
     description:
       "Expert MD/PhD editing for medical, scientific, and academic manuscripts, presentations, and posters.",
-    path: "/manuscript-editing/",
+    path: "/manuscript-editing",
   });
 }
 
@@ -95,7 +95,7 @@ export default function ManuscriptEditing() {
               Ready to move your research toward publication?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us">
                 Submit Your Project
               </PrimaryButton>
             </div>

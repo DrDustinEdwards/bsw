@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Contact Us",
     description:
       "Reach BioScience Writers by phone, fax, or email. Business office located in Houston, Texas.",
-    path: "/contact-us/",
+    path: "/contact-us",
   });
 }
 

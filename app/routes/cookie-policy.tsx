@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Cookie Policy",
     description:
       "How BioScience Writers uses cookies and similar tracking technologies, and how you can manage your preferences.",
-    path: "/cookie-policy/",
+    path: "/cookie-policy",
   });
 }
 

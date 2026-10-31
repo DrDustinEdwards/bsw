@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Terms of Service",
     description:
       "The professional relationship, service scope, payment, refund, and intellectual property terms governing BioScience Writers editorial services.",
-    path: "/terms-of-service/",
+    path: "/terms-of-service",
   });
 }
 

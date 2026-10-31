@@ -48,7 +48,7 @@ export default function Home() {
               institutions for NIH, NSF, and high-impact journal submissions.
             </p>
             <div className="mt-8">
-              <PrimaryButton href="/pricing/">View Pricing</PrimaryButton>
+              <PrimaryButton href="/pricing">View Pricing</PrimaryButton>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function Home() {
                     Master the mechanics of high-impact publishing and
                     grant-winning through our expert-led eCourses.{" "}
                     <a
-                      href="/knowledge-hub/"
+                      href="/knowledge-hub"
                       className="inline-flex items-center gap-1 font-semibold text-accent-green-soft hover:underline"
                     >
                       Explore courses
@@ -224,7 +224,7 @@ export default function Home() {
                   our satisfaction guarantee. See exactly what happens from the
                   moment you submit your document.{" "}
                   <a
-                    href="/editing-process/"
+                    href="/editing-process"
                     className="font-semibold text-brand hover:underline"
                   >
                     See our full process &rarr;
@@ -279,7 +279,7 @@ export default function Home() {
             <p className="mt-1 text-sm text-muted">
               Our team responds within one business day.
             </p>
-            <PrimaryButton href="/contact-us/" className="mt-4">
+            <PrimaryButton href="/contact-us" className="mt-4">
               Ask Us a Question
             </PrimaryButton>
           </Reveal>

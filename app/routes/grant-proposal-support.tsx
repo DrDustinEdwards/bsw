@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Grant and Proposal Support",
     description:
       "Strategic grant review, consulting, and writing support for NIH, NSF, DoD, and private foundation applications.",
-    path: "/grant-proposal-support/",
+    path: "/grant-proposal-support",
   });
 }
 
@@ -100,7 +100,7 @@ export default function GrantProposalSupport() {
               Ready to secure your next research grant?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us">
                 Submit Your Proposal
               </PrimaryButton>
             </div>

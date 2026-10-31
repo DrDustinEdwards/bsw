@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Career Development",
     description:
       "PhD-level editorial support for dissertations, theses, CV and biosketch formatting, monographs, and faculty development.",
-    path: "/career-development/",
+    path: "/career-development",
   });
 }
 
@@ -112,7 +112,7 @@ export default function CareerDevelopment() {
               Ready to accelerate your academic career?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/" color="green">
+              <PrimaryButton href="/contact-us" color="green">
                 Submit Your Career Materials
               </PrimaryButton>
             </div>

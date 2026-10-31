@@ -41,7 +41,7 @@ export const FLAGSHIP: Flagship = {
   desc: "Strategic PhD-level review, writing, and alignment for NIH, NSF, and Foundation submissions.",
   note: "Rapid Turnaround, most returned in 7-10 days.",
   cta: "Your Quote",
-  href: "/pricing/",
+  href: "/pricing",
   photo: "/services/grant-review.webp",
 };
 

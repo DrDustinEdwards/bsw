@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Editing Guarantee",
     description:
       "Our quality guarantee, re-editing promise, certificates of scientific editing, and satisfaction policy for MD/PhD-reviewed manuscripts.",
-    path: "/editing-guarantee/",
+    path: "/editing-guarantee",
   });
 }
 

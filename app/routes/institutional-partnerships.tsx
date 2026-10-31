@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Institutional Partnerships",
     description:
       "Enterprise-grade scientific support for universities, biotech, and research hospitals, including MSAs, consolidated billing, and bulk credits.",
-    path: "/institutional-partnerships/",
+    path: "/institutional-partnerships",
   });
 }
 
@@ -110,7 +110,7 @@ export default function InstitutionalPartnerships() {
               Ready to streamline research support for your institution?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us">
                 Request a Consultation
               </PrimaryButton>
             </div>

@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "PhD/MD Editors",
     description:
       "An elite network of MD and PhD editors providing subject-matter expert review across every scientific discipline.",
-    path: "/our-experts/",
+    path: "/our-experts",
   });
 }
 
@@ -137,7 +137,7 @@ export default function OurExperts() {
               Ready to connect with an expert in your field?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us">
                 Meet Your Editor in the Client Portal
               </PrimaryButton>
             </div>
