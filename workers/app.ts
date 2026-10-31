@@ -2,6 +2,7 @@ import { WorkerEntrypoint } from "cloudflare:workers";
 import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
 import { cacheKey, forReader, forRenderer, settleCacheHeaders, UNCACHED } from "@dustinedwards/site-runtime/edge-cache";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
+import { healthResponse } from "@dustinedwards/site-runtime/health";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
 import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
 import { preloads, rootStylesheets, withPreloadHeader } from "@dustinedwards/site-runtime/preload";
@@ -92,12 +93,11 @@ export default {
     }
 
     // The deployed commit, for devkit's shared deploy: it waits for this to report the commit it shipped. bsw has no
-    // database or bucket to probe, so this says only that the Worker answers and what it runs (CI passes DEPLOY_SHA).
+    // database, bucket or cron to probe, so this says only that the Worker answers and what it runs (CI passes DEPLOY_SHA).
     if (url.pathname === "/health") {
-      const sha = (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA;
-      const headers = new Headers({ "Cache-Control": "no-store", "X-Robots-Tag": "noindex" });
-      applyHeaderSet(headers, SECURITY_HEADERS);
-      return Response.json({ ok: true, ...(sha ? { sha } : {}), time: new Date().toISOString() }, { headers });
+      const health = await healthResponse({ sha: (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA });
+      applyHeaderSet(health.headers, SECURITY_HEADERS);
+      return health;
     }
 
     // bsw has no form, no action and no sign-in (contact is a mailto link), so a write is refused here and never

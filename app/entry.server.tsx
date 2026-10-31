@@ -4,6 +4,7 @@
 import type { EntryContext, RouterContextProvider } from "react-router";
 import { ServerRouter } from "react-router";
 import { renderToReadableStream } from "react-dom/server";
+import { logEvent, requestFields } from "@dustinedwards/site-runtime/log";
 import { nonceContext } from "../workers/security-headers";
 
 export default async function handleRequest(
@@ -21,7 +22,7 @@ export default async function handleRequest(
       nonce,
       onError(error: unknown) {
         responseStatusCode = 500;
-        console.error(error);
+        logEvent("render_failed", { ...requestFields(request), error }, { level: "error" });
       },
     },
   );
