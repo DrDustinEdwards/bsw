@@ -66,8 +66,6 @@ export function Footer() {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-md text-white transition-opacity hover:opacity-85"
                   style={{ backgroundColor: s.color }}
                 >
