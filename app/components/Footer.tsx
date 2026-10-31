@@ -54,8 +54,12 @@ export function Footer() {
           <div className="flex flex-col items-start gap-6">
             <div className="flex items-center gap-2.5">
               <img
-                src="/brand/bsw-cube-mark.png"
+                src="/brand/bsw-cube-mark-88.f455c15f.webp"
+                srcSet="/brand/bsw-cube-mark-44.95c5ee6a.webp 1x, /brand/bsw-cube-mark-88.f455c15f.webp 2x"
                 alt=""
+                width={44}
+                height={44}
+                loading="lazy"
                 className="h-11 w-auto"
               />
               <span className="font-display text-xl font-semibold text-white">

@@ -6,6 +6,6 @@ import openSans from "@fontsource-variable/open-sans/files/open-sans-latin-wght-
 // wordmark, above the fold on every page, to steady LCP, and the upright Open Sans every page's text is set in (the
 // file root.tsx's Fontsource CSS loads). It comes from this origin, so there is no font origin to preconnect to.
 export const PRELOADS = preloads([
-  { href: "/brand/bsw-logo-web.webp", as: "image", type: "image/webp" },
+  { href: "/brand/bsw-logo-web.2a9980c8.webp", as: "image", type: "image/webp" },
   { href: openSans, as: "font", type: "font/woff2" },
 ]);

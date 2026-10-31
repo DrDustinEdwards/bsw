@@ -66,8 +66,8 @@ export function TeamMember({ member }: { member: TeamMemberData }) {
       <img
         src={member.photo}
         alt={member.name}
-        width={440}
-        height={550}
+        width={200}
+        height={300}
         loading="lazy"
         className="aspect-[4/5] w-full object-cover object-top"
       />
