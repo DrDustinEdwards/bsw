@@ -10,6 +10,8 @@
 		"logs": { "enabled": true, "head_sampling_rate": 1 }
 	},
 	"upload_source_maps": true,
+	// A pull request's preview version answers at pr-<number>-bsw.<subdomain>.workers.dev (devkit worker-deploy, preview).
+	"preview_urls": true,
 	"compatibility_flags": [
 		"nodejs_compat"
 	],

@@ -3,6 +3,7 @@ import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
 import { cacheKey, forReader, forRenderer, settleCacheHeaders, UNCACHED } from "@dustinedwards/site-runtime/edge-cache";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { healthResponse } from "@dustinedwards/site-runtime/health";
+import { withRequestLog } from "@dustinedwards/site-runtime/log";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
 import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
 import { preloads, rootStylesheets, withPreloadHeader } from "@dustinedwards/site-runtime/preload";
@@ -10,7 +11,11 @@ import { timedRender } from "@dustinedwards/site-runtime/server-timing";
 import { canonicalRedirect } from "@dustinedwards/site-runtime/url";
 import { createRequestHandler, RouterContextProvider, type ServerBuild } from "react-router";
 import { PRELOADS } from "../app/preloads";
+import { routeNamer } from "./route-name";
 import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./security-headers";
+
+// CI passes the deployed commit as DEPLOY_SHA (devkit worker-deploy, sha-var); no config declares it.
+type DeployEnv = Env & { DEPLOY_SHA?: string };
 
 const serverBuild = () => import("virtual:react-router/server-build") as Promise<ServerBuild>;
 const requestHandler = createRequestHandler(serverBuild, import.meta.env.MODE);
@@ -68,8 +73,8 @@ export class Renderer extends WorkerEntrypoint<Env> {
  * THE GATEWAY. Cache disabled (wrangler.jsonc `exports`), so it runs on every request: the CSP report sink, the
  * speculation rules and /health answer here and are never stored.
  */
-export default {
-  async fetch(request, env, ctx) {
+const site = {
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     // One hop to the canonical address: https and no trailing slash.
     const redirect = canonicalRedirect(request);
@@ -94,10 +99,20 @@ export default {
       return rules;
     }
 
-    // The deployed commit, for devkit's shared deploy: it waits for this to report the commit it shipped. bsw has no
-    // database, bucket or cron to probe, so this says only that the Worker answers and what it runs (CI passes DEPLOY_SHA).
+    // The deployed commit, for devkit's shared deploy: it waits for this to report the commit it shipped (CI passes
+    // DEPLOY_SHA). bsw has no database, bucket, KV or cron; its one binding, the CSP report limiter, is checked to be
+    // bound (a call would spend a count), at warn, since without it reports are only dropped.
     if (url.pathname === "/health") {
-      const health = await healthResponse({ sha: (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA });
+      const health = await healthResponse({
+        sha: (env as DeployEnv).DEPLOY_SHA,
+        checks: [
+          {
+            name: "csp_report_rate_limit",
+            level: "warn",
+            run: async () => typeof env.CSP_REPORT_RATE_LIMIT?.limit === "function" || { ok: false, detail: "CSP_REPORT_RATE_LIMIT is not bound" },
+          },
+        ],
+      });
       applyHeaderSet(health.headers, SECURITY_HEADERS);
       return health;
     }
@@ -117,4 +132,20 @@ export default {
     // already holds the page gets a 304.
     return forReader(page, request);
   },
+};
+
+// The paths the gateway answers itself, named for the request log; every other path is named by its React Router route.
+const GATEWAY_ROUTES = new Set([CSP_REPORT_PATH, SPECULATION_RULES_PATH, "/health"]);
+const routes = routeNamer(serverBuild);
+
+// Every request writes one `request` line (site-runtime ./log): its route ("/" or "/pricing"), status, ms and the
+// deployed commit, a 5xx at error and a 4xx at warn.
+export default {
+  fetch: withRequestLog(async (request: Request, env: Env, ctx: ExecutionContext) => (await Promise.all([site.fetch(request, env, ctx), routes.ready()]))[0], {
+    sha: (env) => (env as DeployEnv).DEPLOY_SHA,
+    route: (request) => {
+      const path = new URL(request.url).pathname;
+      return GATEWAY_ROUTES.has(path) ? path : routes.name(request);
+    },
+  }),
 } satisfies ExportedHandler<Env>;

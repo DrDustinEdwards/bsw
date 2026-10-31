@@ -48,4 +48,7 @@ export default [
     route("terms-of-service", "routes/terms-of-service.tsx"),
     route("cookie-policy", "routes/cookie-policy.tsx"),
   ]),
+
+  // Every other path: 410 for a page removed on purpose, else 404, drawn by the root ErrorBoundary.
+  route("*", "routes/not-found.tsx"),
 ] satisfies RouteConfig;
