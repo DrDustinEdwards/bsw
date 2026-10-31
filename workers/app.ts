@@ -10,7 +10,7 @@ import { timedRender } from "@dustinedwards/site-runtime/server-timing";
 import { canonicalRedirect } from "@dustinedwards/site-runtime/url";
 import { createRequestHandler, RouterContextProvider, type ServerBuild } from "react-router";
 import { PRELOADS } from "../app/preloads";
-import { contentSecurityPolicy, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./security-headers";
+import { contentSecurityPolicies, CSP_REPORT_GROUP, CSP_REPORT_PATH, nonceContext, PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./security-headers";
 
 const serverBuild = () => import("virtual:react-router/server-build") as Promise<ServerBuild>;
 const requestHandler = createRequestHandler(serverBuild, import.meta.env.MODE);
@@ -32,8 +32,7 @@ export class Renderer extends WorkerEntrypoint<Env> {
     // Attach security headers without disturbing the (possibly streaming) body.
     const headers = new Headers(response.headers);
     applyHeaderSet(headers, SECURITY_HEADERS);
-    const csp = contentSecurityPolicy(nonce);
-    headers.set(csp.name, csp.value);
+    for (const csp of contentSecurityPolicies(nonce)) headers.set(csp.name, csp.value);
     headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
     const type = headers.get("content-type") ?? "";
     // React Router names no charset; a browser must not have to guess one.
