@@ -55,7 +55,5 @@
 /islands/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Brand images carry their content hash in the name (bsw-logo-web.2a9980c8.webp): a changed image gets a new name, so
-# these never change either.
 /brand/*
   Cache-Control: public, max-age=31536000, immutable
