@@ -1,14 +1,10 @@
 import type { Route } from "./+types/about-us";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "About Us",
-    description:
-      "Founded in 2001, BioScience Writers is a team of research scientists and physicians providing scientific editing, writing, and grant support.",
-    path: "/about-us",
-  });
+  return pageMeta(page("/about-us"));
 }
 
 export default function AboutUs() {

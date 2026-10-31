@@ -1,15 +1,11 @@
 import type { Route } from "./+types/visual-design";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Visual Design",
-    description:
-      "Publication-ready figures, tables, medical illustration, and journal formatting for scientific content.",
-    path: "/visual-design",
-  });
+  return pageMeta(page("/visual-design"));
 }
 
 export default function VisualDesign() {

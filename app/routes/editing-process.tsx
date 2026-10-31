@@ -1,14 +1,10 @@
 import type { Route } from "./+types/editing-process";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Our Process: The BSW Scientific Pipeline",
-    description:
-      "A four-phase editing pipeline with PhD-led editing, rush turnaround, multi-stage quality control, and submission-ready delivery.",
-    path: "/editing-process",
-  });
+  return pageMeta(page("/editing-process"));
 }
 
 export default function EditingProcess() {

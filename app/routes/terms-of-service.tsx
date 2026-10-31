@@ -1,14 +1,10 @@
 import type { Route } from "./+types/terms-of-service";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Terms of Service",
-    description:
-      "The professional relationship, service scope, payment, refund, and intellectual property terms governing BioScience Writers editorial services.",
-    path: "/terms-of-service",
-  });
+  return pageMeta(page("/terms-of-service"));
 }
 
 export default function TermsOfService() {

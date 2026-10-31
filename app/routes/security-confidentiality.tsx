@@ -1,14 +1,10 @@
 import type { Route } from "./+types/security-confidentiality";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Security and Confidentiality",
-    description:
-      "Our multi-layered security framework protects your unpublished research with 256-bit encryption, mandatory NDAs, and a zero-distribution policy.",
-    path: "/security-confidentiality",
-  });
+  return pageMeta(page("/security-confidentiality"));
 }
 
 export default function SecurityConfidentiality() {

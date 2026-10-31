@@ -1,5 +1,6 @@
-# Typecheck, build and a production audit on every pull request and on main, then a deploy from main.
-# A run on main is never canceled, so a deploy cannot stop halfway.
+# Typecheck, test, build and a production audit on every pull request and on main, then a deploy from main.
+# A run on main is never canceled, so a deploy cannot stop halfway. wrangler.jsonc is not committed (public
+# repo, it carries the D1 id): `npm ci` copies the .example for the checks, and the deploy writes the id in from a variable.
 
 name: CI
 
@@ -17,7 +18,7 @@ permissions:
 
 jobs:
   ci:
-    name: Typecheck, build, audit
+    name: Typecheck, test, build, audit
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -37,16 +38,27 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      - name: Test
+        run: npm test
+
+      # A migration in drizzle/ is never edited, renamed or deleted, and a new one only adds unless it says
+      # `-- contract: <reason>` (devkit-migrations, drizzle/manifest.json).
+      - name: Migrations are expand-only
+        run: npm run --silent check:migrations
+
       - name: Build
         run: npm run build
 
       - name: Audit production dependencies
         run: npm audit --omit=dev --audit-level=high
 
-  # A merge to main deploys once CI is green. Dormant until the repo variable CF_DEPLOY is 'true' (with the secrets
-  # CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID). devkit's shared deploy (worker-deploy.yml): it builds, deploys with
-  # DEPLOY_SHA set to this commit, waits for /health to report it, checks the home page answers, and rolls the deploy
-  # back if it does not.
+  # A merge to main deploys once CI is green: migrations first, then the Worker. Dormant until the repo variable
+  # CF_DEPLOY is 'true' (with D1_DATABASE_ID set, and the secrets CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID).
+  # devkit's shared deploy (worker-deploy.yml): it reads the D1 Time Travel bookmark (`d1-database`), so a bad migration
+  # is one restore to undo, then writes the D1 id into the config, applies the pending migrations that only add
+  # (devkit-migrations --apply; a drop, rename or row delete waits for a hand run) and builds, deploys with DEPLOY_SHA
+  # set to this commit, waits for /health to report it, checks the home page answers, and rolls the deploy back if it
+  # does not. A rollback never undoes a migration.
   deploy:
     needs: ci
     if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.CF_DEPLOY == 'true'
@@ -56,12 +68,16 @@ jobs:
     uses: DrDustinEdwards/devkit/.github/workflows/worker-deploy.yml@e7ecda8f69c8bbde738edcd1cf510710e547bcf3 # v0.20.22
     with:
       worker-name: bsw
+      d1-database: bsw
       health-url: https://bsw.dustin-edwards.workers.dev/health
       verify-command: >-
         code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://bsw.dustin-edwards.workers.dev/ || true);
         echo "home page answered $code";
         if [ "$code" = 200 ]; then exit 0; elif [ "$code" = 000 ]; then exit 3; else exit 1; fi
-      pre-deploy: npm run build
+      pre-deploy: >-
+        sed -e "s|<D1_DATABASE_ID>|${{ vars.D1_DATABASE_ID }}|" wrangler.jsonc.example > wrangler.jsonc &&
+        npx devkit-migrations drizzle --apply bsw &&
+        npm run build
       sha-var: DEPLOY_SHA
     secrets:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

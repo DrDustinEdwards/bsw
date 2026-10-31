@@ -1,14 +1,10 @@
 import type { Route } from "./+types/editing-guarantee";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Editing Guarantee",
-    description:
-      "Our quality guarantee, re-editing promise, certificates of scientific editing, and satisfaction policy for MD/PhD-reviewed manuscripts.",
-    path: "/editing-guarantee",
-  });
+  return pageMeta(page("/editing-guarantee"));
 }
 
 export default function EditingGuarantee() {

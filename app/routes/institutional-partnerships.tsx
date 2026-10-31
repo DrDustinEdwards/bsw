@@ -1,15 +1,11 @@
 import type { Route } from "./+types/institutional-partnerships";
 import { pageMeta } from "../config/site";
+import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
 export function meta({}: Route.MetaArgs) {
-  return pageMeta({
-    title: "Institutional Partnerships",
-    description:
-      "Enterprise-grade scientific support for universities, biotech, and research hospitals, including MSAs, consolidated billing, and bulk credits.",
-    path: "/institutional-partnerships",
-  });
+  return pageMeta(page("/institutional-partnerships"));
 }
 
 export default function InstitutionalPartnerships() {

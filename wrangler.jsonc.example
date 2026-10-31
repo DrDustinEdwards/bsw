@@ -1,0 +1,62 @@
+// Copy to wrangler.jsonc (gitignored: this repository is public; `npm install` copies it once) and put the D1 database's
+// id in place of <D1_DATABASE_ID>. CI's deploy job writes it the same way from the repository variable D1_DATABASE_ID.
+// Secrets are set with `wrangler secret put`, never here: CARREL_SITE_KEY (Carrel's key for this site) and, optionally,
+// AI_GATEWAY_BASE_URL (the AI Gateway the media suggestions run through; it carries the account id).
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "bsw",
+	// No newer than the workerd that @cloudflare/vite-plugin bundles supports, or `npm run dev` refuses to start.
+	"compatibility_date": "2026-10-19",
+	"main": "./workers/app.ts",
+	"observability": {
+		"enabled": true,
+		"traces": { "enabled": true, "head_sampling_rate": 0.1 },
+		"logs": { "enabled": true, "head_sampling_rate": 1 }
+	},
+	"upload_source_maps": true,
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	// The deployed version's time: /health's cron check holds a job's "never ran" warning until its first window since
+	// the deploy has passed.
+	"version_metadata": { "binding": "CF_VERSION_METADATA" },
+	// Edge page cache (site-runtime ./edge-cache, workers/app.ts): the default export is the gateway and is never
+	// stored; it calls the Renderer with the path and query as the cache key, and the Renderer's responses are stored.
+	// Only a page routes/layout.tsx marks shared is kept; the rest are sent no-store. The page's copy is code, so a
+	// deploy is the only thing that changes a page: no `cross_version_cache`, so every deploy starts cold.
+	"cache": { "enabled": true },
+	"exports": {
+		"default": { "type": "worker", "cache": { "enabled": false } },
+		"Renderer": { "type": "worker", "cache": { "enabled": true } }
+	},
+	// Static assets, so /media can read the site's own photographs (app/lib/media/images.ts) through a binding. The Vite
+	// plugin supplies `directory` from the client build output; setting it here would fight that.
+	"assets": { "binding": "ASSETS" },
+	// The media library's index (drizzle/), site-api's store and the cron runs /health reads.
+	"d1_databases": [
+		{ "binding": "DB", "database_name": "bsw", "database_id": "<D1_DATABASE_ID>", "migrations_dir": "drizzle" }
+	],
+	// BACKUPS: nightly D1 dumps, and copies of the media files under files/media/ (d1-dump, app/lib/backup.server.ts).
+	// MEDIA: the media library Carrel uploads to (app/lib/media), each file under uploads/ and served at /media/<key>, with
+	// the earlier bytes of a replaced or turned file under history/, which is never served. Both buckets must exist before
+	// the deploy that names them.
+	"r2_buckets": [
+		{ "binding": "BACKUPS", "bucket_name": "bsw-backups" },
+		{ "binding": "MEDIA", "bucket_name": "bsw-media" }
+	],
+	// Cloudflare Images: each picture's sizes (site-runtime ./image, /media/<key>?w=), and the turns, mirrors and shrinks
+	// an editor asks for in Carrel. Carries no id.
+	"images": { "binding": "IMAGES" },
+	// Workers AI, for suggested tags and alt text when an editor asks for them in Carrel (app/lib/media/suggest.server.ts),
+	// never on a visitor's request and never applied unasked. Carries no id.
+	"ai": { "binding": "AI" },
+	// namespace_id is this site's own: sites sharing one share counters.
+	"ratelimits": [
+		// The CSP report sink (workers/app.ts), per address.
+		{ "name": "CSP_REPORT_RATE_LIMIT", "namespace_id": "7601", "simple": { "limit": 60, "period": 60 } },
+		// Carrel's site API (app/lib/carrel).
+		{ "name": "CARREL_RATE_LIMIT", "namespace_id": "7602", "simple": { "limit": 120, "period": 60 } }
+	],
+	// 03:47 UTC nightly: the D1 dump and the media files backup (workers/app.ts scheduled).
+	"triggers": { "crons": ["47 3 * * *"] }
+}
