@@ -1,6 +1,6 @@
 import { WorkerEntrypoint } from "cloudflare:workers";
 import { applyHeaderSet } from "@dustinedwards/site-runtime/headers";
-import { cacheKey, forReader, settleCacheHeaders, UNCACHED } from "@dustinedwards/site-runtime/edge-cache";
+import { cacheKey, forReader, forRenderer, settleCacheHeaders, UNCACHED } from "@dustinedwards/site-runtime/edge-cache";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
 import { SPECULATION_RULES_HEADER, SPECULATION_RULES_PATH, speculationRulesResponse } from "@dustinedwards/site-runtime/prefetch";
@@ -110,7 +110,7 @@ export default {
 
     // Every page and the small text routes: the Renderer's, through the Workers cache, keyed on the path and the query
     // without tracking parameters.
-    const page = await ctx.exports.Renderer.fetch(request, { cf: { cacheKey: cacheKey(url) } });
+    const page = await ctx.exports.Renderer.fetch(forRenderer(request), { cf: { cacheKey: cacheKey(url) } });
     // A browser or proxy never holds the page (max-age=0), a request with a cookie is told no-store, and a reader who
     // already holds the page gets a 304.
     return forReader(page, request);
