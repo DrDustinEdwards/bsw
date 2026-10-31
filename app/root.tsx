@@ -1,9 +1,5 @@
-import {
-  isRouteErrorResponse,
-  Links,
-  Meta,
-  Outlet,
-} from "react-router";
+import { Links, Meta, Outlet } from "react-router";
+import { ErrorPage, errorTitle } from "capsomer/react/error-page";
 
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 
@@ -14,6 +10,11 @@ import "@fontsource-variable/open-sans/wght.css";
 import "@fontsource-variable/open-sans/wght-italic.css";
 import "./app.css";
 import { PRELOADS } from "./preloads";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { SITE } from "./config/site";
+// The error page's own stylesheet, linked only when an error is drawn (ErrorBoundary below).
+import errorPageCss from "./error-page.css?url";
 
 export const links: Route.LinksFunction = () => [
   // The wordmark preload, also sent as the Early Hints `Link` header (preloads.ts).
@@ -44,33 +45,24 @@ export default function App() {
   return <Outlet />;
 }
 
+// The error path's title: "Page not found | BioScience Writers". A route's own meta is skipped when the page errors.
+export function meta({ error }: Route.MetaArgs) {
+  return error ? [{ title: errorTitle(error, SITE.name) }] : [];
+}
+
+// Capsomer's error page (404, 410 and 500 in plain words, noindex, the stack only in development) in the site's header
+// and footer, so the skip link and landmarks stay. React hoists its stylesheet into the head.
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  let message = "Oops!";
-  let details = "An unexpected error occurred.";
-  let stack: string | undefined;
-
-  if (isRouteErrorResponse(error)) {
-    message = error.status === 404 ? "404" : "Error";
-    details =
-      error.status === 404
-        ? "The requested page could not be found."
-        : error.statusText || details;
-  } else if (import.meta.env.DEV && error && error instanceof Error) {
-    details = error.message;
-    stack = error.stack;
-  }
-
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      {/* React hoists this into <head>: error pages are never indexed. */}
-      <meta name="robots" content="noindex" />
-      <h1>{message}</h1>
-      <p>{details}</p>
-      {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
-          <code>{stack}</code>
-        </pre>
-      )}
-    </main>
+    <div className="flex min-h-screen flex-col bg-white">
+      <link rel="stylesheet" href={errorPageCss} precedence="default" />
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:font-semibold focus:text-ink focus:shadow-lg"
+      >
+        Skip to content
+      </a>
+      <ErrorPage error={error} home="/" className="flex-1" dev={import.meta.env.DEV} siteHeader={<Header />} siteFooter={<Footer />} />
+    </div>
   );
 }

@@ -37,6 +37,11 @@ jobs:
       - name: Typecheck
         run: npm run typecheck
 
+      # Raw console.* calls in server code may not rise above .console.json's baseline (devkit-console; the logger is
+      # site-runtime ./log).
+      - name: Console ratchet
+        run: npm run --silent check:console
+
       - name: Build
         run: npm run build
 
@@ -44,16 +49,20 @@ jobs:
         run: npm audit --omit=dev --audit-level=high
 
   # A merge to main deploys once CI is green. Dormant until the repo variable CF_DEPLOY is 'true' (with the secrets
-  # CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID). devkit's shared deploy (worker-deploy.yml): it builds, deploys with
-  # DEPLOY_SHA set to this commit, waits for /health to report it, checks the home page answers, and rolls the deploy
-  # back if it does not.
+  # CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID). devkit's shared deploy (worker-deploy.yml): it builds, uploads the
+  # new version with DEPLOY_SHA set to this commit, gives it 10% of traffic for 10 minutes (gradual rollout, D4), waits
+  # for /health to report it, checks the home page answers, then gives it all traffic, and rolls it back if it does not.
+  # On a pull request from this repository it only uploads a preview version (pr-<number>, D6) and writes its URL to the
+  # run summary; nothing is deployed.
   deploy:
     needs: ci
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && vars.CF_DEPLOY == 'true'
+    if: >-
+      vars.CF_DEPLOY == 'true' &&
+      ((github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'pull_request')
     concurrency:
-      group: deploy
+      group: ${{ github.event_name == 'pull_request' && format('preview-{0}', github.ref) || 'deploy' }}
       cancel-in-progress: false
-    uses: DrDustinEdwards/devkit/.github/workflows/worker-deploy.yml@db347b70932b52b427b120ee1419d4614d5e4c29 # v0.20.20
+    uses: DrDustinEdwards/devkit/.github/workflows/worker-deploy.yml@017fccd9e3f316a9dfb9b8e1495592dffc677278 # v0.20.21
     with:
       worker-name: bsw
       health-url: https://bsw.dustin-edwards.workers.dev/health
@@ -63,6 +72,10 @@ jobs:
         if [ "$code" = 200 ]; then exit 0; elif [ "$code" = 000 ]; then exit 3; else exit 1; fi
       pre-deploy: npm run build
       sha-var: DEPLOY_SHA
+      gradual-percent: 10
+      gradual-minutes: 10
+      preview: true
+      preview-build: npm run build
     secrets:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -72,6 +85,8 @@ jobs:
   indexnow:
     name: Tell IndexNow
     needs: deploy
+    # Only after a deploy from main; a pull request's run uploads a preview and ships nothing.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 10
 

@@ -1,0 +1,19 @@
+/* Capsomer's error page (components/error-page) for bsw's 404, 410 and 500, loaded only by the root ErrorBoundary
+   (root.tsx), so no other page downloads it. Capsomer's tokens give the page its spacing, type scale and states; the
+   button colors are bsw's own brand blue (app.css), so the page reads as the site's. */
+@import "capsomer/tokens.css";
+@import "capsomer/button.css";
+@import "capsomer/empty.css";
+@import "capsomer/error-page.css";
+
+@layer cap.tokens {
+  .cap-error-page {
+    --primary: var(--color-brand, #0066a1);
+    --primary-hover: var(--color-brand-hover, #004d7a);
+    --primary-line: var(--color-brand, #0066a1);
+    --primary-fg: #ffffff;
+    --text: var(--color-ink, #1a2b3c);
+    --muted: var(--color-muted, #475569);
+    --ring: var(--color-brand, #0066a1);
+  }
+}
