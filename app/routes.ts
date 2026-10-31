@@ -7,13 +7,14 @@ import {
 import { INDEXNOW_KEY } from "./config/site";
 
 export default [
-  // Resource routes: sitemap, robots.txt, ai.txt, llms.txt, security.txt and the IndexNow key (no shared layout).
+  // Resource routes: sitemap, robots.txt, ai.txt, llms.txt, security.txt, the IndexNow key and the web manifest (no shared layout).
   route("sitemap.xml", "routes/sitemap.xml.ts"),
   route("robots.txt", "routes/robots.txt.ts"),
   route("ai.txt", "routes/ai.txt.ts"),
   route("llms.txt", "routes/llms.txt.ts"),
   route(".well-known/security.txt", "routes/security-txt.ts"),
   route(`${INDEXNOW_KEY}.txt`, "routes/indexnow-key.ts"),
+  route("site.webmanifest", "routes/site.webmanifest.ts"),
 
   // All pages share the header/footer shell via the pathless layout.
   layout("routes/layout.tsx", [
