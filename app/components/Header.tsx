@@ -66,7 +66,7 @@ export function Header() {
 
         <div className="flex items-center gap-3">
           <PrimaryButton
-            href="/pricing/"
+            href="/pricing"
             arrow={false}
             className="btn-sm hidden sm:inline-flex"
           >
@@ -111,7 +111,7 @@ export function Header() {
               </div>
             ))}
             <PrimaryButton
-              href="/pricing/"
+              href="/pricing"
               arrow={false}
               className="mt-4 w-full"
             >

@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Knowledge Hub",
     description:
       "A centralized library of articles, video tutorials, FAQs, and tools for scientific writing and grant applications.",
-    path: "/knowledge-hub/",
+    path: "/knowledge-hub",
   });
 }
 
@@ -129,7 +129,7 @@ export default function KnowledgeHub() {
               Ready to elevate your scientific writing?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/" color="green">
+              <PrimaryButton href="/contact-us" color="green">
                 Ask About Our Resources
               </PrimaryButton>
             </div>

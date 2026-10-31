@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Careers",
     description:
       "BioScience Writers is seeking editors and writers with advanced scientific degrees and extensive grant editing experience.",
-    path: "/careers/",
+    path: "/careers",
   });
 }
 

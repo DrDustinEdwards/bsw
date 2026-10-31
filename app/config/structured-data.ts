@@ -39,7 +39,7 @@ export function homeLd() {
       areaServed: "Worldwide",
       description:
         "Strategic grant review, manuscript editing, medical writing, journal formatting, and scientific translation by PhD and MD experts.",
-      offers: { "@type": "Offer", priceCurrency: "USD", url: absUrl("/pricing/") },
+      offers: { "@type": "Offer", priceCurrency: "USD", url: absUrl("/pricing") },
     }),
     faqPage(FAQS.map((f) => ({ question: f.q, answer: f.a }))),
   ];

@@ -8,7 +8,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Language Support",
     description:
       "Scientific translation and ESL language polishing for international researchers.",
-    path: "/language-support/",
+    path: "/language-support",
   });
 }
 
@@ -110,7 +110,7 @@ export default function LanguageSupport() {
               Ready to communicate your research to the world?
             </p>
             <div className="mt-5">
-              <PrimaryButton href="/contact-us/">
+              <PrimaryButton href="/contact-us">
                 Submit Your Project
               </PrimaryButton>
             </div>

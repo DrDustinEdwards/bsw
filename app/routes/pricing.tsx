@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Pricing",
     description:
       "Flat-rate, per-word scientific editing pricing with no hidden fees across Standard, Accelerated, and Critical Rush turnaround tiers.",
-    path: "/pricing/",
+    path: "/pricing",
   });
 }
 

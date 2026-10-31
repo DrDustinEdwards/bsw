@@ -7,7 +7,7 @@ export function meta({}: Route.MetaArgs) {
     title: "Privacy Policy",
     description:
       "How BioScience Writers collects, uses, and safeguards your personal and research data, including GDPR and CCPA compliance.",
-    path: "/privacy-policy/",
+    path: "/privacy-policy",
   });
 }
 
