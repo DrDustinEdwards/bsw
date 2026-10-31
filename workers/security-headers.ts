@@ -1,6 +1,7 @@
 // Every security header bsw sends, in one place; workers/app.ts applies it to every response.
 import { TDM_RESERVATION_HEADERS } from "@drdustinedwards/site-helpers/robots";
 import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
+import { bsw } from "@dustinedwards/site-runtime/sites";
 import { buildContentSecurityPolicy } from "@dustinedwards/site-runtime/csp";
 import { createContext } from "react-router";
 
@@ -9,7 +10,7 @@ export const CSP_REPORT_GROUP = "csp-endpoint";
 
 // The house set (OWASP defaults) plus Prelum's TDMRep header, which reserves training rights as /ai.txt says; the
 // CSP is below.
-export const SECURITY_HEADERS = { ...buildSecurityHeaders({ site: "bsw" }), ...TDM_RESERVATION_HEADERS };
+export const SECURITY_HEADERS = { ...buildSecurityHeaders({ site: bsw }), ...TDM_RESERVATION_HEADERS };
 
 // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
 // The Worker and public/_headers (written by vite.config.ts) both send it; remove it here at launch.
