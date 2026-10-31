@@ -9,8 +9,9 @@ export const CSP_REPORT_PATH = "/csp-report";
 export const CSP_REPORT_GROUP = "csp-endpoint";
 
 // The house set (OWASP defaults) plus Prelum's TDMRep header, which reserves training rights as /ai.txt says; the
-// CSP is below.
-export const SECURITY_HEADERS = { ...buildSecurityHeaders({ site: bsw }), ...TDM_RESERVATION_HEADERS };
+// CSP is below. COEP credentialless: the pages embed no frame and load nothing from another origin but the beacon,
+// which needs no cookie.
+export const SECURITY_HEADERS = { ...buildSecurityHeaders({ site: bsw, coep: { value: "credentialless" } }), ...TDM_RESERVATION_HEADERS };
 
 // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
 // The Worker and public/_headers (written by vite.config.ts) both send it; remove it here at launch.
@@ -38,6 +39,8 @@ export function contentSecurityPolicy(nonce?: string) {
     },
     styleAttributesInline: true,
     cloudflareWebAnalytics: true,
+    // Nothing unlisted: a kind not named here (media, frames, workers) is refused, not allowed from this origin.
+    denyUnlisted: true,
     extraDirectives: ["manifest-src 'self'", "upgrade-insecure-requests"],
     reportUri: CSP_REPORT_PATH,
     reportTo: CSP_REPORT_GROUP,
