@@ -36,7 +36,10 @@ export class Renderer extends WorkerEntrypoint<Env> {
     headers.set("Reporting-Endpoints", reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)));
     // HTML pages: hover prefetch, and the preloads root.tsx links as the `Link` header Cloudflare Early Hints
     // reads (appended, so a route's own Link stays).
-    if ((headers.get("content-type") ?? "").startsWith("text/html")) {
+    const type = headers.get("content-type") ?? "";
+    // React Router names no charset; a browser must not have to guess one.
+    if (type === "text/html") headers.set("content-type", "text/html; charset=utf-8");
+    if (type.startsWith("text/html")) {
       headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
       headers.append("Link", PRELOADS.header);
     }
