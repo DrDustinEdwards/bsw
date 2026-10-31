@@ -1,6 +1,5 @@
 {
   "waive": {
-    "health": "No D1, KV, R2 or backups, so nothing for site-runtime's healthResponse to probe: /health (workers/app.ts) reports only the deployed commit, for the shared deploy.",
     "capsomer": "BioScience Writers is a client's site with its own brand, kept on its own look (Dustin, 2026-10-25)."
   },
   "tokens": {
