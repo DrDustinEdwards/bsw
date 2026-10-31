@@ -12,8 +12,6 @@ import { PRE_LAUNCH_HEADERS, SECURITY_HEADERS } from "./workers/security-headers
  * hash, such as bsw-logo-web.2a9980c8.webp) never change; /site.js is not hashed.
  */
 const IMMUTABLE = { "Cache-Control": "public, max-age=31536000, immutable" };
-/** Stylesheets, scripts and fonts may be loaded by another origin (site-runtime corpFor). */
-const SUBRESOURCES = Object.fromEntries(["css", "js", "mjs", "woff2"].map((ext) => [`/*.${ext}`, { "Cross-Origin-Resource-Policy": "cross-origin" }]));
 
 /**
  * Static files are served without the Worker, so every build rewrites public/_headers (committed, so the family check
@@ -27,7 +25,7 @@ function staticHeaders(): Plugin {
       if (this.environment.name !== "client") return;
       const file = headersFile(
         { ...SECURITY_HEADERS, ...PRE_LAUNCH_HEADERS },
-        { comment: "Written by vite.config.ts on every build from workers/security-headers.ts; do not edit.", charset: true, paths: { ...SUBRESOURCES, "/assets/*": IMMUTABLE, "/islands/*": IMMUTABLE, "/brand/*": IMMUTABLE } },
+        { comment: "Written by vite.config.ts on every build from workers/security-headers.ts; do not edit.", charset: true, paths: { "/assets/*": IMMUTABLE, "/islands/*": IMMUTABLE, "/brand/*": IMMUTABLE } },
       );
       writeFileSync("public/_headers", file);
     },
