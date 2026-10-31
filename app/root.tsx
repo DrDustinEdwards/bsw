@@ -5,6 +5,8 @@ import {
   Outlet,
 } from "react-router";
 
+import { iconLinks } from "@drdustinedwards/site-helpers/icons";
+
 import type { Route } from "./+types/root";
 // Open Sans from the site's own origin (Fontsource, the files Google Fonts serves, bundled under /assets/): no
 // stylesheet from fonts.googleapis.com blocking the first paint, and no second origin to connect to.
@@ -16,8 +18,7 @@ import { PRELOADS } from "./preloads";
 export const links: Route.LinksFunction = () => [
   // The wordmark preload, also sent as the Early Hints `Link` header (preloads.ts).
   ...PRELOADS.links,
-  { rel: "icon", href: "/favicon.ico", sizes: "any" },
-  { rel: "apple-touch-icon", href: "/brand/bsw-cube-mark.png" },
+  ...iconLinks(),
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
