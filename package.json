@@ -14,7 +14,8 @@
     "cf-typegen": "devkit-bootstrap --types-only",
     "db:migrate": "wrangler d1 migrations apply bsw --local",
     "db:migrate:prod": "wrangler d1 migrations apply bsw --remote",
-    "postinstall": "devkit-bootstrap"
+    "postinstall": "devkit-bootstrap",
+    "bloat": "devkit-no-bloat"
   },
   "dependencies": {
     "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.31.3",
