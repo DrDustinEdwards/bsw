@@ -119,6 +119,12 @@ export const PAGES = [
     description:
       "How BioScience Writers uses cookies and similar tracking technologies, and how you can manage your preferences.",
   },
+  {
+    path: "/accessibility",
+    title: "Accessibility Statement",
+    description:
+      "How BioScience Writers works to meet WCAG 2.2 level AA, what is still open, and how to report an accessibility problem.",
+  },
 ] as const satisfies readonly Page[];
 
 export type PagePath = (typeof PAGES)[number]["path"];
