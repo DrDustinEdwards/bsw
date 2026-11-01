@@ -5,5 +5,9 @@
   "tokens": {
     "--dur-fast": "BioScience Writers is not on Capsomer (waived above); its motion scale is its own",
     "--ease-out": "same: bsw's own motion scale"
+  },
+  "copies": {
+    "app/config/site.ts": "twitter:site (the account the X card is credited to, @biosciencewrite) is the one tag written here: Prelum's headTags writes every other head tag through defineHead but has no twitter:site",
+    "public/_headers": "not by hand: site-runtime-headers writes it on every build from the registry entry the Worker's set comes from (npm run headers, bsw); committed so the /assets/* cache rule can be read"
   }
 }
