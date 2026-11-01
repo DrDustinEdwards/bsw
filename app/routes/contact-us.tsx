@@ -7,10 +7,11 @@ export function meta({}: Route.MetaArgs) {
   return pageMeta(page("/contact-us"));
 }
 
-// A US phone or fax number as a tel: link.
+// A US phone or fax number as a tel: link, semibold in the brand color like every link in running text (the
+// accessibility statement says so).
 function Tel({ number }: { number: string }) {
   return (
-    <a className="underline" href={`tel:+1-${number}`}>
+    <a className="font-semibold text-brand hover:underline" href={`tel:+1-${number}`}>
       {number}
     </a>
   );
@@ -39,7 +40,7 @@ export default function ContactUs() {
                 <p className="mt-3 text-muted">
                   Editing and writing operations, online courses and writing
                   workshops:{" "}
-                  <a className="underline" href={`mailto:${SITE.email}`}>
+                  <a className="font-semibold text-brand hover:underline" href={`mailto:${SITE.email}`}>
                     {SITE.email}
                   </a>
                 </p>
