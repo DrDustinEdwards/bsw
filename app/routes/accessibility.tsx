@@ -14,6 +14,10 @@ export function loader() {
     siteName: SITE.name,
     contact: { href: "/contact-us", label: "the contact page" },
     date: "2026-11-01",
+    // Its pages are not built from Capsomer, and links in running text are the brand color at weight 600 (app.css
+    // .page-prose a), a non-color cue under WCAG 2.2 SC 1.4.1.
+    capsomer: false,
+    links: "bold",
   });
   return { html };
 }
