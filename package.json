@@ -17,7 +17,7 @@
     "postinstall": "devkit-bootstrap"
   },
   "dependencies": {
-    "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.31.2",
+    "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.31.3",
     "@dustinedwards/d1-dump": "github:DrDustinEdwards/d1-dump#v0.9.0",
     "@dustinedwards/site-api": "github:DrDustinEdwards/site-api#v0.18.0",
     "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.69.0",
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.65.0",
-    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.20.22",
+    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.20.23",
     "@fontsource/open-sans": "5.3.0",
     "@react-router/dev": "8.5.1",
     "@resvg/resvg-wasm": "2.6.2",

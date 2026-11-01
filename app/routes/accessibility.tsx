@@ -8,14 +8,13 @@ export function meta({}: Route.MetaArgs) {
   return pageMeta(page("/accessibility"));
 }
 
-// The statement is the network's shared text (Prelum); only the name, the contact and the date are this site's.
+// The statement is the network's shared text (Prelum); the name, the contact, the date and the two facts about the build
+// are this site's: bsw is built with Tailwind, not Capsomer, and its links in running text are semibold in the link color.
 export function loader() {
   const { html } = accessibilityStatement({
     siteName: SITE.name,
     contact: { href: "/contact-us", label: "the contact page" },
     date: "2026-11-01",
-    // Its pages are not built from Capsomer, and links in running text are the brand color at weight 600 (app.css
-    // .page-prose a), a non-color cue under WCAG 2.2 SC 1.4.1.
     capsomer: false,
     links: "bold",
   });
