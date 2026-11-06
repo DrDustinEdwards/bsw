@@ -1,5 +1,5 @@
 // /media through the site's real route (app/lib/media/serve.server.ts): what it serves and what it never does. A library
-// upload comes from MEDIA and a site photograph from ASSETS; the earlier bytes under history/ and every other public/
+// upload comes from MEDIA and a brand file from ASSETS; the earlier bytes under history/ and every other public/
 // file are 404, and a size outside the closed set is 400, never a billed transform.
 import { test } from "node:test";
 import assert from "node:assert/strict";
@@ -19,7 +19,7 @@ registerHooks({
 });
 const { serveMedia } = await import(new URL("lib/media/serve.server.ts", app).href);
 
-const PHOTO = "team/Lisa-Giles.630f0b9c.webp";
+const PHOTO = "brand/bsw-logo-web.2a9980c8.webp";
 const UPLOAD = "uploads/2026/10/portrait-0a1b2c3d.jpg";
 
 const object = (contentType: string) => ({
@@ -36,7 +36,7 @@ const env = {
 
 const get = (path: string) => serveMedia(new Request(`https://bsw.example.com/media/${path}`), env);
 
-test("/media serves a library upload and a site photograph, and nothing else", async () => {
+test("/media serves a library upload and a brand file, and nothing else", async () => {
   const upload = await get(UPLOAD);
   assert.equal(upload.status, 200);
   assert.equal(upload.headers.get("cache-control"), "public, max-age=86400");
@@ -45,7 +45,7 @@ test("/media serves a library upload and a site photograph, and nothing else", a
   assert.equal(photo.status, 200);
   assert.equal(photo.headers.get("cache-control"), "public, max-age=31536000, immutable");
 
-  for (const path of [`history/${UPLOAD}/0a1b2c3d`, "logos/institutions/logo-mayo-clinic.svg", "team/Lisa-Giles.webp", "uploads/../history/x.jpg"]) {
+  for (const path of [`history/${UPLOAD}/0a1b2c3d`, "logos/institutions/logo-mayo-clinic.svg", "team/Lisa-Giles.630f0b9c.webp", "uploads/../history/x.jpg"]) {
     assert.equal((await get(path)).status, 404, path);
   }
   // A size URL as the page writes it names its format after the stored key: found (then refused for its width), not 404.
