@@ -121,9 +121,9 @@ export default function initEditingDemo(root: HTMLElement): void {
   let startIdx = 0;
   let pillBaseX = 0;
   let pillBaseW = 0;
-  const getX = (e: any) => (e.touches ? e.touches[0].clientX : e.clientX);
+  const getX = (e: MouseEvent | TouchEvent) => ("touches" in e ? e.touches[0].clientX : e.clientX);
 
-  function onMove(e: any) {
+  function onMove(e: MouseEvent | TouchEvent) {
     if (e.cancelable) e.preventDefault();
     dragCurX = getX(e);
     const delta = dragCurX - dragStartX;
@@ -169,7 +169,7 @@ export default function initEditingDemo(root: HTMLElement): void {
     goTo(nearestIdx(rawX), true);
   }
 
-  function onStart(e: any) {
+  function onStart(e: MouseEvent | TouchEvent) {
     dragStartX = dragCurX = getX(e);
     dragging = false;
     startIdx = current;

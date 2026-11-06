@@ -1,9 +1,8 @@
-import type { Route } from "./+types/about-us";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return pageMeta(page("/about-us"));
 }
 

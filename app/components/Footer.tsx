@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SITE } from "../config/site";
 import { footerGroups } from "../data/nav";
 import { sitePicture } from "../lib/media/images";
@@ -27,6 +28,8 @@ const social = [
 ];
 
 export function Footer() {
+  // Read once, in a lazy initializer, so the render itself stays pure (react/purity).
+  const [year] = useState(() => new Date().getFullYear());
   return (
     <footer className="bg-[color:var(--color-footer)] text-slate-300">
       <div className="mx-auto max-w-6xl px-5 py-16">
@@ -84,7 +87,7 @@ export function Footer() {
         </div>
 
         <p className="mt-14 text-center text-sm text-slate-400">
-          &copy; {new Date().getFullYear()} {SITE.legalName}. All rights reserved.
+          &copy; {year} {SITE.legalName}. All rights reserved.
         </p>
       </div>
     </footer>

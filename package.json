@@ -15,7 +15,10 @@
     "db:migrate": "wrangler d1 migrations apply bsw --local",
     "db:migrate:prod": "wrangler d1 migrations apply bsw --remote",
     "postinstall": "devkit-bootstrap",
-    "bloat": "devkit-no-bloat"
+    "bloat": "devkit-no-bloat",
+    "lint": "oxlint --type-aware --deny-warnings --report-unused-disable-directives-severity=error",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.33.0",
@@ -35,7 +38,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.66.0",
-    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.23.0",
+    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.26.1",
     "@fontsource/open-sans": "5.3.0",
     "@react-router/dev": "8.5.1",
     "@resvg/resvg-wasm": "2.6.2",
@@ -43,6 +46,9 @@
     "@types/node": "22.20.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
+    "oxfmt": "0.77.0",
+    "oxlint": "1.92.0",
+    "oxlint-tsgolint": "7.0.2006",
     "satori": "0.33.5",
     "tailwindcss": "4.3.2",
     "typescript": "5.9.3",

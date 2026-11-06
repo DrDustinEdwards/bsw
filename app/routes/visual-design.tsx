@@ -1,10 +1,9 @@
-import type { Route } from "./+types/visual-design";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 import { PrimaryButton } from "../components/ui";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return pageMeta(page("/visual-design"));
 }
 

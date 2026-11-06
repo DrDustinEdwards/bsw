@@ -1,4 +1,3 @@
-import type { Route } from "./+types/home";
 import { HexField } from "../components/HexField";
 import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
@@ -17,7 +16,7 @@ import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ArrowRight } from "lucide-react";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     ...pageMeta(page("/")),
     ...homeLd().map(jsonLd),

@@ -8,6 +8,7 @@ export function Picture({ sources, img }: PictureProps) {
       {sources.map((source) => (
         <source key={`${source.type} ${source.media ?? ""}`} {...source} />
       ))}
+      {/* oxlint-disable-next-line jsx-a11y/alt-text -- pictureProps always sets img.alt (empty for a decorative picture). */}
       <img {...img} />
     </picture>
   );
