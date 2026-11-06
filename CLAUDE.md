@@ -16,7 +16,7 @@ Stack and layout are in README.md. Single production Worker, no staging. The pag
 
 - `npm run dev` local dev
 - `npm run typecheck` before any commit (the Stop hook runs it too), and `npm test`
-- `npm run db:migrate` (local) and `db:migrate:prod` (remote): hand-written SQL in `drizzle/`, kept in step with `app/db/schema.ts`; CI's deploy applies them.
+- `npm run db:migrate` (local) and `db:migrate:prod` (remote): hand-written SQL in `drizzle/` (the media tables are site-api's standard ones, read and written only through its `d1MediaStore`); CI's deploy applies them.
 - A merge to main deploys (CI's `deploy` job, while the repo variable `CF_DEPLOY` is `true`). `npm run deploy` deploys by hand. Confirm the new Version ID and that the site responds before reporting done.
 
 ## Hard rules
