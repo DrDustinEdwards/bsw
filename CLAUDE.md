@@ -10,12 +10,12 @@ Standalone marketing site for BioScience Writers, rebuilt from the old WordPress
 
 Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
-Stack and layout are in README.md. Single production Worker, no staging. The page's copy is code; D1 (`DB`) and R2 (`MEDIA`, `BACKUPS`) hold only the media library Carrel uploads to and its nightly backup, and the Images binding serves every photograph at /media; no KV or DO. `wrangler.jsonc` is gitignored (it holds the D1 id): `npm install` copies `wrangler.jsonc.example`. CI (`.github/workflows/ci.yml`) typechecks, tests, builds and audits every PR and push to main.
+Stack and layout are in README.md. Single production Worker, no staging. The page's copy is code; D1 (`DB`) and R2 (`MEDIA`, `BACKUPS`) hold only the media library Carrel uploads to and its nightly backup, and the Images binding serves every photograph at /media; no KV or DO. `wrangler.jsonc` is gitignored (it holds the D1 id): `npm install` copies `wrangler.jsonc.example`. CI (`.github/workflows/ci.yml`) typechecks, lints, checks the format, tests, builds and audits every PR and push to main; `checks / Repo checks` (devkit's pr.yml) runs the shared checks, no-bloat and the Worker size on every PR.
 
 ## Commands
 
 - `npm run dev` local dev
-- `npm run typecheck` before any commit (the Stop hook runs it too), and `npm test`
+- `npm run typecheck` before any commit (the Stop hook runs it too), `npm run lint` (devkit's shared Oxlint config, `oxlint.config.ts`), `npm run format:check` (Oxfmt, `oxfmt.config.ts`; `npm run format` writes) and `npm test`
 - `npm run db:migrate` (local) and `db:migrate:prod` (remote): hand-written SQL in `drizzle/` (the media tables are site-api's standard ones, read and written only through its `d1MediaStore`); CI's deploy applies them.
 - A merge to main deploys (CI's `deploy` job, while the repo variable `CF_DEPLOY` is `true`). `npm run deploy` deploys by hand. Confirm the new Version ID and that the site responds before reporting done.
 
