@@ -6,6 +6,4 @@ import openSans from "@fontsource-variable/open-sans/files/open-sans-latin-wght-
 // page's text is set in (the file root.tsx's Fontsource CSS loads). It comes from this origin, so there is no font origin
 // to preconnect to. Not the header wordmark: it is a <picture> whose browser picks AVIF or WebP at 1x or 2x, which one
 // preload URL cannot name, so it loads first by its own fetchpriority=high instead (components/Logo.tsx).
-export const PRELOADS = preloads([
-  { href: openSans, as: "font", type: "font/woff2" },
-]);
+export const PRELOADS = preloads([{ href: openSans, as: "font", type: "font/woff2" }]);

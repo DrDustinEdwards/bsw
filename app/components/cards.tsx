@@ -1,5 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import type { Stat, ServiceCard as ServiceCardData, TeamMember as TeamMemberData } from "../data/content";
+import type {
+  Stat,
+  ServiceCard as ServiceCardData,
+  TeamMember as TeamMemberData,
+} from "../data/content";
 import { sitePicture } from "../lib/media/images";
 import { Picture } from "./Picture";
 
@@ -12,12 +16,7 @@ import { Picture } from "./Picture";
 export function StatItem({ stat }: { stat: Stat }) {
   return (
     <div className="text-center">
-      <stat.Icon
-        className="mx-auto text-white/80"
-        size={30}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
+      <stat.Icon className="mx-auto text-white/80" size={30} strokeWidth={2} aria-hidden="true" />
       <div className="mt-3 font-display text-4xl font-bold text-white sm:text-5xl">
         {stat.value}
       </div>
@@ -45,9 +44,7 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
       <div className="relative flex flex-1 flex-col p-7">
         <h3 className="font-display text-xl font-bold text-ink">{card.title}</h3>
         <p className="mt-1 text-sm font-bold text-ink/80">{card.subhead}</p>
-        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
-          {card.desc}
-        </p>
+        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{card.desc}</p>
         <div className="mt-6 flex flex-1 items-end justify-end">
           <span
             className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-icon-muted transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
@@ -65,16 +62,19 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
 export function TeamMember({ member }: { member: TeamMemberData }) {
   return (
     <div className="mx-auto flex h-full max-w-[220px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm shadow-slate-900/5 sm:max-w-none">
-      <Picture {...sitePicture(member.photo, "team", { alt: member.name, className: "aspect-[4/5] w-full object-cover object-top" })} />
+      <Picture
+        {...sitePicture(member.photo, "team", {
+          alt: member.name,
+          className: "aspect-[4/5] w-full object-cover object-top",
+        })}
+      />
       <div
         className="flex flex-1 flex-col px-4 py-5 text-center"
         style={{
           background: `linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, ${member.accent} 15%, transparent) 100%)`,
         }}
       >
-        <h3 className="font-display text-lg font-bold text-ink">
-          {member.name}
-        </h3>
+        <h3 className="font-display text-lg font-bold text-ink">{member.name}</h3>
         <p className="mt-1 text-sm leading-snug text-muted">{member.role}</p>
       </div>
     </div>

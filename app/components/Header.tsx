@@ -24,11 +24,7 @@ export function Header() {
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
           {primaryNav.map((group) => (
-            <div
-              key={group.label}
-              className="relative"
-              data-nav-group
-            >
+            <div key={group.label} className="relative" data-nav-group>
               <button
                 type="button"
                 aria-expanded="false"
@@ -65,11 +61,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <PrimaryButton
-            href="/pricing"
-            arrow={false}
-            className="btn-sm hidden sm:inline-flex"
-          >
+          <PrimaryButton href="/pricing" arrow={false} className="btn-sm hidden sm:inline-flex">
             Get a Quote
           </PrimaryButton>
 
@@ -90,34 +82,27 @@ export function Header() {
 
       {/* Mobile drawer */}
       <div id="mobile-nav" hidden className="border-t border-slate-200 bg-white lg:hidden">
-          <nav className="mx-auto max-w-6xl px-5 py-4">
-            {primaryNav.map((group) => (
-              <div key={group.label} className="border-b border-slate-100 py-3 last:border-0">
-                <p className="mb-1 text-xs font-bold uppercase tracking-wider text-brand">
-                  {group.label}
-                </p>
-                <ul>
-                  {group.links.map((link) => (
-                    <li key={link.href}>
-                      <a
-                        href={link.href}
-                        className="block py-2 text-[0.95rem] text-ink"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <PrimaryButton
-              href="/pricing"
-              arrow={false}
-              className="mt-4 w-full"
-            >
-              Get a Quote
-            </PrimaryButton>
-          </nav>
+        <nav className="mx-auto max-w-6xl px-5 py-4">
+          {primaryNav.map((group) => (
+            <div key={group.label} className="border-b border-slate-100 py-3 last:border-0">
+              <p className="mb-1 text-xs font-bold uppercase tracking-wider text-brand">
+                {group.label}
+              </p>
+              <ul>
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="block py-2 text-[0.95rem] text-ink">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <PrimaryButton href="/pricing" arrow={false} className="mt-4 w-full">
+            Get a Quote
+          </PrimaryButton>
+        </nav>
       </div>
     </header>
   );

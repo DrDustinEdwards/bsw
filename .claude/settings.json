@@ -48,10 +48,6 @@
       "Bash(npx wrangler deploy*)",
       "Bash(npx wrangler secret*)"
     ],
-    "deny": [
-      "Bash(rm -rf *)",
-      "Read(./.env*)",
-      "Read(./.dev.vars)"
-    ]
+    "deny": ["Bash(rm -rf *)", "Read(./.env*)", "Read(./.dev.vars)"]
   }
 }

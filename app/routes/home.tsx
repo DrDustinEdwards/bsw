@@ -17,10 +17,7 @@ import { page } from "../config/pages";
 import { ArrowRight } from "lucide-react";
 
 export function meta() {
-  return [
-    ...pageMeta(page("/")),
-    ...homeLd().map(jsonLd),
-  ];
+  return [...pageMeta(page("/")), ...homeLd().map(jsonLd)];
 }
 
 export default function Home() {
@@ -36,12 +33,11 @@ export default function Home() {
               Strategic Grant Review &amp; Manuscript Editing by PhD/MD Experts.
             </p>
             <p className="hero-body mt-4 max-w-xl">
-              Fast turnaround, 100% confidentiality, and an uncompromising
-              quality guarantee.
+              Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
             </p>
             <p className="hero-body mt-3 max-w-xl">
-              Trusted by PIs at top-tier universities and global research
-              institutions for NIH, NSF, and high-impact journal submissions.
+              Trusted by PIs at top-tier universities and global research institutions for NIH, NSF,
+              and high-impact journal submissions.
             </p>
             <div className="mt-8">
               <PrimaryButton href="/pricing">View Pricing</PrimaryButton>
@@ -114,19 +110,13 @@ export default function Home() {
                   <h3 className="mt-2 font-display text-2xl font-bold text-white">
                     {FLAGSHIP.title}
                   </h3>
-                  <p className="mt-1 text-sm font-bold text-white/90">
-                    {FLAGSHIP.subhead}
-                  </p>
+                  <p className="mt-1 text-sm font-bold text-white/90">{FLAGSHIP.subhead}</p>
                   <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-200">
                     {FLAGSHIP.desc}
                   </p>
-                  <p className="mt-4 text-[0.95rem] text-slate-200">
-                    {FLAGSHIP.note}
-                  </p>
+                  <p className="mt-4 text-[0.95rem] text-slate-200">{FLAGSHIP.note}</p>
                   <div className="mt-6">
-                    <PrimaryButton href={FLAGSHIP.href}>
-                      {FLAGSHIP.cta}
-                    </PrimaryButton>
+                    <PrimaryButton href={FLAGSHIP.href}>{FLAGSHIP.cta}</PrimaryButton>
                   </div>
                 </div>
               </div>
@@ -148,15 +138,13 @@ export default function Home() {
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-green-soft">
                     eCourse &middot; Self-Paced Learning
                   </p>
-                  <h3 className="mt-2 font-display text-2xl font-bold text-white">
-                    BSW Academy
-                  </h3>
+                  <h3 className="mt-2 font-display text-2xl font-bold text-white">BSW Academy</h3>
                   <p className="mt-1 text-sm font-bold text-white/90">
                     Elite Scientific Writing Curriculum
                   </p>
                   <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-200">
-                    Master the mechanics of high-impact publishing and
-                    grant-winning through our expert-led eCourses.{" "}
+                    Master the mechanics of high-impact publishing and grant-winning through our
+                    expert-led eCourses.{" "}
                     <a
                       href="/knowledge-hub"
                       className="inline-flex items-center gap-1 font-semibold text-accent-green-soft hover:underline"
@@ -213,14 +201,10 @@ export default function Home() {
               subtitle="Your Path from Submission to Success"
               intro={
                 <>
-                  Every order follows our proven four-step workflow: expert
-                  matching, comprehensive editing, track changes delivery, and
-                  our satisfaction guarantee. See exactly what happens from the
-                  moment you submit your document.{" "}
-                  <a
-                    href="/editing-process"
-                    className="font-semibold text-brand hover:underline"
-                  >
+                  Every order follows our proven four-step workflow: expert matching, comprehensive
+                  editing, track changes delivery, and our satisfaction guarantee. See exactly what
+                  happens from the moment you submit your document.{" "}
+                  <a href="/editing-process" className="font-semibold text-brand hover:underline">
                     See our full process &rarr;
                   </a>
                 </>
@@ -267,12 +251,8 @@ export default function Home() {
             <Faq />
           </Reveal>
           <Reveal className="mt-8 text-center">
-            <p className="font-display text-lg font-semibold text-ink">
-              Still have questions?
-            </p>
-            <p className="mt-1 text-sm text-muted">
-              Our team responds within one business day.
-            </p>
+            <p className="font-display text-lg font-semibold text-ink">Still have questions?</p>
+            <p className="mt-1 text-sm text-muted">Our team responds within one business day.</p>
             <PrimaryButton href="/contact-us" className="mt-4">
               Ask Us a Question
             </PrimaryButton>
@@ -288,16 +268,14 @@ export default function Home() {
               The BSW Commitment
             </h2>
             <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-white/85">
-              Since 2001, we have helped the international research community
-              maximize the accuracy and impact of their documents. Every editor
-              on our team is a native English speaker with a terminal degree
-              (PhD, MD, or DVM) and active expertise in your specific field of
-              research. We combine elite scientific precision with personal
-              attention and rapid turnaround to ensure your work stands out.
+              Since 2001, we have helped the international research community maximize the accuracy
+              and impact of their documents. Every editor on our team is a native English speaker
+              with a terminal degree (PhD, MD, or DVM) and active expertise in your specific field
+              of research. We combine elite scientific precision with personal attention and rapid
+              turnaround to ensure your work stands out.
             </p>
             <p className="mx-auto mt-6 inline-block rounded-[var(--radius-btn)] bg-white/10 px-5 py-3 text-sm font-semibold text-white">
-              100% Satisfaction Guarantee, free re-edits for language issues
-              raised by reviewers.
+              100% Satisfaction Guarantee, free re-edits for language issues raised by reviewers.
             </p>
           </Reveal>
         </div>

@@ -28,11 +28,19 @@ async function assetObject(env: Env, key: string) {
 }
 
 export async function serveMedia(request: Request, env: Env, cache?: Cache): Promise<Response> {
-  if (request.method !== "GET" && request.method !== "HEAD") return new Response("Method not allowed", { status: 405, headers: { allow: "GET, HEAD" } });
+  if (request.method !== "GET" && request.method !== "HEAD")
+    return new Response("Method not allowed", { status: 405, headers: { allow: "GET, HEAD" } });
   // A size URL names its format after the stored key (site-runtime 0.63: photo.webp.avif?w=112 is photo.webp).
   const key = originalKey(new URL(request.url).pathname.slice("/media/".length), request);
   const sitePhoto = isSitePhotoKey(key);
-  if (!sitePhoto && !(key.startsWith(UPLOAD_PREFIX) && UPLOAD_KEY.test(key))) return new Response("Not found", { status: 404 });
+  if (!sitePhoto && !(key.startsWith(UPLOAD_PREFIX) && UPLOAD_KEY.test(key)))
+    return new Response("Not found", { status: 404 });
   const read = () => (sitePhoto ? assetObject(env, key) : env.MEDIA.get(key));
-  return images.respond(request, { object: await read(), images: env.IMAGES, cache, cacheControl: sitePhoto ? IMMUTABLE : LIBRARY, reread: read });
+  return images.respond(request, {
+    object: await read(),
+    images: env.IMAGES,
+    cache,
+    cacheControl: sitePhoto ? IMMUTABLE : LIBRARY,
+    reread: read,
+  });
 }

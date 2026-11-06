@@ -1,4 +1,3 @@
-
 /*
   Precision Editing Demonstrated: a faithful port of the real interactive
   editor. The document versions and comment cards are the verbatim source

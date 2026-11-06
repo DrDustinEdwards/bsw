@@ -12,9 +12,7 @@ export function Faq() {
       {FAQS.map((item, i) => (
         <details key={i} name="faq" open={i === 0} className="faq-item group">
           <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 px-5 py-5 text-left">
-            <span className="font-display text-lg font-semibold text-ink">
-              {item.q}
-            </span>
+            <span className="font-display text-lg font-semibold text-ink">{item.q}</span>
             <span
               className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-300 text-brand transition-transform duration-300 ease-out group-open:rotate-180"
               aria-hidden="true"
@@ -22,9 +20,7 @@ export function Faq() {
               <ChevronDown size={16} strokeWidth={2} />
             </span>
           </summary>
-          <p className="px-5 pb-5 text-[0.95rem] leading-relaxed text-muted">
-            {item.a}
-          </p>
+          <p className="px-5 pb-5 text-[0.95rem] leading-relaxed text-muted">{item.a}</p>
         </details>
       ))}
     </div>

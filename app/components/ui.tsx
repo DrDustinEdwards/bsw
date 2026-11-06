@@ -29,14 +29,7 @@ export function PrimaryButton({
   return (
     <a href={href} className={`btn btn-${color} ${className}`}>
       {children}
-      {arrow && (
-        <ArrowRight
-          size={16}
-          strokeWidth={2.5}
-          className="btn-arrow"
-          aria-hidden="true"
-        />
-      )}
+      {arrow && <ArrowRight size={16} strokeWidth={2.5} className="btn-arrow" aria-hidden="true" />}
     </a>
   );
 }

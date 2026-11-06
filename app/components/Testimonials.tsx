@@ -21,12 +21,7 @@ function Card({ t }: { t: Testimonial }) {
       }}
     >
       <span className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-white shadow-md shadow-slate-900/10">
-        <Quote
-          size={20}
-          strokeWidth={2}
-          style={{ color: t.accent }}
-          aria-hidden="true"
-        />
+        <Quote size={20} strokeWidth={2} style={{ color: t.accent }} aria-hidden="true" />
       </span>
       <blockquote className="text-[1.05rem] italic leading-relaxed text-ink/90">
         {t.quote}
@@ -70,15 +65,9 @@ export function Testimonials() {
 
         {/* Slide track */}
         <div className="overflow-hidden px-2">
-          <div
-            className="flex transition-transform duration-300 ease-out"
-            data-track
-          >
+          <div className="flex transition-transform duration-300 ease-out" data-track>
             {slides.map((group, gi) => (
-              <div
-                key={gi}
-                className="grid w-full shrink-0 gap-6 px-1 md:grid-cols-2"
-              >
+              <div key={gi} className="grid w-full shrink-0 gap-6 px-1 md:grid-cols-2">
                 {group.map((t, i) => (
                   <Card key={i} t={t} />
                 ))}
@@ -101,9 +90,7 @@ export function Testimonials() {
             className="group flex h-6 w-6 items-center justify-center"
           >
             <span
-              className={`block h-2.5 rounded-full transition-all ${
-                i === 0 ? DOT_ON : DOT_OFF
-              }`}
+              className={`block h-2.5 rounded-full transition-all ${i === 0 ? DOT_ON : DOT_OFF}`}
             />
           </button>
         ))}

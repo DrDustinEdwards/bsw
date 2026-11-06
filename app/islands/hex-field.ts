@@ -34,6 +34,7 @@ export default function hexField(field: HTMLElement) {
   }
   for (const hex of hexes) field.appendChild(hex);
   new IntersectionObserver(([entry]) => {
-    for (const hex of hexes) hex.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
+    for (const hex of hexes)
+      hex.style.animationPlayState = entry.isIntersecting ? "running" : "paused";
   }).observe(field);
 }

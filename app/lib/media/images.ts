@@ -5,7 +5,11 @@
 // every photograph (the team portraits and the grant review picture), and the brand files, which stay in public/brand
 // and are read through the ASSETS binding (isSitePhotoKey): each name carries a hash of its bytes
 // (bsw-logo-web.2a9980c8.webp), so a changed logo is a new address and every size is cached for good.
-import { defineImages, pictureProps, type ImageAttributes } from "@dustinedwards/site-runtime/image";
+import {
+  defineImages,
+  pictureProps,
+  type ImageAttributes,
+} from "@dustinedwards/site-runtime/image";
 
 /** Every upload's key starts here; the earlier bytes a file's history keeps are under history/, never served. */
 export const UPLOAD_PREFIX = "uploads/";
@@ -33,7 +37,11 @@ export const images = defineImages({
     wordmark: { layout: "fixed", width: 112 },
     mark: { layout: "fixed", width: 44 },
     team: { layout: "fixed", width: 200 },
-    flagship: { layout: "fixed", width: 512, sizes: "(min-width: 1024px) 449px, calc(100vw - 40px)" },
+    flagship: {
+      layout: "fixed",
+      width: 512,
+      sizes: "(min-width: 1024px) 449px, calc(100vw - 40px)",
+    },
   },
 });
 
@@ -41,10 +49,17 @@ export type ImageUse = "wordmark" | "mark" | "team" | "flagship";
 
 /** A picture's attributes, served through /media at the use's sizes in AVIF and WebP. */
 export function sitePhoto(photo: SitePhoto, use: ImageUse): ImageAttributes {
-  return images.attributes({ src: mediaUrl(photo.src.slice(1)), width: photo.width, height: photo.height }, use);
+  return images.attributes(
+    { src: mediaUrl(photo.src.slice(1)), width: photo.width, height: photo.height },
+    use,
+  );
 }
 
 /** A picture as `<picture>` props (site-runtime pictureProps): lazy and async unless `priority`. */
-export function sitePicture(photo: SitePhoto, use: ImageUse, options: { alt: string; priority?: boolean; className?: string }) {
+export function sitePicture(
+  photo: SitePhoto,
+  use: ImageUse,
+  options: { alt: string; priority?: boolean; className?: string },
+) {
   return pictureProps(sitePhoto(photo, use), options);
 }

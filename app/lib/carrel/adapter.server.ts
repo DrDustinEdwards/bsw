@@ -2,7 +2,13 @@
 // (app/data, app/routes), and its claims are Dustin's to change in the repository (CLAUDE.md, hard rule 1), so Carrel
 // lists no item here and every content write is refused: a write naming a version is a version conflict, as the contract
 // asks for an item the site does not hold, and a new item is refused in words.
-import { previewDocument, RefusedError, VersionConflictError, type ContentAdapter, type SiteAdapter } from "@dustinedwards/site-api";
+import {
+  previewDocument,
+  RefusedError,
+  VersionConflictError,
+  type ContentAdapter,
+  type SiteAdapter,
+} from "@dustinedwards/site-api";
 import { escapeHtml } from "@dustinedwards/site-runtime/html";
 import { SITE } from "~/config/site";
 import { carrelMediaAdapter } from "./media-adapter.server";
@@ -33,7 +39,11 @@ export function createCarrelAdapter(env: Env, origin: string): SiteAdapter {
     // No item has a page to preview, so a source is shown as written, under the contract's noindex page.
     preview: {
       render: async ({ source }) =>
-        previewDocument({ title: "Preview", body: `<main><p>${escapeHtml(NO_CONTENT)}</p><pre>${escapeHtml(source)}</pre></main>`, origin }),
+        previewDocument({
+          title: "Preview",
+          body: `<main><p>${escapeHtml(NO_CONTENT)}</p><pre>${escapeHtml(source)}</pre></main>`,
+          origin,
+        }),
     },
     // The library Carrel uploads to (media-adapter.server.ts), served at /media/<key>.
     media: carrelMediaAdapter(env),

@@ -5,4 +5,7 @@
 import { mediaSuggester } from "@dustinedwards/site-api";
 
 /** What the model suggests for one stored picture. Throws when the site has no AI binding. */
-export const suggestFor = mediaSuggester({ app: "bsw", describe: "on a scientific editing company's website" });
+export const suggestFor = mediaSuggester({
+  app: "bsw",
+  describe: "on a scientific editing company's website",
+});
