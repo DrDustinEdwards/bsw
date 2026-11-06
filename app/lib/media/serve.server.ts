@@ -1,5 +1,5 @@
 // /media/<key>: the original or one size for `?w=` (site-runtime ./image, from the page's one defineImages in images.ts)
-// of a library file (MEDIA, uploads/) or of one of the site's own photographs (public/, through ASSETS). Nothing else is
+// of a library file (MEDIA, uploads/) or of one of the site's brand files (public/brand, through ASSETS). Nothing else is
 // served: not the earlier bytes under history/, not any other public/ file.
 import { originalKey } from "@dustinedwards/site-runtime/image";
 import { images, isSitePhotoKey, UPLOAD_PREFIX } from "./images";
@@ -7,13 +7,13 @@ import { images, isSitePhotoKey, UPLOAD_PREFIX } from "./images";
 const UPLOAD_KEY = /^uploads\/[A-Za-z0-9][A-Za-z0-9._-]*(?:\/[A-Za-z0-9][A-Za-z0-9._-]*)*$/;
 
 /**
- * A site photograph's name carries a hash of its bytes, so its sizes are cached for good. A library file keeps its key
+ * A brand file's name carries a hash of its bytes, so its sizes are cached for good. A library file keeps its key
  * through a replace, a turn or a revert, so a day: the new bytes show through within one.
  */
 const IMMUTABLE = "public, max-age=31536000, immutable";
 const LIBRARY = "public, max-age=86400";
 
-/** A public/ photograph in the shape the image route reads from R2; null when there is none. */
+/** A public/ brand file in the shape the image route reads from R2; null when there is none. */
 async function assetObject(env: Env, key: string) {
   // The ASSETS binding ignores the hostname and matches only the pathname.
   const response = await env.ASSETS.fetch(new Request(`https://assets.local/${key}`));

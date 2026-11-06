@@ -43,7 +43,7 @@ export const FLAGSHIP: Flagship = {
   note: "Rapid Turnaround, most returned in 7-10 days.",
   cta: "Your Quote",
   href: "/pricing",
-  photo: { src: "/services/grant-review.6b238865.webp", width: 512, height: 512 },
+  photo: { src: "/uploads/2026/11/grant-review-6b238865.webp", width: 512, height: 512 },
 };
 
 export type ServiceCard = {
@@ -90,11 +90,11 @@ export type TeamMember = {
 
 // Caption panel accent glow runs orange, blue, blue, green, green.
 export const TEAM: TeamMember[] = [
-  { name: "Susan Marriott", role: "President", photo: { src: "/team/Susan-Marriott.845ab814.webp", width: 200, height: 300 }, accent: "var(--color-accent-orange)" },
-  { name: "Charlene Emerson", role: "Director of Business Development", photo: { src: "/team/Charlene-Emerson.627d30e3.webp", width: 200, height: 300 }, accent: "var(--color-accent-blue)" },
-  { name: "Julie Edwards", role: "Director of Publication Services", photo: { src: "/team/Julie-Edwards.ceed20d5.webp", width: 200, height: 300 }, accent: "var(--color-accent-blue)" },
-  { name: "Lisa Giles", role: "Lead Technical Writer", photo: { src: "/team/Lisa-Giles.630f0b9c.webp", width: 200, height: 300 }, accent: "var(--color-accent-green)" },
-  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: { src: "/team/Laura-Marinelli.f07ccc1d.webp", width: 200, height: 300 }, accent: "var(--color-accent-green)" },
+  { name: "Susan Marriott", role: "President", photo: { src: "/uploads/2026/11/susan-marriott-845ab814.webp", width: 200, height: 300 }, accent: "var(--color-accent-orange)" },
+  { name: "Charlene Emerson", role: "Director of Business Development", photo: { src: "/uploads/2026/11/charlene-emerson-627d30e3.webp", width: 200, height: 300 }, accent: "var(--color-accent-blue)" },
+  { name: "Julie Edwards", role: "Director of Publication Services", photo: { src: "/uploads/2026/11/julie-edwards-ceed20d5.webp", width: 200, height: 300 }, accent: "var(--color-accent-blue)" },
+  { name: "Lisa Giles", role: "Lead Technical Writer", photo: { src: "/uploads/2026/11/lisa-giles-630f0b9c.webp", width: 200, height: 300 }, accent: "var(--color-accent-green)" },
+  { name: "Laura Marinelli", role: "Senior Technical Writer", photo: { src: "/uploads/2026/11/laura-marinelli-f07ccc1d.webp", width: 200, height: 300 }, accent: "var(--color-accent-green)" },
 ];
 
 type Faq = { q: string; a: string };
