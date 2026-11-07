@@ -1,6 +1,7 @@
 import { Links, Meta, Outlet } from "react-router";
 
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
+import { cloudflareBeaconAttributes } from "@dustinedwards/site-runtime/csp";
 import { errorTitle, errorWords } from "capsomer/react/error-page";
 
 import type { Route } from "./+types/root";
@@ -13,6 +14,8 @@ import { PRELOADS } from "./preloads";
 import { PrimaryButton } from "./components/ui";
 import { PageHero } from "./components/PageHero";
 import { SITE } from "./config/site";
+
+const WEB_ANALYTICS_TOKEN = "82f973a0cfb6496f92a3919629cbfbd2";
 
 // An unmatched address matches only the root, so the error path's title is set here (WCAG 2.4.2).
 export function meta({ error }: Route.MetaArgs): Route.MetaDescriptors {
@@ -39,6 +42,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         {/* The page's one script tag: app/site.ts, bundled by vite.config.ts, which loads the page's islands. No React reaches the browser. */}
         <script src="/site.js" defer />
+        {/* Cloudflare Web Analytics, manual setup (the site is on workers.dev, which the edge does not inject into). The token is the public site tag. */}
+        <script {...cloudflareBeaconAttributes(WEB_ANALYTICS_TOKEN)} />
       </body>
     </html>
   );
