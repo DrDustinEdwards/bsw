@@ -31,7 +31,8 @@ export const security = pageSecurity({
     ...(nonce ? { nonce } : {}),
     sources: { img: ["data:"] },
     styleAttributesInline: true,
-    cloudflareWebAnalytics: true,
+    // workers.dev is not proxied, so Cloudflare injects no beacon: the page carries it (app/root.tsx) and it reports to cloudflareinsights.com.
+    cloudflareWebAnalytics: "manual",
     // Nothing unlisted: a kind not named here (media, frames, workers) is refused, not allowed from this origin.
     denyUnlisted: true,
     // upgrade-insecure-requests is enforced only; a browser logs an error for it in a Report-Only policy.
