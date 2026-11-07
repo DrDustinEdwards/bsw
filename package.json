@@ -26,7 +26,7 @@
     "@dustinedwards/site-api": "github:DrDustinEdwards/site-api#v0.31.3",
     "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.100.1",
     "@fontsource-variable/open-sans": "5.3.0",
-    "capsomer": "github:DrDustinEdwards/capsomer#v0.81.0",
+    "capsomer": "github:DrDustinEdwards/capsomer#v0.82.0",
     "hast-util-from-html": "2.0.3",
     "hast-util-to-mdast": "10.1.2",
     "hast-util-to-string": "3.0.1",
