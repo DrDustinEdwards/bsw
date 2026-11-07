@@ -13,7 +13,9 @@ export default function InstitutionalPartnerships() {
       <PageHero title="Institutional Partnerships" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Centralized Research Support for Universities, Biotech, and Research Hospitals</h3>
+          <h2 className="prose-sub">
+            Centralized Research Support for Universities, Biotech, and Research Hospitals
+          </h2>
           <p>
             BioScience Writers provides scalable, enterprise-grade scientific support through our
             Institutional Solutions hub. We partner with academic departments, corporate research
@@ -23,7 +25,7 @@ export default function InstitutionalPartnerships() {
             significantly reducing administrative overhead.
           </p>
 
-          <h3>Enterprise Account Management</h3>
+          <h2 className="prose-sub">Enterprise Account Management</h2>
           <p>
             We simplify the way institutions manage scientific support. Our centralized account
             structure is designed to meet the rigorous audit and procurement requirements of large
@@ -45,7 +47,7 @@ export default function InstitutionalPartnerships() {
             </li>
           </ul>
 
-          <h3>Cooperative Agreements &amp; Partnerships</h3>
+          <h2 className="prose-sub">Cooperative Agreements &amp; Partnerships</h2>
           <p>
             Our partnership programs are designed to foster long-term faculty success. We go beyond
             transactional editing to become an integrated part of your research infrastructure:
@@ -67,7 +69,7 @@ export default function InstitutionalPartnerships() {
             </li>
           </ul>
 
-          <h3>Strategic Budgeting &amp; Bulk Purchasing</h3>
+          <h2 className="prose-sub">Strategic Budgeting &amp; Bulk Purchasing</h2>
           <p>
             Maximize the impact of your research budget with our bulk-purchase and credit systems.
             These tools provide predictability for PIs and financial controllers alike:

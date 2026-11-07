@@ -12,14 +12,14 @@ export default function TermsOfService() {
       <PageHero title="Terms of Service" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Professional Standards and Engagement Framework</h3>
+          <h2 className="prose-sub">Professional Standards and Engagement Framework</h2>
           <p>
             By utilizing the services provided by BioScience Writers, you agree to the following
             Terms of Service. These terms define the professional relationship between our editorial
             team and our clients, ensuring transparency, accountability, and scientific integrity.
           </p>
 
-          <h3>1. Scope of Services</h3>
+          <h2 className="prose-sub">1. Scope of Services</h2>
           <p>
             BioScience Writers provides expert editorial, consultative, and design support for
             scientific, medical, and academic documents.
@@ -41,7 +41,7 @@ export default function TermsOfService() {
             </li>
           </ul>
 
-          <h3>2. Project Delivery and Timelines</h3>
+          <h2 className="prose-sub">2. Project Delivery and Timelines</h2>
           <ul>
             <li>
               <strong>Commencement:</strong> Turnaround times begin once we receive a confirmed
@@ -58,7 +58,7 @@ export default function TermsOfService() {
             </li>
           </ul>
 
-          <h3>3. Payment, Quotes, and Refunds</h3>
+          <h2 className="prose-sub">3. Payment, Quotes, and Refunds</h2>
           <ul>
             <li>
               <strong>Quotes:</strong> All pricing is based on the word count and service level
@@ -76,7 +76,7 @@ export default function TermsOfService() {
             </li>
           </ul>
 
-          <h3>4. Intellectual Property and Copyright</h3>
+          <h2 className="prose-sub">4. Intellectual Property and Copyright</h2>
           <ul>
             <li>
               <strong>Author Ownership:</strong> You retain 100% of the copyright and intellectual
@@ -89,7 +89,7 @@ export default function TermsOfService() {
             </li>
           </ul>
 
-          <h3>5. Ethical Conduct</h3>
+          <h2 className="prose-sub">5. Ethical Conduct</h2>
           <ul>
             <li>
               <strong>Plagiarism:</strong> BioScience Writers does not provide services for
@@ -102,7 +102,7 @@ export default function TermsOfService() {
             </li>
           </ul>
 
-          <h3>6. Limitation of Liability</h3>
+          <h2 className="prose-sub">6. Limitation of Liability</h2>
           <p>
             BioScience Writers shall not be liable for any indirect, incidental, or consequential
             damages resulting from the use of our services, including but not limited to journal

@@ -13,7 +13,9 @@ export default function LanguageSupport() {
       <PageHero title="Language Support" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Bridging the Gap Between International Research and Global Impact</h3>
+          <h2 className="prose-sub">
+            Bridging the Gap Between International Research and Global Impact
+          </h2>
           <p>
             Scientific impact should not be limited by language barriers. BioScience Writers
             provides specialized linguistic support designed to help international researchers
@@ -22,7 +24,7 @@ export default function LanguageSupport() {
             support global scholars at every stage of their career.
           </p>
 
-          <h3>Professional Scientific Translation</h3>
+          <h2 className="prose-sub">Professional Scientific Translation</h2>
           <p>
             We provide high-fidelity translation services that preserve the technical integrity and
             scientific nuance of your work. Every project is handled by translators who are also
@@ -44,7 +46,7 @@ export default function LanguageSupport() {
             </li>
           </ul>
 
-          <h3>ESL &amp; English Language Polishing</h3>
+          <h2 className="prose-sub">ESL &amp; English Language Polishing</h2>
           <p>
             Designed for non-native English speakers who have a completed draft, our language
             polishing service focuses on the "naturalness" of the prose. We help you move past
@@ -65,7 +67,7 @@ export default function LanguageSupport() {
             </li>
           </ul>
 
-          <h3>Integrated Global Scholar Support</h3>
+          <h2 className="prose-sub">Integrated Global Scholar Support</h2>
           <p>
             Our mission is to empower international researchers to compete on a level playing field.
             By combining translation with substantive language polishing, we provide a comprehensive

@@ -13,7 +13,7 @@ export default function CareerDevelopment() {
       <PageHero title="Career Development" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Empowering Researchers from Graduate School to Tenure</h3>
+          <h2 className="prose-sub">Empowering Researchers from Graduate School to Tenure</h2>
           <p>
             The path of a professional researcher requires more than just successful experiments; it
             requires a meticulously managed portfolio of professional documents. BioScience Writers
@@ -23,7 +23,7 @@ export default function CareerDevelopment() {
             PhD-level oversight necessary to advance your academic trajectory.
           </p>
 
-          <h3>Dissertation &amp; Thesis Excellence</h3>
+          <h2 className="prose-sub">Dissertation &amp; Thesis Excellence</h2>
           <p>
             Finalizing a doctoral dissertation or master's thesis is a significant academic
             undertaking. Our specialized editors ensure that your final defense copy meets the
@@ -44,7 +44,7 @@ export default function CareerDevelopment() {
             </li>
           </ul>
 
-          <h3>Professional Persona: CV &amp; Biosketch Optimization</h3>
+          <h2 className="prose-sub">Professional Persona: CV &amp; Biosketch Optimization</h2>
           <p>
             In the competitive landscape of hiring and funding, your professional summary is your
             first impression. We help you transform a standard list of achievements into a
@@ -68,7 +68,7 @@ export default function CareerDevelopment() {
             </li>
           </ul>
 
-          <h3>Monographs, Book Chapters &amp; Faculty Development</h3>
+          <h2 className="prose-sub">Monographs, Book Chapters &amp; Faculty Development</h2>
           <p>
             For senior researchers and faculty, we provide the high-level editorial support required
             for long-form publications and departmental leadership:
