@@ -1,12 +1,9 @@
-// Every security header bsw sends, in one place; workers/app.ts applies it to every response.
+// Every security header bsw sends, in one place: the header set and the page policy below, applied to every response by
+// site-runtime ./page-headers (workers/app.ts).
 import { TDM_RESERVATION_HEADERS } from "@drdustinedwards/site-helpers/robots";
 import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
+import { pageSecurity } from "@dustinedwards/site-runtime/page-headers";
 import { bsw } from "@dustinedwards/site-runtime/sites";
-import { buildContentSecurityPolicy, buildStagedPolicy } from "@dustinedwards/site-runtime/csp";
-import { createContext } from "react-router";
-
-export const CSP_REPORT_PATH = "/csp-report";
-export const CSP_REPORT_GROUP = "csp-endpoint";
 
 // The site's registry entry (site-runtime ./sites: COEP and the Integrity-Policy Report-Only come from it) plus
 // Prelum's TDMRep header, which reserves training rights as /ai.txt says; the CSP is below. public/_headers is written
@@ -15,10 +12,6 @@ export const SECURITY_HEADERS = {
   ...buildSecurityHeaders({ site: bsw }),
   ...TDM_RESERVATION_HEADERS,
 };
-
-// Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
-// The Worker and public/_headers (the `--header` in package.json's headers script) both send it; remove both at launch.
-export const PRE_LAUNCH_HEADERS = { "X-Robots-Tag": "noindex" };
 
 /*
   First-party except the analytics beacon. Pages are stored at the edge and handed
@@ -32,34 +25,25 @@ export const PRE_LAUNCH_HEADERS = { "X-Robots-Tag": "noindex" };
   `vite dev` alone still uses a nonce: Vite's client injects app.css as a <style>
   and takes its nonce from a meta tag (workers/app.ts). Nothing in dev is stored.
 */
-export const nonceContext = createContext<string | undefined>(undefined);
-
-function sitePolicy(nonce?: string) {
-  return {
+export const security = pageSecurity({
+  set: SECURITY_HEADERS,
+  policy: ({ nonce, staged }) => ({
     ...(nonce ? { nonce } : {}),
-    sources: {
-      img: ["data:"],
-    },
+    sources: { img: ["data:"] },
     styleAttributesInline: true,
-    cloudflareWebAnalytics: true,
+    // workers.dev is not proxied, so Cloudflare injects no beacon: the page carries it (app/root.tsx) and it reports to cloudflareinsights.com.
+    cloudflareWebAnalytics: "manual",
     // Nothing unlisted: a kind not named here (media, frames, workers) is refused, not allowed from this origin.
     denyUnlisted: true,
-    extraDirectives: ["manifest-src 'self'", "upgrade-insecure-requests"],
-    reportUri: CSP_REPORT_PATH,
-    reportTo: CSP_REPORT_GROUP,
-  };
-}
-
-/**
- * The page policy, and beside it the same policy with Trusted Types as Report-Only (the registry stages it), so the
- * reports name any sink a script hands a string to before it is enforced.
- */
-export function contentSecurityPolicies(nonce?: string) {
-  const policy = sitePolicy(nonce);
-  // upgrade-insecure-requests is enforced only; a browser logs an error for it in a Report-Only policy.
-  const staged = {
-    ...policy,
-    extraDirectives: policy.extraDirectives.filter((d) => d !== "upgrade-insecure-requests"),
-  };
-  return [buildContentSecurityPolicy(policy), buildStagedPolicy(staged, { trustedTypes: true })];
-}
+    // upgrade-insecure-requests is enforced only; a browser logs an error for it in a Report-Only policy.
+    extraDirectives: staged
+      ? ["manifest-src 'self'"]
+      : ["manifest-src 'self'", "upgrade-insecure-requests"],
+  }),
+  // The Report-Only companion adds Trusted Types, so the reports name any sink a script hands a string to before it is enforced.
+  staged: { trustedTypes: true },
+  corp: true,
+  // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
+  // public/_headers takes the same header (the `--header` in package.json's headers script); remove both at launch.
+  noindex: () => true,
+});

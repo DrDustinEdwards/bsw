@@ -12,7 +12,7 @@ export default function EditingGuarantee() {
       <PageHero title="Editing Guarantee" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>MD/PhD Oversight for Peer-Review Success</h3>
+          <h2 className="prose-sub">MD/PhD Oversight for Peer-Review Success</h2>
           <p>
             At BioScience Writers, we believe that scientific editing requires more than just
             linguistic correction, it requires subject-matter expertise. We have consolidated our
@@ -20,7 +20,7 @@ export default function EditingGuarantee() {
             confidence in their submission.
           </p>
 
-          <h3>The Universal Quality Standard</h3>
+          <h2 className="prose-sub">The Universal Quality Standard</h2>
           <p>
             Every document processed by our network undergoes a multi-stage review to ensure it
             meets the publication-ready threshold:
@@ -44,7 +44,7 @@ export default function EditingGuarantee() {
             </li>
           </ul>
 
-          <h3>Our Re-Editing Promise</h3>
+          <h2 className="prose-sub">Our Re-Editing Promise</h2>
           <p>
             We stand behind the work of our editors. If a journal or publisher raises concerns
             regarding the quality of the English language in a manuscript edited by BioScience
@@ -65,7 +65,7 @@ export default function EditingGuarantee() {
             </li>
           </ul>
 
-          <h3>Certificates of Editing</h3>
+          <h2 className="prose-sub">Certificates of Editing</h2>
           <p>
             Many high-impact journals now require international authors to provide proof that their
             manuscript has been reviewed by a professional English editing service. Upon request, we
@@ -74,7 +74,7 @@ export default function EditingGuarantee() {
             for global publication.
           </p>
 
-          <h3>Client Satisfaction &amp; Revisions</h3>
+          <h2 className="prose-sub">Client Satisfaction &amp; Revisions</h2>
           <p>
             Our relationship does not end when we deliver your file. If you have questions about
             specific edits or feel a technical nuance was misunderstood, our editors are available

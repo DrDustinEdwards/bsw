@@ -428,6 +428,12 @@ body {
   font-weight: 700;
   color: var(--color-ink);
 }
+.page-prose h2.prose-sub {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: inherit;
+}
 .page-prose p {
   margin-top: 1.1rem;
 }
@@ -932,6 +938,7 @@ body {
     opacity 0.2s ease;
 }
 .psms-comments-scroll {
+  max-width: 100%;
   height: 520px;
   overflow-y: auto;
   display: flex;
@@ -1091,6 +1098,16 @@ body {
   .psms-track-label {
     width: 96px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .psms-track-label {
+    width: 82px;
+    font-size: 12px;
+  }
+  .psms-gray-wrap {
+    padding: 8px;
   }
 }
 
