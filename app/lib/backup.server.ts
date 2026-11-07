@@ -7,7 +7,7 @@
 // credential-column check refuses a dump that carries any other column named like a credential.
 //
 // Not backed up: BACKUPS, which is the backup, and the site's own photographs, which are files in the repository.
-import { backupFiles, runCheckedBackup } from "@dustinedwards/d1-dump";
+import { backupFiles, backupHealth, filesHealth, runCheckedBackup } from "@dustinedwards/d1-dump";
 
 // A media pass stops itself at three minutes and goes on the next night, inside its job's four-minute timeout
 // (cron.server.ts).
@@ -23,4 +23,13 @@ export async function runBackup(env: Env): Promise<void> {
 
 export async function runMediaBackup(env: Env): Promise<void> {
   await backupFiles(env.MEDIA, env.BACKUPS, MEDIA_BACKUP);
+}
+
+/** The newest complete dump and the media files pass, for /health's backup check and the operator API: it warns when either is stale. Never throws. */
+export async function backupStatus(env: Env) {
+  const [dump, files] = await Promise.all([
+    backupHealth(env.BACKUPS),
+    filesHealth(env.BACKUPS, MEDIA_BACKUP),
+  ]);
+  return { ...dump, files, warning: dump.warning ?? files.warning };
 }

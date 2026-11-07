@@ -8,8 +8,8 @@ import {
   UNCACHED,
 } from "@dustinedwards/site-runtime/edge-cache";
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
-import { backupHealth, filesHealth } from "@dustinedwards/d1-dump";
-import { cronCheck, runJobs } from "@dustinedwards/site-runtime/cron";
+import { cronCheck, runJobs, runJobTool } from "@dustinedwards/site-runtime/cron";
+import { operatorResponse } from "@dustinedwards/site-runtime/operator";
 import { maintenanceOn, maintenanceResponse } from "@dustinedwards/site-runtime/maintenance";
 import { aiCheck, healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
 import { logEvent } from "@dustinedwards/site-runtime/log";
@@ -26,9 +26,9 @@ import { markdownCopies } from "@drdustinedwards/site-helpers/markdown-copy";
 import { createRequestHandler, RouterContextProvider, type ServerBuild } from "react-router";
 import { PRELOADS } from "../app/preloads";
 import { SITE } from "../app/config/site";
-import { MEDIA_BACKUP } from "../app/lib/backup.server";
+import { backupStatus } from "../app/lib/backup.server";
 import { carrelApi } from "../app/lib/carrel/handler.server";
-import { cronJobs } from "../app/lib/cron.server";
+import { allCronJobs, cronJobs } from "../app/lib/cron.server";
 import { serveMedia } from "../app/lib/media/serve.server";
 import {
   contentSecurityPolicies,
@@ -38,6 +38,9 @@ import {
   PRE_LAUNCH_HEADERS,
   SECURITY_HEADERS,
 } from "./security-headers";
+
+// site-runtime's limiter class, bound as RATE_LIMITER (wrangler.jsonc); the operator API counts through it.
+export { RateLimiter } from "@dustinedwards/site-runtime/rate-limit/durable-object";
 
 const serverBuild = () => import("virtual:react-router/server-build") as Promise<ServerBuild>;
 const requestHandler = createRequestHandler(serverBuild, import.meta.env.MODE);
@@ -148,26 +151,38 @@ async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promi
   if (url.pathname === "/health") {
     const health = await healthResponse({
       ping: () => env.DB.prepare("select 1").first(),
-      backup: async () => {
-        const [dump, files] = await Promise.all([
-          backupHealth(env.BACKUPS),
-          filesHealth(env.BACKUPS, MEDIA_BACKUP),
-        ]);
-        return { ...dump, files, warning: dump.warning ?? files.warning };
-      },
+      backup: () => backupStatus(env),
       sha: (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA,
       checks: [
         { ...r2Check("media", env.MEDIA), level: "warn" },
         imagesCheck("images", env.IMAGES),
         aiCheck("ai", env.AI),
         cronCheck(env.DB, {
-          jobs: Object.values(cronJobs(env)).flat(),
+          jobs: allCronJobs(env),
           deployedAt: new Date(env.CF_VERSION_METADATA.timestamp),
         }),
       ],
     });
     applyHeaderSet(health.headers, SECURITY_HEADERS);
     return health;
+  }
+
+  // The operator API Capsid Admin calls (backup_status, run_job): a bearer, not Access, never stored.
+  if (url.pathname === "/api/operator") {
+    const answer = await operatorResponse(request, {
+      token: env.OPERATOR_TOKEN,
+      limiter: env.RATE_LIMITER,
+      tools: {
+        backup_status: {
+          description:
+            "Reads the backup state now, uncached: the newest complete D1 dump's age and the media files pass, with when each last completed, and a warning when either is past 26 hours. The same read as /health's backup field.",
+          run: () => backupStatus(env),
+        },
+        run_job: runJobTool(env.DB, () => allCronJobs(env)),
+      },
+    });
+    applyHeaderSet(answer.headers, SECURITY_HEADERS);
+    return answer;
   }
 
   // The site's photographs and the media library (app/lib/media), each size cached at the edge. `caches.default` is
