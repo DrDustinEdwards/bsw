@@ -12,7 +12,7 @@ export default function PrivacyPolicy() {
       <PageHero title="Privacy Policy" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Your Data Integrity and Professional Privacy</h3>
+          <h2 className="prose-sub">Your Data Integrity and Professional Privacy</h2>
           <p>
             BioScience Writers is committed to protecting the personal and professional information
             of the global research community. This policy outlines how we collect, use, and
@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
             secure.
           </p>
 
-          <h3>1. Information Collection and Use</h3>
+          <h2 className="prose-sub">1. Information Collection and Use</h2>
           <p>
             We collect only the essential data required to provide high-level editorial and
             consultative services:
@@ -40,7 +40,7 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
 
-          <h3>2. Data Protection and Sharing</h3>
+          <h2 className="prose-sub">2. Data Protection and Sharing</h2>
           <p>
             Your trust is the foundation of our business. We adhere to the following strict data
             boundaries:
@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
 
-          <h3>3. Global Privacy Standards (GDPR &amp; CCPA)</h3>
+          <h2 className="prose-sub">3. Global Privacy Standards (GDPR &amp; CCPA)</h2>
           <p>
             We comply with international data protection regulations to provide our global clients
             with control over their information:
@@ -80,7 +80,7 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
 
-          <h3>4. Communication Preferences</h3>
+          <h2 className="prose-sub">4. Communication Preferences</h2>
           <p>We value your time and inbox. You have full control over how we contact you:</p>
           <ul>
             <li>
@@ -94,7 +94,7 @@ export default function PrivacyPolicy() {
             </li>
           </ul>
 
-          <h3>5. Policy Updates</h3>
+          <h2 className="prose-sub">5. Policy Updates</h2>
           <p>
             As global privacy laws evolve, we may update this policy to reflect new protections. Any
             significant changes will be notified to active account holders via email or a prominent

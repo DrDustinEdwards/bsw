@@ -1,5 +1,5 @@
 import { WorkerEntrypoint } from "cloudflare:workers";
-import { applyHeaderSet, corpFor } from "@dustinedwards/site-runtime/headers";
+import { cspNonceContext } from "@dustinedwards/site-runtime/context";
 import {
   cacheKey,
   forReader,
@@ -13,7 +13,7 @@ import { operatorResponse } from "@dustinedwards/site-runtime/operator";
 import { maintenanceOn, maintenanceResponse } from "@dustinedwards/site-runtime/maintenance";
 import { aiCheck, healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
 import { logEvent } from "@dustinedwards/site-runtime/log";
-import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
+import { CSP_REPORT_PATH, generateNonce } from "@dustinedwards/site-runtime/csp";
 import {
   SPECULATION_RULES_HEADER,
   SPECULATION_RULES_PATH,
@@ -30,14 +30,7 @@ import { backupStatus } from "../app/lib/backup.server";
 import { carrelApi } from "../app/lib/carrel/handler.server";
 import { allCronJobs, cronJobs } from "../app/lib/cron.server";
 import { serveMedia } from "../app/lib/media/serve.server";
-import {
-  contentSecurityPolicies,
-  CSP_REPORT_GROUP,
-  CSP_REPORT_PATH,
-  nonceContext,
-  PRE_LAUNCH_HEADERS,
-  SECURITY_HEADERS,
-} from "./security-headers";
+import { SECURITY_HEADERS, security } from "./security-headers";
 
 // site-runtime's limiter class, bound as RATE_LIMITER (wrangler.jsonc); the operator API counts through it.
 export { RateLimiter } from "@dustinedwards/site-runtime/rate-limit/durable-object";
@@ -53,35 +46,26 @@ const requestHandler = createRequestHandler(serverBuild, import.meta.env.MODE);
  */
 export class Renderer extends WorkerEntrypoint<Env> {
   override async fetch(request: Request): Promise<Response> {
-    const url = new URL(request.url);
     // A nonce only under `vite dev`, for Vite's injected <style>; a built page carries none, so it can be stored.
     const nonce = import.meta.env.DEV ? generateNonce() : undefined;
     const context = new RouterContextProvider();
-    context.set(nonceContext, nonce);
+    context.set(cspNonceContext, nonce ?? null);
     const response = await timedRender(() => requestHandler(request, context));
-    // Attach security headers without disturbing the (possibly streaming) body.
-    const headers = new Headers(response.headers);
-    applyHeaderSet(headers, SECURITY_HEADERS);
-    for (const csp of contentSecurityPolicies(nonce)) headers.set(csp.name, csp.value);
-    headers.set(
-      "Reporting-Endpoints",
-      reportingEndpoints(CSP_REPORT_GROUP, new URL(CSP_REPORT_PATH, url.origin)),
-    );
+    // Security headers (workers/security-headers.ts) without disturbing the (possibly streaming) body.
+    const secured = security.withSecurityHeaders(response, request, nonce);
+    const headers = new Headers(secured.headers);
     const type = headers.get("content-type") ?? "";
     // React Router names no charset; a browser must not have to guess one.
     if (type === "text/html") headers.set("content-type", "text/html; charset=utf-8");
     // HTML pages: hover prefetch.
     if (type.startsWith("text/html"))
       headers.set(SPECULATION_RULES_HEADER.name, SPECULATION_RULES_HEADER.value);
-    // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims
-    // (bsw/content-notes.md). public/_headers takes the same set, so removing it at launch is one edit.
-    applyHeaderSet(headers, PRE_LAUNCH_HEADERS);
     // The preloads root.tsx links and the root stylesheet, as the `Link` header Cloudflare Early Hints reads
     // (HTML only, appended, so a route's own Link stays).
     const hinted = withPreloadHeader(
-      new Response(response.body, {
-        status: response.status,
-        statusText: response.statusText,
+      new Response(secured.body, {
+        status: secured.status,
+        statusText: secured.statusText,
         headers,
       }),
       PRELOADS.header,
@@ -109,18 +93,19 @@ export class Renderer extends WorkerEntrypoint<Env> {
  * speculation rules, /health, /media and Carrel's site API answer here and are never stored.
  */
 async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  // Every answer, redirects and refusals included, leaves with the site's security headers (a page the Renderer
+  // already stamped keeps its own).
+  return security.withSecurityHeaders(await route(request, env, ctx), request);
+}
+
+async function route(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
   const url = new URL(request.url);
   // One hop to the canonical address: https and no trailing slash.
   const redirect = canonicalRedirect(request);
-  if (redirect) {
-    applyHeaderSet(redirect.headers, SECURITY_HEADERS);
-    return redirect;
-  }
+  if (redirect) return redirect;
   // The maintenance page (site-runtime ./maintenance): every path but /health answers 503 while the MAINTENANCE var is on.
   if (maintenanceOn(env) && url.pathname !== "/health") {
-    const down = maintenanceResponse({ siteName: "BioScience Writers" });
-    applyHeaderSet(down.headers, SECURITY_HEADERS);
-    return down;
+    return maintenanceResponse({ siteName: "BioScience Writers" });
   }
   if (url.pathname === CSP_REPORT_PATH) {
     // Keyed on the edge-set client address; a refusal drops the report (still 204).
@@ -138,9 +123,7 @@ async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promi
   // Hover prefetch (site-runtime ./prefetch): the next page starts loading while the pointer rests on its link. One
   // rules file, named by a header on every page, so the CSP needs no allowance for it.
   if (url.pathname === SPECULATION_RULES_PATH) {
-    const rules = speculationRulesResponse(undefined, request);
-    applyHeaderSet(rules.headers, SECURITY_HEADERS);
-    return rules;
+    return speculationRulesResponse(undefined, request);
   }
 
   // site-runtime's healthResponse, with the deployed commit devkit's shared deploy waits for (CI passes DEPLOY_SHA).
@@ -149,7 +132,7 @@ async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promi
   // Images binding or Workers AI not answering, and a job that failed, stopped or never ran (`cron_runs`). Not probed:
   // BACKUPS (a dead bucket shows as a stale backup) and the rate limits, which have no read that spends nothing.
   if (url.pathname === "/health") {
-    const health = await healthResponse({
+    return healthResponse({
       ping: () => env.DB.prepare("select 1").first(),
       backup: () => backupStatus(env),
       sha: (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA,
@@ -163,13 +146,11 @@ async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promi
         }),
       ],
     });
-    applyHeaderSet(health.headers, SECURITY_HEADERS);
-    return health;
   }
 
   // The operator API Capsid Admin calls (backup_status, run_job): a bearer, not Access, never stored.
   if (url.pathname === "/api/operator") {
-    const answer = await operatorResponse(request, {
+    return operatorResponse(request, {
       token: env.OPERATOR_TOKEN,
       limiter: env.RATE_LIMITER,
       tools: {
@@ -181,48 +162,28 @@ async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promi
         run_job: runJobTool(env.DB, () => allCronJobs(env)),
       },
     });
-    applyHeaderSet(answer.headers, SECURITY_HEADERS);
-    return answer;
   }
 
   // The site's photographs and the media library (app/lib/media), each size cached at the edge. `caches.default` is
   // the Workers runtime's; the DOM lib does not declare it.
   if (url.pathname.startsWith("/media/")) {
-    const media = await serveMedia(
-      request,
-      env,
-      (caches as CacheStorage & { default: Cache }).default,
-    );
-    const headers = new Headers(media.headers);
-    applyHeaderSet(headers, SECURITY_HEADERS);
-    headers.set("Cross-Origin-Resource-Policy", corpFor(headers.get("Content-Type")));
-    return new Response(media.body, {
-      status: media.status,
-      statusText: media.statusText,
-      headers,
-    });
+    return serveMedia(request, env, (caches as CacheStorage & { default: Cache }).default);
   }
 
   // Carrel's site API: its own guard (prefix, rate limit, key, route) answers everything under /api/carrel/v1. Only
   // the media library is written through it, and no page shows a library file, so no stored page is purged.
   const carrel = carrelApi(env, url.origin);
   if (carrel.matches(request)) {
-    const response = await carrel.handle(request, ctx);
-    const headers = new Headers(response.headers);
-    applyHeaderSet(headers, SECURITY_HEADERS);
-    return new Response(response.body, {
-      status: response.status,
-      statusText: response.statusText,
-      headers,
-    });
+    return carrel.handle(request, ctx);
   }
 
   // The pages have no form, no action and no sign-in (contact is a mailto link), so a write is refused here and never
   // reaches the cached Renderer.
   if (request.method !== "GET" && request.method !== "HEAD") {
-    const headers = new Headers({ Allow: "GET, HEAD", "Cache-Control": UNCACHED });
-    applyHeaderSet(headers, SECURITY_HEADERS);
-    return new Response(null, { status: 405, headers });
+    return new Response(null, {
+      status: 405,
+      headers: { Allow: "GET, HEAD", "Cache-Control": UNCACHED },
+    });
   }
 
   // Every page and the small text routes: the Renderer's, through the Workers cache, keyed on the path and the query

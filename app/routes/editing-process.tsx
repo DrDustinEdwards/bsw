@@ -12,7 +12,9 @@ export default function EditingProcess() {
       <PageHero title="Our Process: The BSW Scientific Pipeline" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>PhD-Led Precision. Urgent Turnaround. Global Publication Success.</h3>
+          <h2 className="prose-sub">
+            PhD-Led Precision. Urgent Turnaround. Global Publication Success.
+          </h2>
           <p>
             At BioScience Writers, our workflow is engineered to meet the high-pressure demands of
             modern research. By combining an elite network of MD/PhD editors with a streamlined
@@ -20,7 +22,7 @@ export default function EditingProcess() {
             surgical precision.
           </p>
 
-          <h3>Phase 1: The Expert Match (Editorial Experience)</h3>
+          <h2 className="prose-sub">Phase 1: The Expert Match (Editorial Experience)</h2>
           <p>We don't just assign an editor; we match a Subject Matter Expert.</p>
           <ul>
             <li>
@@ -39,7 +41,7 @@ export default function EditingProcess() {
             </li>
           </ul>
 
-          <h3>Phase 2: Accelerated Delivery (Rush Service Options)</h3>
+          <h2 className="prose-sub">Phase 2: Accelerated Delivery (Rush Service Options)</h2>
           <p>
             We understand that grant deadlines and journal resubmission windows don't wait. Our
             "Rush" infrastructure is a core part of our process.
@@ -60,7 +62,7 @@ export default function EditingProcess() {
             </li>
           </ul>
 
-          <h3>Phase 3: The Multi-Stage Edit</h3>
+          <h2 className="prose-sub">Phase 3: The Multi-Stage Edit</h2>
           <p>Our process follows a "Two-Pass" quality control system:</p>
           <ul>
             <li>
@@ -74,7 +76,7 @@ export default function EditingProcess() {
             </li>
           </ul>
 
-          <h3>Phase 4: Final Delivery &amp; Author Review</h3>
+          <h2 className="prose-sub">Phase 4: Final Delivery &amp; Author Review</h2>
           <p>We return a submission-ready package to your secure dashboard:</p>
           <ul>
             <li>
