@@ -5,7 +5,7 @@ import type { EntryContext, RouterContextProvider } from "react-router";
 import { ServerRouter } from "react-router";
 import { renderToReadableStream } from "react-dom/server";
 import { logEvent, requestFields } from "@dustinedwards/site-runtime/log";
-import { nonceContext } from "../workers/security-headers";
+import { getNonce } from "@dustinedwards/site-runtime/context";
 
 export default async function handleRequest(
   request: Request,
@@ -14,7 +14,7 @@ export default async function handleRequest(
   routerContext: EntryContext,
   loadContext: RouterContextProvider,
 ) {
-  const nonce = loadContext.get(nonceContext);
+  const nonce = getNonce(loadContext);
 
   const body = await renderToReadableStream(
     <ServerRouter context={routerContext} url={request.url} nonce={nonce} />,
