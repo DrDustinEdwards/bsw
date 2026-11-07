@@ -82,7 +82,7 @@ function card(page: Page): Node {
 let ready: Promise<void> | undefined;
 
 /** One page's card as PNG bytes. */
-export async function shareCard(page: Page): Promise<Uint8Array> {
+export async function drawShareCard(page: Page): Promise<Uint8Array> {
   ready ??= initWasm(readFileSync(require.resolve("@resvg/resvg-wasm/index_bg.wasm")));
   await ready;
   const fonts = [400, 700, 800].map((weight) => ({
