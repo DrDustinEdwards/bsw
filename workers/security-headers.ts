@@ -11,7 +11,10 @@ export const CSP_REPORT_GROUP = "csp-endpoint";
 // The site's registry entry (site-runtime ./sites: COEP and the Integrity-Policy Report-Only come from it) plus
 // Prelum's TDMRep header, which reserves training rights as /ai.txt says; the CSP is below. public/_headers is written
 // from the same entry by site-runtime-headers (npm run headers), with the same two extra headers.
-export const SECURITY_HEADERS = { ...buildSecurityHeaders({ site: bsw }), ...TDM_RESERVATION_HEADERS };
+export const SECURITY_HEADERS = {
+  ...buildSecurityHeaders({ site: bsw }),
+  ...TDM_RESERVATION_HEADERS,
+};
 
 // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
 // The Worker and public/_headers (the `--header` in package.json's headers script) both send it; remove both at launch.
@@ -54,6 +57,9 @@ function sitePolicy(nonce?: string) {
 export function contentSecurityPolicies(nonce?: string) {
   const policy = sitePolicy(nonce);
   // upgrade-insecure-requests is enforced only; a browser logs an error for it in a Report-Only policy.
-  const staged = { ...policy, extraDirectives: policy.extraDirectives.filter((d) => d !== "upgrade-insecure-requests") };
+  const staged = {
+    ...policy,
+    extraDirectives: policy.extraDirectives.filter((d) => d !== "upgrade-insecure-requests"),
+  };
   return [buildContentSecurityPolicy(policy), buildStagedPolicy(staged, { trustedTypes: true })];
 }

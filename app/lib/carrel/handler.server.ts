@@ -13,7 +13,11 @@ function siteApiLog(entry: Record<string, unknown>): void {
   if (entry.siteApi === "refused") {
     const limited = entry.reason === "rate-limited";
     const denied = entry.reason === "wrong-key" || entry.reason === "no-key";
-    const event = limited ? OWASP_EVENTS.rateLimitExceeded : denied ? OWASP_EVENTS.authorizationFailure : "site_api_refused";
+    const event = limited
+      ? OWASP_EVENTS.rateLimitExceeded
+      : denied
+        ? OWASP_EVENTS.authorizationFailure
+        : "site_api_refused";
     logEvent(event, entry, { level: "warn" });
     return;
   }

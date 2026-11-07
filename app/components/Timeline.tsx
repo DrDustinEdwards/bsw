@@ -1,10 +1,4 @@
-import {
-  Upload,
-  UserCheck,
-  FileText,
-  ShieldCheck,
-  type LucideIcon,
-} from "lucide-react";
+import { Upload, UserCheck, FileText, ShieldCheck, type LucideIcon } from "lucide-react";
 
 /*
   Vertical process timeline.

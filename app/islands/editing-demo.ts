@@ -17,9 +17,7 @@ export default function initEditingDemo(root: HTMLElement): void {
   const layout = root.querySelector("#psms-layout") as HTMLElement;
   const track = root.querySelector("#psms-track") as HTMLElement;
   const pill = root.querySelector("#psms-pill") as HTMLElement;
-  const labels = Array.from(
-    track?.querySelectorAll(".psms-track-label") ?? [],
-  ) as HTMLElement[];
+  const labels = Array.from(track?.querySelectorAll(".psms-track-label") ?? []) as HTMLElement[];
   if (!layout || !track || !pill || labels.length !== TABS) return;
 
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -61,11 +59,7 @@ export default function initEditingDemo(root: HTMLElement): void {
   }
 
   function pillXForIdx(i: number) {
-    return (
-      labels[i].getBoundingClientRect().left -
-      track.getBoundingClientRect().left -
-      6
-    );
+    return labels[i].getBoundingClientRect().left - track.getBoundingClientRect().left - 6;
   }
 
   function pillTo(idx: number, animate: boolean) {
@@ -121,9 +115,9 @@ export default function initEditingDemo(root: HTMLElement): void {
   let startIdx = 0;
   let pillBaseX = 0;
   let pillBaseW = 0;
-  const getX = (e: any) => (e.touches ? e.touches[0].clientX : e.clientX);
+  const getX = (e: MouseEvent | TouchEvent) => ("touches" in e ? e.touches[0].clientX : e.clientX);
 
-  function onMove(e: any) {
+  function onMove(e: MouseEvent | TouchEvent) {
     if (e.cancelable) e.preventDefault();
     dragCurX = getX(e);
     const delta = dragCurX - dragStartX;
@@ -169,7 +163,7 @@ export default function initEditingDemo(root: HTMLElement): void {
     goTo(nearestIdx(rawX), true);
   }
 
-  function onStart(e: any) {
+  function onStart(e: MouseEvent | TouchEvent) {
     dragStartX = dragCurX = getX(e);
     dragging = false;
     startIdx = current;
@@ -191,9 +185,7 @@ export default function initEditingDemo(root: HTMLElement): void {
     clearAll();
     if (already) return;
     card.classList.add("psms-card-lit");
-    const panel = root.querySelector(
-      ".psms-tab-panel.psms-active",
-    ) as HTMLElement | null;
+    const panel = root.querySelector(".psms-tab-panel.psms-active") as HTMLElement | null;
     if (!panel) return;
     const targets = panel.querySelectorAll(
       '[data-highlight="' + id + '"]',
@@ -211,16 +203,11 @@ export default function initEditingDemo(root: HTMLElement): void {
         behavior: scrollBehavior,
       });
     }
-    const col = root.querySelector(
-      "#psms-comments-scroll",
-    ) as HTMLElement | null;
+    const col = root.querySelector("#psms-comments-scroll") as HTMLElement | null;
     if (col) {
       col.scrollTo({
         top:
-          card.getBoundingClientRect().top -
-          col.getBoundingClientRect().top +
-          col.scrollTop -
-          60,
+          card.getBoundingClientRect().top - col.getBoundingClientRect().top + col.scrollTop - 60,
         behavior: scrollBehavior,
       });
     }

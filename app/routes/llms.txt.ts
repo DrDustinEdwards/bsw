@@ -5,7 +5,8 @@ import { SITE } from "../config/site";
 
 const CONTENT = {
   title: SITE.name,
-  summary: "BioScience Writers is a scientific editing and medical writing company founded in 2001, serving the international research community. All editors are native English-speaking scientists holding terminal degrees (PhD, MD, or DVM) with active expertise in the author's specific field of research.",
+  summary:
+    "BioScience Writers is a scientific editing and medical writing company founded in 2001, serving the international research community. All editors are native English-speaking scientists holding terminal degrees (PhD, MD, or DVM) with active expertise in the author's specific field of research.",
   sections: [
     {
       heading: "What we do",
@@ -27,7 +28,12 @@ const CONTENT = {
         "- Founded: 2001\n- Editors: native English-speaking PhD, MD, or DVM scientists\n- Confidentiality: all staff sign a legally binding nondisclosure agreement\n- Guarantee: 100% satisfaction guarantee with free re-edits for language issues raised by reviewers\n- Location: Houston, Texas, United States",
       ],
     },
-    { heading: "Contact", body: [`- Website: ${SITE.url}\n- Editing and Writing Operations: 832-517-3001 or 713-516-7228`] },
+    {
+      heading: "Contact",
+      body: [
+        `- Website: ${SITE.url}\n- Editing and Writing Operations: 832-517-3001 or 713-516-7228`,
+      ],
+    },
   ],
 };
 

@@ -8,11 +8,15 @@ import { Picture } from "./Picture";
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <Picture
-      {...sitePicture({ src: "/brand/bsw-logo-web.2a9980c8.webp", width: 250, height: 80 }, "wordmark", {
-        alt: "BioScience Writers",
-        priority: true,
-        className: `h-9 w-auto ${className}`.trim(),
-      })}
+      {...sitePicture(
+        { src: "/brand/bsw-logo-web.2a9980c8.webp", width: 250, height: 80 },
+        "wordmark",
+        {
+          alt: "BioScience Writers",
+          priority: true,
+          className: `h-9 w-auto ${className}`.trim(),
+        },
+      )}
     />
   );
 }

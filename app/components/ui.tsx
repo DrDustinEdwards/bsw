@@ -29,14 +29,7 @@ export function PrimaryButton({
   return (
     <a href={href} className={`btn btn-${color} ${className}`}>
       {children}
-      {arrow && (
-        <ArrowRight
-          size={16}
-          strokeWidth={2.5}
-          className="btn-arrow"
-          aria-hidden="true"
-        />
-      )}
+      {arrow && <ArrowRight size={16} strokeWidth={2.5} className="btn-arrow" aria-hidden="true" />}
     </a>
   );
 }
@@ -97,7 +90,16 @@ export function SectionHeading({
 function LogoTile({ src, name, width, height }: Logo) {
   return (
     <div className="logo-box">
-      <img src={src} alt={name} width={width} height={height} loading="lazy" decoding="async" role="img" />
+      <img
+        src={src}
+        alt={name}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        // oxlint-disable-next-line jsx-a11y/no-redundant-roles -- on purpose: an SVG img is named by its alt as one picture in every browser only with role="img".
+        role="img"
+      />
     </div>
   );
 }

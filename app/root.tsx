@@ -1,8 +1,4 @@
-import {
-  Links,
-  Meta,
-  Outlet,
-} from "react-router";
+import { Links, Meta, Outlet } from "react-router";
 
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 import { errorTitle, errorWords } from "capsomer/react/error-page";
@@ -86,4 +82,3 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     </main>
   );
 }
-

@@ -32,8 +32,7 @@ export const PAGES = [
   {
     path: "/language-support",
     title: "Language Support",
-    description:
-      "Scientific translation and ESL language polishing for international researchers.",
+    description: "Scientific translation and ESL language polishing for international researchers.",
   },
   {
     path: "/career-development",

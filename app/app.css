@@ -8,14 +8,16 @@
   No em dashes anywhere per house conventions.
 */
 @theme {
-  --font-sans: "Open Sans Variable", "Open Sans", "Open Sans Fallback", ui-sans-serif, system-ui, sans-serif,
+  --font-sans:
+    "Open Sans Variable", "Open Sans", "Open Sans Fallback", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /*
     The reference site sets every heading in Open Sans (no serif display face).
     --font-display therefore points at the same sans stack so section headings,
     stat values, and card titles match the reference typography.
   */
-  --font-display: "Open Sans Variable", "Open Sans", "Open Sans Fallback", ui-sans-serif, system-ui, sans-serif,
+  --font-display:
+    "Open Sans Variable", "Open Sans", "Open Sans Fallback", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
   /* Core palette */
@@ -185,7 +187,8 @@ body {
   .reveal {
     opacity: 0;
     transform: translateY(-28px);
-    transition: opacity var(--dur-reveal) var(--ease-out),
+    transition:
+      opacity var(--dur-reveal) var(--ease-out),
       transform var(--dur-reveal) var(--ease-back);
     will-change: opacity, transform;
   }
@@ -209,7 +212,9 @@ body {
   block-size: 0;
   opacity: 0;
   overflow: hidden;
-  transition: block-size 300ms var(--ease-out), opacity 300ms var(--ease-out),
+  transition:
+    block-size 300ms var(--ease-out),
+    opacity 300ms var(--ease-out),
     content-visibility 300ms allow-discrete;
 }
 .faq-item[open]::details-content {
@@ -241,13 +246,7 @@ body {
     black 85%,
     transparent 100%
   );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 15%,
-    black 85%,
-    transparent 100%
-  );
+  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
 }
 
 .logo-track {
@@ -365,12 +364,7 @@ body {
 .band-slab {
   z-index: 2;
   background: var(--color-band);
-  clip-path: polygon(
-    0 6rem,
-    100% 2.5rem,
-    100% calc(100% - 5.5rem),
-    0 calc(100% - 2.5rem)
-  );
+  clip-path: polygon(0 6rem, 100% 2.5rem, 100% calc(100% - 5.5rem), 0 calc(100% - 2.5rem));
 }
 .band-ghost {
   z-index: 1;
@@ -388,11 +382,7 @@ body {
   clip-path: polygon(0 6rem, 100% 0, 100% 2.5rem);
 }
 .band-ghost--bottom {
-  clip-path: polygon(
-    0 calc(100% - 2.5rem),
-    0 100%,
-    100% calc(100% - 5.5rem)
-  );
+  clip-path: polygon(0 calc(100% - 2.5rem), 0 100%, 100% calc(100% - 5.5rem));
 }
 @media (max-width: 767px) {
   .band-cut {
@@ -400,22 +390,13 @@ body {
     margin-bottom: -2.5rem;
   }
   .band-slab {
-    clip-path: polygon(
-      0 2.5rem,
-      100% 1.25rem,
-      100% calc(100% - 2.5rem),
-      0 calc(100% - 1.25rem)
-    );
+    clip-path: polygon(0 2.5rem, 100% 1.25rem, 100% calc(100% - 2.5rem), 0 calc(100% - 1.25rem));
   }
   .band-ghost--top {
     clip-path: polygon(0 2.5rem, 100% 0, 100% 1.25rem);
   }
   .band-ghost--bottom {
-    clip-path: polygon(
-      0 calc(100% - 1.25rem),
-      0 100%,
-      100% calc(100% - 2.5rem)
-    );
+    clip-path: polygon(0 calc(100% - 1.25rem), 0 100%, 100% calc(100% - 2.5rem));
   }
 }
 
@@ -510,16 +491,21 @@ body {
     var(--btn-tint1) 45%,
     var(--btn-tint2) 100%
   );
-  box-shadow: 0 4px 22px rgba(var(--btn-glow), 0.22), inset 0 1px 0 #fff,
+  box-shadow:
+    0 4px 22px rgba(var(--btn-glow), 0.22),
+    inset 0 1px 0 #fff,
     inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
-  transition: transform var(--dur-hover) var(--ease-out),
+  transition:
+    transform var(--dur-hover) var(--ease-out),
     box-shadow var(--dur-hover) var(--ease-out),
     filter var(--dur-hover) var(--ease-out);
   will-change: transform;
 }
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(var(--btn-glow), 0.3), inset 0 1px 0 #fff,
+  box-shadow:
+    0 8px 30px rgba(var(--btn-glow), 0.3),
+    inset 0 1px 0 #fff,
     inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
   filter: brightness(1.02);
 }
@@ -715,15 +701,12 @@ body {
   position: relative;
   padding: 6px;
   border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.55),
-    rgba(210, 228, 255, 0.35)
-  );
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.55), rgba(210, 228, 255, 0.35));
   backdrop-filter: blur(18px) saturate(1.6);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
   border: 1.5px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 32px rgba(0, 80, 160, 0.13),
+  box-shadow:
+    0 8px 32px rgba(0, 80, 160, 0.13),
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
     inset 0 -1px 0 rgba(180, 210, 255, 0.3);
   cursor: grab;
@@ -745,7 +728,9 @@ body {
   white-space: nowrap;
   pointer-events: none;
   line-height: 1;
-  transition: color 0.3s, text-shadow 0.3s;
+  transition:
+    color 0.3s,
+    text-shadow 0.3s;
 }
 .psms-track-label[data-idx="0"].psms-active {
   color: var(--color-anno-sci);
@@ -777,9 +762,13 @@ body {
     rgba(185, 220, 248, 0.8) 100%
   );
   border: 1px solid rgba(255, 255, 255, 0.98);
-  box-shadow: 0 4px 22px rgba(0, 102, 161, 0.22), inset 0 1px 0 #fff,
+  box-shadow:
+    0 4px 22px rgba(0, 102, 161, 0.22),
+    inset 0 1px 0 #fff,
     inset 0 -1px 0 rgba(0, 102, 161, 0.25);
-  transition: background 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    background 0.4s ease,
+    box-shadow 0.4s ease;
 }
 .psms-pill.psms-color-1 {
   background: linear-gradient(
@@ -788,7 +777,9 @@ body {
     rgba(225, 240, 195, 0.88) 45%,
     rgba(210, 232, 170, 0.8) 100%
   );
-  box-shadow: 0 4px 22px rgba(87, 126, 32, 0.22), inset 0 1px 0 #fff,
+  box-shadow:
+    0 4px 22px rgba(87, 126, 32, 0.22),
+    inset 0 1px 0 #fff,
     inset 0 -1px 0 rgba(87, 126, 32, 0.25);
 }
 .psms-pill.psms-color-2 {
@@ -798,7 +789,9 @@ body {
     rgba(255, 230, 205, 0.88) 45%,
     rgba(252, 215, 180, 0.8) 100%
   );
-  box-shadow: 0 4px 22px rgba(183, 91, 21, 0.22), inset 0 1px 0 #fff,
+  box-shadow:
+    0 4px 22px rgba(183, 91, 21, 0.22),
+    inset 0 1px 0 #fff,
     inset 0 -1px 0 rgba(183, 91, 21, 0.25);
 }
 .psms-pill::before {
@@ -807,15 +800,13 @@ body {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background: linear-gradient(
-    155deg,
-    rgba(255, 255, 255, 0.85) 0%,
-    transparent 42%
-  );
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.85) 0%, transparent 42%);
 }
 .psms-pill.psms-snapping {
-  transition: transform 0.38s var(--ease-back),
-    width 0.38s var(--ease-back), background 0.38s ease,
+  transition:
+    transform 0.38s var(--ease-back),
+    width 0.38s var(--ease-back),
+    background 0.38s ease,
     box-shadow 0.38s ease;
 }
 
@@ -928,14 +919,17 @@ body {
   width: 322px;
   overflow: hidden;
   opacity: 1;
-  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+  transition:
+    max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.3s ease 0.05s;
 }
 .psms-layout[data-tab="original"] .psms-comments-col {
   max-width: 0;
   opacity: 0;
   pointer-events: none;
-  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+  transition:
+    max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease;
 }
 .psms-comments-scroll {
   height: 520px;
@@ -968,7 +962,10 @@ body {
   align-items: flex-start;
   gap: 10px;
   user-select: none;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
   will-change: transform;
 }
 .psms-card:hover {
@@ -981,16 +978,24 @@ body {
   transform: translateY(-1px);
 }
 .psms-card.psms-card-lit.psms-editorial-card {
-  box-shadow: 0 0 0 2px var(--c-ed), 0 4px 16px rgba(183, 91, 21, 0.15);
+  box-shadow:
+    0 0 0 2px var(--c-ed),
+    0 4px 16px rgba(183, 91, 21, 0.15);
 }
 .psms-card.psms-card-lit.psms-scientific-card {
-  box-shadow: 0 0 0 2px var(--c-sc), 0 4px 16px rgba(0, 102, 161, 0.15);
+  box-shadow:
+    0 0 0 2px var(--c-sc),
+    0 4px 16px rgba(0, 102, 161, 0.15);
 }
 .psms-card.psms-card-lit.psms-rhetorical-card {
-  box-shadow: 0 0 0 2px var(--c-rh), 0 4px 16px rgba(71, 85, 105, 0.15);
+  box-shadow:
+    0 0 0 2px var(--c-rh),
+    0 4px 16px rgba(71, 85, 105, 0.15);
 }
 .psms-card.psms-card-lit.psms-impact-card {
-  box-shadow: 0 0 0 2px var(--c-im), 0 4px 16px rgba(87, 126, 32, 0.15);
+  box-shadow:
+    0 0 0 2px var(--c-im),
+    0 4px 16px rgba(87, 126, 32, 0.15);
 }
 .psms-card-icon {
   flex: 0 0 28px;
@@ -1107,6 +1112,8 @@ body {
   }
   .psms-pill,
   .psms-pill.psms-snapping {
-    transition: background 0.38s ease, box-shadow 0.38s ease !important;
+    transition:
+      background 0.38s ease,
+      box-shadow 0.38s ease !important;
   }
 }

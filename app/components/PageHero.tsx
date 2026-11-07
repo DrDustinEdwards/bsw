@@ -3,13 +3,7 @@
   section-heading treatment used on the home page: a large uppercase title on
   the dark brand band, with an optional subtitle.
 */
-export function PageHero({
-  title,
-  subtitle,
-}: {
-  title: string;
-  subtitle?: string;
-}) {
+export function PageHero({ title, subtitle }: { title: string; subtitle?: string }) {
   return (
     <section className="bg-[color:var(--color-band)]">
       <div className="mx-auto max-w-4xl px-5 py-20 text-center sm:py-24">

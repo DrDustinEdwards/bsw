@@ -16,7 +16,11 @@ function shareCards(): Plugin {
     async generateBundle() {
       if (this.environment.name !== "client") return;
       for (const page of PAGES.filter((p) => p.path !== "/")) {
-        this.emitFile({ type: "asset", fileName: shareCardPath(page.path).slice(1), source: await shareCard(page) });
+        this.emitFile({
+          type: "asset",
+          fileName: shareCardPath(page.path).slice(1),
+          source: await shareCard(page),
+        });
       }
     },
   };

@@ -9,7 +9,9 @@ import { mediaUrl } from "../lib/media/images";
   shell. The home page lists the photographs it shows (the grant review card and the team), at their /media address;
   the header and footer logos are on every page and are not its content.
 */
-const HOME_PHOTOS = [FLAGSHIP.photo, ...TEAM.map((member) => member.photo)].map((photo) => absUrl(mediaUrl(photo.src.slice(1))));
+const HOME_PHOTOS = [FLAGSHIP.photo, ...TEAM.map((member) => member.photo)].map((photo) =>
+  absUrl(mediaUrl(photo.src.slice(1))),
+);
 
 export function loader() {
   const xml = sitemapDocument(

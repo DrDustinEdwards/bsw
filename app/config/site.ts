@@ -56,10 +56,26 @@ const head = defineHead({
   consistent. The home page shares the site card; every other page its own.
 */
 export function pageMeta({ title, description, path, fullTitle }: Page): Record<string, unknown>[] {
-  const image = path === "/" ? undefined : { url: shareCardPath(path), width: 1200, height: 630, type: "image/png", alt: `${title}, ${SITE.name}` };
+  const image =
+    path === "/"
+      ? undefined
+      : {
+          url: shareCardPath(path),
+          width: 1200,
+          height: 630,
+          type: "image/png",
+          alt: `${title}, ${SITE.name}`,
+        };
   return [
     // The share card keeps the whole title with the site name.
-    ...head({ title, description, path, fullTitle, image, socialTitle: fullTitle ? undefined : `${title} | ${SITE.name}` }),
+    ...head({
+      title,
+      description,
+      path,
+      fullTitle,
+      image,
+      socialTitle: fullTitle ? undefined : `${title} | ${SITE.name}`,
+    }),
     { name: "twitter:site", content: SITE.twitter },
     jsonLd(organizationLd()),
   ];

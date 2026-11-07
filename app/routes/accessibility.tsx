@@ -4,7 +4,7 @@ import { pageMeta, SITE } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return pageMeta(page("/accessibility"));
 }
 

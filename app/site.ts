@@ -13,7 +13,12 @@ function enhanceHeader() {
   const header = document.querySelector<HTMLElement>("[data-header]");
   if (!header) return;
   const onScroll = () =>
-    swap(header, "border-transparent bg-white/70", "border-slate-200 bg-white/90", window.scrollY > 8);
+    swap(
+      header,
+      "border-transparent bg-white/70",
+      "border-slate-200 bg-white/90",
+      window.scrollY > 8,
+    );
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 

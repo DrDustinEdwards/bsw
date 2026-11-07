@@ -6,7 +6,13 @@
 // Keys for new files are uploads/<yyyy>/<mm>/<name>-<hash>.<ext>. The bytes a replace, turn, revert or shrink overwrites
 // are kept in MEDIA under history/<key>/<hash>, which /media never serves (serve.server.ts serves only uploads/ keys and
 // the site's own photographs).
-import { d1MediaStore, datedKey, mediaLibrary, type MediaAdapter, type MediaResize } from "@dustinedwards/site-api";
+import {
+  d1MediaStore,
+  datedKey,
+  mediaLibrary,
+  type MediaAdapter,
+  type MediaResize,
+} from "@dustinedwards/site-api";
 import { mediaUrl, UPLOAD_PREFIX } from "~/lib/media/images";
 import { suggestFor } from "~/lib/media/suggest.server";
 
@@ -16,7 +22,15 @@ import { suggestFor } from "~/lib/media/suggest.server";
  */
 const LIMITS = {
   maxBytes: 20 * 1024 * 1024,
-  types: ["image/jpeg", "image/png", "image/webp", "image/avif", "image/gif", "image/heic", "image/heif"],
+  types: [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "image/avif",
+    "image/gif",
+    "image/heic",
+    "image/heif",
+  ],
 };
 
 /**
@@ -37,6 +51,7 @@ export function carrelMediaAdapter(env: Env): MediaAdapter {
     history: { bucket: env.MEDIA, prefix: "history/" },
     suggest: (picture, id) => suggestFor(env, picture, id),
     // The package checks every address and each redirect before this fetch runs.
-    importFetch: ((input: RequestInfo | URL, init?: RequestInit) => fetch(input, init)) as typeof fetch,
+    importFetch: ((input: RequestInfo | URL, init?: RequestInit) =>
+      fetch(input, init)) as typeof fetch,
   });
 }

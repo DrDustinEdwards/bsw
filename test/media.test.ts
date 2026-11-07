@@ -10,7 +10,11 @@ import { registerHooks } from "node:module";
 const app = new URL("../app/", import.meta.url).href;
 registerHooks({
   resolve(specifier, context, next) {
-    if (specifier.startsWith(".") && context.parentURL?.startsWith(app) && !/\.[cm]?[jt]sx?$/.test(specifier)) {
+    if (
+      specifier.startsWith(".") &&
+      context.parentURL?.startsWith(app) &&
+      !/\.[cm]?[jt]sx?$/.test(specifier)
+    ) {
       const target = new URL(`${specifier}.ts`, context.parentURL);
       if (existsSync(target)) return next(target.href, context);
     }
@@ -30,8 +34,21 @@ const object = (contentType: string) => ({
 });
 
 const env = {
-  MEDIA: { get: async (key: string) => (key === UPLOAD || key.startsWith("history/") ? object("image/jpeg") : null) },
-  ASSETS: { fetch: async (request: Request) => new Response("bytes", { status: new URL(request.url).pathname.endsWith(".svg") || new URL(request.url).pathname === `/${PHOTO}` ? 200 : 404, headers: { "content-type": "image/webp" } }) },
+  MEDIA: {
+    get: async (key: string) =>
+      key === UPLOAD || key.startsWith("history/") ? object("image/jpeg") : null,
+  },
+  ASSETS: {
+    fetch: async (request: Request) =>
+      new Response("bytes", {
+        status:
+          new URL(request.url).pathname.endsWith(".svg") ||
+          new URL(request.url).pathname === `/${PHOTO}`
+            ? 200
+            : 404,
+        headers: { "content-type": "image/webp" },
+      }),
+  },
 } as unknown as Env;
 
 const get = (path: string) => serveMedia(new Request(`https://bsw.example.com/media/${path}`), env);
@@ -45,7 +62,12 @@ test("/media serves a library upload and a brand file, and nothing else", async 
   assert.equal(photo.status, 200);
   assert.equal(photo.headers.get("cache-control"), "public, max-age=31536000, immutable");
 
-  for (const path of [`history/${UPLOAD}/0a1b2c3d`, "logos/institutions/logo-mayo-clinic.svg", "team/Lisa-Giles.630f0b9c.webp", "uploads/../history/x.jpg"]) {
+  for (const path of [
+    `history/${UPLOAD}/0a1b2c3d`,
+    "logos/institutions/logo-mayo-clinic.svg",
+    "team/Lisa-Giles.630f0b9c.webp",
+    "uploads/../history/x.jpg",
+  ]) {
     assert.equal((await get(path)).status, 404, path);
   }
   // A size URL as the page writes it names its format after the stored key: found (then refused for its width), not 404.
