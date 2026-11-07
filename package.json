@@ -21,7 +21,7 @@
     "format:check": "oxfmt --check"
   },
   "dependencies": {
-    "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.34.0",
+    "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.39.1",
     "@dustinedwards/d1-dump": "github:DrDustinEdwards/d1-dump#v0.15.0",
     "@dustinedwards/site-api": "github:DrDustinEdwards/site-api#v0.28.0",
     "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.91.1",
@@ -29,6 +29,7 @@
     "capsomer": "github:DrDustinEdwards/capsomer#v0.77.0",
     "hast-util-from-html": "2.0.3",
     "hast-util-to-mdast": "10.1.2",
+    "hast-util-to-string": "3.0.1",
     "lucide-react": "1.67.0",
     "mdast-util-gfm": "3.1.0",
     "mdast-util-to-markdown": "2.2.0",

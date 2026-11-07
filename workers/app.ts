@@ -199,7 +199,7 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
 export default {
   // Prelum's markdownCopies: every page also answers as Markdown at /path.md and for Accept: text/markdown, made from its
   // <main>, and /llms-full.txt is built from llms.txt and the sitemap (area 1, gap 5).
-  fetch: markdownCopies(gateway, { origin: SITE.url }),
+  fetch: markdownCopies(gateway, { origin: SITE.url, siteMarkdown: false }),
 
   // The nightly jobs (wrangler.jsonc triggers.crons, app/lib/cron.server.ts), each isolated, timed out and recorded in
   // cron_runs by site-runtime ./cron, which /health reads. A cron with no list runs nothing and says so.
