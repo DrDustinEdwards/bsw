@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { siteScript } from "@dustinedwards/devkit/vite/site-script";
 import { defineConfig, type Plugin } from "vite";
 import { PAGES, shareCardPath } from "./app/config/pages.ts";
-import { shareCard } from "./scripts/share-cards.ts";
+import { renderPageCard } from "./scripts/share-cards.ts";
 
 // public/_headers is written before the build by site-runtime-headers from the registry entry (npm run headers).
 
@@ -19,7 +19,7 @@ function shareCards(): Plugin {
         this.emitFile({
           type: "asset",
           fileName: shareCardPath(page.path).slice(1),
-          source: await shareCard(page),
+          source: await renderPageCard(page),
         });
       }
     },
