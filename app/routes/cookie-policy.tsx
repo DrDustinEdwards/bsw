@@ -12,7 +12,7 @@ export default function CookiePolicy() {
       <PageHero title="Cookie Policy" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Transparency in Digital Experience and Site Functionality</h3>
+          <h2 className="prose-sub">Transparency in Digital Experience and Site Functionality</h2>
           <p>
             BioScience Writers uses cookies and similar tracking technologies to ensure our website
             and secure client portal function efficiently. This policy explains what cookies are,
@@ -20,7 +20,7 @@ export default function CookiePolicy() {
             experience aligns with your privacy needs.
           </p>
 
-          <h3>1. What Are Cookies?</h3>
+          <h2 className="prose-sub">1. What Are Cookies?</h2>
           <p>
             Cookies are small text files stored on your device when you visit a website. They help
             the site recognize you, remember your preferences, and provide a secure, personalized
@@ -38,7 +38,7 @@ export default function CookiePolicy() {
             </li>
           </ul>
 
-          <h3>2. How We Use Cookies</h3>
+          <h2 className="prose-sub">2. How We Use Cookies</h2>
           <p>We categorize our cookies into three main areas to maintain transparency:</p>
           <ul>
             <li>
@@ -59,7 +59,7 @@ export default function CookiePolicy() {
             </li>
           </ul>
 
-          <h3>3. Third-Party Cookies</h3>
+          <h2 className="prose-sub">3. Third-Party Cookies</h2>
           <p>In some cases, we use cookies provided by trusted third parties. This includes:</p>
           <ul>
             <li>
@@ -73,7 +73,7 @@ export default function CookiePolicy() {
             </li>
           </ul>
 
-          <h3>4. Managing Your Preferences</h3>
+          <h2 className="prose-sub">4. Managing Your Preferences</h2>
           <p>
             You have full control over the cookies used during your visit. You can manage them in
             the following ways:
@@ -95,7 +95,7 @@ export default function CookiePolicy() {
             </li>
           </ul>
 
-          <h3>5. Policy Updates</h3>
+          <h2 className="prose-sub">5. Policy Updates</h2>
           <p>
             We may update this Cookie Policy from time to time to reflect changes in technology or
             data protection laws. Any updates will be posted on this page with an updated "Last

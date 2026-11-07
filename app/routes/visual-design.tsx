@@ -13,7 +13,9 @@ export default function VisualDesign() {
       <PageHero title="Visual Design" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Professional Design and Technical Precision for Scientific Content</h3>
+          <h2 className="prose-sub">
+            Professional Design and Technical Precision for Scientific Content
+          </h2>
           <p>
             In the competitive world of peer-reviewed publishing, how your data is presented is as
             important as the data itself. BioScience Writers has consolidated our design and
@@ -22,7 +24,7 @@ export default function VisualDesign() {
             standards of international publishing and regulatory compliance.
           </p>
 
-          <h3>Scientific Figure &amp; Table Optimization</h3>
+          <h2 className="prose-sub">Scientific Figure &amp; Table Optimization</h2>
           <p>
             We transform raw data and rough sketches into publication-ready assets. Our team ensures
             that your visuals are not only aesthetically professional but also scientifically
@@ -45,7 +47,7 @@ export default function VisualDesign() {
             </li>
           </ul>
 
-          <h3>Medical Illustration &amp; Specialized Design</h3>
+          <h2 className="prose-sub">Medical Illustration &amp; Specialized Design</h2>
           <p>
             For concepts that cannot be captured by data alone, our medical illustration services
             provide high-fidelity visual explanations. We support authors, educators, and clinicians
@@ -67,7 +69,7 @@ export default function VisualDesign() {
             </li>
           </ul>
 
-          <h3>Journal Formatting &amp; Technical Layouts</h3>
+          <h2 className="prose-sub">Journal Formatting &amp; Technical Layouts</h2>
           <p>
             Technical errors in formatting are a leading cause of administrative rejection. Our
             layout specialists handle the meticulous details of journal compliance, allowing you to

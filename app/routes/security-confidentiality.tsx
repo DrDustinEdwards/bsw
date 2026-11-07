@@ -12,7 +12,7 @@ export default function SecurityConfidentiality() {
       <PageHero title="Security and Confidentiality" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>Protecting the Integrity of Your Intellectual Property</h3>
+          <h2 className="prose-sub">Protecting the Integrity of Your Intellectual Property</h2>
           <p>
             At BioScience Writers, we recognize that your unpublished research, proprietary data,
             and grant strategies are your most valuable assets. We have established a multi-layered
@@ -20,7 +20,7 @@ export default function SecurityConfidentiality() {
             secure, and protected throughout the entire editorial process.
           </p>
 
-          <h3>The Triple-Lock Security Framework</h3>
+          <h2 className="prose-sub">The Triple-Lock Security Framework</h2>
           <p>
             Our security protocols are designed to meet the rigorous standards of leading research
             universities and federal funding agencies:
@@ -44,7 +44,7 @@ export default function SecurityConfidentiality() {
             </li>
           </ul>
 
-          <h3>Specialized Compliance</h3>
+          <h2 className="prose-sub">Specialized Compliance</h2>
           <p>
             We understand the specific regulatory requirements of medical and academic institutions:
           </p>
@@ -65,7 +65,7 @@ export default function SecurityConfidentiality() {
             </li>
           </ul>
 
-          <h3>Secure Data Handling &amp; Deletion</h3>
+          <h2 className="prose-sub">Secure Data Handling &amp; Deletion</h2>
           <p>We maintain your files only as long as necessary to provide our services.</p>
           <ul>
             <li>
@@ -82,7 +82,7 @@ export default function SecurityConfidentiality() {
             </li>
           </ul>
 
-          <h3>Institutional Verification</h3>
+          <h2 className="prose-sub">Institutional Verification</h2>
           <p>
             If your university or department requires a signed Master Service Agreement (MSA) or
             specific security documentation to clear our service for use with grant funds, our
