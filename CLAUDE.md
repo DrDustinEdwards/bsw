@@ -10,7 +10,7 @@ Standalone marketing site for BioScience Writers, rebuilt from the old WordPress
 
 Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
-Stack and layout are in README.md. Single production Worker, no staging. The page's copy is code; D1 (`DB`) and R2 (`MEDIA`, `BACKUPS`) hold only the media library Carrel uploads to and its nightly backup, and the Images binding serves every photograph at /media; no KV or DO. `wrangler.jsonc` is gitignored (it holds the D1 id): `npm install` copies `wrangler.jsonc.example`. CI (`.github/workflows/ci.yml`) typechecks, lints, checks the format, tests, builds and audits every PR and push to main; `checks / Repo checks` (devkit's pr.yml) runs the shared checks, no-bloat and the Worker size on every PR.
+Stack and layout are in README.md. Single production Worker, no staging. The page's copy is code; D1 (`DB`) and R2 (`MEDIA`, `BACKUPS`) hold only the media library Carrel uploads to and its nightly backup, and the Images binding serves every photograph at /media; no KV; one DO class, site-runtime's `RateLimiter`, counts the operator API (`/api/operator`, the door Capsid Admin's backups reach the site through, `OPERATOR_TOKEN` bearer). `wrangler.jsonc` is gitignored (it holds the D1 id): `npm install` copies `wrangler.jsonc.example`. CI (`.github/workflows/ci.yml`) typechecks, lints, checks the format, tests, builds and audits every PR and push to main; `checks / Repo checks` (devkit's pr.yml) runs the shared checks, no-bloat and the Worker size on every PR.
 
 ## Commands
 
