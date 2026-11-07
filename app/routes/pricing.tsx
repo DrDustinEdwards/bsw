@@ -12,7 +12,7 @@ export default function Pricing() {
       <PageHero title="Pricing" />
       <section>
         <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
-          <h3>1. The Core Pricing</h3>
+          <h2 className="prose-sub">1. The Core Pricing</h2>
           <p>BSW traditionally uses a Per-Word rate based on Turnaround Time.</p>
           <ul>
             <li>
@@ -30,7 +30,7 @@ export default function Pricing() {
             </li>
           </ul>
 
-          <h3>2. The Quality Seal</h3>
+          <h2 className="prose-sub">2. The Quality Seal</h2>
           <ul>
             <li>
               <strong>100% Satisfaction Guarantee:</strong> If a journal rejects a paper for English
@@ -42,7 +42,7 @@ export default function Pricing() {
             </li>
           </ul>
 
-          <h3>3. Institutional &amp; Volume Discounts</h3>
+          <h2 className="prose-sub">3. Institutional &amp; Volume Discounts</h2>
           <ul>
             <li>
               <strong>Referral Program:</strong> Discounts for PIs who refer their colleagues.
