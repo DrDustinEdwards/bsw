@@ -10,6 +10,7 @@ import {
 import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { backupHealth, filesHealth } from "@dustinedwards/d1-dump";
 import { cronCheck, runJobs } from "@dustinedwards/site-runtime/cron";
+import { maintenanceOn, maintenanceResponse } from "@dustinedwards/site-runtime/maintenance";
 import { aiCheck, healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
 import { logEvent } from "@dustinedwards/site-runtime/log";
 import { generateNonce, reportingEndpoints } from "@dustinedwards/site-runtime/csp";
@@ -111,6 +112,12 @@ async function gateway(request: Request, env: Env, ctx: ExecutionContext): Promi
   if (redirect) {
     applyHeaderSet(redirect.headers, SECURITY_HEADERS);
     return redirect;
+  }
+  // The maintenance page (site-runtime ./maintenance): every path but /health answers 503 while the MAINTENANCE var is on.
+  if (maintenanceOn(env) && url.pathname !== "/health") {
+    const down = maintenanceResponse({ siteName: "BioScience Writers" });
+    applyHeaderSet(down.headers, SECURITY_HEADERS);
+    return down;
   }
   if (url.pathname === CSP_REPORT_PATH) {
     // Keyed on the edge-set client address; a refusal drops the report (still 204).
