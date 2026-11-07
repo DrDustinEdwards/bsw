@@ -13,13 +13,25 @@ const DAY = 1440;
 export function cronJobs(env: Env): Record<string, CronJob[]> {
   return {
     [NIGHTLY_CRON]: [
-      { name: "backup", everyMinutes: DAY, timeoutMs: 5 * MINUTE, run: () => runBackup(env) },
+      {
+        name: "backup",
+        everyMinutes: DAY,
+        timeoutMs: 5 * MINUTE,
+        backup: true,
+        run: () => runBackup(env),
+      },
       {
         name: "media-backup",
         everyMinutes: DAY,
         timeoutMs: 4 * MINUTE,
+        backup: true,
         run: () => runMediaBackup(env),
       },
     ],
   };
+}
+
+/** Every job of every cron, for /health's cronCheck and the operator API's run_job (names and intervals; `run` is called only by run_job). */
+export function allCronJobs(env: Env): CronJob[] {
+  return Object.values(cronJobs(env)).flat();
 }
