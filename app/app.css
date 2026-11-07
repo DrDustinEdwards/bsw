@@ -272,11 +272,11 @@ body {
   height: 120px;
   margin: 0 45px;
 }
+/* A fixed box inside the fixed tile, so the lazy image's size does not depend on its file (Chrome's
+   LazyLoadImageIssue flags width and height auto; web.dev/articles/cls). contain centers it as the flex row did. */
 .logo-box img {
-  width: auto;
-  height: auto;
-  max-width: 92%;
-  max-height: 75%;
+  width: 92%;
+  height: 75%;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
