@@ -11,7 +11,7 @@ import { receiveCspReport } from "@dustinedwards/site-runtime/csp-report";
 import { cronCheck, runJobs, runJobTool } from "@dustinedwards/site-runtime/cron";
 import { operatorResponse } from "@dustinedwards/site-runtime/operator";
 import { maintenanceOn, maintenanceResponse } from "@dustinedwards/site-runtime/maintenance";
-import { aiCheck, healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
+import { healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
 import { logEvent } from "@dustinedwards/site-runtime/log";
 import { CSP_REPORT_PATH, generateNonce } from "@dustinedwards/site-runtime/csp";
 import {
@@ -139,7 +139,6 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
       checks: [
         { ...r2Check("media", env.MEDIA), level: "warn" },
         imagesCheck("images", env.IMAGES),
-        aiCheck("ai", env.AI),
         cronCheck(env.DB, {
           jobs: allCronJobs(env),
           deployedAt: new Date(env.CF_VERSION_METADATA.timestamp),
