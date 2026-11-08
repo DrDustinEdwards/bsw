@@ -62,7 +62,7 @@ export function Footer() {
                 {...sitePicture(
                   { src: "/brand/bsw-cube-mark-88.f455c15f.webp", width: 88, height: 88 },
                   "mark",
-                  { alt: "", className: "h-11 w-auto" },
+                  { alt: "", className: "size-11" },
                 )}
               />
               <span className="font-display text-xl font-semibold text-white">{SITE.name}</span>

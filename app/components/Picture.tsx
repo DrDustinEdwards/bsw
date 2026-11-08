@@ -8,8 +8,16 @@ export function Picture({ sources, img }: PictureProps) {
       {sources.map((source) => (
         <source key={`${source.type} ${source.media ?? ""}`} {...source} />
       ))}
+      {/* The ratio from the file's own size, named: Chrome flags a lazy image whose height is auto and whose ratio is only
+          the attribute-derived `auto w / h` (LazyLoadImageIssue; web.dev/articles/cls). */}
       {/* oxlint-disable-next-line jsx-a11y/alt-text -- pictureProps always sets img.alt (empty for a decorative picture). */}
-      <img {...img} />
+      <img
+        {...img}
+        style={{
+          ...(img.width && img.height ? { aspectRatio: `${img.width} / ${img.height}` } : {}),
+          ...img.style,
+        }}
+      />
     </picture>
   );
 }
