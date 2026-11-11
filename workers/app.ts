@@ -4,7 +4,8 @@ import type { ServerBuild } from "react-router";
 import { siteApiStep } from "@dustinedwards/site-api";
 import { standardFiles } from "@drdustinedwards/site-helpers/files";
 import { markdownCopies } from "@drdustinedwards/site-helpers/markdown-copy";
-import { cronCheck, runJobTool } from "@dustinedwards/site-runtime/cron";
+import { cronCheck, operatorJobTools } from "@dustinedwards/site-runtime/cron";
+import { deployedAt, deployedSha } from "@dustinedwards/site-runtime/deploy";
 import { healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
 import { defineSite, siteRenderer, siteWorker } from "@dustinedwards/site-runtime/worker";
 import { FONT_PRELOADS } from "../app/preloads";
@@ -40,14 +41,13 @@ const site = defineSite<Env>({
       lang: "en",
     },
   }),
-  operator: (env) => ({
-    backup_status: {
-      description:
-        "Reads the backup state now, uncached: the newest complete D1 dump's age and the media files pass, with when each last completed, and a warning when either is past 26 hours. The same read as /health's backup field.",
-      run: () => backupStatus(env),
-    },
-    run_job: runJobTool(env.DB, () => allCronJobs(env)),
-  }),
+  operator: (env) =>
+    operatorJobTools({
+      db: env.DB,
+      jobs: () => allCronJobs(env),
+      backupStatus: () => backupStatus(env),
+      files: ["media"],
+    }),
   steps: [
     // site-runtime's healthResponse, with the deployed commit devkit's shared deploy waits for (CI passes DEPLOY_SHA).
     // 503 only when D1 does not answer, since Carrel's library needs it; the pages do not, so everything else warns: the
@@ -59,13 +59,13 @@ const site = defineSite<Env>({
         ? healthResponse({
             ping: () => env.DB.prepare("select 1").first(),
             backup: () => backupStatus(env),
-            sha: (env as Env & { DEPLOY_SHA?: string }).DEPLOY_SHA,
+            sha: deployedSha(env),
             checks: [
               { ...r2Check("media", env.MEDIA), level: "warn" },
               imagesCheck("images", env.IMAGES),
               cronCheck(env.DB, {
                 jobs: allCronJobs(env),
-                deployedAt: new Date(env.CF_VERSION_METADATA.timestamp),
+                deployedAt: deployedAt(env),
               }),
             ],
           })
