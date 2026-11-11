@@ -11,7 +11,7 @@ export default function Pricing() {
     <>
       <PageHero title="Pricing" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">1. The Core Pricing</h2>
           <p>BSW traditionally uses a Per-Word rate based on Turnaround Time.</p>
           <ul>

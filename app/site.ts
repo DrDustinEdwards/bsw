@@ -7,57 +7,17 @@
 // where an element names it with data-island, so the other pages never download them.
 import { startPage } from "@dustinedwards/site-runtime/page-client";
 import { startIslands } from "@dustinedwards/devkit/islands";
-import { swap } from "./swap";
+import { enhance as enhanceSiteHeader } from "capsomer/behavior/site-header";
 
-// The sticky bar's border once the page scrolls, the desktop dropdowns and the phone drawer.
+// The header's border and denser ground once the page scrolls (Capsomer's header has no scrolled state); its panels,
+// tips and phone sheet are Capsomer's enhance.
 function enhanceHeader() {
-  const header = document.querySelector<HTMLElement>("[data-header]");
+  enhanceSiteHeader();
+  const header = document.querySelector<HTMLElement>(".cap-site-header");
   if (!header) return;
-  const onScroll = () =>
-    swap(
-      header,
-      "border-transparent bg-white/70",
-      "border-slate-200 bg-white/90",
-      window.scrollY > 8,
-    );
+  const onScroll = () => header.toggleAttribute("data-scrolled", window.scrollY > 8);
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
-
-  const groups = [...header.querySelectorAll<HTMLElement>("[data-nav-group]")];
-  const setOpen = (group: HTMLElement, open: boolean) => {
-    const button = group.querySelector("button")!;
-    button.setAttribute("aria-expanded", String(open));
-    button.querySelector("svg")?.classList.toggle("rotate-180", open);
-    const panel = document.getElementById(button.getAttribute("aria-controls")!)!;
-    swap(panel, "invisible -translate-y-1 opacity-0", "visible translate-y-0 opacity-100", open);
-  };
-  for (const group of groups) {
-    const button = group.querySelector("button")!;
-    const others = (open: boolean) => groups.forEach((g) => setOpen(g, g === group && open));
-    group.addEventListener("mouseenter", () => others(true));
-    group.addEventListener("mouseleave", () => setOpen(group, false));
-    button.addEventListener("click", () => others(button.getAttribute("aria-expanded") !== "true"));
-    group.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && button.getAttribute("aria-expanded") === "true") {
-        setOpen(group, false);
-        button.focus();
-      }
-    });
-  }
-
-  const toggle = header.querySelector<HTMLButtonElement>("[data-menu-toggle]");
-  const drawer = document.getElementById("mobile-nav");
-  if (!toggle || !drawer) return;
-  toggle.addEventListener("click", () => {
-    const open = drawer.hidden;
-    drawer.hidden = !open;
-    toggle.setAttribute("aria-expanded", String(open));
-    toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    toggle.querySelector('[data-icon="open"]')?.classList.toggle("hidden", open);
-    toggle.querySelector('[data-icon="close"]')?.classList.toggle("hidden", !open);
-    // Lock the page behind the open drawer.
-    document.body.style.overflow = open ? "hidden" : "";
-  });
 }
 
 // Sections fade and drop into place the first time they scroll into view.

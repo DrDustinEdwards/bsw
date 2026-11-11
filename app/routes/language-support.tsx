@@ -12,7 +12,7 @@ export default function LanguageSupport() {
     <>
       <PageHero title="Language Support" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">
             Bridging the Gap Between International Research and Global Impact
           </h2>

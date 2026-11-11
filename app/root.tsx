@@ -30,7 +30,8 @@ export const links: Route.LinksFunction = () => [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    // One theme: data-theme="light" keeps Capsomer's tokens (the header, its sheet, the tabs) light under a dark system.
+    <html lang="en" data-theme="light">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,7 +68,10 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       <meta name="robots" content="noindex" />
       <PageHero title={title} />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 text-center sm:py-20">
+        <div
+          data-context="prose"
+          className="page-prose mx-auto max-w-3xl px-5 py-16 text-center sm:py-20"
+        >
           <p>{import.meta.env.DEV && error instanceof Error ? error.message : text}</p>
           <p className="mt-8">
             {status >= 500 ? (

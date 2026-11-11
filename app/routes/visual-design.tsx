@@ -12,7 +12,7 @@ export default function VisualDesign() {
     <>
       <PageHero title="Visual Design" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">
             Professional Design and Technical Precision for Scientific Content
           </h2>

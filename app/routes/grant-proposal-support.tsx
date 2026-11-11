@@ -12,7 +12,7 @@ export default function GrantProposalSupport() {
     <>
       <PageHero title="Grant and Proposal Support" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2>Maximizing Your Competitive Edge in Research Funding</h2>
           <p>
             Securing research funding requires more than just good data; it requires a strategic

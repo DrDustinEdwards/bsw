@@ -12,7 +12,7 @@ export default function InstitutionalPartnerships() {
     <>
       <PageHero title="Institutional Partnerships" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">
             Centralized Research Support for Universities, Biotech, and Research Hospitals
           </h2>

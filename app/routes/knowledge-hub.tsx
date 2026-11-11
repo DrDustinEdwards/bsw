@@ -12,7 +12,7 @@ export default function KnowledgeHub() {
     <>
       <PageHero title="Knowledge Hub" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2>Master the Art of Scientific Communication</h2>
           <p>
             The BioScience Writers Knowledge Hub is a centralized repository of expertise designed

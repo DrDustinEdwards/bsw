@@ -12,7 +12,7 @@ export default function OurExperts() {
     <>
       <PageHero title="PhD/MD Editors" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2>MD/PhD Authority in Every Scientific Discipline</h2>
           <p>
             At the core of BioScience Writers is an elite network of editors and consultants who are

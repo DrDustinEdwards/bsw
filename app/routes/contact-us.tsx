@@ -21,7 +21,7 @@ export default function ContactUs() {
     <>
       <PageHero title="Contact Us" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <p>
             BioScience Writers is located in Houston, Texas in the United States of America. You can
             reach us by any of the following methods. We are happy to discuss how our premier
