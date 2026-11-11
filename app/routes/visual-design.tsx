@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
@@ -92,12 +93,10 @@ export default function VisualDesign() {
             </li>
           </ul>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
-            Ready to professionalize your research visuals?
-          </p>
-          <div className="mt-5">
-            <PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>
-          </div>
+          <CtaBand
+            title="Ready to professionalize your research visuals?"
+            actions={<PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>}
+          />
         </div>
       </section>
     </>

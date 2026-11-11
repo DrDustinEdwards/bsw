@@ -1,6 +1,7 @@
 @import "tailwindcss" source(".");
 /* Size-matched Open Sans Fallback, so the swap to Open Sans does not move text. */
 @import "capsomer/fallback-fonts.css";
+@import "capsomer/cta-band.css";
 
 /*
   BioScience Writers design tokens.
@@ -1133,4 +1134,33 @@ body {
       background 0.38s ease,
       box-shadow 0.38s ease !important;
   }
+}
+
+/*
+  The closing "Ready to ..." line of a service page is Capsomer's call to action band (cta-band.md), kept
+  in the site's own look: plain, left-aligned words and the site button under them, no tinted band.
+*/
+.cap-cta-band {
+  display: block;
+  margin-block: 2.5rem 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  text-align: left;
+}
+.cap-cta-band-title {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.75rem;
+  text-wrap: wrap;
+}
+.cap-cta-band-actions {
+  display: block;
+  margin-block-start: 1.25rem;
+}
+.cap-cta-band-actions:empty {
+  display: none;
 }

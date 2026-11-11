@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
@@ -113,12 +114,14 @@ export default function OurExperts() {
             </li>
           </ul>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
-            Ready to connect with an expert in your field?
-          </p>
-          <div className="mt-5">
-            <PrimaryButton href="/contact-us">Meet Your Editor in the Client Portal</PrimaryButton>
-          </div>
+          <CtaBand
+            title="Ready to connect with an expert in your field?"
+            actions={
+              <PrimaryButton href="/contact-us">
+                Meet Your Editor in the Client Portal
+              </PrimaryButton>
+            }
+          />
         </div>
       </section>
     </>
