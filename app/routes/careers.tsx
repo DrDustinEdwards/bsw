@@ -11,7 +11,7 @@ export default function Careers() {
     <>
       <PageHero title="Careers" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2>Scientific Editing Jobs</h2>
           <p>
             We are seeking applications from editors and writers who can provide extensive grant

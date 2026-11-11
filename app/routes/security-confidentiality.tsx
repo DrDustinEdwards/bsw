@@ -11,7 +11,7 @@ export default function SecurityConfidentiality() {
     <>
       <PageHero title="Security and Confidentiality" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">Protecting the Integrity of Your Intellectual Property</h2>
           <p>
             At BioScience Writers, we recognize that your unpublished research, proprietary data,
@@ -89,7 +89,7 @@ export default function SecurityConfidentiality() {
             compliance team is available to assist.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Have questions about our security protocols?
           </p>
         </div>

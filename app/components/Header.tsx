@@ -1,26 +1,46 @@
+import { Menu } from "lucide-react";
 import { SiteHeader } from "capsomer/react/site-header";
 import { primaryNav } from "../data/nav";
 import { Wordmark } from "./Logo";
 
-// Capsomer's site header, server-rendered: the sticky bar (clear at the top of the page, its band once stuck, by a
-// scroll-state query), the dropdowns, the phone sheet and the skip link. app/site.ts wires them with `enhance`; no
-// React reaches the browser. Each group is a dropdown of its links.
+// A stable id for a nav group, for its panel's id.
+function groupId(label: string): string {
+  return label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+}
+
+// Capsomer's site header, written by the server for app/site.ts to wire (hydrate={false}: no React reaches the
+// browser). Its look is bsw's, set by the --header-* tokens in app.css; the site has one theme, so no theme button.
 export function Header() {
   return (
     <SiteHeader
       hydrate={false}
-      logo={{ href: "/", label: "BioScience Writers", wordmark: <Wordmark /> }}
+      theme={false}
+      translucent
+      links="center"
+      collapse="lg"
+      sheetIcons="auto"
+      menuIcon={<Menu aria-hidden="true" />}
+      skipTo="#main"
+      logo={{
+        href: "/",
+        label: "BioScience Writers",
+        name: "BioScience Writers home",
+        wordmark: <Wordmark />,
+      }}
       sections={primaryNav.map((group) => ({
-        id: group.label.toLowerCase(),
+        id: groupId(group.label),
         label: group.label,
         groups: [{ links: group.links }],
       }))}
-      extras={[{ id: "quote", label: "Get a Quote", kind: "button", href: "/pricing" }]}
-      theme={false}
-      rest="clear"
-      translucent
-      skipTo="#main"
-      sheetTitle="Menu"
+      extras={[
+        {
+          id: "quote",
+          label: "Get a Quote",
+          kind: "button",
+          href: "/pricing",
+          className: "btn btn-blue btn-sm",
+        },
+      ]}
     />
   );
 }

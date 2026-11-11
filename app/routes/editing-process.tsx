@@ -11,7 +11,7 @@ export default function EditingProcess() {
     <>
       <PageHero title="Our Process: The BSW Scientific Pipeline" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">
             PhD-Led Precision. Urgent Turnaround. Global Publication Success.
           </h2>

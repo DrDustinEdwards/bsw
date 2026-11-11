@@ -11,7 +11,7 @@ export default function CookiePolicy() {
     <>
       <PageHero title="Cookie Policy" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">Transparency in Digital Experience and Site Functionality</h2>
           <p>
             BioScience Writers uses cookies and similar tracking technologies to ensure our website

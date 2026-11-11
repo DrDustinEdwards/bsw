@@ -12,7 +12,7 @@ export default function ManuscriptEditing() {
     <>
       <PageHero title="Manuscript Editing" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2>Manuscript &amp; Publication Success</h2>
           <h3>Comprehensive Editing for the Modern Researcher</h3>
           <p>
@@ -80,7 +80,7 @@ export default function ManuscriptEditing() {
             your next breakthrough.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to move your research toward publication?
           </p>
           <div className="mt-5">

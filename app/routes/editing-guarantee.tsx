@@ -11,7 +11,7 @@ export default function EditingGuarantee() {
     <>
       <PageHero title="Editing Guarantee" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2 className="prose-sub">MD/PhD Oversight for Peer-Review Success</h2>
           <p>
             At BioScience Writers, we believe that scientific editing requires more than just
@@ -82,7 +82,7 @@ export default function EditingGuarantee() {
             reflects your research accurately and professionally.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to submit with confidence?
           </p>
         </div>

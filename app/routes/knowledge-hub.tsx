@@ -12,7 +12,7 @@ export default function KnowledgeHub() {
     <>
       <PageHero title="Knowledge Hub" />
       <section>
-        <div className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
           <h2>Master the Art of Scientific Communication</h2>
           <p>
             The BioScience Writers Knowledge Hub is a centralized repository of expertise designed
@@ -107,7 +107,7 @@ export default function KnowledgeHub() {
             </li>
           </ul>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to elevate your scientific writing?
           </p>
           <div className="mt-5">
