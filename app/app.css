@@ -195,9 +195,8 @@ body {
   --header-link-gap: 4px;
   --header-cta: transparent;
   --header-icon-size: 40px;
-  --header-glyph-size: 24px;
-  --header-glyph-stroke: 2;
-  --header-row-tools-gap: 12px;
+  --header-icon-glyph: 24px;
+  --header-icon-stroke: 2;
   /* The phone sheet's group labels in small blue capitals, its rows at 0.95rem, 39px apart (35px and the sheet's 4px gap). */
   --header-sheet-label-ink: var(--color-brand);
   --header-sheet-label-fs: 0.75rem;
@@ -207,6 +206,13 @@ body {
   --header-sheet-row-fs: 0.95rem;
   --header-sheet-row-h: 35px;
   transition: border-color var(--dur-content) var(--ease-out);
+}
+
+/* The menu button 12px after Get a Quote in the phone's row (under 1024px, collapse="lg"). */
+@media (max-width: 1023.98px) {
+  .cap-site-header {
+    --header-tools-gap: 12px;
+  }
 }
 
 /* In the phone sheet, Get a Quote is the full-width glass button it was (its .btn would make it inline). */
