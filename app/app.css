@@ -1075,3 +1075,33 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/*
+  The error page under its title band, as the interior pages' prose was: the sentence in the prose size and leading,
+  64px above and below (80px from 640px), the button a prose paragraph's space under it in the prose's Open Sans
+  semibold, on the site button's own glass face.
+*/
+.cap-error-page {
+  --error-page-hero-gap: 0;
+  --error-page-body-pad-block: 4rem;
+  --error-page-body-gap: 1.1rem;
+}
+@media (min-width: 640px) {
+  .cap-error-page {
+    --error-page-body-pad-block: 5rem;
+  }
+}
+.cap-error-page-body {
+  padding-inline: 1.25rem;
+  font-size: 1.05rem;
+
+  & .cap-empty-text {
+    max-inline-size: none;
+    line-height: 1.75;
+  }
+}
+.cap-error-page .cap-btn {
+  background-color: transparent;
+  font-family: inherit;
+  font-weight: 600;
+}
