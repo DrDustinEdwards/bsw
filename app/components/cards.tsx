@@ -5,7 +5,7 @@ import type {
   TeamMember as TeamMemberData,
 } from "../data/content";
 import { sitePicture } from "../lib/media/images";
-import { Picture } from "./Picture";
+import { Picture } from "capsomer/react/picture";
 
 /*
   Small presentational cards used by the home page, extracted so each repeated
@@ -27,11 +27,12 @@ export function StatItem({ stat }: { stat: Stat }) {
   );
 }
 
-// Secondary service card: accent inner-glow revealed on hover, accent arrow.
+// Secondary service card, Capsomer's card: heading, one content block, a footer with the accent arrow, and an accent
+// inner-glow revealed on hover.
 export function ServiceCard({ card }: { card: ServiceCardData }) {
   return (
-    <div
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-sm transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
+    <article
+      className="cap-card group relative h-full grid-rows-[auto_1fr_auto] content-stretch overflow-hidden rounded-2xl border-0 p-7 shadow-sm transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
       style={{ "--accent": card.accent } as React.CSSProperties}
     >
       <span
@@ -41,35 +42,35 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
           background: `radial-gradient(125% 115% at 100% 100%, color-mix(in srgb, ${card.accent} 24%, transparent) 0%, transparent 68%)`,
         }}
       />
-      <div className="relative flex flex-1 flex-col p-7">
-        <h3 className="font-display text-xl font-bold text-ink">{card.title}</h3>
-        <p className="mt-1 text-sm font-bold text-ink/80">{card.subhead}</p>
+      <h3 className="relative font-display text-xl font-bold text-ink">{card.title}</h3>
+      <div className="relative">
+        <p className="text-sm font-bold text-ink/80">{card.subhead}</p>
         <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{card.desc}</p>
-        <div className="mt-6 flex flex-1 items-end justify-end">
-          <span
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-icon-muted transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
-            aria-hidden="true"
-          >
-            <ArrowRight size={16} strokeWidth={2} />
-          </span>
-        </div>
       </div>
-    </div>
+      <footer className="relative mt-3 justify-end">
+        <span
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-icon-muted transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
+          aria-hidden="true"
+        >
+          <ArrowRight size={16} strokeWidth={2} />
+        </span>
+      </footer>
+    </article>
   );
 }
 
-// Team member: photo with an accent-tinted caption panel beneath.
+// Team member: Capsomer's card, the photo to the card's edges with an accent-tinted caption panel beneath.
 export function TeamMember({ member }: { member: TeamMemberData }) {
   return (
-    <div className="mx-auto flex h-full max-w-[220px] flex-col overflow-hidden rounded-2xl bg-white shadow-sm shadow-slate-900/5 sm:max-w-none">
+    <article className="cap-card mx-auto h-full max-w-[220px] gap-0 overflow-hidden rounded-2xl border-0 bg-white p-0 shadow-sm shadow-slate-900/5 [--pad-card:0px] sm:max-w-none">
       <Picture
-        {...sitePicture(member.photo, "team", {
+        picture={sitePicture(member.photo, "team", {
           alt: member.name,
           className: "aspect-[4/5] w-full object-cover object-top",
         })}
       />
       <div
-        className="flex flex-1 flex-col px-4 py-5 text-center"
+        className="px-4 py-5 text-center"
         style={{
           background: `linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, ${member.accent} 15%, transparent) 100%)`,
         }}
@@ -77,6 +78,6 @@ export function TeamMember({ member }: { member: TeamMemberData }) {
         <h3 className="font-display text-lg font-bold text-ink">{member.name}</h3>
         <p className="mt-1 text-sm leading-snug text-muted">{member.role}</p>
       </div>
-    </div>
+    </article>
   );
 }
