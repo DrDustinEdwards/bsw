@@ -4,7 +4,7 @@ import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 
 /*
-  Pathless layout shared by every route. Renders the sticky header (with the skip link), the single
+  Pathless layout shared by every route. Renders the sticky header (Capsomer's, with the skip link), the single
   <main> landmark, and the footer once, so route modules only return their own
   page sections. This is the single source of the page shell.
 */

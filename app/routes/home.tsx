@@ -3,10 +3,10 @@ import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
 import { Faq } from "../components/Faq";
 import { Testimonials } from "../components/Testimonials";
-import { Reveal } from "../components/Reveal";
-import { Marquee, PrimaryButton, SectionHeading } from "../components/ui";
+import { Marquee, MarqueePause } from "capsomer/react/marquee";
+import { LogoTile, PrimaryButton, SectionHeading } from "../components/ui";
 import { StatItem, ServiceCard, TeamMember } from "../components/cards";
-import { Picture } from "../components/Picture";
+import { Picture } from "capsomer/react/picture";
 import { sitePicture } from "../lib/media/images";
 import { homeLd } from "../config/structured-data";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
@@ -56,49 +56,64 @@ export default function Home() {
         <span aria-hidden="true" className="band-slab" />
         <span aria-hidden="true" className="band-ghost band-ghost--bottom" />
         <div className="relative z-[3] mx-auto max-w-6xl px-5 pb-20 pt-24 sm:pt-28">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading dark title="Our Impact, by the Numbers" />
-          </Reveal>
-          <Reveal className="mt-14 grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-3">
+          </div>
+          <div className="cap-reveal mt-14 grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-3">
             {STATS.map((s) => (
               <StatItem key={s.label} stat={s} />
             ))}
-          </Reveal>
+          </div>
         </div>
 
-        <div className="relative z-[3] space-y-8 pb-20">
-          <Reveal>
+        <div className="cap-marquee-group logo-band relative z-[3] space-y-8 pb-20">
+          <div className="cap-reveal">
             <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
               Trusted by Researchers At
             </h2>
-            <Marquee items={institutions} direction="left" />
-          </Reveal>
-          <Reveal delay={80}>
+            <Marquee
+              label="Institutions our researchers work at"
+              items={institutions.map((logo) => (
+                <LogoTile key={logo.name} {...logo} />
+              ))}
+            />
+          </div>
+          <div className="cap-reveal">
             <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
               Published In
             </h2>
-            <Marquee items={journals} direction="right" />
-          </Reveal>
+            <Marquee
+              label="Journals our clients have published in"
+              direction="reverse"
+              items={journals.map((logo) => (
+                <LogoTile key={logo.name} {...logo} />
+              ))}
+            />
+          </div>
+          {/* The rows scroll for minutes, so they carry Capsomer's Pause (WCAG 2.2.2); a native checkbox, no script. */}
+          <div className="text-center">
+            <MarqueePause />
+          </div>
         </div>
       </section>
 
       {/* 3. Services: flagship card + 2x2 grid + BSW Academy banner */}
       <section id="services" className="bg-surface-alt">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading
               title="Our Services"
               subtitle="Personal Expert Scientists for High-Impact Research"
               intro="We provide the highest quality scientific editing, writing, and strategy services. Our editors are PhD and MD-credentialed professionals who understand that competing successfully for grant funding is critical to your career success."
             />
-          </Reveal>
+          </div>
 
           <div className="mt-14 grid gap-6 lg:grid-cols-12">
             {/* Flagship card */}
-            <Reveal className="lg:col-span-5">
+            <div className="cap-reveal lg:col-span-5">
               <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-[color:var(--color-band)] shadow-lg shadow-slate-900/10">
                 <Picture
-                  {...sitePicture(FLAGSHIP.photo, "flagship", {
+                  picture={sitePicture(FLAGSHIP.photo, "flagship", {
                     alt: "A BioScience Writers editor reviewing a grant with a researcher",
                     className: "min-h-[13rem] w-full flex-1 object-cover",
                   })}
@@ -120,20 +135,20 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </Reveal>
+            </div>
 
             {/* 2x2 grid of secondary services + Academy banner */}
             <div className="lg:col-span-7">
               <div className="grid gap-6 sm:grid-cols-2">
-                {SERVICE_CARDS.map((s, i) => (
-                  <Reveal key={s.title} delay={(i % 2) * 60}>
+                {SERVICE_CARDS.map((s) => (
+                  <div key={s.title} className="cap-reveal">
                     <ServiceCard card={s} />
-                  </Reveal>
+                  </div>
                 ))}
               </div>
 
               {/* BSW Academy banner */}
-              <Reveal className="mt-6">
+              <div className="cap-reveal mt-6">
                 <div className="rounded-2xl bg-[color:var(--color-band)] p-8">
                   <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-green-soft">
                     eCourse &middot; Self-Paced Learning
@@ -154,7 +169,7 @@ export default function Home() {
                     </a>
                   </p>
                 </div>
-              </Reveal>
+              </div>
             </div>
           </div>
         </div>
@@ -163,39 +178,39 @@ export default function Home() {
       {/* 4. Precision Editing Demonstrated */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading
               title="Precision Editing, Demonstrated"
               subtitle="The Difference Expert Editing Makes"
               intro="Every manuscript edited by BioScience Writers receives both line-level editorial review and field-specific scientific commentary from a credentialed PhD or MD expert. Select any highlighted passage to examine the rationale behind each revision."
             />
-          </Reveal>
-          <Reveal className="mt-12">
+          </div>
+          <div className="cap-reveal mt-12">
             <EditingDemo />
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* 5. Testimonials */}
       <section className="bg-surface-alt">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading
               title="Trusted Worldwide"
               subtitle="What Our Clients Say"
               intro="From Nobel Laureates and Academy members to deans and principal investigators at top institutions worldwide, researchers trust BioScience Writers to help secure funding and publish in high-impact journals."
             />
-          </Reveal>
-          <Reveal className="mt-12">
+          </div>
+          <div className="cap-reveal mt-12">
             <Testimonials />
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* 6. Streamlined four-step process (vertical timeline) */}
       <section className="bg-white">
         <div className="mx-auto max-w-3xl px-5 py-20 sm:py-24">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading
               title="Streamlined Process, Start to Finish"
               subtitle="Your Path from Submission to Success"
@@ -210,7 +225,7 @@ export default function Home() {
                 </>
               }
             />
-          </Reveal>
+          </div>
           <div className="mt-14">
             <Timeline />
           </div>
@@ -220,18 +235,18 @@ export default function Home() {
       {/* 7. Team */}
       <section className="bg-surface-alt">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading
               title="Behind Every Edit"
               subtitle="Experienced Professionals Managing Every Detail"
               intro="Our core team personally oversees every project from first submission to final delivery. Each document is matched with a field-specific PhD or MD specialist, ensuring your work receives the scientific expertise it deserves."
             />
-          </Reveal>
+          </div>
           <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
-            {TEAM.map((member, i) => (
-              <Reveal key={member.name} delay={i * 50}>
+            {TEAM.map((member) => (
+              <div key={member.name} className="cap-reveal">
                 <TeamMember member={member} />
-              </Reveal>
+              </div>
             ))}
           </div>
         </div>
@@ -240,30 +255,30 @@ export default function Home() {
       {/* 8. FAQ */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
-          <Reveal>
+          <div className="cap-reveal">
             <SectionHeading
               title="Clear Answers, No Surprises"
               subtitle="Frequently Asked Questions"
               intro="Find quick answers to the most common questions about our editing process, turnaround times, credentials, and satisfaction guarantee."
             />
-          </Reveal>
-          <Reveal className="mt-12">
+          </div>
+          <div className="cap-reveal mt-12">
             <Faq />
-          </Reveal>
-          <Reveal className="mt-8 text-center">
+          </div>
+          <div className="cap-reveal mt-8 text-center">
             <p className="font-display text-lg font-semibold text-ink">Still have questions?</p>
             <p className="mt-1 text-sm text-muted">Our team responds within one business day.</p>
             <PrimaryButton href="/contact-us" className="mt-4">
               Ask Us a Question
             </PrimaryButton>
-          </Reveal>
+          </div>
         </div>
       </section>
 
       {/* 9. BSW Commitment band */}
       <section className="bg-[color:var(--color-band)]">
         <div className="mx-auto max-w-4xl px-5 py-20 text-center">
-          <Reveal>
+          <div className="cap-reveal">
             <h2 className="font-display text-3xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-4xl lg:text-5xl">
               The BSW Commitment
             </h2>
@@ -277,7 +292,7 @@ export default function Home() {
             <p className="mx-auto mt-6 inline-block rounded-[var(--radius-btn)] bg-white/10 px-5 py-3 text-sm font-semibold text-white">
               100% Satisfaction Guarantee, free re-edits for language issues raised by reviewers.
             </p>
-          </Reveal>
+          </div>
         </div>
       </section>
     </>

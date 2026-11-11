@@ -4,7 +4,23 @@
   },
   "tokens": {
     "--dur-fast": "BioScience Writers keeps its client's own look (waived above); its motion scale is its own",
-    "--ease-out": "same: bsw's own motion scale"
+    "--ease-out": "same: bsw's own motion scale",
+    "--ground": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--surface": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--raised": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--sunken": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--line": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--line-strong": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--text": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--muted": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--accent": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--accent-hover": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--accent-text": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--primary": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--primary-hover": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--primary-fg": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--ring": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--header-h": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own"
   },
   "copies": {
     "app/config/site.ts": "twitter:site (the account the X card is credited to, @biosciencewrite) is the one tag written here: Prelum's headTags writes every other head tag through defineHead but has no twitter:site",

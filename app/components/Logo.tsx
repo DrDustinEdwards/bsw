@@ -1,5 +1,5 @@
 import { sitePicture } from "../lib/media/images";
-import { Picture } from "./Picture";
+import { Picture } from "capsomer/react/picture";
 
 /*
   Real horizontal logo lockup (cube mark plus wordmark) from the WP media
@@ -8,7 +8,7 @@ import { Picture } from "./Picture";
 export function Wordmark({ className = "" }: { className?: string }) {
   return (
     <Picture
-      {...sitePicture(
+      picture={sitePicture(
         { src: "/brand/bsw-logo-web.2a9980c8.webp", width: 250, height: 80 },
         "wordmark",
         {

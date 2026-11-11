@@ -23,7 +23,7 @@ const SECURITY_HEADERS = {
 */
 export const { withSecurityHeaders } = pageSecurity({
   set: SECURITY_HEADERS,
-  policy: ({ nonce, staged }) => ({
+  policy: ({ nonce }) => ({
     nonce,
     sources: { img: ["data:"] },
     styleAttributesInline: true,
@@ -31,13 +31,12 @@ export const { withSecurityHeaders } = pageSecurity({
     cloudflareWebAnalytics: "manual",
     // Nothing unlisted: a kind not named here (media, frames, workers) is refused, not allowed from this origin.
     denyUnlisted: true,
-    // upgrade-insecure-requests is enforced only; a browser logs an error for it in a Report-Only policy.
-    extraDirectives: staged
-      ? ["manifest-src 'self'"]
-      : ["manifest-src 'self'", "upgrade-insecure-requests"],
+    extraDirectives: ["manifest-src 'self'", "upgrade-insecure-requests"],
+    // Trusted Types is enforced: every sink takes a policy's value (site-runtime ./trusted-types, installed by startPage).
+    trustedTypes: TRUSTED_TYPES_NAMES,
   }),
-  // The Report-Only companion adds Trusted Types, so the reports name any sink a script hands a string to before it is enforced.
-  staged: { trustedTypes: TRUSTED_TYPES_NAMES },
+  // Nothing is staged any more, so there is no Report-Only companion.
+  staged: false,
   corp: true,
   // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
   // public/_headers takes the same header (the `--header` in package.json's headers script); remove both at launch.
