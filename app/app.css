@@ -12,10 +12,13 @@
 @import "capsomer/popover.css";
 @import "capsomer/button.css";
 @import "capsomer/card.css";
+@import "capsomer/disclosure.css";
 @import "capsomer/carousel.css";
 @import "capsomer/marquee.css";
 @import "capsomer/reveal.css";
 @import "capsomer/scroll-area.css";
+@import "capsomer/empty.css";
+@import "capsomer/error-page.css";
 @import "capsomer/icons.css";
 @import "capsomer/picture.css";
 @import "capsomer/timeline.css";
@@ -254,27 +257,56 @@ body {
 }
 
 /*
-  FAQ answers (Faq.tsx, native <details>): the answer slides open and fades in where the browser can
-  animate ::details-content to an auto height, and simply appears elsewhere.
+  FAQ answers (Faq.tsx): Capsomer's accordion Disclosure (capsomer/disclosure.css), which also animates the open and
+  close. The question and answer type and spacing and the circled chevron are the site's own.
 */
-.faq-item summary::-webkit-details-marker {
-  display: none;
+.faq-item > summary {
+  padding: 1.25rem;
+  border-radius: 0;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: var(--color-ink);
 }
-.faq-item {
-  interpolate-size: allow-keywords;
+.faq-item > .cap-disclosure-body {
+  padding: 0 1.25rem 1.25rem;
+  font-size: 0.95rem;
+  line-height: 1.625;
+  color: var(--color-muted);
 }
-.faq-item::details-content {
-  block-size: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition:
-    block-size 300ms var(--ease-out),
-    opacity 300ms var(--ease-out),
-    content-visibility 300ms allow-discrete;
+/* The circled chevron: the summary's marker is the circle, a second pseudo-element draws the chevron in it. */
+.faq-item > summary {
+  position: relative;
 }
-.faq-item[open]::details-content {
-  block-size: auto;
-  opacity: 1;
+.faq-item > summary::before {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-inline: auto 0;
+  border: 1px solid var(--color-slate-300);
+  border-radius: 9999px;
+  color: var(--color-brand);
+  transform: none;
+}
+.faq-item[open] > summary::before {
+  transform: none;
+}
+.faq-item > summary::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 1.625rem;
+  top: 50%;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--color-brand);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  translate: 0 -50%;
+  rotate: 0deg;
+  transition: rotate 300ms ease-out;
+}
+.faq-item[open] > summary::after {
+  rotate: 180deg;
 }
 
 /*
@@ -491,7 +523,8 @@ body {
   (the gradient tint), --btn-ink (text/arrow color), and --btn-glow (the RGB
   triple used for the glow, inset shade, and text halo).
 */
-.btn {
+.btn,
+.cap-error-page .cap-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -520,7 +553,8 @@ body {
     filter var(--dur-hover) var(--ease-out);
   will-change: transform;
 }
-.btn:hover {
+.btn:hover,
+.cap-error-page .cap-btn:hover {
   transform: translateY(-2px);
   box-shadow:
     0 8px 30px rgba(var(--btn-glow), 0.3),
@@ -528,7 +562,8 @@ body {
     inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
   filter: brightness(1.02);
 }
-.btn:active {
+.btn:active,
+.cap-error-page .cap-btn:active {
   transform: translateY(0);
   filter: brightness(0.98);
 }
@@ -544,7 +579,8 @@ body {
   font-size: 0.8125rem;
 }
 
-.btn-blue {
+.btn-blue,
+.cap-error-page .cap-btn {
   --btn-tint1: rgba(195, 220, 240, 0.88);
   --btn-tint2: rgba(170, 208, 232, 0.8);
   --btn-ink: var(--color-accent-blue);
@@ -1062,9 +1098,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .hex {
     animation: none !important;
-  }
-  .faq-item::details-content {
-    transition: none;
   }
   .psms-pill,
   .psms-pill.psms-snapping {
