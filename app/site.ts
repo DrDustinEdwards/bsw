@@ -11,8 +11,7 @@ import { startIslands } from "@dustinedwards/devkit/islands";
 import { enhance as enhanceHeader } from "capsomer/behavior/site-header";
 
 startPage();
-// The header's dropdowns, tips and phone sheet. The React header marks itself `data-cap-ready` because React wires it
-// once hydrated; no React reaches this page, so the mark comes off and `enhance` wires the server-rendered markup.
-document.querySelector("[data-cap='site-header']")?.removeAttribute("data-cap-ready");
+// The header's dropdowns, tips and phone sheet: no React reaches this page, so `enhance` wires the server-rendered
+// header (wiredBy="enhance").
 enhanceHeader();
 startIslands();

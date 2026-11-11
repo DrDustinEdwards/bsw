@@ -182,13 +182,9 @@
   --header-line: var(--color-slate-200);
   --header-fs: 0.875rem;
 }
-/* The testimonials' arrows sit over the track's edges, further out as the window widens. The carousel's one grid
-   column may not outgrow the page: left to `auto` it takes the slides' full width on a phone. */
+/* The testimonials' arrows sit over the track's edges, further out as the window widens. */
 .testimonials {
   --carousel-overhang: 0.25rem;
-}
-.testimonials .cap-carousel {
-  grid-template-columns: minmax(0, 1fr);
 }
 @media (min-width: 640px) {
   .testimonials {
