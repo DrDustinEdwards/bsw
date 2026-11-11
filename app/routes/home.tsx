@@ -1,3 +1,4 @@
+import { Hero } from "capsomer/react/hero";
 import { HexField } from "../components/HexField";
 import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
@@ -24,27 +25,22 @@ export default function Home() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="hero-surface relative overflow-hidden">
-        <HexField />
-        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-5 py-24 sm:py-32">
-          <div className="hero-card max-w-2xl">
-            <h1 className="hero-title">Funding Secured. Science Perfected.</h1>
-            <p className="hero-subtitle mt-4">
-              Strategic Grant Review &amp; Manuscript Editing by PhD/MD Experts.
-            </p>
-            <p className="hero-body mt-4 max-w-xl">
-              Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
-            </p>
-            <p className="hero-body mt-3 max-w-xl">
-              Trusted by PIs at top-tier universities and global research institutions for NIH, NSF,
-              and high-impact journal submissions.
-            </p>
-            <div className="mt-8">
-              <PrimaryButton href="/pricing">View Pricing</PrimaryButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        className="hero-surface home-hero"
+        card
+        backdrop={<HexField />}
+        title="Funding Secured. Science Perfected."
+        lead="Strategic Grant Review & Manuscript Editing by PhD/MD Experts."
+        actions={<PrimaryButton href="/pricing">View Pricing</PrimaryButton>}
+      >
+        <p className="hero-body mt-4 max-w-xl">
+          Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
+        </p>
+        <p className="hero-body mt-3 max-w-xl">
+          Trusted by PIs at top-tier universities and global research institutions for NIH, NSF, and
+          high-impact journal submissions.
+        </p>
+      </Hero>
 
       {/*
         2. Impact stats + trust marquees. On the reference these sit in one
