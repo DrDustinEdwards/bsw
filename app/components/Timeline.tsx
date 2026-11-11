@@ -1,11 +1,12 @@
 import { Upload, UserCheck, FileText, ShieldCheck, type LucideIcon } from "lucide-react";
+import { Timeline as CapTimeline } from "capsomer/react/timeline";
 
 /*
-  Vertical process timeline.
-  The fill line grows from 0 to (container height - circle size) once the
-  timeline scrolls into view, via a 6s height transition (styles in app.css),
-  set by the timeline island (app/islands/timeline.ts). Recomputes on resize. prefers-reduced-motion shows the fill at full height
-  with no animation. Icons are Lucide; each step keeps its accent color.
+  The process timeline: Capsomer's Timeline (capsomer/react/timeline), its look in app.css. The line
+  fills once the timeline scrolls into view; the timeline island (app/islands/timeline.ts) starts
+  Capsomer's behavior, since the page is not hydrated. It loads when the browser is idle, so the
+  line is drawn empty before it comes into view and fills as it arrives. With no script, and under reduced motion, the
+  line is drawn full. Icons are Lucide; each step keeps its accent color.
 */
 
 const STEPS: {
@@ -47,28 +48,15 @@ const STEPS: {
 
 export function Timeline() {
   return (
-    <div
-      className="vertical-timeline"
-      data-island="timeline"
-      data-client="visible"
-      data-client-root-margin="200px"
-    >
-      <div className="timeline-line-bg" />
-      <div className="timeline-line-fill" />
-      {STEPS.map((s) => (
-        <div className="timeline-step" key={s.num}>
-          <div className="timeline-circle">
-            <div className="step-number">{s.num}</div>
-          </div>
-          <div className="timeline-content">
-            <div className="step-icon">
-              <s.Icon size={40} strokeWidth={2} style={{ color: s.color }} />
-            </div>
-            <h3 className="step-title">{s.title}</h3>
-            <p className="step-description">{s.desc}</p>
-          </div>
-        </div>
-      ))}
+    <div data-island="timeline" data-client="idle">
+      <CapTimeline
+        steps={STEPS.map((s) => ({
+          mark: s.num,
+          title: s.title,
+          icon: <s.Icon size={40} strokeWidth={2} style={{ color: s.color }} />,
+          children: <p>{s.desc}</p>,
+        }))}
+      />
     </div>
   );
 }
