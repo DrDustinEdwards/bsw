@@ -33,10 +33,6 @@ export const SITE = {
 /** The site's IndexNow key, public by the protocol's design: served as /<key>.txt and sent after each deploy. */
 export const INDEXNOW_KEY = "b6f5f05fb7013a33e9258707d055b2d7";
 
-/** The vulnerability contact /.well-known/security.txt lists, and the date it is next confirmed by (the family check warns first). */
-export const SECURITY_CONTACT = "security@dustinedwards.info";
-export const SECURITY_TXT_EXPIRES = "2027-09-28T00:00:00Z";
-
 /** Build an absolute URL from a site-relative path. */
 export function absUrl(path: string): string {
   return absoluteUrl(SITE.url, path.startsWith("/") ? path : `/${path}`);
