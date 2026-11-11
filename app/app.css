@@ -621,10 +621,12 @@ body {
   transform: translateY(0);
   filter: brightness(0.98);
 }
-.btn .btn-arrow {
+.btn .btn-arrow,
+.cap-error-page .cap-btn .btn-arrow {
   transition: transform var(--dur-hover) var(--ease-out);
 }
-.btn:hover .btn-arrow {
+.btn:hover .btn-arrow,
+.cap-error-page .cap-btn:hover .btn-arrow {
   transform: translateX(3px);
 }
 /* Compact variant for dense spots like the header. */
@@ -655,13 +657,15 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .btn,
-  .btn .btn-arrow {
+  .btn .btn-arrow,
+  .cap-error-page .cap-btn .btn-arrow {
     transition: none;
   }
   .btn:hover {
     transform: none;
   }
-  .btn:hover .btn-arrow {
+  .btn:hover .btn-arrow,
+  .cap-error-page .cap-btn:hover .btn-arrow {
     transform: none;
   }
 }
