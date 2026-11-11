@@ -3,6 +3,7 @@ import { Links, Meta, Outlet } from "react-router";
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 import { cloudflareBeaconAttributes } from "@dustinedwards/site-runtime/csp";
 import { ErrorPage, errorTitle } from "capsomer/react/error-page";
+import { ArrowRight } from "lucide-react";
 
 import type { Route } from "./+types/root";
 // Open Sans from the site's own origin (Fontsource, the files Google Fonts serves, bundled under /assets/): no
@@ -64,6 +65,15 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       home="/"
       dev={import.meta.env.DEV}
       hero={({ title }) => <PageHero title={title} />}
+      homeIcon={
+        <ArrowRight
+          size={16}
+          strokeWidth={2.5}
+          className="btn-arrow"
+          data-icon="end"
+          aria-hidden="true"
+        />
+      }
     />
   );
 }
