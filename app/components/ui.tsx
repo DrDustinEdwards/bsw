@@ -106,8 +106,8 @@ function LogoTile({ src, name, width, height }: Logo) {
 
 // Both rows share one duration (240s desktop / 120s mobile, in .logo-track);
 // the journal row runs in reverse. The full list is duplicated so the
-// translateX(-50%) loop is seamless. Pause-on-hover and prefers-reduced-motion
-// are handled in app.css.
+// translateX(-50%) loop is seamless. Pausing (hover, keyboard focus, the home
+// page's pause checkbox) and prefers-reduced-motion are handled in app.css.
 export function Marquee({
   items,
   direction = "left",

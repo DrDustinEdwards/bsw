@@ -66,7 +66,7 @@ export default function Home() {
           </Reveal>
         </div>
 
-        <div className="relative z-[3] space-y-8 pb-20">
+        <div className="marquees relative z-[3] space-y-8 pb-20">
           <Reveal>
             <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
               Trusted by Researchers At
@@ -79,6 +79,12 @@ export default function Home() {
             </h2>
             <Marquee items={journals} direction="right" />
           </Reveal>
+          {/* The rows scroll for minutes, so they need a pause control (WCAG 2.2.2); a native
+              checkbox works without script (app.css, .marquees). */}
+          <label className="mx-auto flex w-fit cursor-pointer items-center gap-2 rounded-full border border-white/40 px-4 py-2 text-sm font-semibold text-white focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-white">
+            <input type="checkbox" className="marquee-pause h-4 w-4 accent-white" />
+            Pause the logos
+          </label>
         </div>
       </section>
 

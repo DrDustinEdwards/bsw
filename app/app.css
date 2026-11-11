@@ -223,6 +223,54 @@ body {
 }
 
 /*
+  The sticky header (Header.tsx) firms up its background and shows its border once it is stuck, by a
+  scroll-state query on the sticky element itself; browsers without it keep the translucent bar, which
+  reads fine. scroll-padding keeps a focused control from sliding under the bar (WCAG 2.4.11).
+*/
+html {
+  scroll-padding-top: 4rem;
+}
+.site-header {
+  container: site-header / scroll-state;
+}
+@container site-header scroll-state(stuck: top) {
+  .site-header-bar {
+    border-bottom-color: var(--color-slate-200);
+    background-color: rgb(255 255 255 / 0.9);
+  }
+}
+
+/*
+  Testimonials carousel (Testimonials.tsx, islands/carousel.ts): a native scroll-snap track, so it
+  swipes and scrolls by keyboard without script. The scrollbar is hidden; the arrows and dots are the
+  visible controls. Smooth scrolling only when motion is welcome.
+*/
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: manipulation;
+}
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-track > * {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+}
+.carousel-track:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .carousel-track {
+    scroll-behavior: smooth;
+  }
+}
+
+/*
   Logo marquees (trusted-by / published-in). Logos sit directly on the dark
   band with no card. Every mark is forced solid white via brightness(0)
   invert(1). Both rows share one duration; the journal row runs in reverse.
@@ -259,7 +307,9 @@ body {
 .logo-track.reverse {
   animation-direction: reverse;
 }
-.logo-marquee:hover .logo-track {
+.logo-marquee:hover .logo-track,
+.logo-marquee:focus-within .logo-track,
+.marquees:has(.marquee-pause:checked) .logo-track {
   animation-play-state: paused;
 }
 
@@ -618,7 +668,7 @@ body {
   z-index: 3;
 }
 .step-number {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
   color: var(--color-ink);
 }
@@ -631,14 +681,14 @@ body {
   margin-bottom: 8px;
 }
 .step-title {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 600;
   color: var(--color-ink-soft);
   margin-bottom: 4px;
   line-height: 1.4;
 }
 .step-description {
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--color-muted);
   margin: 0;
@@ -654,7 +704,7 @@ body {
     height: 48px;
   }
   .step-number {
-    font-size: 18px;
+    font-size: 1.125rem;
   }
   .timeline-content {
     padding-left: 20px;
@@ -664,7 +714,7 @@ body {
     height: 36px;
   }
   .step-title {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   .timeline-step {
     margin-bottom: 30px;
@@ -689,7 +739,7 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #333;
 }
 .psms-container * {
@@ -728,7 +778,7 @@ body {
   text-align: center;
   padding: 14px 0;
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
   color: rgba(80, 80, 80, 0.65);
   white-space: nowrap;
@@ -848,18 +898,34 @@ body {
   line-height: 1.78;
   scroll-behavior: smooth;
 }
-.psms-scroll-box::-webkit-scrollbar {
-  width: 5px;
+/* The thumb keeps 3:1 against the track (WCAG 1.4.11), and goes black on white when more contrast
+   is asked for. The legacy pseudo-elements serve only browsers without scrollbar-color. */
+.psms-scroll-box {
+  --scrollbar-thumb: #707070;
+  --scrollbar-track: #f4f5f8;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+  scrollbar-width: thin;
 }
-.psms-scroll-box::-webkit-scrollbar-track {
-  background: #f4f5f8;
+@media (prefers-contrast: more) {
+  .psms-scroll-box {
+    --scrollbar-thumb: #000;
+    --scrollbar-track: #fff;
+  }
 }
-.psms-scroll-box::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
+@supports not (scrollbar-color: auto) {
+  .psms-scroll-box::-webkit-scrollbar {
+    width: 5px;
+  }
+  .psms-scroll-box::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  .psms-scroll-box::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
 }
 .psms-ms-h1 {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 700;
   margin: 16px 0 8px;
 }
@@ -1013,7 +1079,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #fff;
   line-height: 1;
 }
@@ -1035,7 +1101,7 @@ body {
 }
 .psms-card-label {
   font-weight: 700;
-  font-size: 11px;
+  font-size: 0.6875rem;
   margin-bottom: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -1053,7 +1119,7 @@ body {
   color: var(--c-im);
 }
 .psms-card-text {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #444;
   line-height: 1.5;
 }
@@ -1085,7 +1151,7 @@ body {
   .psms-track-label {
     width: 120px;
     padding: 12px 0;
-    font-size: 15px;
+    font-size: 0.9375rem;
   }
 }
 @media (max-width: 520px) {
@@ -1097,14 +1163,14 @@ body {
   }
   .psms-track-label {
     width: 96px;
-    font-size: 13px;
+    font-size: 0.8125rem;
   }
 }
 
 @media (max-width: 380px) {
   .psms-track-label {
     width: 82px;
-    font-size: 12px;
+    font-size: 0.75rem;
   }
   .psms-gray-wrap {
     padding: 8px;

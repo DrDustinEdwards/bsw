@@ -8,19 +8,10 @@
 import { startIslands } from "@dustinedwards/devkit/islands";
 import { swap } from "./swap";
 
-// The sticky bar's border once the page scrolls, the desktop dropdowns and the phone drawer.
+// The desktop dropdowns and the phone drawer. The bar's stuck look is CSS (app.css, .site-header).
 function enhanceHeader() {
   const header = document.querySelector<HTMLElement>("[data-header]");
   if (!header) return;
-  const onScroll = () =>
-    swap(
-      header,
-      "border-transparent bg-white/70",
-      "border-slate-200 bg-white/90",
-      window.scrollY > 8,
-    );
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
 
   const groups = [...header.querySelectorAll<HTMLElement>("[data-nav-group]")];
   const setOpen = (group: HTMLElement, open: boolean) => {
