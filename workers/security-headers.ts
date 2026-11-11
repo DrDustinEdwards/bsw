@@ -4,6 +4,7 @@ import { TDM_RESERVATION_HEADERS } from "@drdustinedwards/site-helpers/robots";
 import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
 import { pageSecurity } from "@dustinedwards/site-runtime/page-headers";
 import { bsw } from "@dustinedwards/site-runtime/sites";
+import { TRUSTED_TYPES_NAMES } from "@dustinedwards/site-runtime/trusted-types";
 
 // The site's registry entry (site-runtime ./sites: COEP and the Integrity-Policy Report-Only come from it) plus
 // Prelum's TDMRep header, which reserves training rights as /ai.txt says; the CSP is below. public/_headers is written
@@ -36,7 +37,7 @@ export const { withSecurityHeaders } = pageSecurity({
       : ["manifest-src 'self'", "upgrade-insecure-requests"],
   }),
   // The Report-Only companion adds Trusted Types, so the reports name any sink a script hands a string to before it is enforced.
-  staged: { trustedTypes: true },
+  staged: { trustedTypes: TRUSTED_TYPES_NAMES },
   corp: true,
   // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
   // public/_headers takes the same header (the `--header` in package.json's headers script); remove both at launch.

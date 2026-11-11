@@ -10,6 +10,7 @@
   lives in app.css (.psms-*). prefers-reduced-motion disables smooth scroll and
   the spring snap.
 */
+import { markup } from "capsomer/behavior/trusted-html";
 
 const PSMS_HTML = `
 <div class="psms-container">
@@ -256,7 +257,7 @@ export function EditingDemo() {
       data-island="editing-demo"
       data-client="visible"
       data-client-root-margin="200px"
-      dangerouslySetInnerHTML={{ __html: PSMS_HTML }}
+      dangerouslySetInnerHTML={markup(PSMS_HTML)}
     />
   );
 }

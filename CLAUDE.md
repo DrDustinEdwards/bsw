@@ -7,6 +7,7 @@ Current state is `bsw/core.md` in Capsid. This file holds only what is true of t
 Standalone marketing site for BioScience Writers, rebuilt from the old WordPress install. Live at https://bsw.dustin-edwards.workers.dev.
 
 - Tests: keep the minimal set (a few browser tests for flows that must never break, one integration test per real behavior, unit tests only for tricky logic, shared code tested once where it lives), and remove any test that pins design, repeats coverage or has never caught a real mistake, unless it guards a harm that cannot be undone.
+- Browser support: devkit's docs/browser-support.md (Baseline Widely available freely; Newly available with a small fallback; Limited only feature-detected; no polyfills).
 
 Deeper context in the typed docs: `bsw/architecture.md`, `bsw/production-hardening.md`, `bsw/operations.md`, `bsw/content-notes.md`.
 
