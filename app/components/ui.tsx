@@ -3,7 +3,7 @@ import type { Logo } from "../data/logos";
 
 /*
   Small shared building blocks: the site button, section heading, and the logo
-  tile / marquee used by the trust rows.
+  tile the home page's marquees show.
 */
 
 /*
@@ -83,11 +83,10 @@ export function SectionHeading({
   );
 }
 
-// Transparent logo box, no card. The img is forced solid white via
-// brightness(0) invert(1) (in .logo-box img) so colored and black marks read
-// uniformly on the dark band. Sizing/spacing live in app.css. An SVG, so no sizes to offer; role="img" so every
-// browser names it by its alt as one picture.
-function LogoTile({ src, name, width, height }: Logo) {
+// A mark for Capsomer's Marquee (home.tsx): a transparent box, no card. The img is forced solid white via
+// brightness(0) invert(1) (in .logo-box img) so colored and black marks read uniformly on the dark band.
+// Sizing lives in app.css. An SVG, so no sizes to offer; role="img" so every browser names it by its alt as one picture.
+export function LogoTile({ src, name, width, height }: Logo) {
   return (
     <div className="logo-box">
       <img
@@ -100,28 +99,6 @@ function LogoTile({ src, name, width, height }: Logo) {
         // oxlint-disable-next-line jsx-a11y/no-redundant-roles -- on purpose: an SVG img is named by its alt as one picture in every browser only with role="img".
         role="img"
       />
-    </div>
-  );
-}
-
-// Both rows share one duration (240s desktop / 120s mobile, in .logo-track);
-// the journal row runs in reverse. The full list is duplicated so the
-// translateX(-50%) loop is seamless. Pausing (hover, keyboard focus, the home
-// page's pause checkbox) and prefers-reduced-motion are handled in app.css.
-export function Marquee({
-  items,
-  direction = "left",
-}: {
-  items: Logo[];
-  direction?: "left" | "right";
-}) {
-  return (
-    <div className="logo-marquee">
-      <div className={`logo-track ${direction === "right" ? "reverse" : ""}`}>
-        {[...items, ...items].map((logo, i) => (
-          <LogoTile key={i} {...logo} />
-        ))}
-      </div>
     </div>
   );
 }

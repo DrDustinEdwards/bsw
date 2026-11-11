@@ -1,6 +1,23 @@
+/* Capsomer's layer sits between Tailwind's base (its reset) and components, so Capsomer's parts win over the reset
+   and the site's own utilities win over them (capsomer layers.css). */
+@layer theme, base, cap, components, utilities;
 @import "tailwindcss" source(".");
 /* Size-matched Open Sans Fallback, so the swap to Open Sans does not move text. */
 @import "capsomer/fallback-fonts.css";
+/* The shared parts the site uses: tokens, the layout and skip-link utilities, and each part's CSS. */
+@import "capsomer/tokens.css";
+@import "capsomer/utilities.css";
+@import "capsomer/site-header.css";
+@import "capsomer/dialog.css";
+@import "capsomer/popover.css";
+@import "capsomer/button.css";
+@import "capsomer/card.css";
+@import "capsomer/carousel.css";
+@import "capsomer/marquee.css";
+@import "capsomer/reveal.css";
+@import "capsomer/scroll-area.css";
+@import "capsomer/icons.css";
+@import "capsomer/picture.css";
 
 /*
   BioScience Writers design tokens.
@@ -122,10 +139,73 @@
 :root {
   --dur-fast: 150ms; /* small state: links, chevrons, control hovers, dropdowns */
   --dur-hover: 200ms; /* hover feedback on interactive surfaces (buttons, cards) */
-  --dur-content: 300ms; /* one-off content transitions: panels, carousel slides */
-  --dur-reveal: 600ms; /* scroll-in entrances */
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-back: cubic-bezier(0.2, 1.12, 0.32, 1);
+}
+
+/*
+  BioScience Writers' look on Capsomer's tokens (the site keeps its client's brand, not Capsomer's purple family;
+  .shared.json "waive"). Capsomer's parts read these names, so the shared header, carousel, marquee, cards and
+  scroll area wear the site's colors. The site is light only.
+*/
+:root {
+  color-scheme: light;
+  --ground: #fff;
+  --surface: #fff;
+  --raised: #f8fafc;
+  --sunken: #f4f5f8;
+  --line: var(--color-slate-200);
+  --line-strong: var(--color-slate-400);
+  --text: var(--color-ink);
+  --muted: var(--color-muted);
+  --accent: var(--color-brand);
+  --accent-hover: var(--color-brand-hover);
+  --accent-text: var(--color-brand);
+  --primary: var(--color-brand);
+  --primary-hover: var(--color-brand-hover);
+  --primary-fg: #fff;
+  --ring: var(--color-brand);
+  --header-h: 4rem;
+  --font-ui: var(--font-sans);
+  --marquee-duration: 240s;
+  --marquee-gap: 45px;
+}
+@media (max-width: 768px) {
+  :root {
+    --marquee-duration: 120s;
+    --marquee-gap: 15px;
+  }
+}
+.cap-site-header {
+  --header-bg: #fff;
+  --header-fg: var(--color-ink);
+  --header-line: var(--color-slate-200);
+  --header-fs: 0.875rem;
+}
+/* The testimonials' arrows sit over the track's edges, further out as the window widens. The carousel's one grid
+   column may not outgrow the page: left to `auto` it takes the slides' full width on a phone. */
+.testimonials {
+  --carousel-overhang: 0.25rem;
+}
+.testimonials .cap-carousel {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 640px) {
+  .testimonials {
+    --carousel-overhang: 1rem;
+  }
+}
+@media (min-width: 1024px) {
+  .testimonials {
+    --carousel-overhang: 3rem;
+  }
+}
+/* The home page's dark band: Capsomer's Pause control in white. */
+.logo-band {
+  --line-strong: rgb(255 255 255 / 0.4);
+  --primary: #fff;
+  --ring: #fff;
+  color: #fff;
 }
 
 html,
@@ -177,28 +257,6 @@ body {
 }
 
 /*
-  Scroll reveal. Elements start hidden and slightly above their resting spot,
-  then drop down into place with a gentle settle when observed (matching the
-  reference's fadeTop microinteraction). The overshoot in the transform easing
-  gives the small "drop into place" bounce.
-*/
-/* Only when scripting is on: without /site.js nothing would ever reveal them. */
-@media (scripting: enabled) {
-  .reveal {
-    opacity: 0;
-    transform: translateY(-28px);
-    transition:
-      opacity var(--dur-reveal) var(--ease-out),
-      transform var(--dur-reveal) var(--ease-back);
-    will-change: opacity, transform;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/*
   FAQ answers (Faq.tsx, native <details>): the answer slides open and fades in where the browser can
   animate ::details-content to an auto height, and simply appears elsewhere.
 */
@@ -223,96 +281,10 @@ body {
 }
 
 /*
-  The sticky header (Header.tsx) firms up its background and shows its border once it is stuck, by a
-  scroll-state query on the sticky element itself; browsers without it keep the translucent bar, which
-  reads fine. scroll-padding keeps a focused control from sliding under the bar (WCAG 2.4.11).
+  Logo marquees (trusted-by / published-in), Capsomer's marquee on the dark band (home.tsx): the marks sit directly
+  on the band with no card, each forced solid white via brightness(0) invert(1). The loop's length and the space
+  between marks are --marquee-duration and --marquee-gap above.
 */
-html {
-  scroll-padding-top: 4rem;
-}
-.site-header {
-  container: site-header / scroll-state;
-}
-@container site-header scroll-state(stuck: top) {
-  .site-header-bar {
-    border-bottom-color: var(--color-slate-200);
-    background-color: rgb(255 255 255 / 0.9);
-  }
-}
-
-/*
-  Testimonials carousel (Testimonials.tsx, islands/carousel.ts): a native scroll-snap track, so it
-  swipes and scrolls by keyboard without script. The scrollbar is hidden; the arrows and dots are the
-  visible controls. Smooth scrolling only when motion is welcome.
-*/
-.carousel-track {
-  display: flex;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  touch-action: manipulation;
-}
-.carousel-track::-webkit-scrollbar {
-  display: none;
-}
-.carousel-track > * {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-}
-.carousel-track:focus-visible {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 4px;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .carousel-track {
-    scroll-behavior: smooth;
-  }
-}
-
-/*
-  Logo marquees (trusted-by / published-in). Logos sit directly on the dark
-  band with no card. Every mark is forced solid white via brightness(0)
-  invert(1). Both rows share one duration; the journal row runs in reverse.
-*/
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-.logo-marquee {
-  width: 100%;
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 15%,
-    black 85%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-}
-
-.logo-track {
-  display: flex;
-  width: max-content;
-  align-items: center;
-  height: 120px;
-  animation: scroll 240s linear infinite;
-}
-.logo-track.reverse {
-  animation-direction: reverse;
-}
-.logo-marquee:hover .logo-track,
-.logo-marquee:focus-within .logo-track,
-.marquees:has(.marquee-pause:checked) .logo-track {
-  animation-play-state: paused;
-}
-
 .logo-box {
   display: flex;
   align-items: center;
@@ -320,7 +292,6 @@ html {
   flex-shrink: 0;
   width: 280px;
   height: 120px;
-  margin: 0 45px;
 }
 /* A fixed box inside the fixed tile, so the lazy image's size does not depend on its file (Chrome's
    LazyLoadImageIssue flags width and height auto; web.dev/articles/cls). contain centers it as the flex row did. */
@@ -332,14 +303,9 @@ html {
 }
 
 @media (max-width: 768px) {
-  .logo-track {
-    height: 80px;
-    animation-duration: 120s;
-  }
   .logo-box {
     width: 160px;
     height: 80px;
-    margin: 0 15px;
   }
 }
 
@@ -887,42 +853,15 @@ html {
   display: block;
 }
 
-/* scroll boxes */
+/* Scroll boxes: Capsomer's scroll area (scrollbar, focus, contrast) in the demo's own frame. */
 .psms-scroll-box {
+  --scroll-area-max: 520px;
   height: 520px;
-  overflow-y: auto;
   padding: 28px 32px;
   background: #fff;
   border: 1.5px solid #dde0ea;
   border-radius: 10px;
   line-height: 1.78;
-  scroll-behavior: smooth;
-}
-/* The thumb keeps 3:1 against the track (WCAG 1.4.11), and goes black on white when more contrast
-   is asked for. The legacy pseudo-elements serve only browsers without scrollbar-color. */
-.psms-scroll-box {
-  --scrollbar-thumb: #707070;
-  --scrollbar-track: #f4f5f8;
-  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
-  scrollbar-width: thin;
-}
-@media (prefers-contrast: more) {
-  .psms-scroll-box {
-    --scrollbar-thumb: #000;
-    --scrollbar-track: #fff;
-  }
-}
-@supports not (scrollbar-color: auto) {
-  .psms-scroll-box::-webkit-scrollbar {
-    width: 5px;
-  }
-  .psms-scroll-box::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-  }
-  .psms-scroll-box::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb);
-    border-radius: 3px;
-  }
 }
 .psms-ms-h1 {
   font-size: 0.875rem;
@@ -1146,6 +1085,7 @@ html {
     width: 100%;
   }
   .psms-scroll-box {
+    --scroll-area-max: 420px;
     height: 420px;
   }
   .psms-track-label {
@@ -1178,20 +1118,11 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hex,
-  .logo-track {
+  .hex {
     animation: none !important;
-  }
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
   .faq-item::details-content {
     transition: none;
-  }
-  .psms-scroll-box {
-    scroll-behavior: auto;
   }
   .psms-pill,
   .psms-pill.psms-snapping {
