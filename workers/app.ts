@@ -12,7 +12,7 @@ import { cronCheck, runJobs, runJobTool } from "@dustinedwards/site-runtime/cron
 import { operatorResponse } from "@dustinedwards/site-runtime/operator";
 import { maintenanceOn, maintenanceResponse } from "@dustinedwards/site-runtime/maintenance";
 import { healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
-import { logEvent } from "@dustinedwards/site-runtime/log";
+import { logEvent, routeNamer, withRequestLog } from "@dustinedwards/site-runtime/log";
 import { CSP_REPORT_PATH, generateNonce } from "@dustinedwards/site-runtime/csp";
 import {
   SPECULATION_RULES_HEADER,
@@ -37,6 +37,21 @@ export { RateLimiter } from "@dustinedwards/site-runtime/rate-limit/durable-obje
 
 const serverBuild = () => import("virtual:react-router/server-build") as Promise<ServerBuild>;
 const requestHandler = createRequestHandler(serverBuild, import.meta.env.MODE);
+
+// The route pattern each `request` log line names (`/blog/:slug`), from the React Router build's route table, made once
+// per isolate (site-runtime ./log's routeNamer). Requests the Worker answers itself (/api, /health, /mcp, /media) carry
+// the path alone. The build loads beside the request, so the first few lines in an isolate may go without a route.
+let nameRoute: ((request: Request) => string | undefined) | undefined;
+function routeName(request: Request): string | undefined {
+  if (!nameRoute)
+    void serverBuild().then(
+      (build) => (nameRoute ??= routeNamer(build.routes)),
+      () => undefined,
+    );
+  return /^\/(api|health|mcp|media)(\/|$)/.test(new URL(request.url).pathname)
+    ? undefined
+    : nameRoute?.(request);
+}
 
 /**
  * The cacheable entrypoint (wrangler.jsonc.example `exports`): every page and text route, rendered, then stored by the Workers
@@ -195,10 +210,15 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
   return forReader(page, request);
 }
 
+// Every request writes one `request` line (site-runtime ./log's withRequestLog: path, route pattern, status, ms and the
+// deployed commit, never a query), and a refused input (400 or 422) an `input_validation_fail` line beside it.
 export default {
   // Prelum's markdownCopies: every page also answers as Markdown at /path.md and for Accept: text/markdown, made from its
   // <main>, and /llms-full.txt is built from llms.txt and the sitemap (area 1, gap 5).
-  fetch: markdownCopies(gateway, { origin: SITE.url, siteMarkdown: false }),
+  fetch: withRequestLog(markdownCopies(gateway, { origin: SITE.url, siteMarkdown: false }), {
+    sha: (env) => (env as { DEPLOY_SHA?: string }).DEPLOY_SHA,
+    route: routeName,
+  }),
 
   // The nightly jobs (wrangler.jsonc triggers.crons, app/lib/cron.server.ts), each isolated, timed out and recorded in
   // cron_runs by site-runtime ./cron, which /health reads. A cron with no list runs nothing and says so.
