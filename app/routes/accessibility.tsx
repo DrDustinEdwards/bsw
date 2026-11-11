@@ -1,5 +1,6 @@
 import type { Route } from "./+types/accessibility";
 import { accessibilityStatement } from "@drdustinedwards/site-helpers/accessibility";
+import { markup } from "capsomer/behavior/trusted-html";
 import { pageMeta, SITE } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
@@ -28,7 +29,7 @@ export default function Accessibility({ loaderData }: Route.ComponentProps) {
       <section>
         <div
           className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20"
-          dangerouslySetInnerHTML={{ __html: loaderData.html }}
+          dangerouslySetInnerHTML={markup(loaderData.html)}
         />
       </section>
     </>

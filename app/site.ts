@@ -5,6 +5,7 @@
 // What only some pages use is an island (app/islands/, devkit's siteScript bundles each to /islands/<name>.js):
 // the home page's hex field, testimonials carousel, timeline and editing demo. startIslands loads one only
 // where an element names it with data-island, so the other pages never download them.
+import { startPage } from "@dustinedwards/site-runtime/page-client";
 import { startIslands } from "@dustinedwards/devkit/islands";
 import { swap } from "./swap";
 
@@ -66,6 +67,7 @@ function enhanceReveal() {
   for (const el of document.querySelectorAll(".reveal")) io.observe(el);
 }
 
+startPage();
 enhanceHeader();
 enhanceReveal();
 startIslands();
