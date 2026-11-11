@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "measured_at": "b28e506",
+    "measured_at": "24940c4",
     "knip": {
       "Unused files": 6,
       "Unused devDependencies": 1,
@@ -16,9 +16,9 @@
       "cases": 1
     },
     "comments": {
-      "lines": 547,
-      "code": 5212,
-      "percentage": 9.5
+      "lines": 483,
+      "code": 5403,
+      "percentage": 8.21
     }
   }
 }

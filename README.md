@@ -41,7 +41,7 @@ Live at https://bsw.dustin-edwards.workers.dev
 - `app/config/pages.ts` every page's title, description and path (route meta, sitemap, share cards)
 - `app/config/site.ts` single source of the base URL and per-route SEO meta helper
 - `app/lib/media/` the picture sizes (`images.ts`), `/media` and the library's D1 rows; `app/lib/carrel/` Carrel's site API
-- `workers/app.ts` request handler plus security response headers (site-runtime's set and the site's CSP) and the CSP report sink at `/csp-report` (site-runtime's receiver, rate-limited by the `CSP_REPORT_RATE_LIMIT` binding). Two entrypoints: the gateway (default export, never stored) and `Renderer`, whose pages are stored at the edge (site-runtime `./edge-cache`, `wrangler.jsonc.example` `cache` and `exports`); every page under `routes/layout.tsx` is marked shared, with a CSP that carries no nonce.
+- `workers/app.ts` the Worker, site-runtime's `./worker` (the gateway, the `Renderer` whose pages are stored at the edge, the request log and the cron), with what is bsw's own: the machine files (Prelum's `standardFiles`: robots.txt, ai.txt, site.webmanifest, the IndexNow key), `/health`, the operator tools, `/media` and Carrel's site API (site-api's `siteApiStep`). `workers/security-headers.ts` is the header set and the CSP, whose nonce is renewed for each reader of a stored page.
 - `public/` static assets and logos; a photograph's name carries a hash of its bytes (`bsw-logo-web.2a9980c8.webp`), so its sizes are cached for good
 
 ## Conventions
