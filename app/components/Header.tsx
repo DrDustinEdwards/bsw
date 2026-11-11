@@ -8,7 +8,7 @@ import { Wordmark } from "./Logo";
 export function Header() {
   return (
     <SiteHeader
-      wiredBy="enhance"
+      hydrate={false}
       logo={{ href: "/", label: "BioScience Writers", wordmark: <Wordmark /> }}
       sections={primaryNav.map((group) => ({
         id: group.label.toLowerCase(),

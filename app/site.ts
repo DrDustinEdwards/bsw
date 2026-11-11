@@ -12,6 +12,6 @@ import { enhance as enhanceHeader } from "capsomer/behavior/site-header";
 
 startPage();
 // The header's dropdowns, tips and phone sheet: no React reaches this page, so `enhance` wires the server-rendered
-// header (wiredBy="enhance").
+// header (hydrate={false}).
 enhanceHeader();
 startIslands();
