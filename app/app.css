@@ -734,6 +734,10 @@ body {
   /* Each tab at least 160px wide, its label in its own view's tone. */
   --cap-tab-min-inline-size: 160px;
   --cap-tab-ink: var(--cap-tab-tone);
+  /* Every label semibold; the tray's 12px corners and the pill's 8px. */
+  --cap-tab-weight: 600;
+  --cap-tabs-tray-radius: 12px;
+  --cap-tab-mark-radius: 8px;
   --cap-tab-h: 46px;
   --cap-tab-fs: 18px;
   --ui: "Open Sans", sans-serif;
@@ -1009,6 +1013,7 @@ body {
   .psms-tabs .cap-tabs-list {
     --cap-tab-h: 40px;
     --cap-tab-fs: 15px;
+    --cap-tab-min-inline-size: 120px;
   }
 }
 @media (max-width: 520px) {
@@ -1018,15 +1023,22 @@ body {
   .psms-gray-wrap {
     padding: 14px;
   }
+  /* The old fixed tabs: 96px each, the label centered with no side padding. */
   .psms-tabs .cap-tabs-list {
     --cap-tab-fs: 13px;
-    --pad-x: 8px;
+    --cap-tab-min-inline-size: 96px;
+    --cap-tab-h: 37px;
+    --pad-x: 0px;
   }
 }
 
 @media (max-width: 380px) {
   .psms-gray-wrap {
     padding: 8px;
+  }
+  .psms-tabs .cap-tabs-list {
+    --cap-tab-fs: 12px;
+    --cap-tab-min-inline-size: 82px;
   }
 }
 
