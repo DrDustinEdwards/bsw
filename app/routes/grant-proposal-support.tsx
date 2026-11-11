@@ -79,7 +79,7 @@ export default function GrantProposalSupport() {
             professional development and evidence-based writing strategies.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to secure your next research grant?
           </p>
           <div className="mt-5">

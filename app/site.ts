@@ -9,17 +9,6 @@ import { startPage } from "@dustinedwards/site-runtime/page-client";
 import { startIslands } from "@dustinedwards/devkit/islands";
 import { enhance as enhanceSiteHeader } from "capsomer/behavior/site-header";
 
-// The header's border and denser ground once the page scrolls (Capsomer's header has no scrolled state); its panels,
-// tips and phone sheet are Capsomer's enhance.
-function enhanceHeader() {
-  enhanceSiteHeader();
-  const header = document.querySelector<HTMLElement>(".cap-site-header");
-  if (!header) return;
-  const onScroll = () => header.toggleAttribute("data-scrolled", window.scrollY > 8);
-  onScroll();
-  window.addEventListener("scroll", onScroll, { passive: true });
-}
-
 // Sections fade and drop into place the first time they scroll into view.
 function enhanceReveal() {
   const io = new IntersectionObserver(
@@ -37,6 +26,6 @@ function enhanceReveal() {
 }
 
 startPage();
-enhanceHeader();
+enhanceSiteHeader();
 enhanceReveal();
 startIslands();

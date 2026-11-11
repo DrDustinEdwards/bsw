@@ -90,7 +90,7 @@ export default function LanguageSupport() {
             </li>
           </ul>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to communicate your research to the world?
           </p>
           <div className="mt-5">

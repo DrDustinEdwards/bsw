@@ -90,7 +90,7 @@ export default function CareerDevelopment() {
             </li>
           </ul>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to accelerate your academic career?
           </p>
           <div className="mt-5">

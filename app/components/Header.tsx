@@ -1,3 +1,4 @@
+import { Menu } from "lucide-react";
 import { SiteHeader } from "capsomer/react/site-header";
 import { primaryNav } from "../data/nav";
 import { Wordmark } from "./Logo";
@@ -16,10 +17,14 @@ export function Header() {
       theme={false}
       translucent
       links="center"
+      collapse="lg"
+      sheetIcons="auto"
+      menuIcon={<Menu aria-hidden="true" />}
       skipTo="#main"
       logo={{
         href: "/",
         label: "BioScience Writers",
+        name: "BioScience Writers home",
         wordmark: <Wordmark />,
       }}
       sections={primaryNav.map((group) => ({
@@ -27,7 +32,15 @@ export function Header() {
         label: group.label,
         groups: [{ links: group.links }],
       }))}
-      extras={[{ id: "quote", label: "Get a Quote", kind: "button", href: "/pricing" }]}
+      extras={[
+        {
+          id: "quote",
+          label: "Get a Quote",
+          kind: "button",
+          href: "/pricing",
+          className: "btn btn-blue btn-sm",
+        },
+      ]}
     />
   );
 }

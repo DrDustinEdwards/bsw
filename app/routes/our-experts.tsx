@@ -113,7 +113,7 @@ export default function OurExperts() {
             </li>
           </ul>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to connect with an expert in your field?
           </p>
           <div className="mt-5">

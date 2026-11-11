@@ -82,7 +82,7 @@ export default function EditingGuarantee() {
             reflects your research accurately and professionally.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to submit with confidence?
           </p>
         </div>

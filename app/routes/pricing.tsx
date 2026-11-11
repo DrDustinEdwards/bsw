@@ -65,7 +65,7 @@ export default function Pricing() {
           </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-3 not-prose">
-            <div className="rounded-2xl border border-slate-200 p-6">
+            <div className="rounded-2xl border border-slate-200 p-6 [&>:last-child]:mb-0">
               <h3 className="font-display text-xl font-bold text-ink">Standard</h3>
               <p className="mt-3 text-3xl font-extrabold text-brand">
                 $0.07 <span className="text-base font-normal text-muted">/ word</span>
@@ -74,7 +74,7 @@ export default function Pricing() {
               <p className="mt-1 text-sm text-muted">PhD-Level Review</p>
               <p className="mt-4 text-sm text-muted">Best for Manuscripts</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 p-6">
+            <div className="rounded-2xl border border-slate-200 p-6 [&>:last-child]:mb-0">
               <h3 className="font-display text-xl font-bold text-ink">Accelerated</h3>
               <p className="mt-3 text-3xl font-extrabold text-brand">
                 $0.10 <span className="text-base font-normal text-muted">/ word</span>
@@ -83,7 +83,7 @@ export default function Pricing() {
               <p className="mt-1 text-sm text-muted">Priority Placement</p>
               <p className="mt-4 text-sm text-muted">Best for Resubmissions</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 p-6">
+            <div className="rounded-2xl border border-slate-200 p-6 [&>:last-child]:mb-0">
               <h3 className="font-display text-xl font-bold text-ink">Critical Rush</h3>
               <p className="mt-3 text-3xl font-extrabold text-brand">
                 $0.14 <span className="text-base font-normal text-muted">/ word</span>

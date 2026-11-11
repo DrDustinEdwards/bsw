@@ -31,9 +31,9 @@ export default function ContactUs() {
           </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2 not-prose">
-            <div className="rounded-lg border border-slate-200 p-6">
-              <h2 className="font-display text-lg font-bold text-ink">Email</h2>
-              <p className="mt-3 text-muted">
+            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
+              <h2 className="font-display text-ink">Email</h2>
+              <p className="mt-[1.1rem] text-muted">
                 Editing and writing operations, online courses and writing workshops:{" "}
                 <a
                   className="font-semibold text-brand hover:underline"
@@ -44,8 +44,8 @@ export default function ContactUs() {
               </p>
             </div>
 
-            <div className="rounded-lg border border-slate-200 p-6">
-              <h2 className="font-display text-lg font-bold text-ink">Telephone Numbers</h2>
+            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
+              <h2 className="font-display text-ink">Telephone Numbers</h2>
               <dl className="mt-3 space-y-2 text-muted">
                 <div>
                   <dt className="font-semibold text-ink">Editing and Writing Operations</dt>
@@ -86,8 +86,8 @@ export default function ContactUs() {
               </dl>
             </div>
 
-            <div className="rounded-lg border border-slate-200 p-6">
-              <h2 className="font-display text-lg font-bold text-ink">Secure Facsimile Numbers</h2>
+            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
+              <h2 className="font-display text-ink">Secure Facsimile Numbers</h2>
               <dl className="mt-3 space-y-2 text-muted">
                 <div>
                   <dt className="font-semibold text-ink">Primary</dt>
@@ -104,8 +104,8 @@ export default function ContactUs() {
               </dl>
             </div>
 
-            <div className="rounded-lg border border-slate-200 p-6">
-              <h2 className="font-display text-lg font-bold text-ink">Business Office</h2>
+            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
+              <h2 className="font-display text-ink">Business Office</h2>
               <address className="mt-2 not-italic text-muted">
                 4008 Law St
                 <br />

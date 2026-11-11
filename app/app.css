@@ -142,6 +142,8 @@
   --dur-reveal: 600ms; /* scroll-in entrances */
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-back: cubic-bezier(0.2, 1.12, 0.32, 1);
+  /* The site header's height, its 64px row and 1px edge: Capsomer's page token, which also sets scroll-padding-top. */
+  --header-h: calc(4rem + 1px);
 }
 
 html,
@@ -174,14 +176,44 @@ body {
   --ring: var(--color-brand);
   --primary: #c3dcf0;
   --primary-fg: var(--color-brand);
+  /* The old bar: 64px tall, its row in the 72rem content column with 20px sides, semibold section buttons, white
+     at 70% under an 8px blur with no edge; once the page scrolls, 90% white and a hairline. */
+  --header-max-inline-size: 72rem;
+  --header-side: 1.25rem;
+  --header-link-weight: 600;
+  --header-link-current-weight: 600;
+  --header-translucent-mix: 70%;
+  --header-blur: 8px;
+  --header-edge: transparent;
+  --header-scrolled-edge: #e2e8f0;
+  --header-scrolled-mix: 90%;
+  /* Section buttons 8px by 12px, 4px apart, with 14px chevrons; Get a Quote is the site's glass .btn (its face is the
+     button's gradient); the menu button 40px with a 24px glyph, 12px after Get a Quote. */
+  --header-link-pad: 8px 12px;
+  --header-links-gap: 4px;
+  --header-chev-size: 14px;
+  --header-link-gap: 4px;
+  --header-cta: transparent;
+  --header-icon-size: 40px;
+  --header-glyph-size: 24px;
+  --header-glyph-stroke: 2;
+  --header-row-tools-gap: 12px;
+  /* The phone sheet's group labels in small blue capitals, its rows at 0.95rem, 39px apart (35px and the sheet's 4px gap). */
+  --header-sheet-label-ink: var(--color-brand);
+  --header-sheet-label-fs: 0.75rem;
+  --header-sheet-label-weight: 700;
+  --header-sheet-label-case: uppercase;
+  --header-sheet-label-tracking: 0.05em;
+  --header-sheet-row-fs: 0.95rem;
+  --header-sheet-row-h: 35px;
   transition: border-color var(--dur-content) var(--ease-out);
 }
-/* Capsomer's section buttons are regular weight, with no token for it; bsw's are semibold. */
-.cap-site-header-link {
-  font-weight: 600;
-}
-.cap-site-header[data-scrolled] {
-  --header-line: #e2e8f0;
+
+/* In the phone sheet, Get a Quote is the full-width glass button it was (its .btn would make it inline). */
+.cap-site-header-sheet-cta.btn {
+  display: flex;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
 }
 
 /*
@@ -303,13 +335,18 @@ body {
   width: max-content;
   align-items: center;
   height: 120px;
-  animation: scroll 240s linear infinite;
 }
-.logo-track.reverse {
-  animation-direction: reverse;
-}
-.logo-marquee:hover .logo-track {
-  animation-play-state: paused;
+/* The drift runs only when the reader has not asked for less motion (WCAG 2.3.3). */
+@media (prefers-reduced-motion: no-preference) {
+  .logo-track {
+    animation: scroll 240s linear infinite;
+  }
+  .logo-track.reverse {
+    animation-direction: reverse;
+  }
+  .logo-marquee:hover .logo-track {
+    animation-play-state: paused;
+  }
 }
 
 .logo-box {
@@ -468,20 +505,34 @@ body {
   --prose-h3-size: 1.25rem;
   --prose-flow: 1.1rem;
   --prose-marker: var(--color-brand);
-  font-size: var(--fs-prose);
-  line-height: var(--leading);
+  /* Headings run the full 48rem column (the policy pages' long headings would break into three lines at 30ch). */
+  --prose-heading-measure: none;
+  --prose-heading-gap: 1.1rem;
+  --prose-item-space: 0.55rem;
+  --prose-list-indent: 1.4rem;
+  --prose-item-indent: 0.25rem;
+  --prose-wrap: wrap;
+  --prose-numerals: normal;
+  --prose-heading-tracking: normal;
+  --prose-size-adjust: none;
+  --prose-link-ink: var(--color-brand);
+  --prose-link-hover-decoration: underline;
+  --link-weight: 600;
+  --prose-heading-leading: 1.25;
 }
-/* Capsomer holds a heading to 30ch, with no token for it; in this 48rem column the long headings of the policy pages
-   then broke into three lines. */
-.page-prose :is(h2, h3) {
-  max-inline-size: none;
+/* Items were spaced by a gap, so the last one adds nothing under its list. */
+.page-prose li:last-child {
+  --prose-item-space: 0;
 }
-.page-prose a {
-  color: var(--color-brand);
+/* A button in the prose keeps the prose links' semibold, as it always had. */
+.page-prose .btn {
   font-weight: 600;
 }
-.page-prose a:hover {
-  text-decoration: underline;
+/* An h3: 2rem above, bold, at the body's leading, as it always had. */
+.page-prose h3 {
+  --prose-heading-space: 2rem;
+  --prose-heading-weight: 700;
+  --prose-heading-leading: var(--leading);
 }
 .page-prose h2.prose-sub {
   margin-top: 2rem;
@@ -680,6 +731,9 @@ body {
 }
 .psms-tabs .cap-tabs-list {
   align-self: center;
+  /* Each tab at least 160px wide, its label in its own view's tone. */
+  --cap-tab-min-inline-size: 160px;
+  --cap-tab-ink: var(--cap-tab-tone);
   --cap-tab-h: 46px;
   --cap-tab-fs: 18px;
   --ui: "Open Sans", sans-serif;
@@ -977,8 +1031,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hex,
-  .logo-track {
+  .hex {
     animation: none !important;
   }
   .reveal {

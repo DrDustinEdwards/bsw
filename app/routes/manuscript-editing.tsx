@@ -80,7 +80,7 @@ export default function ManuscriptEditing() {
             your next breakthrough.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Ready to move your research toward publication?
           </p>
           <div className="mt-5">

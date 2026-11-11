@@ -30,8 +30,7 @@ export default function initEditingDemo(root: HTMLElement): void {
     layout.dataset.tab = panel.id.replace("psms-panel-", "");
     clearAll();
   });
-  // The page's one tab set is this demo's. (enhance takes a ParentNode, which the Workers types and the DOM's disagree on.)
-  enhance();
+  enhance(root);
 
   function activateCard(card: HTMLElement) {
     const id = card.getAttribute("data-comment");

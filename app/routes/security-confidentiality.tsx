@@ -89,7 +89,7 @@ export default function SecurityConfidentiality() {
             compliance team is available to assist.
           </p>
 
-          <p className="mt-10 font-display text-xl font-bold text-ink">
+          <p className="font-display text-xl font-bold text-ink">
             Have questions about our security protocols?
           </p>
         </div>
