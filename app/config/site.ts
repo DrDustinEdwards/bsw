@@ -3,7 +3,7 @@
   structured-data helpers. When the custom domain is decided, change the base
   URL here (README.md).
 */
-import { absoluteUrl, defineHead } from "@drdustinedwards/site-helpers/head";
+import { defineHead } from "@drdustinedwards/site-helpers/head";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { shareCardPath, type Page } from "./pages";
 import { organizationLd } from "./structured-data";
@@ -32,11 +32,6 @@ export const SITE = {
 
 /** The site's IndexNow key, public by the protocol's design: served as /<key>.txt and sent after each deploy. */
 export const INDEXNOW_KEY = "b6f5f05fb7013a33e9258707d055b2d7";
-
-/** Build an absolute URL from a site-relative path. */
-export function absUrl(path: string): string {
-  return absoluteUrl(SITE.url, path.startsWith("/") ? path : `/${path}`);
-}
 
 /** Prelum's head builder with the site card: `<title>` gets the " | BioScience Writers" suffix (dropped where it does not fit). */
 const head = defineHead({

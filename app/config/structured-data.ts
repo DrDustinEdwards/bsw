@@ -1,8 +1,9 @@
 // JSON-LD, built with Prelum's schema helpers and written into the head through each route's meta
 // (React Router escapes it). Content is static and trusted.
+import { absoluteUrl } from "@drdustinedwards/site-helpers/head";
 import { faqPage, thing, website } from "@drdustinedwards/site-helpers/schema";
 import { FAQS } from "../data/content";
-import { SITE, absUrl } from "./site";
+import { SITE } from "./site";
 
 /** Site-wide Organization, on every page through pageMeta. */
 export function organizationLd() {
@@ -10,7 +11,7 @@ export function organizationLd() {
     name: SITE.name,
     legalName: SITE.legalName,
     url: SITE.url,
-    logo: absUrl("/brand/apple-touch-icon-180.e581bbfc.png"),
+    logo: absoluteUrl(SITE.url, "/brand/apple-touch-icon-180.e581bbfc.png"),
     foundingDate: SITE.founded,
     description: SITE.description,
     address: {
@@ -39,7 +40,7 @@ export function homeLd() {
       areaServed: "Worldwide",
       description:
         "Strategic grant review, manuscript editing, medical writing, journal formatting, and scientific translation by PhD and MD experts.",
-      offers: { "@type": "Offer", priceCurrency: "USD", url: absUrl("/pricing") },
+      offers: { "@type": "Offer", priceCurrency: "USD", url: absoluteUrl(SITE.url, "/pricing") },
     }),
     faqPage(FAQS.map((f) => ({ question: f.q, answer: f.a }))),
   ];
