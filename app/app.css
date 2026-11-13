@@ -956,6 +956,10 @@ body {
   .cap-price-grid {
     --space-4: 1.5rem;
   }
+  /* The grid sits in the prose context, whose list items end in a margin; a card is a list item but not prose. */
+  .cap-price-grid {
+    --prose-item-space: 0;
+  }
   .cap-contact-card,
   .cap-price-card {
     --display: var(--font-display);
@@ -980,6 +984,8 @@ body {
     --cap-price-label-weight: 600;
     --cap-price-color: var(--color-brand);
     --cap-price-size: 1.875rem;
+    --pad-card: 2.5rem 1.5rem;
+    --space-3: 1.25rem;
   }
   .faq-more-text,
   .quote-card-meta {
