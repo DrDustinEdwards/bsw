@@ -1,3 +1,4 @@
+import { Hero } from "capsomer/react/hero";
 import { HexField } from "../components/HexField";
 import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
@@ -14,7 +15,7 @@ import { institutions, journals } from "../data/logos";
 import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM } from "../data/content";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
-import { Icon } from "capsomer/react/icons";
+import { Icon, iconArrowRight } from "capsomer/react/icons";
 
 export function meta() {
   return [...pageMeta(page("/")), ...homeLd().map(jsonLd)];
@@ -24,27 +25,22 @@ export default function Home() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="hero-surface">
-        <HexField />
-        <div className="hero-inner">
-          <div className="hero-card">
-            <h1 className="hero-title">Funding Secured. Science Perfected.</h1>
-            <p className="hero-subtitle">
-              Strategic Grant Review &amp; Manuscript Editing by PhD/MD Experts.
-            </p>
-            <p className="hero-body">
-              Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
-            </p>
-            <p className="hero-body">
-              Trusted by PIs at top-tier universities and global research institutions for NIH, NSF,
-              and high-impact journal submissions.
-            </p>
-            <div className="hero-actions">
-              <PrimaryButton href="/pricing">View Pricing</PrimaryButton>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero
+        className="hero-surface home-hero"
+        card
+        backdrop={<HexField />}
+        title="Funding Secured. Science Perfected."
+        lead="Strategic Grant Review & Manuscript Editing by PhD/MD Experts."
+        actions={<PrimaryButton href="/pricing">View Pricing</PrimaryButton>}
+      >
+        <p className="hero-body">
+          Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
+        </p>
+        <p className="hero-body">
+          Trusted by PIs at top-tier universities and global research institutions for NIH, NSF, and
+          high-impact journal submissions.
+        </p>
+      </Hero>
 
       {/*
         2. Impact stats + trust marquees. On the reference these sit in one
@@ -150,7 +146,7 @@ export default function Home() {
                     expert-led eCourses.{" "}
                     <a href="/knowledge-hub" className="academy-link">
                       Explore courses
-                      <Icon name="arrow-right" />
+                      <Icon d={iconArrowRight} />
                     </a>
                   </p>
                 </div>

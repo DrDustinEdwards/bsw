@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
@@ -82,7 +83,7 @@ export default function EditingGuarantee() {
             reflects your research accurately and professionally.
           </p>
 
-          <p className="prose-cta">Ready to submit with confidence?</p>
+          <CtaBand title="Ready to submit with confidence?" actions={null} />
         </div>
       </section>
     </>

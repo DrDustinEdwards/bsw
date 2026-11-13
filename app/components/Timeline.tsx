@@ -1,4 +1,10 @@
-import { Icon, type IconName } from "capsomer/react/icons";
+import {
+  Icon,
+  iconDocument,
+  iconShieldCheck,
+  iconUpload,
+  iconUserCheck,
+} from "capsomer/react/icons";
 import { Timeline as CapTimeline } from "capsomer/react/timeline";
 
 /*
@@ -14,35 +20,35 @@ const STEPS: {
   title: string;
   color: string;
   desc: string;
-  icon: IconName;
+  icon: string;
 }[] = [
   {
     num: "01",
     title: "Submit Your Document",
     color: "var(--color-accent-blue)",
     desc: "Upload your manuscript or grant proposal. Select your turnaround time and any special requirements.",
-    icon: "upload",
+    icon: iconUpload,
   },
   {
     num: "02",
     title: "Matched with Your Expert",
     color: "var(--color-accent-green)",
     desc: "We pair you with a PhD/MD editor in your field. Receive confirmation with estimated completion date.",
-    icon: "user-check",
+    icon: iconUserCheck,
   },
   {
     num: "03",
     title: "Receive Track Changes Edits",
     color: "var(--color-accent-orange)",
     desc: "Download two versions: one showing all changes, and one clean copy with all edits accepted.",
-    icon: "document",
+    icon: iconDocument,
   },
   {
     num: "04",
     title: "100% Satisfaction Guarantee",
     color: "var(--color-accent-blue)",
     desc: "If reviewers request revisions, we re-edit at no charge. Your success is our guarantee.",
-    icon: "shield-check",
+    icon: iconShieldCheck,
   },
 ];
 
@@ -55,7 +61,7 @@ export function Timeline() {
           title: s.title,
           icon: (
             <span className="timeline-step-icon" style={{ color: s.color }}>
-              <Icon name={s.icon} />
+              <Icon d={s.icon} />
             </span>
           ),
           children: <p>{s.desc}</p>,

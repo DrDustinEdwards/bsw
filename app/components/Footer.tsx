@@ -1,22 +1,23 @@
+import { copyright } from "capsomer/behavior/family-footer";
 import { useState } from "react";
 import { SITE } from "../config/site";
 import { footerGroups } from "../data/nav";
 import { sitePicture } from "../lib/media/images";
-import { Icon } from "capsomer/react/icons";
+import { Icon, markFacebook, markLinkedin, markX } from "capsomer/react/icons";
 import { Picture } from "capsomer/react/picture";
 
 // Real BioScience Writers social profiles, on brand-colored square tiles to match the reference footer. The marks
 // are Capsomer's icons.
 const social = [
   {
-    name: "facebook",
+    mark: markFacebook,
     label: "Facebook",
     href: SITE.social.facebook,
     color: "var(--color-social-facebook)",
   },
-  { name: "x", label: "X", href: SITE.social.x, color: "var(--color-social-x)" },
+  { mark: markX, label: "X", href: SITE.social.x, color: "var(--color-social-x)" },
   {
-    name: "linkedin",
+    mark: markLinkedin,
     label: "LinkedIn",
     href: SITE.social.linkedin,
     color: "var(--color-social-linkedin)",
@@ -25,7 +26,7 @@ const social = [
 
 export function Footer() {
   // Read once, in a lazy initializer, so the render itself stays pure (react/purity).
-  const [year] = useState(() => new Date().getFullYear());
+  const [line] = useState(() => copyright(SITE.legalName));
   return (
     <footer className="site-footer">
       <div className="site-footer-inner">
@@ -67,16 +68,14 @@ export function Footer() {
                   className="site-footer-social-link"
                   style={{ backgroundColor: s.color }}
                 >
-                  <Icon name={s.name} />
+                  <Icon {...s.mark} />
                 </a>
               ))}
             </div>
           </div>
         </div>
 
-        <p className="site-footer-legal">
-          &copy; {year} {SITE.legalName}. All rights reserved.
-        </p>
+        <p className="site-footer-legal">{line}. All rights reserved.</p>
       </div>
     </footer>
   );

@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
@@ -91,10 +92,10 @@ export default function InstitutionalPartnerships() {
             </li>
           </ul>
 
-          <p className="prose-cta">Ready to streamline research support for your institution?</p>
-          <div className="prose-cta-actions">
-            <PrimaryButton href="/contact-us">Request a Consultation</PrimaryButton>
-          </div>
+          <CtaBand
+            title="Ready to streamline research support for your institution?"
+            actions={<PrimaryButton href="/contact-us">Request a Consultation</PrimaryButton>}
+          />
         </div>
       </section>
     </>

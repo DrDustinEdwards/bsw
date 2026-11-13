@@ -1,5 +1,5 @@
 import { Carousel } from "capsomer/react/carousel";
-import { Icon } from "capsomer/react/icons";
+import { Icon, iconQuote } from "capsomer/react/icons";
 import { TESTIMONIALS, type Testimonial } from "../data/content";
 
 /*
@@ -21,7 +21,7 @@ function Card({ t }: { t: Testimonial }) {
       }}
     >
       <span className="quote-card-mark" style={{ color: t.accent }}>
-        <Icon name="quote" />
+        <Icon d={iconQuote} />
       </span>
       <blockquote className="quote-card-text">{t.quote}</blockquote>
       <figcaption className="quote-card-cite">
