@@ -1,6 +1,7 @@
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
-import { PageHero } from "../components/PageHero";
+import { PriceCard, PriceGrid } from "capsomer/react/price-card";
+import { ProsePage } from "capsomer/react/prose-page";
 
 export function meta() {
   return pageMeta(page("/pricing"));
@@ -8,110 +9,99 @@ export function meta() {
 
 export default function Pricing() {
   return (
-    <>
-      <PageHero title="Pricing" />
-      <section>
-        <div data-context="prose" className="page-prose">
-          <h2 className="prose-sub">1. The Core Pricing</h2>
-          <p>BSW traditionally uses a Per-Word rate based on Turnaround Time.</p>
-          <ul>
-            <li>
-              <strong>Standard Service (7-10 Days):</strong> $0.05 - $0.07 per word.
-            </li>
-            <li>
-              <strong>Rush Service (2-3 Days):</strong> $0.08 - $0.10 per word.
-            </li>
-            <li>
-              <strong>Extreme Rush (24 Hours):</strong> $0.12 - $0.15 per word.
-            </li>
-            <li>
-              <strong>Note:</strong> There is typically a Minimum Order Fee (e.g., $50.00) for very
-              small documents (abstracts).
-            </li>
-          </ul>
+    <ProsePage title="Pricing">
+      <h2 className="prose-sub">1. The Core Pricing</h2>
+      <p>BSW traditionally uses a Per-Word rate based on Turnaround Time.</p>
+      <ul>
+        <li>
+          <strong>Standard Service (7-10 Days):</strong> $0.05 - $0.07 per word.
+        </li>
+        <li>
+          <strong>Rush Service (2-3 Days):</strong> $0.08 - $0.10 per word.
+        </li>
+        <li>
+          <strong>Extreme Rush (24 Hours):</strong> $0.12 - $0.15 per word.
+        </li>
+        <li>
+          <strong>Note:</strong> There is typically a Minimum Order Fee (e.g., $50.00) for very
+          small documents (abstracts).
+        </li>
+      </ul>
 
-          <h2 className="prose-sub">2. The Quality Seal</h2>
-          <ul>
-            <li>
-              <strong>100% Satisfaction Guarantee:</strong> If a journal rejects a paper for English
-              quality after BSW editing, BSW re-edits for free.
-            </li>
-            <li>
-              <strong>PhD/MD Only:</strong> You aren't paying for "AI" or "Students." You are paying
-              for a peer-level scientist.
-            </li>
-          </ul>
+      <h2 className="prose-sub">2. The Quality Seal</h2>
+      <ul>
+        <li>
+          <strong>100% Satisfaction Guarantee:</strong> If a journal rejects a paper for English
+          quality after BSW editing, BSW re-edits for free.
+        </li>
+        <li>
+          <strong>PhD/MD Only:</strong> You aren't paying for "AI" or "Students." You are paying for
+          a peer-level scientist.
+        </li>
+      </ul>
 
-          <h2 className="prose-sub">3. Institutional &amp; Volume Discounts</h2>
-          <ul>
-            <li>
-              <strong>Referral Program:</strong> Discounts for PIs who refer their colleagues.
-            </li>
-            <li>
-              <strong>Institutional Accounts:</strong> Pre-paid accounts for departments (removes
-              the "Purchase Order" headache for individual researchers).
-            </li>
-            <li>
-              <strong>Volume Discount:</strong> Lower per-word rates for documents over 10,000 words
-              (theses/books).
-            </li>
-          </ul>
+      <h2 className="prose-sub">3. Institutional &amp; Volume Discounts</h2>
+      <ul>
+        <li>
+          <strong>Referral Program:</strong> Discounts for PIs who refer their colleagues.
+        </li>
+        <li>
+          <strong>Institutional Accounts:</strong> Pre-paid accounts for departments (removes the
+          "Purchase Order" headache for individual researchers).
+        </li>
+        <li>
+          <strong>Volume Discount:</strong> Lower per-word rates for documents over 10,000 words
+          (theses/books).
+        </li>
+      </ul>
 
-          <h2>No Compromise</h2>
-          <p>Transparent, Expert-Led Pricing</p>
-          <p>
-            Premium scientific editing is an investment in your career. We provide flat-rate,
-            per-word pricing with zero hidden fees.
-          </p>
+      <h2>No Compromise</h2>
+      <p>Transparent, Expert-Led Pricing</p>
+      <p>
+        Premium scientific editing is an investment in your career. We provide flat-rate, per-word
+        pricing with zero hidden fees.
+      </p>
 
-          <div className="price-grid">
-            <div className="price-card">
-              <h3 className="price-name">Standard</h3>
-              <p className="price-amount">
-                $0.07 <span className="price-unit">/ word</span>
-              </p>
-              <p className="price-turnaround">7-10 Business Days</p>
-              <p className="price-detail">PhD-Level Review</p>
-              <p className="price-best">Best for Manuscripts</p>
-            </div>
-            <div className="price-card">
-              <h3 className="price-name">Accelerated</h3>
-              <p className="price-amount">
-                $0.10 <span className="price-unit">/ word</span>
-              </p>
-              <p className="price-turnaround">3-5 Business Days</p>
-              <p className="price-detail">Priority Placement</p>
-              <p className="price-best">Best for Resubmissions</p>
-            </div>
-            <div className="price-card">
-              <h3 className="price-name">Critical Rush</h3>
-              <p className="price-amount">
-                $0.14 <span className="price-unit">/ word</span>
-              </p>
-              <p className="price-turnaround">24-48 Hours</p>
-              <p className="price-detail">Journal Formatting</p>
-              <p className="price-best">Best for Grant Deadlines</p>
-            </div>
-          </div>
+      <PriceGrid>
+        <PriceCard
+          name="Standard"
+          price="$0.07"
+          unit="/ word"
+          label="7-10 Business Days"
+          text={["PhD-Level Review", "Best for Manuscripts"]}
+        />
+        <PriceCard
+          name="Accelerated"
+          price="$0.10"
+          unit="/ word"
+          label="3-5 Business Days"
+          text={["Priority Placement", "Best for Resubmissions"]}
+        />
+        <PriceCard
+          name="Critical Rush"
+          price="$0.14"
+          unit="/ word"
+          label="24-48 Hours"
+          text={["Journal Formatting", "Best for Grant Deadlines"]}
+        />
+      </PriceGrid>
 
-          <h2>Exclusive Discount Programs</h2>
-          <p>Maximize Your Budget</p>
-          <ul>
-            <li>
-              <strong>New Client Initiative:</strong> 10% off your first submission to experience
-              the BSW difference.
-            </li>
-            <li>
-              <strong>Institutional Partners:</strong> We offer streamlined billing and discounted
-              rates for University departments and Research Centers.
-            </li>
-            <li>
-              <strong>The Referral Credit:</strong> Refer a colleague and both receive a $50 credit
-              toward your next project.
-            </li>
-          </ul>
-        </div>
-      </section>
-    </>
+      <h2>Exclusive Discount Programs</h2>
+      <p>Maximize Your Budget</p>
+      <ul>
+        <li>
+          <strong>New Client Initiative:</strong> 10% off your first submission to experience the
+          BSW difference.
+        </li>
+        <li>
+          <strong>Institutional Partners:</strong> We offer streamlined billing and discounted rates
+          for University departments and Research Centers.
+        </li>
+        <li>
+          <strong>The Referral Credit:</strong> Refer a colleague and both receive a $50 credit
+          toward your next project.
+        </li>
+      </ul>
+    </ProsePage>
   );
 }

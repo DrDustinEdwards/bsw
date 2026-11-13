@@ -23,4 +23,4 @@ Stack and layout are in README.md. Single production Worker, no staging. The pag
 ## Hard rules
 
 1. The site's content claims (stats, endorsements, turnaround, guarantee, pricing) are Dustin's to change (`bsw/content-notes.md`). Do not add new factual claims without his confirmation.
-2. UI mechanisms have documented gotchas (marquee loop, band-slab z-index, HexField hydration). Read `bsw/architecture.md` before touching them.
+2. UI mechanisms have documented gotchas (marquee loop). Read `bsw/architecture.md` before touching them. The hero's hex field, the slanted band and the editing demo are Capsomer's ambient, section band and annotated document.

@@ -42,6 +42,6 @@ export function homeLd() {
         "Strategic grant review, manuscript editing, medical writing, journal formatting, and scientific translation by PhD and MD experts.",
       offers: { "@type": "Offer", priceCurrency: "USD", url: absoluteUrl(SITE.url, "/pricing") },
     }),
-    faqPage(FAQS.map((f) => ({ question: f.q, answer: f.a }))),
+    faqPage(FAQS),
   ];
 }

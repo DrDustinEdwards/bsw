@@ -1,9 +1,8 @@
 import type { Route } from "./+types/accessibility";
 import { accessibilityStatement } from "@drdustinedwards/site-helpers/accessibility";
-import { markup } from "capsomer/behavior/trusted-html";
 import { pageMeta, SITE } from "../config/site";
 import { page } from "../config/pages";
-import { PageHero } from "../components/PageHero";
+import { ProsePage } from "capsomer/react/prose-page";
 
 export function meta() {
   return pageMeta(page("/accessibility"));
@@ -23,16 +22,5 @@ export function loader() {
 }
 
 export default function Accessibility({ loaderData }: Route.ComponentProps) {
-  return (
-    <>
-      <PageHero title="Accessibility Statement" />
-      <section>
-        <div
-          data-context="prose"
-          className="page-prose"
-          dangerouslySetInnerHTML={markup(loaderData.html)}
-        />
-      </section>
-    </>
-  );
+  return <ProsePage title="Accessibility Statement" html={loaderData.html} />;
 }

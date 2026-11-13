@@ -4,6 +4,7 @@ import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 import { cloudflareBeaconAttributes } from "@dustinedwards/site-runtime/csp";
 import { ErrorPage, errorTitle } from "capsomer/react/error-page";
 import { Icon, iconArrowRight } from "capsomer/react/icons";
+import { ProsePageHead } from "capsomer/react/prose-page";
 
 import type { Route } from "./+types/root";
 // Open Sans from the site's own origin (Fontsource, the files Google Fonts serves, bundled under /assets/): no
@@ -12,7 +13,6 @@ import "@fontsource-variable/open-sans/wght.css";
 import "@fontsource-variable/open-sans/wght-italic.css";
 import "./app.css";
 import { PRELOADS } from "./preloads";
-import { PageHero } from "./components/PageHero";
 import { SITE } from "./config/site";
 
 const WEB_ANALYTICS_TOKEN = "82f973a0cfb6496f92a3919629cbfbd2";
@@ -56,15 +56,16 @@ export default function App() {
 }
 
 // The error page is Capsomer's, on BioScience Writers' own look, since the site keeps its client's brand rather than
-// Capsomer's (.shared.json "waive"): `hero` lays the title band out as an interior page is (PageHero), then the
-// sentence and the ways out follow in the page's column. The stack shows only in development.
+// Capsomer's (.shared.json "waive"): `hero` is the title band of an interior page (Capsomer's prose-page head, since
+// the error page brings its own body), then the sentence and the ways out follow in the page's
+// column. The stack shows only in development.
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   return (
     <ErrorPage
       error={error}
       home="/"
       dev={import.meta.env.DEV}
-      hero={({ title }) => <PageHero title={title} />}
+      hero={({ title }) => <ProsePageHead title={title} />}
       homeIcon={<Icon d={iconArrowRight} className="btn-arrow" />}
     />
   );

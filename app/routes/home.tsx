@@ -1,8 +1,9 @@
+import { Ambient } from "capsomer/react/ambient";
+import { Faq } from "capsomer/react/faq";
 import { Hero } from "capsomer/react/hero";
-import { HexField } from "../components/HexField";
+import { SectionBand } from "capsomer/react/section-band";
 import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
-import { Faq } from "../components/Faq";
 import { Testimonials } from "../components/Testimonials";
 import { Marquee, MarqueePause } from "capsomer/react/marquee";
 import { LogoTile, PrimaryButton, SectionHeading } from "../components/ui";
@@ -12,7 +13,7 @@ import { sitePicture } from "../lib/media/images";
 import { homeLd } from "../config/structured-data";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { institutions, journals } from "../data/logos";
-import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM } from "../data/content";
+import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM, FAQS } from "../data/content";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { Icon, iconArrowRight } from "capsomer/react/icons";
@@ -28,7 +29,7 @@ export default function Home() {
       <Hero
         className="hero-surface home-hero"
         card
-        backdrop={<HexField />}
+        backdrop={<Ambient variant="hex-field" />}
         title="Funding Secured. Science Perfected."
         lead="Strategic Grant Review & Manuscript Editing by PhD/MD Experts."
         actions={<PrimaryButton href="/pricing">View Pricing</PrimaryButton>}
@@ -45,12 +46,9 @@ export default function Home() {
       {/*
         2. Impact stats + trust marquees. On the reference these sit in one
         continuous dark band with diagonal top/bottom edges, so they are a
-        single section here. The band-cut class (app.css) draws the slants.
+        single section here: Capsomer's slanted section band, pulled over the hero and the services.
       */}
-      <section className="band-cut">
-        <span aria-hidden="true" className="band-ghost band-ghost--top" />
-        <span aria-hidden="true" className="band-slab" />
-        <span aria-hidden="true" className="band-ghost band-ghost--bottom" />
+      <SectionBand cut="slant" overlap>
         <div className="band-inner">
           <div className="cap-reveal">
             <SectionHeading dark title="Our Impact, by the Numbers" />
@@ -87,7 +85,7 @@ export default function Home() {
             <MarqueePause />
           </div>
         </div>
-      </section>
+      </SectionBand>
 
       {/* 3. Services: flagship card + 2x2 grid + BSW Academy banner */}
       <section id="services" className="section-alt">
@@ -243,8 +241,8 @@ export default function Home() {
               intro="Find quick answers to the most common questions about our editing process, turnaround times, credentials, and satisfaction guarantee."
             />
           </div>
-          <div className="cap-reveal section-body">
-            <Faq />
+          <div className="cap-reveal section-body faq">
+            <Faq items={FAQS} openFirst />
           </div>
           <div className="cap-reveal faq-more">
             <p className="faq-more-title">Still have questions?</p>
@@ -257,7 +255,7 @@ export default function Home() {
       </section>
 
       {/* 9. BSW Commitment band */}
-      <section className="section-band">
+      <SectionBand>
         <div className="commitment-inner">
           <div className="cap-reveal">
             <h2 className="commitment-title">The BSW Commitment</h2>
@@ -273,7 +271,7 @@ export default function Home() {
             </p>
           </div>
         </div>
-      </section>
+      </SectionBand>
     </>
   );
 }
