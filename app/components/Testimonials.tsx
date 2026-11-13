@@ -1,5 +1,5 @@
 import { Carousel } from "capsomer/react/carousel";
-import { Quote } from "lucide-react";
+import { Icon } from "capsomer/react/icons";
 import { TESTIMONIALS, type Testimonial } from "../data/content";
 
 /*
@@ -14,22 +14,20 @@ const PER_SLIDE = 2;
 function Card({ t }: { t: Testimonial }) {
   return (
     <figure
-      className="relative flex h-full flex-col rounded-2xl border p-8 pt-10"
+      className="quote-card"
       style={{
         borderColor: `color-mix(in srgb, ${t.accent} 20%, transparent)`,
         background: `linear-gradient(140deg, color-mix(in srgb, ${t.accent} 9%, transparent) 0%, #ffffff 72%)`,
       }}
     >
-      <span className="absolute -top-6 left-1/2 flex h-12 w-12 -translate-x-1/2 items-center justify-center rounded-full bg-white shadow-md shadow-slate-900/10">
-        <Quote size={20} strokeWidth={2} style={{ color: t.accent }} aria-hidden="true" />
+      <span className="quote-card-mark" style={{ color: t.accent }}>
+        <Icon name="quote" />
       </span>
-      <blockquote className="text-[1.05rem] italic leading-relaxed text-ink/90">
-        {t.quote}
-      </blockquote>
-      <figcaption className="mt-6">
-        <p className="font-semibold text-ink">{t.name}</p>
-        <p className="text-sm text-muted">{t.honor}</p>
-        <p className="text-sm text-muted">{t.org}</p>
+      <blockquote className="quote-card-text">{t.quote}</blockquote>
+      <figcaption className="quote-card-cite">
+        <p className="quote-card-name">{t.name}</p>
+        <p className="quote-card-meta">{t.honor}</p>
+        <p className="quote-card-meta">{t.org}</p>
       </figcaption>
     </figure>
   );
@@ -56,7 +54,7 @@ export function Testimonials() {
         markerLabel={(n) => `Go to testimonial slide ${n}`}
       >
         {slides.map((group, gi) => (
-          <div key={gi} className="grid gap-6 px-3 pt-6 md:grid-cols-2">
+          <div key={gi} className="quote-slide">
             {group.map((t, i) => (
               <Card key={i} t={t} />
             ))}

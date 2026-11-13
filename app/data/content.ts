@@ -4,26 +4,18 @@
   ServiceCard, TeamMember, FaqItem, Testimonials). Copy is carried over from
   the reference site.
 */
-import {
-  Banknote,
-  Repeat,
-  Globe,
-  FileText,
-  Building2,
-  BookOpen,
-  type LucideIcon,
-} from "lucide-react";
+import type { IconName } from "capsomer/react/icons";
 import type { SitePhoto } from "../lib/media/images";
 
-export type Stat = { Icon: LucideIcon; value: string; label: string };
+export type Stat = { icon: IconName; value: string; label: string };
 
 export const STATS: Stat[] = [
-  { Icon: Banknote, value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
-  { Icon: Repeat, value: "58%", label: "Repeat Clients" },
-  { Icon: Globe, value: "7,000+", label: "Clients in 185 Countries" },
-  { Icon: FileText, value: "37,000+", label: "Documents" },
-  { Icon: Building2, value: "2,400+", label: "Institutions" },
-  { Icon: BookOpen, value: "5,000+", label: "Journals" },
+  { icon: "banknote", value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
+  { icon: "repeat", value: "58%", label: "Repeat Clients" },
+  { icon: "globe", value: "7,000+", label: "Clients in 185 Countries" },
+  { icon: "document", value: "37,000+", label: "Documents" },
+  { icon: "building", value: "2,400+", label: "Institutions" },
+  { icon: "book", value: "5,000+", label: "Journals" },
 ];
 
 type Flagship = {

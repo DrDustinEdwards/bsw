@@ -5,7 +5,7 @@ import { Picture } from "capsomer/react/picture";
   Real horizontal logo lockup (cube mark plus wordmark) from the WP media
   library, used in the header. Above the fold on every page, so it loads first.
 */
-export function Wordmark({ className = "" }: { className?: string }) {
+export function Wordmark() {
   return (
     <Picture
       picture={sitePicture(
@@ -14,7 +14,7 @@ export function Wordmark({ className = "" }: { className?: string }) {
         {
           alt: "BioScience Writers",
           priority: true,
-          className: `h-9 w-auto ${className}`.trim(),
+          className: "wordmark",
         },
       )}
     />

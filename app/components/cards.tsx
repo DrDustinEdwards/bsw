@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { Icon } from "capsomer/react/icons";
 import type {
   Stat,
   ServiceCard as ServiceCardData,
@@ -15,14 +15,10 @@ import { Picture } from "capsomer/react/picture";
 // One impact statistic on the dark band: icon, big value, uppercase label.
 export function StatItem({ stat }: { stat: Stat }) {
   return (
-    <div className="text-center">
-      <stat.Icon className="mx-auto text-white/80" size={30} strokeWidth={2} aria-hidden="true" />
-      <div className="mt-3 font-display text-4xl font-bold text-white sm:text-5xl">
-        {stat.value}
-      </div>
-      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-300 sm:text-sm">
-        {stat.label}
-      </p>
+    <div className="stat">
+      <Icon name={stat.icon} className="stat-icon" />
+      <div className="stat-value">{stat.value}</div>
+      <p className="stat-label">{stat.label}</p>
     </div>
   );
 }
@@ -32,27 +28,24 @@ export function StatItem({ stat }: { stat: Stat }) {
 export function ServiceCard({ card }: { card: ServiceCardData }) {
   return (
     <article
-      className="cap-card group relative h-full grid-rows-[auto_1fr_auto] content-stretch overflow-hidden rounded-2xl border-0 p-7 shadow-sm transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10"
+      className="cap-card service-card"
       style={{ "--accent": card.accent } as React.CSSProperties}
     >
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-out group-hover:opacity-100"
+        className="service-card-glow"
         style={{
           background: `radial-gradient(125% 115% at 100% 100%, color-mix(in srgb, ${card.accent} 24%, transparent) 0%, transparent 68%)`,
         }}
       />
-      <h3 className="relative font-display text-xl font-bold text-ink">{card.title}</h3>
-      <div className="relative">
-        <p className="text-sm font-bold text-ink/80">{card.subhead}</p>
-        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">{card.desc}</p>
+      <h3 className="service-card-title">{card.title}</h3>
+      <div className="service-card-body">
+        <p className="service-card-subhead">{card.subhead}</p>
+        <p className="service-card-desc">{card.desc}</p>
       </div>
-      <footer className="relative mt-3 justify-end">
-        <span
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 text-icon-muted transition-colors duration-200 group-hover:border-[color:var(--accent)] group-hover:[color:var(--accent)]"
-          aria-hidden="true"
-        >
-          <ArrowRight size={16} strokeWidth={2} />
+      <footer className="service-card-foot">
+        <span className="service-card-arrow" aria-hidden="true">
+          <Icon name="arrow-right" />
         </span>
       </footer>
     </article>
@@ -62,21 +55,21 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
 // Team member: Capsomer's card, the photo to the card's edges with an accent-tinted caption panel beneath.
 export function TeamMember({ member }: { member: TeamMemberData }) {
   return (
-    <article className="cap-card mx-auto h-full max-w-[220px] gap-0 overflow-hidden rounded-2xl border-0 bg-white p-0 shadow-sm shadow-slate-900/5 [--pad-card:0px] sm:max-w-none">
+    <article className="cap-card team-card">
       <Picture
         picture={sitePicture(member.photo, "team", {
           alt: member.name,
-          className: "aspect-[4/5] w-full object-cover object-top",
+          className: "team-card-photo",
         })}
       />
       <div
-        className="px-4 py-5 text-center"
+        className="team-card-caption"
         style={{
           background: `linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, ${member.accent} 15%, transparent) 100%)`,
         }}
       >
-        <h3 className="font-display text-lg font-bold text-ink">{member.name}</h3>
-        <p className="mt-1 text-sm leading-snug text-muted">{member.role}</p>
+        <h3 className="team-card-name">{member.name}</h3>
+        <p className="team-card-role">{member.role}</p>
       </div>
     </article>
   );

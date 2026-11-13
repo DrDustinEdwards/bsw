@@ -27,22 +27,17 @@ export function Footer() {
   // Read once, in a lazy initializer, so the render itself stays pure (react/purity).
   const [year] = useState(() => new Date().getFullYear());
   return (
-    <footer className="bg-[color:var(--color-footer)] text-slate-300">
-      <div className="mx-auto max-w-6xl px-5 py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="site-footer">
+      <div className="site-footer-inner">
+        <div className="site-footer-grid">
           {/* Link columns: Services, Company, Legal and Support */}
           {footerGroups.map((group) => (
             <div key={group.label}>
-              <h3 className="text-sm font-bold uppercase tracking-wider text-white">
-                {group.label}
-              </h3>
-              <ul className="mt-5 space-y-3">
+              <h3 className="site-footer-heading">{group.label}</h3>
+              <ul className="site-footer-links">
                 {group.links.map((link) => (
                   <li key={link.href}>
-                    <a
-                      href={link.href}
-                      className="text-[0.95rem] text-slate-200 transition-colors hover:text-white"
-                    >
+                    <a href={link.href} className="site-footer-link">
                       {link.label}
                     </a>
                   </li>
@@ -52,24 +47,24 @@ export function Footer() {
           ))}
 
           {/* Logo + social */}
-          <div className="flex flex-col items-start gap-6">
-            <div className="flex items-center gap-2.5">
+          <div className="site-footer-brand">
+            <div className="site-footer-mark-row">
               <Picture
                 picture={sitePicture(
                   { src: "/brand/bsw-cube-mark-88.f455c15f.webp", width: 88, height: 88 },
                   "mark",
-                  { alt: "", className: "size-11" },
+                  { alt: "", className: "site-footer-mark" },
                 )}
               />
-              <span className="font-display text-xl font-semibold text-white">{SITE.name}</span>
+              <span className="site-footer-name">{SITE.name}</span>
             </div>
-            <div className="flex gap-3">
+            <div className="site-footer-social">
               {social.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="flex h-10 w-10 items-center justify-center rounded-md text-white transition-opacity hover:opacity-85 [--icon-size:18px]"
+                  className="site-footer-social-link"
                   style={{ backgroundColor: s.color }}
                 >
                   <Icon name={s.name} />
@@ -79,7 +74,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-14 text-center text-sm text-slate-400">
+        <p className="site-footer-legal">
           &copy; {year} {SITE.legalName}. All rights reserved.
         </p>
       </div>

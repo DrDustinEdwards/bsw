@@ -10,7 +10,7 @@ export function meta() {
 // accessibility statement says so).
 function Tel({ number }: { number: string }) {
   return (
-    <a className="font-semibold text-brand hover:underline" href={`tel:+1-${number}`}>
+    <a className="text-link" href={`tel:+1-${number}`}>
       {number}
     </a>
   );
@@ -21,7 +21,7 @@ export default function ContactUs() {
     <>
       <PageHero title="Contact Us" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <p>
             BioScience Writers is located in Houston, Texas in the United States of America. You can
             reach us by any of the following methods. We are happy to discuss how our premier
@@ -30,55 +30,52 @@ export default function ContactUs() {
             us with any questions you might have about our top quality services.
           </p>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 not-prose">
-            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
-              <h2 className="font-display text-ink">Email</h2>
-              <p className="mt-[1.1rem] text-muted">
+          <div className="contact-grid">
+            <div className="contact-card">
+              <h2 className="contact-card-title">Email</h2>
+              <p className="contact-card-text">
                 Editing and writing operations, online courses and writing workshops:{" "}
-                <a
-                  className="font-semibold text-brand hover:underline"
-                  href={`mailto:${SITE.email}`}
-                >
+                <a className="text-link" href={`mailto:${SITE.email}`}>
                   {SITE.email}
                 </a>
               </p>
             </div>
 
-            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
-              <h2 className="font-display text-ink">Telephone Numbers</h2>
-              <dl className="mt-3 space-y-2 text-muted">
+            <div className="contact-card">
+              <h2 className="contact-card-title">Telephone Numbers</h2>
+              <dl className="contact-list">
                 <div>
-                  <dt className="font-semibold text-ink">Editing and Writing Operations</dt>
+                  <dt>Editing and Writing Operations</dt>
                   <dd>
                     <Tel number="832-517-3001" /> or <Tel number="713-516-7228" />
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Accounts Receivables</dt>
+                  <dt>Accounts Receivables</dt>
                   <dd>
                     <Tel number="832-291-1811" />
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Business Administration</dt>
+                  <dt>Business Administration</dt>
                   <dd>
                     <Tel number="832-291-1811" />
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Legal Policy</dt>
+                  <dt>Legal Policy</dt>
                   <dd>
                     <Tel number="713-516-0114" />
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Online Courses</dt>
+                  <dt>Online Courses</dt>
                   <dd>
                     <Tel number="713-516-7228" />
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Writing Workshops</dt>
+                  <dt>Writing Workshops</dt>
                   <dd>
                     <Tel number="713-516-7228" />
                   </dd>
@@ -86,17 +83,17 @@ export default function ContactUs() {
               </dl>
             </div>
 
-            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
-              <h2 className="font-display text-ink">Secure Facsimile Numbers</h2>
-              <dl className="mt-3 space-y-2 text-muted">
+            <div className="contact-card">
+              <h2 className="contact-card-title">Secure Facsimile Numbers</h2>
+              <dl className="contact-list">
                 <div>
-                  <dt className="font-semibold text-ink">Primary</dt>
+                  <dt>Primary</dt>
                   <dd>
                     <Tel number="256-526-7464" />
                   </dd>
                 </div>
                 <div>
-                  <dt className="font-semibold text-ink">Alternate</dt>
+                  <dt>Alternate</dt>
                   <dd>
                     <Tel number="832-649-3674" />
                   </dd>
@@ -104,9 +101,9 @@ export default function ContactUs() {
               </dl>
             </div>
 
-            <div className="rounded-lg border border-slate-200 p-6 [--prose-heading-gap:0] [&>:last-child]:mb-0">
-              <h2 className="font-display text-ink">Business Office</h2>
-              <address className="mt-2 not-italic text-muted">
+            <div className="contact-card">
+              <h2 className="contact-card-title">Business Office</h2>
+              <address className="contact-address">
                 4008 Law St
                 <br />
                 Houston, TX 77005

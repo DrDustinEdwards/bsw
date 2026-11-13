@@ -12,7 +12,7 @@ export default function OurExperts() {
     <>
       <PageHero title="PhD/MD Editors" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <h2>MD/PhD Authority in Every Scientific Discipline</h2>
           <p>
             At the core of BioScience Writers is an elite network of editors and consultants who are
@@ -113,10 +113,8 @@ export default function OurExperts() {
             </li>
           </ul>
 
-          <p className="font-display text-xl font-bold text-ink">
-            Ready to connect with an expert in your field?
-          </p>
-          <div className="mt-5">
+          <p className="prose-cta">Ready to connect with an expert in your field?</p>
+          <div className="prose-cta-actions">
             <PrimaryButton href="/contact-us">Meet Your Editor in the Client Portal</PrimaryButton>
           </div>
         </div>

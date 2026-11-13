@@ -20,7 +20,7 @@ export default function hexField(field: HTMLElement) {
   for (let i = 0; i < count; i++) {
     const size = 45 + Math.random() * (89 - 45);
     const hex = document.createElement("span");
-    hex.className = "hex absolute";
+    hex.className = "hex";
     Object.assign(hex.style, {
       top: `${Math.random() * 90}%`,
       left: `${Math.random() * 95}%`,
