@@ -4,7 +4,14 @@
   ServiceCard, TeamMember, FaqItem, Testimonials). Copy is carried over from
   the reference site.
 */
-import { iconBanknote, iconBook, iconBuilding, iconDocument, iconGlobe, iconRepeat } from "capsomer/react/icons";
+import {
+  iconBanknote,
+  iconBook,
+  iconBuilding,
+  iconDocument,
+  iconGlobe,
+  iconRepeat,
+} from "capsomer/react/icons";
 import type { SitePhoto } from "../lib/media/images";
 
 export type Stat = { icon: string; value: string; label: string };

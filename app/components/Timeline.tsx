@@ -1,4 +1,10 @@
-import { Icon, iconDocument, iconShieldCheck, iconUpload, iconUserCheck } from "capsomer/react/icons";
+import {
+  Icon,
+  iconDocument,
+  iconShieldCheck,
+  iconUpload,
+  iconUserCheck,
+} from "capsomer/react/icons";
 import { Timeline as CapTimeline } from "capsomer/react/timeline";
 
 /*
