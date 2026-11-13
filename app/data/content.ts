@@ -1,7 +1,7 @@
 /*
   Centralized homepage content, separated from presentation. Each array is
   typed and consumed by a matching presentational component (StatItem,
-  ServiceCard, TeamMember, FaqItem, Testimonials). Copy is carried over from
+  ServiceCard, TeamMember, Capsomer's Faq, Testimonials). Copy is carried over from
   the reference site.
 */
 import type { IconName } from "capsomer/react/icons";
@@ -114,41 +114,51 @@ export const TEAM: TeamMember[] = [
   },
 ];
 
-type Faq = { q: string; a: string };
+// Prelum's { question, answer } shape: one list feeds Capsomer's Faq on the page and the FAQPage JSON-LD
+// (structured-data.ts).
+type Faq = { question: string; answer: string };
 
 // Question set and answers verbatim from the reference site.
 export const FAQS: Faq[] = [
   {
-    q: "How much will editing cost?",
-    a: "Visit our prices page for our hourly rate and estimate calculator. Because all work is done hourly, you can reduce costs by spell-checking your document and ensuring it's well organized before submission.",
+    question: "How much will editing cost?",
+    answer:
+      "Visit our prices page for our hourly rate and estimate calculator. Because all work is done hourly, you can reduce costs by spell-checking your document and ensuring it's well organized before submission.",
   },
   {
-    q: "What are your credentials?",
-    a: "BioScience Writers was founded in 2001 and has edited thousands of manuscripts and grants. All of our editors are native English-speaking, PhD- or MD-trained scientists with active expertise in your specific field of research. Our staff members maintain active roles at various universities.",
+    question: "What are your credentials?",
+    answer:
+      "BioScience Writers was founded in 2001 and has edited thousands of manuscripts and grants. All of our editors are native English-speaking, PhD- or MD-trained scientists with active expertise in your specific field of research. Our staff members maintain active roles at various universities.",
   },
   {
-    q: "How long will it take to edit my document?",
-    a: "Typical turnaround time for a 3,000-5,000-word manuscript is 5-7 days. Longer documents may require more time, but can usually be completed in 7-10 days. Rush service is available upon request and can be as quick as next-day for most documents.",
+    question: "How long will it take to edit my document?",
+    answer:
+      "Typical turnaround time for a 3,000-5,000-word manuscript is 5-7 days. Longer documents may require more time, but can usually be completed in 7-10 days. Rush service is available upon request and can be as quick as next-day for most documents.",
   },
   {
-    q: "Can you revise my grant or manuscript quickly or on short notice?",
-    a: "Yes! We offer rush service as quickly as next-day for most documents. Just email or call to let us know what you need. Rush service may require an additional fee depending on turnaround time, document length, and complexity.",
+    question: "Can you revise my grant or manuscript quickly or on short notice?",
+    answer:
+      "Yes! We offer rush service as quickly as next-day for most documents. Just email or call to let us know what you need. Rush service may require an additional fee depending on turnaround time, document length, and complexity.",
   },
   {
-    q: "Is your service confidential?",
-    a: "Yes! All submitted documents are held in strict confidence. Everyone at BioScience Writers, editors and staff, has signed a legally binding nondisclosure and confidentiality agreement. We can provide a signed confidentiality agreement before you submit your document if requested.",
+    question: "Is your service confidential?",
+    answer:
+      "Yes! All submitted documents are held in strict confidence. Everyone at BioScience Writers, editors and staff, has signed a legally binding nondisclosure and confidentiality agreement. We can provide a signed confidentiality agreement before you submit your document if requested.",
   },
   {
-    q: "What exactly will you do to improve my writing?",
-    a: "Depending on the editing level you select, we will correct spelling, grammar, punctuation, verb tense, and formatting. We also edit for clarity, word count, style, and impact, eliminating jargon, smoothing language, and rewriting to improve sentence clarity and organization.",
+    question: "What exactly will you do to improve my writing?",
+    answer:
+      "Depending on the editing level you select, we will correct spelling, grammar, punctuation, verb tense, and formatting. We also edit for clarity, word count, style, and impact, eliminating jargon, smoothing language, and rewriting to improve sentence clarity and organization.",
   },
   {
-    q: "What if I am not happy with the work?",
-    a: "Please let us know immediately! We will respond quickly to completely resolve your concerns. If we cannot completely satisfy you within 30 days of receiving your revisions, we will provide a complete refund.",
+    question: "What if I am not happy with the work?",
+    answer:
+      "Please let us know immediately! We will respond quickly to completely resolve your concerns. If we cannot completely satisfy you within 30 days of receiving your revisions, we will provide a complete refund.",
   },
   {
-    q: "How will I receive my revisions?",
-    a: "You can download your revisions from our secure website or receive them via email as attachments. Either way, we'll send an email notification when your revisions are complete. You'll receive two files: one showing all changes with Track Changes, and one with all changes accepted.",
+    question: "How will I receive my revisions?",
+    answer:
+      "You can download your revisions from our secure website or receive them via email as attachments. Either way, we'll send an email notification when your revisions are complete. You'll receive two files: one showing all changes with Track Changes, and one with all changes accepted.",
   },
 ];
 
