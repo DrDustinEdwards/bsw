@@ -1,4 +1,3 @@
-import { Menu } from "lucide-react";
 import { SiteHeader } from "capsomer/react/site-header";
 import { slugify } from "@drdustinedwards/site-helpers/slug";
 import { primaryNav } from "../data/nav";
@@ -15,7 +14,6 @@ export function Header() {
       links="center"
       collapse="lg"
       sheetIcons="auto"
-      menuIcon={<Menu aria-hidden="true" />}
       skipTo="#main"
       logo={{
         href: "/",

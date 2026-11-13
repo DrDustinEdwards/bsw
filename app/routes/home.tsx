@@ -14,7 +14,7 @@ import { institutions, journals } from "../data/logos";
 import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM } from "../data/content";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
-import { ArrowRight } from "lucide-react";
+import { Icon } from "capsomer/react/icons";
 
 export function meta() {
   return [...pageMeta(page("/")), ...homeLd().map(jsonLd)];
@@ -24,22 +24,22 @@ export default function Home() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="hero-surface relative overflow-hidden">
+      <section className="hero-surface">
         <HexField />
-        <div className="relative z-10 mx-auto flex max-w-6xl flex-col items-start px-5 py-24 sm:py-32">
-          <div className="hero-card max-w-2xl">
+        <div className="hero-inner">
+          <div className="hero-card">
             <h1 className="hero-title">Funding Secured. Science Perfected.</h1>
-            <p className="hero-subtitle mt-4">
+            <p className="hero-subtitle">
               Strategic Grant Review &amp; Manuscript Editing by PhD/MD Experts.
             </p>
-            <p className="hero-body mt-4 max-w-xl">
+            <p className="hero-body">
               Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
             </p>
-            <p className="hero-body mt-3 max-w-xl">
+            <p className="hero-body">
               Trusted by PIs at top-tier universities and global research institutions for NIH, NSF,
               and high-impact journal submissions.
             </p>
-            <div className="mt-8">
+            <div className="hero-actions">
               <PrimaryButton href="/pricing">View Pricing</PrimaryButton>
             </div>
           </div>
@@ -51,26 +51,24 @@ export default function Home() {
         continuous dark band with diagonal top/bottom edges, so they are a
         single section here. The band-cut class (app.css) draws the slants.
       */}
-      <section className="band-cut overflow-hidden">
+      <section className="band-cut">
         <span aria-hidden="true" className="band-ghost band-ghost--top" />
         <span aria-hidden="true" className="band-slab" />
         <span aria-hidden="true" className="band-ghost band-ghost--bottom" />
-        <div className="relative z-[3] mx-auto max-w-6xl px-5 pb-20 pt-24 sm:pt-28">
+        <div className="band-inner">
           <div className="cap-reveal">
             <SectionHeading dark title="Our Impact, by the Numbers" />
           </div>
-          <div className="cap-reveal mt-14 grid grid-cols-2 gap-x-8 gap-y-12 lg:grid-cols-3">
+          <div className="cap-reveal stats-grid">
             {STATS.map((s) => (
               <StatItem key={s.label} stat={s} />
             ))}
           </div>
         </div>
 
-        <div className="cap-marquee-group logo-band relative z-[3] space-y-8 pb-20">
+        <div className="cap-marquee-group logo-band">
           <div className="cap-reveal">
-            <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
-              Trusted by Researchers At
-            </h2>
+            <h2 className="logo-band-title">Trusted by Researchers At</h2>
             <Marquee
               label="Institutions our researchers work at"
               items={institutions.map((logo) => (
@@ -79,9 +77,7 @@ export default function Home() {
             />
           </div>
           <div className="cap-reveal">
-            <h2 className="mx-auto mb-6 max-w-6xl px-5 text-center font-display text-2xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-3xl">
-              Published In
-            </h2>
+            <h2 className="logo-band-title">Published In</h2>
             <Marquee
               label="Journals our clients have published in"
               direction="reverse"
@@ -91,15 +87,15 @@ export default function Home() {
             />
           </div>
           {/* The rows scroll for minutes, so they carry Capsomer's Pause (WCAG 2.2.2); a native checkbox, no script. */}
-          <div className="text-center">
+          <div className="logo-band-pause">
             <MarqueePause />
           </div>
         </div>
       </section>
 
       {/* 3. Services: flagship card + 2x2 grid + BSW Academy banner */}
-      <section id="services" className="bg-surface-alt">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <section id="services" className="section-alt">
+        <div className="section-inner">
           <div className="cap-reveal">
             <SectionHeading
               title="Our Services"
@@ -108,29 +104,23 @@ export default function Home() {
             />
           </div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-12">
+          <div className="services-grid">
             {/* Flagship card */}
-            <div className="cap-reveal lg:col-span-5">
-              <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-[color:var(--color-band)] shadow-lg shadow-slate-900/10">
+            <div className="cap-reveal services-flagship">
+              <div className="flagship-card">
                 <Picture
                   picture={sitePicture(FLAGSHIP.photo, "flagship", {
                     alt: "A BioScience Writers editor reviewing a grant with a researcher",
-                    className: "min-h-[13rem] w-full flex-1 object-cover",
+                    className: "flagship-photo",
                   })}
                 />
-                <div className="flex flex-col p-8">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-blue-soft">
-                    Flagship Service
-                  </p>
-                  <h3 className="mt-2 font-display text-2xl font-bold text-white">
-                    {FLAGSHIP.title}
-                  </h3>
-                  <p className="mt-1 text-sm font-bold text-white/90">{FLAGSHIP.subhead}</p>
-                  <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-200">
-                    {FLAGSHIP.desc}
-                  </p>
-                  <p className="mt-4 text-[0.95rem] text-slate-200">{FLAGSHIP.note}</p>
-                  <div className="mt-6">
+                <div className="flagship-body">
+                  <p className="band-eyebrow">Flagship Service</p>
+                  <h3 className="band-card-title">{FLAGSHIP.title}</h3>
+                  <p className="band-card-subhead">{FLAGSHIP.subhead}</p>
+                  <p className="band-card-text">{FLAGSHIP.desc}</p>
+                  <p className="band-card-note">{FLAGSHIP.note}</p>
+                  <div className="band-card-actions">
                     <PrimaryButton href={FLAGSHIP.href}>{FLAGSHIP.cta}</PrimaryButton>
                   </div>
                 </div>
@@ -138,8 +128,8 @@ export default function Home() {
             </div>
 
             {/* 2x2 grid of secondary services + Academy banner */}
-            <div className="lg:col-span-7">
-              <div className="grid gap-6 sm:grid-cols-2">
+            <div className="services-more">
+              <div className="services-cards">
                 {SERVICE_CARDS.map((s) => (
                   <div key={s.title} className="cap-reveal">
                     <ServiceCard card={s} />
@@ -148,24 +138,19 @@ export default function Home() {
               </div>
 
               {/* BSW Academy banner */}
-              <div className="cap-reveal mt-6">
-                <div className="rounded-2xl bg-[color:var(--color-band)] p-8">
-                  <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-green-soft">
+              <div className="cap-reveal academy">
+                <div className="academy-card">
+                  <p className="band-eyebrow band-eyebrow-green">
                     eCourse &middot; Self-Paced Learning
                   </p>
-                  <h3 className="mt-2 font-display text-2xl font-bold text-white">BSW Academy</h3>
-                  <p className="mt-1 text-sm font-bold text-white/90">
-                    Elite Scientific Writing Curriculum
-                  </p>
-                  <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-200">
+                  <h3 className="band-card-title">BSW Academy</h3>
+                  <p className="band-card-subhead">Elite Scientific Writing Curriculum</p>
+                  <p className="band-card-text">
                     Master the mechanics of high-impact publishing and grant-winning through our
                     expert-led eCourses.{" "}
-                    <a
-                      href="/knowledge-hub"
-                      className="inline-flex items-center gap-1 font-semibold text-accent-green-soft hover:underline"
-                    >
+                    <a href="/knowledge-hub" className="academy-link">
                       Explore courses
-                      <ArrowRight size={15} strokeWidth={2} aria-hidden="true" />
+                      <Icon name="arrow-right" />
                     </a>
                   </p>
                 </div>
@@ -176,8 +161,8 @@ export default function Home() {
       </section>
 
       {/* 4. Precision Editing Demonstrated */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <section className="section-plain">
+        <div className="section-inner">
           <div className="cap-reveal">
             <SectionHeading
               title="Precision Editing, Demonstrated"
@@ -185,15 +170,15 @@ export default function Home() {
               intro="Every manuscript edited by BioScience Writers receives both line-level editorial review and field-specific scientific commentary from a credentialed PhD or MD expert. Select any highlighted passage to examine the rationale behind each revision."
             />
           </div>
-          <div className="cap-reveal mt-12">
+          <div className="cap-reveal section-body">
             <EditingDemo />
           </div>
         </div>
       </section>
 
       {/* 5. Testimonials */}
-      <section className="bg-surface-alt">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <section className="section-alt">
+        <div className="section-inner">
           <div className="cap-reveal">
             <SectionHeading
               title="Trusted Worldwide"
@@ -201,15 +186,15 @@ export default function Home() {
               intro="From Nobel Laureates and Academy members to deans and principal investigators at top institutions worldwide, researchers trust BioScience Writers to help secure funding and publish in high-impact journals."
             />
           </div>
-          <div className="cap-reveal mt-12">
+          <div className="cap-reveal section-body">
             <Testimonials />
           </div>
         </div>
       </section>
 
       {/* 6. Streamlined four-step process (vertical timeline) */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-3xl px-5 py-20 sm:py-24">
+      <section className="section-plain">
+        <div className="section-inner section-inner-narrow">
           <div className="cap-reveal">
             <SectionHeading
               title="Streamlined Process, Start to Finish"
@@ -219,22 +204,22 @@ export default function Home() {
                   Every order follows our proven four-step workflow: expert matching, comprehensive
                   editing, track changes delivery, and our satisfaction guarantee. See exactly what
                   happens from the moment you submit your document.{" "}
-                  <a href="/editing-process" className="font-semibold text-brand hover:underline">
+                  <a href="/editing-process" className="text-link">
                     See our full process &rarr;
                   </a>
                 </>
               }
             />
           </div>
-          <div className="mt-14">
+          <div className="section-body-lg">
             <Timeline />
           </div>
         </div>
       </section>
 
       {/* 7. Team */}
-      <section className="bg-surface-alt">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <section className="section-alt">
+        <div className="section-inner">
           <div className="cap-reveal">
             <SectionHeading
               title="Behind Every Edit"
@@ -242,7 +227,7 @@ export default function Home() {
               intro="Our core team personally oversees every project from first submission to final delivery. Each document is matched with a field-specific PhD or MD specialist, ensuring your work receives the scientific expertise it deserves."
             />
           </div>
-          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="team-grid">
             {TEAM.map((member) => (
               <div key={member.name} className="cap-reveal">
                 <TeamMember member={member} />
@@ -253,8 +238,8 @@ export default function Home() {
       </section>
 
       {/* 8. FAQ */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:py-24">
+      <section className="section-plain">
+        <div className="section-inner">
           <div className="cap-reveal">
             <SectionHeading
               title="Clear Answers, No Surprises"
@@ -262,13 +247,13 @@ export default function Home() {
               intro="Find quick answers to the most common questions about our editing process, turnaround times, credentials, and satisfaction guarantee."
             />
           </div>
-          <div className="cap-reveal mt-12">
+          <div className="cap-reveal section-body">
             <Faq />
           </div>
-          <div className="cap-reveal mt-8 text-center">
-            <p className="font-display text-lg font-semibold text-ink">Still have questions?</p>
-            <p className="mt-1 text-sm text-muted">Our team responds within one business day.</p>
-            <PrimaryButton href="/contact-us" className="mt-4">
+          <div className="cap-reveal faq-more">
+            <p className="faq-more-title">Still have questions?</p>
+            <p className="faq-more-text">Our team responds within one business day.</p>
+            <PrimaryButton href="/contact-us" className="faq-more-action">
               Ask Us a Question
             </PrimaryButton>
           </div>
@@ -276,20 +261,18 @@ export default function Home() {
       </section>
 
       {/* 9. BSW Commitment band */}
-      <section className="bg-[color:var(--color-band)]">
-        <div className="mx-auto max-w-4xl px-5 py-20 text-center">
+      <section className="section-band">
+        <div className="commitment-inner">
           <div className="cap-reveal">
-            <h2 className="font-display text-3xl font-extrabold uppercase tracking-[0.01em] text-white sm:text-4xl lg:text-5xl">
-              The BSW Commitment
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl leading-relaxed text-white/85">
+            <h2 className="commitment-title">The BSW Commitment</h2>
+            <p className="commitment-text">
               Since 2001, we have helped the international research community maximize the accuracy
               and impact of their documents. Every editor on our team is a native English speaker
               with a terminal degree (PhD, MD, or DVM) and active expertise in your specific field
               of research. We combine elite scientific precision with personal attention and rapid
               turnaround to ensure your work stands out.
             </p>
-            <p className="mx-auto mt-6 inline-block rounded-[var(--radius-btn)] bg-white/10 px-5 py-3 text-sm font-semibold text-white">
+            <p className="commitment-badge">
               100% Satisfaction Guarantee, free re-edits for language issues raised by reviewers.
             </p>
           </div>

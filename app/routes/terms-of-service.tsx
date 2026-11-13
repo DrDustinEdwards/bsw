@@ -11,7 +11,7 @@ export default function TermsOfService() {
     <>
       <PageHero title="Terms of Service" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <h2 className="prose-sub">Professional Standards and Engagement Framework</h2>
           <p>
             By utilizing the services provided by BioScience Writers, you agree to the following

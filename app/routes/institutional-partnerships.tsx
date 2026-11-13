@@ -12,7 +12,7 @@ export default function InstitutionalPartnerships() {
     <>
       <PageHero title="Institutional Partnerships" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <h2 className="prose-sub">
             Centralized Research Support for Universities, Biotech, and Research Hospitals
           </h2>
@@ -91,10 +91,8 @@ export default function InstitutionalPartnerships() {
             </li>
           </ul>
 
-          <p className="font-display text-xl font-bold text-ink">
-            Ready to streamline research support for your institution?
-          </p>
-          <div className="mt-5">
+          <p className="prose-cta">Ready to streamline research support for your institution?</p>
+          <div className="prose-cta-actions">
             <PrimaryButton href="/contact-us">Request a Consultation</PrimaryButton>
           </div>
         </div>

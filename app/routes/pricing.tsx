@@ -11,7 +11,7 @@ export default function Pricing() {
     <>
       <PageHero title="Pricing" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <h2 className="prose-sub">1. The Core Pricing</h2>
           <p>BSW traditionally uses a Per-Word rate based on Turnaround Time.</p>
           <ul>
@@ -64,33 +64,33 @@ export default function Pricing() {
             per-word pricing with zero hidden fees.
           </p>
 
-          <div className="mt-8 grid gap-6 sm:grid-cols-3 not-prose">
-            <div className="rounded-2xl border border-slate-200 p-6 [&>:last-child]:mb-0">
-              <h3 className="font-display text-xl font-bold text-ink">Standard</h3>
-              <p className="mt-3 text-3xl font-extrabold text-brand">
-                $0.07 <span className="text-base font-normal text-muted">/ word</span>
+          <div className="price-grid">
+            <div className="price-card">
+              <h3 className="price-name">Standard</h3>
+              <p className="price-amount">
+                $0.07 <span className="price-unit">/ word</span>
               </p>
-              <p className="mt-3 text-sm font-semibold text-ink">7-10 Business Days</p>
-              <p className="mt-1 text-sm text-muted">PhD-Level Review</p>
-              <p className="mt-4 text-sm text-muted">Best for Manuscripts</p>
+              <p className="price-turnaround">7-10 Business Days</p>
+              <p className="price-detail">PhD-Level Review</p>
+              <p className="price-best">Best for Manuscripts</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 p-6 [&>:last-child]:mb-0">
-              <h3 className="font-display text-xl font-bold text-ink">Accelerated</h3>
-              <p className="mt-3 text-3xl font-extrabold text-brand">
-                $0.10 <span className="text-base font-normal text-muted">/ word</span>
+            <div className="price-card">
+              <h3 className="price-name">Accelerated</h3>
+              <p className="price-amount">
+                $0.10 <span className="price-unit">/ word</span>
               </p>
-              <p className="mt-3 text-sm font-semibold text-ink">3-5 Business Days</p>
-              <p className="mt-1 text-sm text-muted">Priority Placement</p>
-              <p className="mt-4 text-sm text-muted">Best for Resubmissions</p>
+              <p className="price-turnaround">3-5 Business Days</p>
+              <p className="price-detail">Priority Placement</p>
+              <p className="price-best">Best for Resubmissions</p>
             </div>
-            <div className="rounded-2xl border border-slate-200 p-6 [&>:last-child]:mb-0">
-              <h3 className="font-display text-xl font-bold text-ink">Critical Rush</h3>
-              <p className="mt-3 text-3xl font-extrabold text-brand">
-                $0.14 <span className="text-base font-normal text-muted">/ word</span>
+            <div className="price-card">
+              <h3 className="price-name">Critical Rush</h3>
+              <p className="price-amount">
+                $0.14 <span className="price-unit">/ word</span>
               </p>
-              <p className="mt-3 text-sm font-semibold text-ink">24-48 Hours</p>
-              <p className="mt-1 text-sm text-muted">Journal Formatting</p>
-              <p className="mt-4 text-sm text-muted">Best for Grant Deadlines</p>
+              <p className="price-turnaround">24-48 Hours</p>
+              <p className="price-detail">Journal Formatting</p>
+              <p className="price-best">Best for Grant Deadlines</p>
             </div>
           </div>
 

@@ -29,7 +29,7 @@ export default function Accessibility({ loaderData }: Route.ComponentProps) {
       <section>
         <div
           data-context="prose"
-          className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20"
+          className="page-prose"
           dangerouslySetInnerHTML={markup(loaderData.html)}
         />
       </section>

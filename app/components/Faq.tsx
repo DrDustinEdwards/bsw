@@ -5,10 +5,7 @@ import { FAQS } from "../data/content";
 // The type and spacing are the site's own (.faq-item in app.css); the open/close animation is Capsomer's.
 export function Faq() {
   return (
-    <div
-      data-faq
-      className="mx-auto max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white"
-    >
+    <div data-faq className="faq">
       {FAQS.map((item, i) => (
         <Disclosure
           key={i}

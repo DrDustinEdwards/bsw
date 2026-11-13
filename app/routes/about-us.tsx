@@ -11,7 +11,7 @@ export default function AboutUs() {
     <>
       <PageHero title="About Us" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <p>
             BioScience Writers was founded in 2001 by Dr. Susan Marriott, who recognized that her
             colleagues wanted a reviewer and proofreader who was always available at a moment's

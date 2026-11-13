@@ -20,7 +20,8 @@
     "--primary-hover": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
     "--primary-fg": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
     "--ring": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
-    "--header-h": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own"
+    "--header-h": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
+    "--ui": "same: BioScience Writers keeps its client's own look (waived above); its face is Open Sans, which Capsomer's reset reads through --face"
   },
   "copies": {
     "app/config/site.ts": "twitter:site (the account the X card is credited to, @biosciencewrite) is the one tag written here: Prelum's headTags writes every other head tag through defineHead but has no twitter:site",

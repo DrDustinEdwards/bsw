@@ -11,7 +11,7 @@ export default function PrivacyPolicy() {
     <>
       <PageHero title="Privacy Policy" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <h2 className="prose-sub">Your Data Integrity and Professional Privacy</h2>
           <p>
             BioScience Writers is committed to protecting the personal and professional information
@@ -101,9 +101,7 @@ export default function PrivacyPolicy() {
             notice on our portal.
           </p>
 
-          <p className="font-display text-xl font-bold text-ink">
-            Questions regarding your data privacy?
-          </p>
+          <p className="prose-cta">Questions regarding your data privacy?</p>
         </div>
       </section>
     </>

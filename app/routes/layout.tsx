@@ -16,9 +16,9 @@ export const headers = () => publicPageHeaders();
 
 export default function SiteLayout() {
   return (
-    <div className="flex min-h-screen flex-col bg-white">
+    <div className="site-frame">
       <Header />
-      <main id="main" tabIndex={-1} className="flex-1">
+      <main id="main" tabIndex={-1} className="site-main">
         <Outlet />
       </main>
       <Footer />

@@ -12,7 +12,7 @@ export default function LanguageSupport() {
     <>
       <PageHero title="Language Support" />
       <section>
-        <div data-context="prose" className="page-prose mx-auto max-w-3xl px-5 py-16 sm:py-20">
+        <div data-context="prose" className="page-prose">
           <h2 className="prose-sub">
             Bridging the Gap Between International Research and Global Impact
           </h2>
@@ -90,10 +90,8 @@ export default function LanguageSupport() {
             </li>
           </ul>
 
-          <p className="font-display text-xl font-bold text-ink">
-            Ready to communicate your research to the world?
-          </p>
-          <div className="mt-5">
+          <p className="prose-cta">Ready to communicate your research to the world?</p>
+          <div className="prose-cta-actions">
             <PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>
           </div>
         </div>

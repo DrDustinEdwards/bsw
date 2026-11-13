@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { Icon } from "capsomer/react/icons";
 import type { Logo } from "../data/logos";
 
 /*
@@ -29,7 +29,7 @@ export function PrimaryButton({
   return (
     <a href={href} className={`btn btn-${color} ${className}`}>
       {children}
-      {arrow && <ArrowRight size={16} strokeWidth={2.5} className="btn-arrow" aria-hidden="true" />}
+      {arrow && <Icon name="arrow-right" className="btn-arrow" />}
     </a>
   );
 }
@@ -53,32 +53,13 @@ export function SectionHeading({
   dark?: boolean;
 }) {
   return (
-    <div className={`${center ? "mx-auto max-w-4xl text-center" : "max-w-4xl"}`}>
-      <h2
-        className={`font-display text-3xl font-extrabold uppercase leading-tight tracking-[0.01em] sm:text-4xl lg:text-5xl ${
-          dark ? "text-white" : "text-ink"
-        }`}
-      >
-        {title}
-      </h2>
-      {subtitle && (
-        <p
-          className={`mt-2 text-2xl font-normal leading-snug sm:text-[1.9rem] ${
-            dark ? "text-slate-200" : "text-band"
-          }`}
-        >
-          {subtitle}
-        </p>
-      )}
-      {intro && (
-        <p
-          className={`mx-auto mt-5 max-w-3xl text-[1.05rem] leading-relaxed ${
-            dark ? "text-slate-300" : "text-muted"
-          }`}
-        >
-          {intro}
-        </p>
-      )}
+    <div
+      className={center ? "section-heading section-heading-center" : "section-heading"}
+      data-dark={dark || undefined}
+    >
+      <h2 className="section-heading-title">{title}</h2>
+      {subtitle && <p className="section-heading-subtitle">{subtitle}</p>}
+      {intro && <p className="section-heading-intro">{intro}</p>}
     </div>
   );
 }
