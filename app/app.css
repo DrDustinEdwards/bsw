@@ -411,8 +411,14 @@ body {
   Hero: Capsomer's hero (hero.md) in the site's own look. Exact source spec: translucent blurred card
   over the hex field (the backdrop), with a three-tier type scale that shrinks on mobile (max-width 767px).
   The section is full width; its words sit in a 6xl column (the 72rem the page uses) and the card is 2xl wide.
+  Sizes and the card's surface are Capsomer's hero tokens; the rest has no token yet.
 */
 .home-hero {
+  --hero-title: 3.2rem;
+  --hero-lead-size: 1.6rem;
+  /* Named, not left to Capsomer's "inherit" fallback: a CSS-wide keyword in its font shorthand voids the rule. */
+  --hero-lead-face: var(--font-sans);
+  --hero-card-bg: rgba(255, 255, 255, 0.45);
   display: block;
   margin: 0;
   padding: 6rem max(1.25rem, calc((100% - 72rem) / 2 + 1.25rem));
@@ -426,10 +432,9 @@ body {
   max-inline-size: 42rem;
 }
 .home-hero .cap-hero-text[data-card] {
-  background: rgba(255, 255, 255, 0.45);
+  --line: rgba(255, 255, 255, 0.4);
   -webkit-backdrop-filter: blur(28px);
   backdrop-filter: blur(28px);
-  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 40px;
   padding: 3.5rem;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
@@ -438,7 +443,6 @@ body {
   margin: 0;
   color: var(--color-ink);
   font-weight: 800;
-  font-size: 3.2rem;
   line-height: 1.1;
   letter-spacing: normal;
   text-wrap: wrap;
@@ -448,7 +452,6 @@ body {
   margin: 1rem 0 0;
   color: var(--color-ink-soft);
   font-weight: 600;
-  font-size: 1.6rem;
   line-height: 1.3;
   text-wrap: wrap;
 }
@@ -470,11 +473,9 @@ body {
     padding: 2rem;
     border-radius: 20px;
   }
-  .home-hero .cap-hero-title {
-    font-size: 2.2rem;
-  }
-  .home-hero .cap-hero-lead {
-    font-size: 1.3rem;
+  .home-hero {
+    --hero-title: 2.2rem;
+    --hero-lead-size: 1.3rem;
   }
 }
 
@@ -1295,12 +1296,12 @@ body {
   /* A service page's closing "Ready to ..." line is Capsomer's call to action band (cta-band.md) in the site's
      own plain look: left-aligned words and the site button under them, no tinted band. */
   .cap-cta-band {
+    --cta-band-bg: none;
     display: block;
     margin-block: 2.5rem 0;
     padding: 0;
     border: 0;
     border-radius: 0;
-    background: none;
     text-align: left;
   }
   .cap-cta-band-title {
