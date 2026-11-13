@@ -3,8 +3,6 @@
     "capsomer": "BioScience Writers is a client's site with its own brand, kept on its own look (Dustin, 2026-10-25)."
   },
   "tokens": {
-    "--dur-fast": "BioScience Writers keeps its client's own look (waived above); its motion scale is its own",
-    "--ease-out": "same: bsw's own motion scale",
     "--ground": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
     "--surface": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
     "--raised": "same: BioScience Writers keeps its client's own look (waived above); its palette and header height are its own",
