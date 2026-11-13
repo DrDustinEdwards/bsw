@@ -32,7 +32,7 @@ jobs:
       pull-requests: write
       id-token: write
       checks: write
-    uses: DrDustinEdwards/devkit/.github/workflows/pr.yml@33c4651984133498e49380b1cfea0894fe7f1bae # v0.43.0
+    uses: DrDustinEdwards/devkit/.github/workflows/pr.yml@7a59eb8fba9237af3d362dcfb0b0aad4159b783d # v0.43.1
     with:
       review: true
       # The route types the code imports.
