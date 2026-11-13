@@ -26,6 +26,8 @@
 @import "capsomer/icons.css";
 @import "capsomer/picture.css";
 @import "capsomer/timeline.css";
+@import "capsomer/hero.css";
+@import "capsomer/cta-band.css";
 
 /*
   BioScience Writers design tokens.
@@ -417,10 +419,24 @@ body {
 }
 
 /*
-  Hero. Exact source spec: translucent blurred card over the hex field, with a
-  three-tier type scale that shrinks on mobile (max-width 767px).
+  Hero: Capsomer's hero (hero.md) in the site's own look. Exact source spec: translucent blurred card
+  over the hex field (the backdrop), with a three-tier type scale that shrinks on mobile (max-width 767px).
+  The section is full width; its words sit in a 6xl column (the 72rem the page uses) and the card is 2xl wide.
 */
-.hero-card {
+.home-hero {
+  display: block;
+  margin: 0;
+  padding: 6rem max(1.25rem, calc((100% - 72rem) / 2 + 1.25rem));
+}
+@media (min-width: 640px) {
+  .home-hero {
+    padding-block: 8rem;
+  }
+}
+.home-hero .cap-hero-text {
+  max-inline-size: 42rem;
+}
+.home-hero .cap-hero-text[data-card] {
   background: rgba(255, 255, 255, 0.45);
   -webkit-backdrop-filter: blur(28px);
   backdrop-filter: blur(28px);
@@ -429,17 +445,31 @@ body {
   padding: 3.5rem;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
 }
-.hero-title {
+.home-hero .cap-hero-title {
+  margin: 0;
   color: var(--color-ink);
   font-weight: 800;
   font-size: 3.2rem;
   line-height: 1.1;
+  letter-spacing: normal;
+  text-wrap: wrap;
 }
-.hero-subtitle {
+.home-hero .cap-hero-lead {
+  max-inline-size: none;
+  margin: 1rem 0 0;
   color: var(--color-ink-soft);
   font-weight: 600;
   font-size: 1.6rem;
   line-height: 1.3;
+  text-wrap: wrap;
+}
+.home-hero .cap-hero-body {
+  max-inline-size: none;
+  margin: 0;
+}
+.home-hero .cap-hero-actions {
+  display: block;
+  margin-block-start: 2rem;
 }
 .hero-body {
   color: var(--color-body-soft);
@@ -447,14 +477,14 @@ body {
   line-height: 1.6;
 }
 @media (max-width: 767px) {
-  .hero-card {
+  .home-hero .cap-hero-text[data-card] {
     padding: 2rem;
     border-radius: 20px;
   }
-  .hero-title {
+  .home-hero .cap-hero-title {
     font-size: 2.2rem;
   }
-  .hero-subtitle {
+  .home-hero .cap-hero-lead {
     font-size: 1.3rem;
   }
 }
@@ -1273,8 +1303,32 @@ body {
     font-weight: 700;
     color: var(--color-ink);
   }
-  .prose-cta-actions {
-    margin-top: 1.25rem;
+  /* A service page's closing "Ready to ..." line is Capsomer's call to action band (cta-band.md) in the site's
+     own plain look: left-aligned words and the site button under them, no tinted band. */
+  .cap-cta-band {
+    display: block;
+    margin-block: 2.5rem 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    text-align: left;
+  }
+  .cap-cta-band-title {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    text-wrap: wrap;
+  }
+  .cap-cta-band-actions {
+    display: block;
+    margin-block-start: 1.25rem;
+  }
+  .cap-cta-band-actions:empty {
+    display: none;
   }
   .text-link {
     font-weight: 600;
@@ -1390,36 +1444,12 @@ body {
   .hex {
     position: absolute;
   }
-  .hero-inner {
-    position: relative;
-    z-index: 10;
-    margin-inline: auto;
-    display: flex;
-    max-width: 72rem;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 6rem 1.25rem;
-  }
-  @media (width >= 40rem) {
-    .hero-inner {
-      padding-block: 8rem;
-    }
-  }
-  .hero-card {
-    max-width: 42rem;
-  }
-  .hero-subtitle,
-  .hero-body {
-    margin-top: 1rem;
-  }
   .hero-body {
     max-width: 36rem;
+    margin: 1rem 0 0;
     & + & {
       margin-top: 0.75rem;
     }
-  }
-  .hero-actions {
-    margin-top: 2rem;
   }
   /* The site button's trailing arrow. */
   .btn-arrow {

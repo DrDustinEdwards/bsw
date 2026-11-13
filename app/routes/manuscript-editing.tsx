@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { PageHero } from "../components/PageHero";
@@ -80,10 +81,10 @@ export default function ManuscriptEditing() {
             your next breakthrough.
           </p>
 
-          <p className="prose-cta">Ready to move your research toward publication?</p>
-          <div className="prose-cta-actions">
-            <PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>
-          </div>
+          <CtaBand
+            title="Ready to move your research toward publication?"
+            actions={<PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>}
+          />
         </div>
       </section>
     </>

@@ -1,3 +1,4 @@
+import { copyright } from "capsomer/behavior/family-footer";
 import { useState } from "react";
 import { SITE } from "../config/site";
 import { footerGroups } from "../data/nav";
@@ -25,7 +26,7 @@ const social = [
 
 export function Footer() {
   // Read once, in a lazy initializer, so the render itself stays pure (react/purity).
-  const [year] = useState(() => new Date().getFullYear());
+  const [line] = useState(() => copyright(SITE.legalName));
   return (
     <footer className="site-footer">
       <div className="site-footer-inner">
@@ -74,9 +75,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="site-footer-legal">
-          &copy; {year} {SITE.legalName}. All rights reserved.
-        </p>
+        <p className="site-footer-legal">{line}. All rights reserved.</p>
       </div>
     </footer>
   );
