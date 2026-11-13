@@ -173,6 +173,9 @@ export function EditingDemo() {
         views={{ original: "Original", edited: "Simple Markup", all: "All Markup" }}
         docLabel="Manuscript text"
         notesLabel="Editor comments"
+        hideNotesInOriginal
+        viewAlign="center"
+        kind="tone"
       >
         <div dangerouslySetInnerHTML={markup(DOCUMENT_HTML)} />
       </AnnotatedDocument>

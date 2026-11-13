@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -104,12 +105,14 @@ export default function KnowledgeHub() {
         </li>
       </ul>
 
-      <p className="prose-cta">Ready to elevate your scientific writing?</p>
-      <div className="prose-cta-actions">
-        <PrimaryButton href="/contact-us" color="green">
-          Ask About Our Resources
-        </PrimaryButton>
-      </div>
+      <CtaBand
+        title="Ready to elevate your scientific writing?"
+        actions={
+          <PrimaryButton href="/contact-us" color="green">
+            Ask About Our Resources
+          </PrimaryButton>
+        }
+      />
     </ProsePage>
   );
 }

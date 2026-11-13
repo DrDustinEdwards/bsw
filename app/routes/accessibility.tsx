@@ -1,6 +1,5 @@
 import type { Route } from "./+types/accessibility";
 import { accessibilityStatement } from "@drdustinedwards/site-helpers/accessibility";
-import { markup } from "capsomer/behavior/trusted-html";
 import { pageMeta, SITE } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -23,9 +22,5 @@ export function loader() {
 }
 
 export default function Accessibility({ loaderData }: Route.ComponentProps) {
-  return (
-    <ProsePage title="Accessibility Statement">
-      <div dangerouslySetInnerHTML={markup(loaderData.html)} />
-    </ProsePage>
-  );
+  return <ProsePage title="Accessibility Statement" html={loaderData.html} />;
 }

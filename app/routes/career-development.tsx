@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -86,12 +87,14 @@ export default function CareerDevelopment() {
         </li>
       </ul>
 
-      <p className="prose-cta">Ready to accelerate your academic career?</p>
-      <div className="prose-cta-actions">
-        <PrimaryButton href="/contact-us" color="green">
-          Submit Your Career Materials
-        </PrimaryButton>
-      </div>
+      <CtaBand
+        title="Ready to accelerate your academic career?"
+        actions={
+          <PrimaryButton href="/contact-us" color="green">
+            Submit Your Career Materials
+          </PrimaryButton>
+        }
+      />
     </ProsePage>
   );
 }

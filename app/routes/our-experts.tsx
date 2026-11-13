@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -109,10 +110,12 @@ export default function OurExperts() {
         </li>
       </ul>
 
-      <p className="prose-cta">Ready to connect with an expert in your field?</p>
-      <div className="prose-cta-actions">
-        <PrimaryButton href="/contact-us">Meet Your Editor in the Client Portal</PrimaryButton>
-      </div>
+      <CtaBand
+        title="Ready to connect with an expert in your field?"
+        actions={
+          <PrimaryButton href="/contact-us">Meet Your Editor in the Client Portal</PrimaryButton>
+        }
+      />
     </ProsePage>
   );
 }

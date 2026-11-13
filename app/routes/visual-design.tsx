@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -88,10 +89,10 @@ export default function VisualDesign() {
         </li>
       </ul>
 
-      <p className="prose-cta">Ready to professionalize your research visuals?</p>
-      <div className="prose-cta-actions">
-        <PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>
-      </div>
+      <CtaBand
+        title="Ready to professionalize your research visuals?"
+        actions={<PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>}
+      />
     </ProsePage>
   );
 }

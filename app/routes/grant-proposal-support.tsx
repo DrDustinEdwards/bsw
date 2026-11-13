@@ -1,3 +1,4 @@
+import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -76,10 +77,10 @@ export default function GrantProposalSupport() {
         development and evidence-based writing strategies.
       </p>
 
-      <p className="prose-cta">Ready to secure your next research grant?</p>
-      <div className="prose-cta-actions">
-        <PrimaryButton href="/contact-us">Submit Your Proposal</PrimaryButton>
-      </div>
+      <CtaBand
+        title="Ready to secure your next research grant?"
+        actions={<PrimaryButton href="/contact-us">Submit Your Proposal</PrimaryButton>}
+      />
     </ProsePage>
   );
 }

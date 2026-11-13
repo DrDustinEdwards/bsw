@@ -1,7 +1,6 @@
 import { SITE, pageMeta } from "../config/site";
 import { page } from "../config/pages";
-import { Fragment } from "react";
-import { ContactCard, ContactGrid, telHref } from "capsomer/react/contact-card";
+import { ContactCard, ContactGrid } from "capsomer/react/contact-card";
 import { ProsePage } from "capsomer/react/prose-page";
 
 export function meta() {
@@ -41,25 +40,11 @@ export default function ContactUs() {
           }
         />
 
-        {/* Written as Capsomer's contact lines (contact-card.md) because one line joins two numbers with "or",
-            which the card's `lines` cannot say. */}
-        <ContactCard title="Telephone Numbers" headingLevel="h2">
-          <dl className="cap-contact-lines">
-            {PHONE_LINES.map(([label, ...numbers]) => (
-              <div key={label}>
-                <dt>{label}</dt>
-                <dd>
-                  {numbers.map((n, i) => (
-                    <Fragment key={n}>
-                      {i > 0 ? " or " : null}
-                      <a href={telHref(n)}>{n}</a>
-                    </Fragment>
-                  ))}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </ContactCard>
+        <ContactCard
+          title="Telephone Numbers"
+          headingLevel="h2"
+          lines={PHONE_LINES.map(([label, ...numbers]) => ({ label, numbers, join: "or" }))}
+        />
 
         <ContactCard
           title="Secure Facsimile Numbers"

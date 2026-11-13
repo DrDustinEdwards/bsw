@@ -68,24 +68,21 @@ export default function Pricing() {
           price="$0.07"
           unit="/ word"
           label="7-10 Business Days"
-          text="Best for Manuscripts"
-          points={["PhD-Level Review"]}
+          text={["PhD-Level Review", "Best for Manuscripts"]}
         />
         <PriceCard
           name="Accelerated"
           price="$0.10"
           unit="/ word"
           label="3-5 Business Days"
-          text="Best for Resubmissions"
-          points={["Priority Placement"]}
+          text={["Priority Placement", "Best for Resubmissions"]}
         />
         <PriceCard
           name="Critical Rush"
           price="$0.14"
           unit="/ word"
           label="24-48 Hours"
-          text="Best for Grant Deadlines"
-          points={["Journal Formatting"]}
+          text={["Journal Formatting", "Best for Grant Deadlines"]}
         />
       </PriceGrid>
 
