@@ -1,6 +1,5 @@
 import { reactRouter } from "@react-router/dev/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
-import tailwindcss from "@tailwindcss/vite";
 import { siteScript } from "@dustinedwards/devkit/vite/site-script";
 import { defineConfig, type Plugin } from "vite";
 import { PAGES, shareCardPath } from "./app/config/pages.ts";
@@ -30,7 +29,6 @@ export default defineConfig({
   plugins: [
     siteScript(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),
-    tailwindcss(),
     reactRouter(),
     shareCards(),
   ],
