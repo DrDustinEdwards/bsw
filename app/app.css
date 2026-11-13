@@ -227,7 +227,7 @@ body {
 */
 .cap-site-header {
   --header-bg: #fff;
-  --header-fs: 0.875rem;
+  --header-fs: var(--fs-body);
   --header-fg: var(--color-brand);
   --header-fg-muted: var(--color-ink);
   --header-line: transparent;
@@ -248,8 +248,8 @@ body {
      at 70% under an 8px blur with no edge; once the page scrolls, 90% white and a hairline. */
   --header-max-inline-size: 72rem;
   --header-side: 1.25rem;
-  --header-link-weight: 600;
-  --header-link-current-weight: 600;
+  --header-link-weight: var(--weight-semibold);
+  --header-link-current-weight: var(--weight-semibold);
   --header-translucent-mix: 70%;
   --header-blur: 8px;
   --header-edge: transparent;
@@ -259,7 +259,7 @@ body {
      button's gradient); the menu button 40px with a 24px glyph, 12px after Get a Quote. */
   --header-link-pad: 8px 12px;
   --header-links-gap: 4px;
-  --header-chev-size: 14px;
+  --header-chev-size: var(--fs-body);
   --header-link-gap: 4px;
   --header-cta: transparent;
   --header-icon-size: 40px;
@@ -267,8 +267,8 @@ body {
   --header-icon-stroke: 2;
   /* The phone sheet's group labels in small blue capitals, its rows at 0.95rem, 39px apart (35px and the sheet's 4px gap). */
   --header-sheet-label-ink: var(--color-brand);
-  --header-sheet-label-fs: 0.75rem;
-  --header-sheet-label-weight: 700;
+  --header-sheet-label-fs: var(--fs-small);
+  --header-sheet-label-weight: var(--weight-bold);
   --header-sheet-label-case: uppercase;
   --header-sheet-label-tracking: 0.05em;
   --header-sheet-row-fs: 0.95rem;
@@ -287,7 +287,7 @@ body {
 .cap-site-header-sheet-cta.btn {
   display: flex;
   padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
+  font-size: var(--fs-body);
 }
 
 /*
@@ -296,9 +296,9 @@ body {
   site-wide (WCAG 2.4.7, 2.4.11).
 */
 :focus-visible {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 2px;
-  border-radius: 3px;
+  outline: var(--focus-width) solid var(--color-brand);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-s);
 }
 
 /* The hero's hexagons: Capsomer's ambient layer in the mark's palette (white the fourth). */
@@ -329,7 +329,7 @@ body {
   font-family: var(--font-display);
   font-size: 1.125rem;
   line-height: 1.75rem;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   color: var(--color-ink);
 }
 .faq .cap-disclosure-body {
@@ -346,8 +346,8 @@ body {
   width: 1.75rem;
   height: 1.75rem;
   margin-inline: auto 0;
-  border: 1px solid #cbd5e1;
-  border-radius: 9999px;
+  border: var(--line-w) solid #cbd5e1;
+  border-radius: var(--radius-full);
   color: var(--color-brand);
   transform: none;
 }
@@ -436,16 +436,16 @@ body {
 .home-hero .cap-hero-title {
   margin: 0;
   color: var(--color-ink);
-  font-weight: 800;
+  font-weight: var(--weight-heavy);
   line-height: 1.1;
   letter-spacing: normal;
   text-wrap: wrap;
 }
 .home-hero .cap-hero-lead {
   max-inline-size: none;
-  margin: 1rem 0 0;
+  margin: var(--space-5) 0 0;
   color: var(--color-ink-soft);
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
   line-height: 1.3;
   text-wrap: wrap;
 }
@@ -455,7 +455,7 @@ body {
 }
 .home-hero .cap-hero-actions {
   display: block;
-  margin-block-start: 2rem;
+  margin-block-start: var(--space-7);
 }
 .hero-body {
   color: var(--color-body-soft);
@@ -464,7 +464,7 @@ body {
 }
 @media (max-width: 767px) {
   .home-hero .cap-hero-text[data-card] {
-    padding: 2rem;
+    padding: var(--space-7);
     border-radius: 20px;
   }
   .home-hero {
@@ -487,8 +487,8 @@ body {
   --cap-prose-page-head-text: #fff;
   --cap-prose-page-head-pad: 5rem;
   --cap-prose-page-title-face: var(--font-display);
-  --cap-prose-page-title-size: 2.25rem;
-  --cap-prose-page-title-weight: 800;
+  --cap-prose-page-title-size: var(--title-1);
+  --cap-prose-page-title-weight: var(--weight-heavy);
   --cap-prose-page-title-tracking: 0.01em;
   --cap-prose-page-title-case: uppercase;
   --cap-prose-page-title-leading: 1.25;
@@ -498,7 +498,7 @@ body {
 }
 .cap-prose-page-body {
   --cap-prose-page-measure: 45.5rem;
-  --cap-prose-page-body-pad: 4rem;
+  --cap-prose-page-body-pad: var(--space-9);
   --prose: var(--font-sans);
   --fs-prose: 1.05rem;
   --leading: 1.75;
@@ -507,10 +507,10 @@ body {
   --prose-strong-ink: var(--color-ink);
   --prose-heading-face: var(--font-display);
   --prose-heading-ink: var(--color-ink);
-  --prose-heading-weight: 800;
+  --prose-heading-weight: var(--weight-heavy);
   --prose-heading-space: 2.75rem;
   --prose-h2-size: 1.6rem;
-  --prose-h3-size: 1.25rem;
+  --prose-h3-size: var(--title-4);
   --prose-flow: 1.1rem;
   --prose-marker: var(--color-brand);
   /* Headings run the full 48rem column (the policy pages' long headings would break into three lines at 30ch). */
@@ -525,7 +525,7 @@ body {
   --prose-size-adjust: none;
   --prose-link-ink: var(--color-brand);
   --prose-link-hover-decoration: underline;
-  --link-weight: 600;
+  --link-weight: var(--weight-semibold);
   --prose-heading-leading: 1.25;
 }
 @media (width >= 40rem) {
@@ -543,18 +543,18 @@ body {
 }
 /* A button in the prose keeps the prose links' semibold, as it always had. */
 .cap-prose-page-body .btn {
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 /* An h3: 2rem above, bold, at the body's leading, as it always had. */
 .cap-prose-page-body h3 {
-  --prose-heading-space: 2rem;
-  --prose-heading-weight: 700;
+  --prose-heading-space: var(--space-7);
+  --prose-heading-weight: var(--weight-bold);
   --prose-heading-leading: var(--leading);
 }
 .cap-prose-page-body h2.prose-sub {
-  margin-top: 2rem;
-  font-size: 1.25rem;
-  font-weight: 700;
+  margin-top: var(--space-7);
+  font-size: var(--title-4);
+  font-weight: var(--weight-bold);
   line-height: inherit;
 }
 
@@ -575,11 +575,11 @@ body {
   gap: 0.5rem;
   border-radius: var(--radius-btn);
   padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 700;
+  font-size: var(--fs-body);
+  font-weight: var(--weight-bold);
   line-height: 1.1;
   color: var(--btn-ink);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  border: var(--line-w) solid rgba(255, 255, 255, 0.9);
   text-shadow: 0 0 10px rgba(var(--btn-glow), 0.25);
   background-image: linear-gradient(
     135deg,
@@ -589,7 +589,7 @@ body {
   );
   box-shadow:
     0 4px 22px rgba(var(--btn-glow), 0.22),
-    inset 0 1px 0 #fff,
+    inset 0 var(--line-w) 0 #fff,
     inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
   transition:
     transform var(--dur-base) var(--ease-out),
@@ -602,7 +602,7 @@ body {
   transform: translateY(-2px);
   box-shadow:
     0 8px 30px rgba(var(--btn-glow), 0.3),
-    inset 0 1px 0 #fff,
+    inset 0 var(--line-w) 0 #fff,
     inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
   filter: brightness(1.02);
 }
@@ -621,7 +621,7 @@ body {
 }
 /* Compact variant for dense spots like the header. */
 .btn-sm {
-  padding: 0.5rem 1rem;
+  padding: 0.5rem var(--space-5);
   font-size: 0.8125rem;
 }
 
@@ -692,7 +692,7 @@ body {
   color: var(--color-ink-soft);
 }
 .cap-timeline-text {
-  font-size: 16px;
+  font-size: var(--title-6);
   line-height: 1.7;
 }
 @media (max-width: 768px) {
@@ -705,7 +705,7 @@ body {
     font-size: 18px;
   }
   .cap-timeline-title {
-    font-size: 20px;
+    font-size: var(--title-4);
   }
   .cap-timeline-icon svg {
     width: 36px;
@@ -723,7 +723,7 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 0.875rem;
+  font-size: var(--fs-body);
 }
 .editing-demo .cap-annotated {
   --cap-annotated-h: 520px;
@@ -744,12 +744,12 @@ body {
 .editing-demo .cap-annotated-doc {
   line-height: 1.78;
   & p + p {
-    margin-top: 16px;
+    margin-top: var(--space-5);
   }
 }
 /* The aims' titles: bold lines in the document. */
 .editing-demo .aim-heading {
-  font-weight: 700;
+  font-weight: var(--weight-bold);
 }
 
 /*
@@ -759,7 +759,7 @@ body {
 */
 .cap-error-page {
   --error-page-hero-gap: 0;
-  --error-page-body-pad-block: 4rem;
+  --error-page-body-pad-block: var(--space-9);
   --error-page-body-gap: 1.1rem;
 }
 @media (min-width: 640px) {
@@ -779,7 +779,7 @@ body {
 .cap-error-page .cap-btn {
   background-color: transparent;
   font-family: inherit;
-  font-weight: 600;
+  font-weight: var(--weight-semibold);
 }
 
 /*
@@ -817,7 +817,7 @@ body {
     max-width: 48rem;
   }
   .section-body {
-    margin-top: 3rem;
+    margin-top: var(--space-8);
   }
   .section-body-lg {
     margin-top: 3.5rem;
@@ -845,20 +845,20 @@ body {
   .section-heading-title,
   .commitment-title {
     font-family: var(--font-display);
-    font-weight: 800;
+    font-weight: var(--weight-heavy);
     text-transform: uppercase;
     letter-spacing: 0.01em;
   }
   .section-heading-title {
-    font-size: 1.875rem;
+    font-size: var(--title-2);
     line-height: 1.25;
     color: var(--color-ink);
   }
   .section-heading-subtitle {
     margin-top: 0.5rem;
-    font-size: 1.5rem;
+    font-size: var(--title-3);
     line-height: 1.375;
-    font-weight: 400;
+    font-weight: var(--weight-regular);
     color: var(--color-band);
   }
   .section-heading-intro {
@@ -881,19 +881,19 @@ body {
     }
   }
   .commitment-title {
-    font-size: 1.875rem;
+    font-size: var(--title-2);
     line-height: 2.25rem;
     color: #fff;
   }
   @media (width >= 40rem) {
     .section-heading-title {
-      font-size: 2.25rem;
+      font-size: var(--title-1);
     }
     .section-heading-subtitle {
       font-size: 1.9rem;
     }
     .commitment-title {
-      font-size: 2.25rem;
+      font-size: var(--title-1);
       line-height: 2.5rem;
     }
   }
@@ -909,9 +909,9 @@ body {
 
   .prose-cta {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: var(--title-4);
     line-height: 1.75rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: var(--color-ink);
   }
   /* A service page's closing "Ready to ..." line is Capsomer's call to action band (cta-band.md) in the site's
@@ -929,8 +929,8 @@ body {
     margin: 0;
     color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: var(--title-4);
+    font-weight: var(--weight-bold);
     line-height: 1.75rem;
     text-wrap: wrap;
   }
@@ -942,7 +942,7 @@ body {
     display: none;
   }
   .text-link {
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: var(--color-brand);
   }
   @media (hover: hover) {
@@ -975,21 +975,21 @@ body {
     --fs-h3: 1.25rem;
     --weight-heading: 700;
     --fs-detail: 0.875rem;
-    --text-size: 0.875rem;
+    --text-size: var(--fs-body);
     --radius-l: 1rem;
     --card-shadow: none;
     --cap-price-face: var(--font-display);
-    --cap-price-weight: 800;
-    --cap-price-unit-size: 1rem;
-    --cap-price-label-weight: 600;
+    --cap-price-weight: var(--weight-heavy);
+    --cap-price-unit-size: var(--title-6);
+    --cap-price-label-weight: var(--weight-semibold);
     --cap-price-color: var(--color-brand);
-    --cap-price-size: 1.875rem;
+    --cap-price-size: var(--title-2);
     --pad-card: 2.5rem 1.5rem;
     --space-3: 1.25rem;
   }
   .faq-more-text,
   .quote-card-meta {
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.25rem;
     color: var(--color-muted);
   }
@@ -1004,14 +1004,14 @@ body {
   }
   .hero-body {
     max-width: 36rem;
-    margin: 1rem 0 0;
+    margin: var(--space-5) 0 0;
     & + & {
       margin-top: 0.75rem;
     }
   }
   /* The site button's trailing arrow. */
   .btn-arrow {
-    --icon-size: 16px;
+    --icon-size: var(--title-6);
     --icon-stroke: 2.5;
   }
 
@@ -1030,11 +1030,11 @@ body {
   .band-inner {
     margin-inline: auto;
     max-width: 72rem;
-    padding: 2rem 1.25rem 5rem;
+    padding: var(--space-7) 1.25rem 5rem;
   }
   @media (width >= 40rem) {
     .band-inner {
-      padding-top: 3rem;
+      padding-top: var(--space-8);
     }
   }
   @media (width >= 48rem) {
@@ -1046,7 +1046,7 @@ body {
     margin-top: 3.5rem;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3rem 2rem;
+    gap: var(--space-8) var(--space-7);
   }
   @media (width >= 64rem) {
     .stats-grid {
@@ -1057,7 +1057,7 @@ body {
     text-align: center;
   }
   .stat-icon {
-    --icon-size: 30px;
+    --icon-size: var(--title-2);
     --icon-stroke: 2;
     margin-inline: auto;
     color: color-mix(in oklab, #fff 80%, transparent);
@@ -1065,16 +1065,16 @@ body {
   .stat-value {
     margin-top: 0.75rem;
     font-family: var(--font-display);
-    font-size: 2.25rem;
+    font-size: var(--title-1);
     line-height: 2.5rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: #fff;
   }
   .stat-label {
     margin-top: 0.5rem;
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     line-height: 1rem;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--color-slate-300);
@@ -1085,12 +1085,12 @@ body {
       line-height: 1;
     }
     .stat-label {
-      font-size: 0.875rem;
+      font-size: var(--fs-body);
       line-height: 1.25rem;
     }
   }
   .logo-band {
-    padding-bottom: 1rem;
+    padding-bottom: var(--space-5);
   }
   @media (width >= 48rem) {
     .logo-band {
@@ -1098,7 +1098,7 @@ body {
     }
   }
   :where(.logo-band > :not(:last-child)) {
-    margin-block: 0 2rem;
+    margin-block: 0 var(--space-7);
   }
   .logo-band-title {
     margin-inline: auto;
@@ -1107,16 +1107,16 @@ body {
     padding-inline: 1.25rem;
     text-align: center;
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: var(--title-3);
     line-height: 2rem;
-    font-weight: 800;
+    font-weight: var(--weight-heavy);
     text-transform: uppercase;
     letter-spacing: 0.01em;
     color: #fff;
   }
   @media (width >= 40rem) {
     .logo-band-title {
-      font-size: 1.875rem;
+      font-size: var(--title-2);
       line-height: 2.25rem;
     }
   }
@@ -1170,7 +1170,7 @@ body {
   .flagship-body {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
+    padding: var(--space-7);
   }
   .academy {
     margin-top: 1.5rem;
@@ -1178,12 +1178,12 @@ body {
   .academy-card {
     border-radius: 1rem;
     background-color: var(--color-band);
-    padding: 2rem;
+    padding: var(--space-7);
   }
   .band-eyebrow {
-    font-size: 0.75rem;
+    font-size: var(--fs-small);
     line-height: 1rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: var(--color-accent-blue-soft);
@@ -1194,21 +1194,21 @@ body {
   .band-card-title {
     margin-top: 0.5rem;
     font-family: var(--font-display);
-    font-size: 1.5rem;
+    font-size: var(--title-3);
     line-height: 2rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: #fff;
   }
   .band-card-subhead {
     margin-top: 0.25rem;
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.25rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: color-mix(in oklab, #fff 90%, transparent);
   }
   .band-card-text,
   .band-card-note {
-    margin-top: 1rem;
+    margin-top: var(--space-5);
     font-size: 0.95rem;
     color: var(--color-slate-200);
   }
@@ -1219,12 +1219,12 @@ body {
     margin-top: 1.5rem;
   }
   .academy-link {
-    --icon-size: 15px;
+    --icon-size: var(--fs-lead);
     --icon-stroke: 2;
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: var(--color-accent-green-soft);
   }
   @media (hover: hover) {
@@ -1247,7 +1247,7 @@ body {
       0 1px 3px 0 rgb(0 0 0 / 0.1),
       0 1px 2px -1px rgb(0 0 0 / 0.1);
     transition-property: translate, box-shadow;
-    transition-duration: 200ms;
+    transition-duration: var(--dur-base);
     transition-timing-function: var(--ease-out);
   }
   .service-card-glow {
@@ -1255,23 +1255,23 @@ body {
     position: absolute;
     inset: 0;
     opacity: 0;
-    transition: opacity 200ms var(--ease-out);
+    transition: opacity var(--dur-base) var(--ease-out);
   }
   .service-card-title {
     position: relative;
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: var(--title-4);
     line-height: 1.75rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: var(--color-ink);
   }
   .service-card-body {
     position: relative;
   }
   .service-card-subhead {
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.25rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: color-mix(in oklab, var(--color-ink) 80%, transparent);
   }
   .service-card-desc {
@@ -1286,18 +1286,18 @@ body {
     justify-content: flex-end;
   }
   .service-card-arrow {
-    --icon-size: 16px;
+    --icon-size: var(--title-6);
     --icon-stroke: 2;
     display: flex;
     height: 2.25rem;
     width: 2.25rem;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
-    border: 1px solid var(--color-slate-300);
+    border-radius: var(--radius-full);
+    border: var(--line-w) solid var(--color-slate-300);
     color: var(--color-icon-muted);
     transition-property: color, border-color;
-    transition-duration: 200ms;
+    transition-duration: var(--dur-base);
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   @media (hover: hover) {
@@ -1334,11 +1334,11 @@ body {
     height: 100%;
     flex-direction: column;
     border-radius: 1rem;
-    border: 1px solid;
-    padding: 2.5rem 2rem 2rem;
+    border: var(--line-w) solid;
+    padding: 2.5rem var(--space-7) var(--space-7);
   }
   .quote-card-mark {
-    --icon-size: 20px;
+    --icon-size: var(--title-4);
     --icon-stroke: 2;
     position: absolute;
     top: -1.5rem;
@@ -1349,7 +1349,7 @@ body {
     width: 3rem;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
+    border-radius: var(--radius-full);
     background-color: #fff;
     box-shadow:
       0 4px 6px -1px color-mix(in oklab, var(--color-slate-900) 10%, transparent),
@@ -1365,7 +1365,7 @@ body {
     margin-top: 1.5rem;
   }
   .quote-card-name {
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: var(--color-ink);
   }
 
@@ -1378,7 +1378,7 @@ body {
 
   /* Team: five across on a wide screen, the photo to the card's edges over an accent-tinted caption. */
   .team-grid {
-    margin-top: 3rem;
+    margin-top: var(--space-8);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.5rem;
@@ -1420,19 +1420,19 @@ body {
     object-position: top;
   }
   .team-card-caption {
-    padding: 1.25rem 1rem;
+    padding: 1.25rem var(--space-5);
     text-align: center;
   }
   .team-card-name {
     font-family: var(--font-display);
     font-size: 1.125rem;
     line-height: 1.75rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     color: var(--color-ink);
   }
   .team-card-role {
     margin-top: 0.25rem;
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.375;
     color: var(--color-muted);
   }
@@ -1443,22 +1443,22 @@ body {
     max-width: 48rem;
     overflow: hidden;
     border-radius: 1rem;
-    border: 1px solid var(--color-slate-200);
+    border: var(--line-w) solid var(--color-slate-200);
     background-color: #fff;
   }
   .faq-more {
-    margin-top: 2rem;
+    margin-top: var(--space-7);
     text-align: center;
   }
   .faq-more-title {
     font-family: var(--font-display);
     font-size: 1.125rem;
     line-height: 1.75rem;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: var(--color-ink);
   }
   .faq-more-action {
-    margin-top: 1rem;
+    margin-top: var(--space-5);
   }
 
   /* The commitment band. */
@@ -1476,9 +1476,9 @@ body {
     border-radius: var(--radius-btn);
     background-color: color-mix(in oklab, #fff 10%, transparent);
     padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.25rem;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: #fff;
   }
 
@@ -1490,7 +1490,7 @@ body {
   .site-footer-inner {
     margin-inline: auto;
     max-width: 72rem;
-    padding: 4rem 1.25rem;
+    padding: var(--space-9) 1.25rem;
   }
   .site-footer-grid {
     display: grid;
@@ -1507,9 +1507,9 @@ body {
     }
   }
   .site-footer-heading {
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.25rem;
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #fff;
@@ -1534,7 +1534,7 @@ body {
   .site-footer-mark-row {
     display: flex;
     align-items: center;
-    gap: 0.625rem;
+    gap: var(--space-3-5);
   }
   .site-footer-mark {
     width: 2.75rem;
@@ -1542,9 +1542,9 @@ body {
   }
   .site-footer-name {
     font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: var(--title-4);
     line-height: 1.75rem;
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
     color: #fff;
   }
   .site-footer-social {
@@ -1558,7 +1558,7 @@ body {
     width: 2.5rem;
     align-items: center;
     justify-content: center;
-    border-radius: 0.375rem;
+    border-radius: var(--radius-m);
     color: #fff;
     transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -1573,7 +1573,7 @@ body {
   .site-footer-legal {
     margin-top: 3.5rem;
     text-align: center;
-    font-size: 0.875rem;
+    font-size: var(--fs-body);
     line-height: 1.25rem;
     color: var(--color-slate-400);
   }
