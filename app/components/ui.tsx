@@ -1,4 +1,4 @@
-import { Icon } from "capsomer/react/icons";
+import { Icon, iconArrowRight } from "capsomer/react/icons";
 import type { Logo } from "../data/logos";
 
 /*
@@ -29,7 +29,7 @@ export function PrimaryButton({
   return (
     <a href={href} className={`btn btn-${color} ${className}`}>
       {children}
-      {arrow && <Icon name="arrow-right" className="btn-arrow" />}
+      {arrow && <Icon d={iconArrowRight} className="btn-arrow" />}
     </a>
   );
 }

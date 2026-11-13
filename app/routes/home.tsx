@@ -15,7 +15,7 @@ import { institutions, journals } from "../data/logos";
 import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM } from "../data/content";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
-import { Icon } from "capsomer/react/icons";
+import { Icon, iconArrowRight } from "capsomer/react/icons";
 
 export function meta() {
   return [...pageMeta(page("/")), ...homeLd().map(jsonLd)];
@@ -146,7 +146,7 @@ export default function Home() {
                     expert-led eCourses.{" "}
                     <a href="/knowledge-hub" className="academy-link">
                       Explore courses
-                      <Icon name="arrow-right" />
+                      <Icon d={iconArrowRight} />
                     </a>
                   </p>
                 </div>

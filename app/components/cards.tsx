@@ -1,4 +1,4 @@
-import { Icon } from "capsomer/react/icons";
+import { Icon, iconArrowRight } from "capsomer/react/icons";
 import type {
   Stat,
   ServiceCard as ServiceCardData,
@@ -16,7 +16,7 @@ import { Picture } from "capsomer/react/picture";
 export function StatItem({ stat }: { stat: Stat }) {
   return (
     <div className="stat">
-      <Icon name={stat.icon} className="stat-icon" />
+      <Icon d={stat.icon} className="stat-icon" />
       <div className="stat-value">{stat.value}</div>
       <p className="stat-label">{stat.label}</p>
     </div>
@@ -45,7 +45,7 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
       </div>
       <footer className="service-card-foot">
         <span className="service-card-arrow" aria-hidden="true">
-          <Icon name="arrow-right" />
+          <Icon d={iconArrowRight} />
         </span>
       </footer>
     </article>

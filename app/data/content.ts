@@ -4,18 +4,18 @@
   ServiceCard, TeamMember, FaqItem, Testimonials). Copy is carried over from
   the reference site.
 */
-import type { IconName } from "capsomer/react/icons";
+import { iconBanknote, iconBook, iconBuilding, iconDocument, iconGlobe, iconRepeat } from "capsomer/react/icons";
 import type { SitePhoto } from "../lib/media/images";
 
-export type Stat = { icon: IconName; value: string; label: string };
+export type Stat = { icon: string; value: string; label: string };
 
 export const STATS: Stat[] = [
-  { icon: "banknote", value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
-  { icon: "repeat", value: "58%", label: "Repeat Clients" },
-  { icon: "globe", value: "7,000+", label: "Clients in 185 Countries" },
-  { icon: "document", value: "37,000+", label: "Documents" },
-  { icon: "building", value: "2,400+", label: "Institutions" },
-  { icon: "book", value: "5,000+", label: "Journals" },
+  { icon: iconBanknote, value: "$300,000,000+", label: "Grants Funded (Last 5 Years)" },
+  { icon: iconRepeat, value: "58%", label: "Repeat Clients" },
+  { icon: iconGlobe, value: "7,000+", label: "Clients in 185 Countries" },
+  { icon: iconDocument, value: "37,000+", label: "Documents" },
+  { icon: iconBuilding, value: "2,400+", label: "Institutions" },
+  { icon: iconBook, value: "5,000+", label: "Journals" },
 ];
 
 type Flagship = {
