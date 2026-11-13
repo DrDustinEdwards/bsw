@@ -69,7 +69,7 @@ const PSMS_HTML = `
 
 <!-- COMMENTS -->
 <div class="psms-comments-col">
-<div class="psms-comments-scroll" id="psms-comments-scroll" tabindex="0" role="region" aria-label="Editor comments">
+<div class="cap-scroll-area psms-comments-scroll" data-frame="none" id="psms-comments-scroll" tabindex="0" role="region" aria-label="Editor comments">
 
   <div class="psms-card psms-editorial-card" data-comment="c5">
     <div class="psms-card-icon psms-editorial-icon">E</div>
