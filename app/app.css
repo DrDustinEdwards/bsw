@@ -273,7 +273,7 @@ body {
   --header-sheet-label-tracking: 0.05em;
   --header-sheet-row-fs: 0.95rem;
   --header-sheet-row-h: 35px;
-  transition: border-color 300ms var(--ease-out);
+  transition: border-color var(--dur-base) var(--ease-out);
 }
 
 /* The menu button 12px after Get a Quote in the phone's row (under 1024px, collapse="lg"). */
@@ -336,7 +336,7 @@ body {
   padding: 0 var(--space-5-5) var(--space-5-5);
 }
 .faq .cap-faq-answer {
-  font-size: 0.95rem;
+  font-size: var(--fs-lead);
   line-height: var(--leading-relaxed-5);
   color: var(--color-muted);
 }
@@ -359,7 +359,7 @@ body {
 .faq summary::after {
   content: "";
   position: absolute;
-  inset-inline-end: 1.625rem;
+  inset-inline-end: var(--space-6);
   top: 50%;
   width: 1rem;
   height: 1rem;
@@ -368,7 +368,7 @@ body {
     center / contain no-repeat;
   translate: 0 -50%;
   rotate: 0deg;
-  transition: rotate 300ms ease-out;
+  transition: rotate var(--dur-base) ease-out;
 }
 .faq [open] > summary::after {
   rotate: 180deg;
@@ -429,7 +429,7 @@ body {
 }
 @media (min-width: 640px) {
   .home-hero {
-    padding-block: 8rem;
+    padding-block: var(--space-10);
   }
 }
 .home-hero .cap-hero-text[data-card] {
@@ -572,7 +572,7 @@ body {
   padding: 0.75rem 1.5rem;
   font-size: var(--fs-body);
   font-weight: var(--weight-bold);
-  line-height: 1.1;
+  line-height: var(--leading-tight);
   color: var(--btn-ink);
   border: var(--line-w) solid rgba(255, 255, 255, 0.9);
   text-shadow: 0 0 10px rgba(var(--btn-glow), 0.25);
@@ -737,7 +737,7 @@ body {
   --sunken: var(--color-surface-sunken);
 }
 .editing-demo .cap-annotated-doc {
-  line-height: 1.78;
+  line-height: var(--leading-airy);
   & p + p {
     margin-top: var(--space-5);
   }
@@ -764,7 +764,7 @@ body {
 }
 .cap-error-page-body {
   padding-inline: var(--space-5-5);
-  font-size: 1.05rem;
+  font-size: var(--fs-page);
 
   & .cap-empty-text {
     max-inline-size: none;
@@ -842,7 +842,7 @@ body {
     font-family: var(--font-display);
     font-weight: var(--weight-heavy);
     text-transform: uppercase;
-    letter-spacing: 0.01em;
+    letter-spacing: var(--tracking-wide);
   }
   .section-heading-title {
     font-size: var(--title-2);
@@ -860,7 +860,7 @@ body {
     margin-inline: auto;
     margin-top: var(--space-5-5);
     max-width: 48rem;
-    font-size: 1.05rem;
+    font-size: var(--fs-page);
     line-height: var(--leading-relaxed-5);
     color: var(--color-muted);
   }
@@ -885,7 +885,7 @@ body {
       font-size: var(--title-1);
     }
     .section-heading-subtitle {
-      font-size: 1.9rem;
+      font-size: var(--title-2);
     }
     .commitment-title {
       font-size: var(--title-1);
@@ -1104,7 +1104,7 @@ body {
     line-height: var(--line-box-8);
     font-weight: var(--weight-heavy);
     text-transform: uppercase;
-    letter-spacing: 0.01em;
+    letter-spacing: var(--tracking-wide);
     color: #fff;
   }
   @media (width >= 40rem) {
@@ -1202,7 +1202,7 @@ body {
   .band-card-text,
   .band-card-note {
     margin-top: var(--space-5);
-    font-size: 0.95rem;
+    font-size: var(--fs-lead);
     color: var(--color-slate-200);
   }
   .band-card-text {
@@ -1269,7 +1269,7 @@ body {
   }
   .service-card-desc {
     margin-top: 0.75rem;
-    font-size: 0.95rem;
+    font-size: var(--fs-lead);
     line-height: var(--leading-relaxed-5);
     color: var(--color-muted);
   }
@@ -1349,7 +1349,7 @@ body {
       0 2px 4px -2px color-mix(in oklab, var(--color-slate-900) 10%, transparent);
   }
   .quote-card-text {
-    font-size: 1.05rem;
+    font-size: var(--fs-page);
     font-style: italic;
     line-height: var(--leading-relaxed-5);
     color: color-mix(in oklab, var(--color-ink) 90%, transparent);
@@ -1503,7 +1503,7 @@ body {
     line-height: var(--line-box-5);
     font-weight: var(--weight-bold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--tracking-widest);
     color: #fff;
   }
   .site-footer-links {
@@ -1513,7 +1513,7 @@ body {
     margin-block: 0 0.75rem;
   }
   .site-footer-link {
-    font-size: 0.95rem;
+    font-size: var(--fs-lead);
     color: var(--color-slate-200);
     transition: color var(--dur-quick) cubic-bezier(0.4, 0, 0.2, 1);
   }
@@ -1559,7 +1559,7 @@ body {
       color: #fff;
     }
     .site-footer-social-link:hover {
-      opacity: 0.85;
+      opacity: var(--opacity-soft);
     }
   }
   .site-footer-legal {
