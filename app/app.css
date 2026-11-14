@@ -262,7 +262,7 @@ body {
   --header-chev-size: var(--fs-body);
   --header-link-gap: 4px;
   --header-cta: transparent;
-  --header-icon-size: 40px;
+  --header-icon-size: var(--display-5);
   --header-icon-glyph: 24px;
   --header-icon-stroke: 2;
   /* The phone sheet's group labels in small blue capitals, its rows at 0.95rem, 39px apart (35px and the sheet's 4px gap). */
@@ -324,20 +324,20 @@ body {
   the open and close. The question and answer type and spacing and the circled chevron are the site's own.
 */
 .faq summary {
-  padding: 1.25rem;
+  padding: var(--space-5-5);
   border-radius: 0;
   font-family: var(--font-display);
   font-size: 1.125rem;
-  line-height: 1.75rem;
+  line-height: var(--line-box-7);
   font-weight: var(--weight-semibold);
   color: var(--color-ink);
 }
 .faq .cap-disclosure-body {
-  padding: 0 1.25rem 1.25rem;
+  padding: 0 var(--space-5-5) var(--space-5-5);
 }
 .faq .cap-faq-answer {
   font-size: 0.95rem;
-  line-height: 1.625;
+  line-height: var(--leading-relaxed-5);
   color: var(--color-muted);
 }
 /* The circled chevron: the summary's marker is the circle, a second pseudo-element draws the chevron in it. */
@@ -416,16 +416,16 @@ body {
   --hero-title-tracking: normal;
   --hero-lead-size: 1.6rem;
   --hero-lead-weight: var(--weight-semibold);
-  --hero-lead-leading: 1.3;
+  --hero-lead-leading: var(--leading-snug);
   --hero-card-bg: rgba(255, 255, 255, 0.45);
   --hero-card-max: 42rem;
-  --hero-card-pad: 3.5rem;
+  --hero-card-pad: var(--space-8-5);
   --hero-card-radius: 40px;
   --hero-card-blur: 28px;
   --hero-card-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   display: block;
   margin: 0;
-  padding: 6rem max(1.25rem, calc((100% - 72rem) / 2 + 1.25rem));
+  padding: var(--space-10) max(var(--space-5-5), calc((100% - 72rem) / 2 + var(--space-5-5)));
 }
 @media (min-width: 640px) {
   .home-hero {
@@ -457,7 +457,7 @@ body {
 .hero-body {
   color: var(--color-body-soft);
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: var(--leading-relaxed);
 }
 @media (max-width: 767px) {
   .home-hero {
@@ -475,18 +475,18 @@ body {
 */
 .cap-prose-page-head,
 .cap-prose-page-body {
-  --page-gutter: 1.25rem;
+  --page-gutter: var(--space-5-5);
 }
 .cap-prose-page-head {
   --cap-prose-page-head-bg: var(--color-band);
   --cap-prose-page-head-text: #fff;
-  --cap-prose-page-head-pad: 5rem;
+  --cap-prose-page-head-pad: var(--space-9-5);
   --cap-prose-page-title-face: var(--font-display);
   --cap-prose-page-title-size: var(--title-1);
   --cap-prose-page-title-weight: var(--weight-heavy);
   --cap-prose-page-title-tracking: 0.01em;
   --cap-prose-page-title-case: uppercase;
-  --cap-prose-page-title-leading: 1.25;
+  --cap-prose-page-title-leading: var(--leading-tight-5);
   --cap-prose-page-title-max: 53.5rem;
   --cap-prose-page-title-wrap: wrap;
   --cap-prose-page-lead-text: var(--color-slate-200);
@@ -496,7 +496,7 @@ body {
   --cap-prose-page-body-pad: var(--space-9);
   --prose: var(--font-sans);
   --fs-prose: 1.05rem;
-  --leading: 1.75;
+  --leading: var(--leading-airy);
   --measure: none;
   --prose-ink: var(--color-muted);
   --prose-strong-ink: var(--color-ink);
@@ -521,15 +521,15 @@ body {
   --prose-link-ink: var(--color-brand);
   --prose-link-hover-decoration: underline;
   --link-weight: var(--weight-semibold);
-  --prose-heading-leading: 1.25;
+  --prose-heading-leading: var(--leading-tight-5);
 }
 @media (width >= 40rem) {
   .cap-prose-page-head {
-    --cap-prose-page-head-pad: 6rem;
-    --cap-prose-page-title-size: 3rem;
+    --cap-prose-page-head-pad: var(--space-10);
+    --cap-prose-page-title-size: var(--display-3);
   }
   .cap-prose-page-body {
-    --cap-prose-page-body-pad: 5rem;
+    --cap-prose-page-body-pad: var(--space-9-5);
   }
 }
 /* Items were spaced by a gap, so the last one adds nothing under its list. */
@@ -585,7 +585,7 @@ body {
   box-shadow:
     0 4px 22px rgba(var(--btn-glow), 0.22),
     inset 0 var(--line-w) 0 #fff,
-    inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
+    inset 0 calc(-1 * var(--line-w)) 0 rgba(var(--btn-glow), 0.25);
   transition:
     transform var(--dur-base) var(--ease-out),
     box-shadow var(--dur-base) var(--ease-out),
@@ -598,7 +598,7 @@ body {
   box-shadow:
     0 8px 30px rgba(var(--btn-glow), 0.3),
     inset 0 var(--line-w) 0 #fff,
-    inset 0 -1px 0 rgba(var(--btn-glow), 0.25);
+    inset 0 calc(-1 * var(--line-w)) 0 rgba(var(--btn-glow), 0.25);
   filter: brightness(1.02);
 }
 .btn:active,
@@ -673,7 +673,7 @@ body {
     var(--color-accent-blue) 100%
   );
   --cap-timeline-duration: 6s;
-  --cap-timeline-gap: 40px;
+  --cap-timeline-gap: var(--space-7-5);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --space-1: 4px;
   --space-2: 8px;
@@ -688,7 +688,7 @@ body {
 }
 .cap-timeline-text {
   font-size: var(--title-6);
-  line-height: 1.7;
+  line-height: var(--leading-loose);
 }
 @media (max-width: 768px) {
   .cap-timeline {
@@ -716,7 +716,7 @@ body {
 .editing-demo {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 var(--space-5-5);
   font-family: Arial, Helvetica, sans-serif;
   font-size: var(--fs-body);
 }
@@ -759,16 +759,16 @@ body {
 }
 @media (min-width: 640px) {
   .cap-error-page {
-    --error-page-body-pad-block: 5rem;
+    --error-page-body-pad-block: var(--space-9-5);
   }
 }
 .cap-error-page-body {
-  padding-inline: 1.25rem;
+  padding-inline: var(--space-5-5);
   font-size: 1.05rem;
 
   & .cap-empty-text {
     max-inline-size: none;
-    line-height: 1.75;
+    line-height: var(--leading-airy);
   }
 }
 .cap-error-page .cap-btn {
@@ -806,7 +806,7 @@ body {
   .section-inner {
     margin-inline: auto;
     max-width: 72rem;
-    padding: 5rem 1.25rem;
+    padding: var(--space-9-5) var(--space-5-5);
   }
   .section-inner-narrow {
     max-width: 48rem;
@@ -815,17 +815,17 @@ body {
     margin-top: var(--space-8);
   }
   .section-body-lg {
-    margin-top: 3.5rem;
+    margin-top: var(--space-8-5);
   }
   .commitment-inner {
     margin-inline: auto;
     max-width: 56rem;
-    padding: 5rem 1.25rem;
+    padding: var(--space-9-5) var(--space-5-5);
     text-align: center;
   }
   @media (width >= 40rem) {
     .section-inner {
-      padding-block: 6rem;
+      padding-block: var(--space-10);
     }
   }
 
@@ -846,22 +846,22 @@ body {
   }
   .section-heading-title {
     font-size: var(--title-2);
-    line-height: 1.25;
+    line-height: var(--leading-tight-5);
     color: var(--color-ink);
   }
   .section-heading-subtitle {
     margin-top: 0.5rem;
     font-size: var(--title-3);
-    line-height: 1.375;
+    line-height: var(--leading-snug-5);
     font-weight: var(--weight-regular);
     color: var(--color-band);
   }
   .section-heading-intro {
     margin-inline: auto;
-    margin-top: 1.25rem;
+    margin-top: var(--space-5-5);
     max-width: 48rem;
     font-size: 1.05rem;
-    line-height: 1.625;
+    line-height: var(--leading-relaxed-5);
     color: var(--color-muted);
   }
   .section-heading[data-dark] {
@@ -877,7 +877,7 @@ body {
   }
   .commitment-title {
     font-size: var(--title-2);
-    line-height: 2.25rem;
+    line-height: var(--line-box-9);
     color: #fff;
   }
   @media (width >= 40rem) {
@@ -889,23 +889,23 @@ body {
     }
     .commitment-title {
       font-size: var(--title-1);
-      line-height: 2.5rem;
+      line-height: var(--line-box-10);
     }
   }
   @media (width >= 64rem) {
     .section-heading-title {
-      font-size: 3rem;
+      font-size: var(--display-3);
     }
     .commitment-title {
-      font-size: 3rem;
-      line-height: 1;
+      font-size: var(--display-3);
+      line-height: var(--leading-none);
     }
   }
 
   .prose-cta {
     font-family: var(--font-display);
     font-size: var(--title-4);
-    line-height: 1.75rem;
+    line-height: var(--line-box-7);
     font-weight: var(--weight-bold);
     color: var(--color-ink);
   }
@@ -919,9 +919,9 @@ body {
     --cta-band-title-face: var(--font-display);
     --cta-band-title-size: var(--title-4);
     --cta-band-title-weight: var(--weight-bold);
-    --cta-band-title-leading: 1.75rem;
+    --cta-band-title-leading: var(--line-box-7);
     display: block;
-    margin-block: 2.5rem 0;
+    margin-block: var(--space-7-5) 0;
   }
   .cap-cta-band-title {
     color: var(--color-ink);
@@ -929,7 +929,7 @@ body {
   }
   .cap-cta-band-actions {
     display: block;
-    margin-block-start: 1.25rem;
+    margin-block-start: var(--space-5-5);
   }
   .cap-cta-band-actions:empty {
     display: none;
@@ -977,13 +977,13 @@ body {
     --cap-price-label-weight: var(--weight-semibold);
     --cap-price-color: var(--color-brand);
     --cap-price-size: var(--title-2);
-    --pad-card: 2.5rem 1.5rem;
+    --pad-card: var(--space-7-5) 1.5rem;
     --space-3: 1.25rem;
   }
   .faq-more-text,
   .quote-card-meta {
     font-size: var(--fs-body);
-    line-height: 1.25rem;
+    line-height: var(--line-box-5);
     color: var(--color-muted);
   }
   .faq-more-text {
@@ -1017,13 +1017,13 @@ body {
   @media (width >= 48rem) {
     .cap-section-band {
       --cap-band-pad-top: 7rem;
-      --cap-band-pad-bottom: 5rem;
+      --cap-band-pad-bottom: var(--space-9-5);
     }
   }
   .band-inner {
     margin-inline: auto;
     max-width: 72rem;
-    padding: var(--space-7) 1.25rem 5rem;
+    padding: var(--space-7) var(--space-5-5) var(--space-9-5);
   }
   @media (width >= 40rem) {
     .band-inner {
@@ -1036,7 +1036,7 @@ body {
     }
   }
   .stats-grid {
-    margin-top: 3.5rem;
+    margin-top: var(--space-8-5);
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-8) var(--space-7);
@@ -1059,27 +1059,27 @@ body {
     margin-top: 0.75rem;
     font-family: var(--font-display);
     font-size: var(--title-1);
-    line-height: 2.5rem;
+    line-height: var(--line-box-10);
     font-weight: var(--weight-bold);
     color: #fff;
   }
   .stat-label {
     margin-top: 0.5rem;
     font-size: var(--fs-small);
-    line-height: 1rem;
+    line-height: var(--line-box-4);
     font-weight: var(--weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: var(--tracking-spaced);
     color: var(--color-slate-300);
   }
   @media (width >= 40rem) {
     .stat-value {
-      font-size: 3rem;
-      line-height: 1;
+      font-size: var(--display-3);
+      line-height: var(--leading-none);
     }
     .stat-label {
       font-size: var(--fs-body);
-      line-height: 1.25rem;
+      line-height: var(--line-box-5);
     }
   }
   .logo-band {
@@ -1097,11 +1097,11 @@ body {
     margin-inline: auto;
     margin-bottom: 1.5rem;
     max-width: 72rem;
-    padding-inline: 1.25rem;
+    padding-inline: var(--space-5-5);
     text-align: center;
     font-family: var(--font-display);
     font-size: var(--title-3);
-    line-height: 2rem;
+    line-height: var(--line-box-8);
     font-weight: var(--weight-heavy);
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -1110,7 +1110,7 @@ body {
   @media (width >= 40rem) {
     .logo-band-title {
       font-size: var(--title-2);
-      line-height: 2.25rem;
+      line-height: var(--line-box-9);
     }
   }
   .logo-band-pause {
@@ -1119,7 +1119,7 @@ body {
 
   /* Home: services, a flagship card beside the 2x2 cards and the Academy banner. */
   .services-grid {
-    margin-top: 3.5rem;
+    margin-top: var(--space-8-5);
     display: grid;
     gap: 1.5rem;
   }
@@ -1148,7 +1148,7 @@ body {
     height: 100%;
     flex-direction: column;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: var(--radius-xl-5);
     background-color: var(--color-band);
     box-shadow:
       0 10px 15px -3px color-mix(in oklab, var(--color-slate-900) 10%, transparent),
@@ -1169,16 +1169,16 @@ body {
     margin-top: 1.5rem;
   }
   .academy-card {
-    border-radius: 1rem;
+    border-radius: var(--radius-xl-5);
     background-color: var(--color-band);
     padding: var(--space-7);
   }
   .band-eyebrow {
     font-size: var(--fs-small);
-    line-height: 1rem;
+    line-height: var(--line-box-4);
     font-weight: var(--weight-bold);
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: var(--tracking-spread);
     color: var(--color-accent-blue-soft);
   }
   .band-eyebrow-green {
@@ -1188,14 +1188,14 @@ body {
     margin-top: 0.5rem;
     font-family: var(--font-display);
     font-size: var(--title-3);
-    line-height: 2rem;
+    line-height: var(--line-box-8);
     font-weight: var(--weight-bold);
     color: #fff;
   }
   .band-card-subhead {
     margin-top: 0.25rem;
     font-size: var(--fs-body);
-    line-height: 1.25rem;
+    line-height: var(--line-box-5);
     font-weight: var(--weight-bold);
     color: color-mix(in oklab, #fff 90%, transparent);
   }
@@ -1206,7 +1206,7 @@ body {
     color: var(--color-slate-200);
   }
   .band-card-text {
-    line-height: 1.625;
+    line-height: var(--leading-relaxed-5);
   }
   .band-card-actions {
     margin-top: 1.5rem;
@@ -1233,9 +1233,9 @@ body {
     grid-template-rows: auto 1fr auto;
     align-content: stretch;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: var(--radius-xl-5);
     border-width: 0;
-    padding: 1.75rem;
+    padding: var(--space-6-5);
     box-shadow:
       0 1px 3px 0 rgb(0 0 0 / 0.1),
       0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -1254,7 +1254,7 @@ body {
     position: relative;
     font-family: var(--font-display);
     font-size: var(--title-4);
-    line-height: 1.75rem;
+    line-height: var(--line-box-7);
     font-weight: var(--weight-bold);
     color: var(--color-ink);
   }
@@ -1263,14 +1263,14 @@ body {
   }
   .service-card-subhead {
     font-size: var(--fs-body);
-    line-height: 1.25rem;
+    line-height: var(--line-box-5);
     font-weight: var(--weight-bold);
     color: color-mix(in oklab, var(--color-ink) 80%, transparent);
   }
   .service-card-desc {
     margin-top: 0.75rem;
     font-size: 0.95rem;
-    line-height: 1.625;
+    line-height: var(--leading-relaxed-5);
     color: var(--color-muted);
   }
   .service-card-foot {
@@ -1326,9 +1326,9 @@ body {
     display: flex;
     height: 100%;
     flex-direction: column;
-    border-radius: 1rem;
+    border-radius: var(--radius-xl-5);
     border: var(--line-w) solid;
-    padding: 2.5rem var(--space-7) var(--space-7);
+    padding: var(--space-7-5) var(--space-7) var(--space-7);
   }
   .quote-card-mark {
     --icon-size: var(--title-4);
@@ -1351,7 +1351,7 @@ body {
   .quote-card-text {
     font-size: 1.05rem;
     font-style: italic;
-    line-height: 1.625;
+    line-height: var(--leading-relaxed-5);
     color: color-mix(in oklab, var(--color-ink) 90%, transparent);
   }
   .quote-card-cite {
@@ -1364,7 +1364,7 @@ body {
 
   /* The process timeline's icons: 40px, each step in its accent color. */
   .timeline-step-icon {
-    --icon-size: 40px;
+    --icon-size: var(--display-5);
     --icon-stroke: 2;
     display: block;
   }
@@ -1393,7 +1393,7 @@ body {
     max-width: 220px;
     gap: 0;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: var(--radius-xl-5);
     border-width: 0;
     background-color: #fff;
     padding: 0;
@@ -1412,20 +1412,20 @@ body {
     object-position: top;
   }
   .team-card-caption {
-    padding: 1.25rem var(--space-5);
+    padding: var(--space-5-5) var(--space-5);
     text-align: center;
   }
   .team-card-name {
     font-family: var(--font-display);
     font-size: 1.125rem;
-    line-height: 1.75rem;
+    line-height: var(--line-box-7);
     font-weight: var(--weight-bold);
     color: var(--color-ink);
   }
   .team-card-role {
     margin-top: 0.25rem;
     font-size: var(--fs-body);
-    line-height: 1.375;
+    line-height: var(--leading-snug-5);
     color: var(--color-muted);
   }
 
@@ -1434,7 +1434,7 @@ body {
     margin-inline: auto;
     max-width: 48rem;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: var(--radius-xl-5);
     border: var(--line-w) solid var(--color-slate-200);
     background-color: #fff;
   }
@@ -1445,7 +1445,7 @@ body {
   .faq-more-title {
     font-family: var(--font-display);
     font-size: 1.125rem;
-    line-height: 1.75rem;
+    line-height: var(--line-box-7);
     font-weight: var(--weight-semibold);
     color: var(--color-ink);
   }
@@ -1456,9 +1456,9 @@ body {
   /* The commitment band. */
   .commitment-text {
     margin-inline: auto;
-    margin-top: 1.25rem;
+    margin-top: var(--space-5-5);
     max-width: 42rem;
-    line-height: 1.625;
+    line-height: var(--leading-relaxed-5);
     color: color-mix(in oklab, #fff 85%, transparent);
   }
   .commitment-badge {
@@ -1467,9 +1467,9 @@ body {
     display: inline-block;
     border-radius: var(--radius-btn);
     background-color: color-mix(in oklab, #fff 10%, transparent);
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem var(--space-5-5);
     font-size: var(--fs-body);
-    line-height: 1.25rem;
+    line-height: var(--line-box-5);
     font-weight: var(--weight-semibold);
     color: #fff;
   }
@@ -1482,11 +1482,11 @@ body {
   .site-footer-inner {
     margin-inline: auto;
     max-width: 72rem;
-    padding: var(--space-9) 1.25rem;
+    padding: var(--space-9) var(--space-5-5);
   }
   .site-footer-grid {
     display: grid;
-    gap: 2.5rem;
+    gap: var(--space-7-5);
   }
   @media (width >= 40rem) {
     .site-footer-grid {
@@ -1500,14 +1500,14 @@ body {
   }
   .site-footer-heading {
     font-size: var(--fs-body);
-    line-height: 1.25rem;
+    line-height: var(--line-box-5);
     font-weight: var(--weight-bold);
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: #fff;
   }
   .site-footer-links {
-    margin-top: 1.25rem;
+    margin-top: var(--space-5-5);
   }
   :where(.site-footer-links > :not(:last-child)) {
     margin-block: 0 0.75rem;
@@ -1515,7 +1515,7 @@ body {
   .site-footer-link {
     font-size: 0.95rem;
     color: var(--color-slate-200);
-    transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color var(--dur-quick) cubic-bezier(0.4, 0, 0.2, 1);
   }
   .site-footer-brand {
     display: flex;
@@ -1535,7 +1535,7 @@ body {
   .site-footer-name {
     font-family: var(--font-display);
     font-size: var(--title-4);
-    line-height: 1.75rem;
+    line-height: var(--line-box-7);
     font-weight: var(--weight-semibold);
     color: #fff;
   }
@@ -1552,7 +1552,7 @@ body {
     justify-content: center;
     border-radius: var(--radius-m);
     color: #fff;
-    transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity var(--dur-quick) cubic-bezier(0.4, 0, 0.2, 1);
   }
   @media (hover: hover) {
     .site-footer-link:hover {
@@ -1563,10 +1563,10 @@ body {
     }
   }
   .site-footer-legal {
-    margin-top: 3.5rem;
+    margin-top: var(--space-8-5);
     text-align: center;
     font-size: var(--fs-body);
-    line-height: 1.25rem;
+    line-height: var(--line-box-5);
     color: var(--color-slate-400);
   }
 }
