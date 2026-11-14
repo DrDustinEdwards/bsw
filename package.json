@@ -30,10 +30,10 @@
     "hast-util-from-html": "2.1.0",
     "hast-util-to-mdast": "10.1.2",
     "hast-util-to-string": "3.0.1",
-    "hastscript": "9.0.1",
+    "hastscript": "9.0.3",
     "htmlparser2": "12.0.0",
     "mdast-util-gfm": "3.1.0",
-    "mdast-util-to-markdown": "2.2.0",
+    "mdast-util-to-markdown": "2.2.3",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "react-router": "8.5.1"
@@ -52,7 +52,7 @@
     "oxlint-tsgolint": "7.0.2006",
     "satori": "0.63.2",
     "typescript": "5.9.3",
-    "vite": "8.3.5",
+    "vite": "8.3.8",
     "wrangler": "4.151.0"
   },
   "overrides": {
