@@ -407,14 +407,22 @@ body {
   Hero: Capsomer's hero (hero.md) in the site's own look. Exact source spec: translucent blurred card
   over the hex field (the backdrop), with a three-tier type scale that shrinks on mobile (max-width 767px).
   The section is full width; its words sit in a 6xl column (the 72rem the page uses) and the card is 2xl wide.
-  Sizes and the card's surface are Capsomer's hero tokens; the rest has no token yet.
+  The type and the card are Capsomer's hero tokens; margins, inks and wrapping have no token.
 */
 .home-hero {
   --hero-title: 3.2rem;
+  --hero-title-weight: var(--weight-heavy);
+  --hero-title-leading: 1.1;
+  --hero-title-tracking: normal;
   --hero-lead-size: 1.6rem;
-  /* Named, not left to Capsomer's "inherit" fallback: a CSS-wide keyword in its font shorthand voids the rule. */
-  --hero-lead-face: var(--font-sans);
+  --hero-lead-weight: var(--weight-semibold);
+  --hero-lead-leading: 1.3;
   --hero-card-bg: rgba(255, 255, 255, 0.45);
+  --hero-card-max: 42rem;
+  --hero-card-pad: 3.5rem;
+  --hero-card-radius: 40px;
+  --hero-card-blur: 28px;
+  --hero-card-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   display: block;
   margin: 0;
   padding: 6rem max(1.25rem, calc((100% - 72rem) / 2 + 1.25rem));
@@ -424,31 +432,18 @@ body {
     padding-block: 8rem;
   }
 }
-.home-hero .cap-hero-text {
-  max-inline-size: 42rem;
-}
 .home-hero .cap-hero-text[data-card] {
   --line: rgba(255, 255, 255, 0.4);
-  -webkit-backdrop-filter: blur(28px);
-  backdrop-filter: blur(28px);
-  border-radius: 40px;
-  padding: 3.5rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
 }
 .home-hero .cap-hero-title {
   margin: 0;
   color: var(--color-ink);
-  font-weight: var(--weight-heavy);
-  line-height: 1.1;
-  letter-spacing: normal;
   text-wrap: wrap;
 }
 .home-hero .cap-hero-lead {
   max-inline-size: none;
   margin: var(--space-5) 0 0;
   color: var(--color-ink-soft);
-  font-weight: var(--weight-semibold);
-  line-height: 1.3;
   text-wrap: wrap;
 }
 .home-hero .cap-hero-body {
@@ -465,13 +460,11 @@ body {
   line-height: 1.6;
 }
 @media (max-width: 767px) {
-  .home-hero .cap-hero-text[data-card] {
-    padding: var(--space-7);
-    border-radius: 20px;
-  }
   .home-hero {
     --hero-title: 2.2rem;
     --hero-lead-size: 1.3rem;
+    --hero-card-pad: var(--space-7);
+    --hero-card-radius: 20px;
   }
 }
 
@@ -917,23 +910,21 @@ body {
     color: var(--color-ink);
   }
   /* A service page's closing "Ready to ..." line is Capsomer's call to action band (cta-band.md) in the site's
-     own plain look: left-aligned words and the site button under them, no tinted band. */
+     own plain look, through its tokens: left-aligned words and the site button under them, no tinted band. */
   .cap-cta-band {
     --cta-band-bg: none;
+    --cta-band-align: start;
+    --cta-band-border: 0;
+    --cta-band-pad: 0;
+    --cta-band-title-face: var(--font-display);
+    --cta-band-title-size: var(--title-4);
+    --cta-band-title-weight: var(--weight-bold);
+    --cta-band-title-leading: 1.75rem;
     display: block;
     margin-block: 2.5rem 0;
-    padding: 0;
-    border: 0;
-    border-radius: 0;
-    text-align: left;
   }
   .cap-cta-band-title {
-    margin: 0;
     color: var(--color-ink);
-    font-family: var(--font-display);
-    font-size: var(--title-4);
-    font-weight: var(--weight-bold);
-    line-height: 1.75rem;
     text-wrap: wrap;
   }
   .cap-cta-band-actions {
@@ -1416,7 +1407,6 @@ body {
     }
   }
   .team-card-photo {
-    aspect-ratio: 4 / 5;
     width: 100%;
     object-fit: cover;
     object-position: top;
