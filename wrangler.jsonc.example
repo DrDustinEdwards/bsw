@@ -15,7 +15,8 @@
 	},
 	"upload_source_maps": true,
 	"compatibility_flags": [
-		"nodejs_compat"
+		"nodejs_compat",
+		"enable_request_signal"
 	],
 	// The deployed version's time: /health's cron check holds a job's "never ran" warning until its first window since
 	// the deploy has passed.
