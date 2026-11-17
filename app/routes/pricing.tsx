@@ -1,7 +1,12 @@
-import { pageMeta } from "../config/site";
+import { pageMeta, SITE } from "../config/site";
+import { PrimaryButton } from "../components/ui";
 import { page } from "../config/pages";
 import { PriceCard, PriceGrid } from "capsomer/react/price-card";
 import { ProsePage } from "capsomer/react/prose-page";
+
+const QUOTE_MAILTO = `mailto:${SITE.email}?subject=${encodeURIComponent("Quote request")}&body=${encodeURIComponent(
+  "Name:\nInstitution:\nDocument type (manuscript, grant, thesis):\nWord count:\nField of research:\nDeadline or turnaround:\n",
+)}`;
 
 export function meta() {
   return pageMeta(page("/pricing"));
@@ -10,56 +15,12 @@ export function meta() {
 export default function Pricing() {
   return (
     <ProsePage title="Pricing">
-      <h2 className="prose-sub">1. The Core Pricing</h2>
-      <p>BSW traditionally uses a Per-Word rate based on Turnaround Time.</p>
-      <ul>
-        <li>
-          <strong>Standard Service (7-10 Days):</strong> $0.05 - $0.07 per word.
-        </li>
-        <li>
-          <strong>Rush Service (2-3 Days):</strong> $0.08 - $0.10 per word.
-        </li>
-        <li>
-          <strong>Extreme Rush (24 Hours):</strong> $0.12 - $0.15 per word.
-        </li>
-        <li>
-          <strong>Note:</strong> There is typically a Minimum Order Fee (e.g., $50.00) for very
-          small documents (abstracts).
-        </li>
-      </ul>
-
-      <h2 className="prose-sub">2. The Quality Seal</h2>
-      <ul>
-        <li>
-          <strong>100% Satisfaction Guarantee:</strong> If a journal rejects a paper for English
-          quality after BSW editing, BSW re-edits for free.
-        </li>
-        <li>
-          <strong>PhD/MD Only:</strong> You aren't paying for "AI" or "Students." You are paying for
-          a peer-level scientist.
-        </li>
-      </ul>
-
-      <h2 className="prose-sub">3. Institutional &amp; Volume Discounts</h2>
-      <ul>
-        <li>
-          <strong>Referral Program:</strong> Discounts for PIs who refer their colleagues.
-        </li>
-        <li>
-          <strong>Institutional Accounts:</strong> Pre-paid accounts for departments (removes the
-          "Purchase Order" headache for individual researchers).
-        </li>
-        <li>
-          <strong>Volume Discount:</strong> Lower per-word rates for documents over 10,000 words
-          (theses/books).
-        </li>
-      </ul>
-
       <h2>No Compromise</h2>
       <p>Transparent, Expert-Led Pricing</p>
       <p>
         Premium scientific editing is an investment in your career. We provide flat-rate, per-word
-        pricing with zero hidden fees.
+        pricing. Very small documents, such as abstracts, typically carry a minimum order fee (for
+        example, $50.00).
       </p>
 
       <PriceGrid>
@@ -85,6 +46,42 @@ export default function Pricing() {
           text={["Journal Formatting", "Best for Grant Deadlines"]}
         />
       </PriceGrid>
+
+      <h2 id="quote">Request a Quote</h2>
+      <p>
+        Tell us your word count, field, and deadline, and we will reply with a quote. The button
+        opens an email to {SITE.email} with the details to include.
+      </p>
+      <p>
+        <PrimaryButton href={QUOTE_MAILTO}>Email Us for a Quote</PrimaryButton>
+      </p>
+
+      <h2 className="prose-sub">The Quality Seal</h2>
+      <ul>
+        <li>
+          <strong>100% Satisfaction Guarantee:</strong> If a journal rejects a paper for English
+          quality after BSW editing, BSW re-edits for free.
+        </li>
+        <li>
+          <strong>PhD/MD Only:</strong> Your document is edited by a peer-level scientist, not by AI
+          or a student.
+        </li>
+      </ul>
+
+      <h2 className="prose-sub">Institutional &amp; Volume Discounts</h2>
+      <ul>
+        <li>
+          <strong>Referral Program:</strong> Discounts for PIs who refer their colleagues.
+        </li>
+        <li>
+          <strong>Institutional Accounts:</strong> Pre-paid accounts for departments, so individual
+          researchers do not need a purchase order.
+        </li>
+        <li>
+          <strong>Volume Discount:</strong> Lower per-word rates for documents over 10,000 words
+          (theses/books).
+        </li>
+      </ul>
 
       <h2>Exclusive Discount Programs</h2>
       <p>Maximize Your Budget</p>

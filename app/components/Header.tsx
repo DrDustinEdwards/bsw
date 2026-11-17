@@ -31,7 +31,7 @@ export function Header() {
           id: "quote",
           label: "Get a Quote",
           kind: "button",
-          href: "/pricing",
+          href: "/pricing#quote",
           className: "btn btn-blue btn-sm",
         },
       ]}

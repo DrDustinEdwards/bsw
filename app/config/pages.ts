@@ -56,7 +56,7 @@ export const PAGES = [
     path: "/pricing",
     title: "Pricing",
     description:
-      "Flat-rate, per-word scientific editing pricing with no hidden fees across Standard, Accelerated, and Critical Rush turnaround tiers.",
+      "Flat-rate, per-word scientific editing pricing across Standard, Accelerated, and Critical Rush turnaround tiers.",
   },
   {
     path: "/our-experts",
