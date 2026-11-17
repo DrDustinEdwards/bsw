@@ -41,7 +41,7 @@ export const FLAGSHIP: Flagship = {
   desc: "Strategic PhD-level review, writing, and alignment for NIH, NSF, and Foundation submissions.",
   note: "Rapid Turnaround, most returned in 7-10 days.",
   cta: "Your Quote",
-  href: "/pricing",
+  href: "/pricing#quote",
   photo: { src: "/uploads/2026/11/grant-review-6b238865.webp", width: 512, height: 512 },
 };
 
@@ -130,7 +130,7 @@ export const FAQS: Faq[] = [
   {
     question: "How much will editing cost?",
     answer:
-      "Visit our prices page for our hourly rate and estimate calculator. Because all work is done hourly, you can reduce costs by spell-checking your document and ensuring it's well organized before submission.",
+      "Pricing is per word and depends on turnaround time. Visit our pricing page for current rates, and request a quote there for an estimate on your document.",
   },
   {
     question: "What are your credentials?",
