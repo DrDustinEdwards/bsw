@@ -20,14 +20,6 @@ const PHONE_LINES = [
 export default function ContactUs() {
   return (
     <ProsePage title="Contact Us">
-      <p>
-        BioScience Writers is located in Houston, Texas in the United States of America. You can
-        reach us by any of the following methods. We are happy to discuss how our premier scientific
-        editing services, medical writing services, publisher copyediting services, English
-        translation services, and scientific writing workshops can benefit you. Contact us with any
-        questions you might have about our top quality services.
-      </p>
-
       <ContactGrid>
         <ContactCard
           title="Email"

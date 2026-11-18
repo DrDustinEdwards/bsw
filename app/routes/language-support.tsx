@@ -11,17 +11,6 @@ export function meta() {
 export default function LanguageSupport() {
   return (
     <ProsePage title="Language Support">
-      <h2 className="prose-sub">
-        Bridging the Gap Between International Research and Global Impact
-      </h2>
-      <p>
-        Scientific impact should not be limited by language barriers. BioScience Writers provides
-        specialized linguistic support designed to help international researchers communicate their
-        findings with the same clarity and nuance as a native English speaker. We have integrated
-        our translation and ESL polishing services into a single hub to support global scholars at
-        every stage of their career.
-      </p>
-
       <h2 className="prose-sub">Professional Scientific Translation</h2>
       <p>
         We provide high-fidelity translation services that preserve the technical integrity and

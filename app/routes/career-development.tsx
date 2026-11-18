@@ -11,16 +11,6 @@ export function meta() {
 export default function CareerDevelopment() {
   return (
     <ProsePage title="Career Development">
-      <h2 className="prose-sub">Empowering Researchers from Graduate School to Tenure</h2>
-      <p>
-        The path of a professional researcher requires more than just successful experiments; it
-        requires a meticulously managed portfolio of professional documents. BioScience Writers has
-        consolidated our career-focused services into a specialized hub designed to support scholars
-        at every milestone. Whether you are finalizing a dissertation, transitioning to a faculty
-        role, or publishing a career-defining monograph, we provide the expert PhD-level oversight
-        necessary to advance your academic trajectory.
-      </p>
-
       <h2 className="prose-sub">Dissertation &amp; Thesis Excellence</h2>
       <p>
         Finalizing a doctoral dissertation or master's thesis is a significant academic undertaking.

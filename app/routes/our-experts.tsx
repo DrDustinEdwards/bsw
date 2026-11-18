@@ -11,16 +11,14 @@ export function meta() {
 export default function OurExperts() {
   return (
     <ProsePage title="PhD/MD Editors">
-      <h2>MD/PhD Authority in Every Scientific Discipline</h2>
       <p>
         At the core of BioScience Writers is an elite network of editors and consultants who are
         active participants in the global scientific community. We don't just employ linguists; we
         partner with subject-matter experts who understand the nuances, logic, and rigor required
-        for high-impact publication and funding. Our "Network" hub is designed to provide complete
-        transparency into the credentials and quality standards that safeguard your research.
+        for high-impact publication and funding.
       </p>
 
-      <h3>The MD/PhD Standard of Excellence</h3>
+      <h2 className="prose-sub">The MD/PhD Standard of Excellence</h2>
       <p>
         We believe that only a scientist can truly edit science. Our network is built on a
         foundation of rigorous credentialing to ensure your work is handled with the authority it
@@ -42,7 +40,7 @@ export default function OurExperts() {
         </li>
       </ul>
 
-      <h3>Breadth of Expertise</h3>
+      <h2 className="prose-sub">Breadth of Expertise</h2>
       <p>
         Our network spans the full spectrum of modern science, medicine, and engineering. We provide
         specialized editorial support across hundreds of sub-disciplines, including:
@@ -66,7 +64,7 @@ export default function OurExperts() {
         </li>
       </ul>
 
-      <h3>Our Commitment to Editing Quality</h3>
+      <h2 className="prose-sub">Our Commitment to Editing Quality</h2>
       <p>
         Trust is built on consistency. BioScience Writers employs a multi-tiered quality control
         system to ensure that every document meets our "Universal Quality Standard" before it
@@ -89,7 +87,7 @@ export default function OurExperts() {
         </li>
       </ul>
 
-      <h3>Client Evidence &amp; Success Stories</h3>
+      <h2 className="prose-sub">Client Evidence &amp; Success Stories</h2>
       <p>
         The success of our network is measured by the success of our clients. We take pride in the
         thousands of manuscripts we have helped move from draft to high-impact publication:

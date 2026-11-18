@@ -9,7 +9,6 @@ export function meta() {
 export default function SecurityConfidentiality() {
   return (
     <ProsePage title="Security and Confidentiality">
-      <h2 className="prose-sub">Protecting the Integrity of Your Intellectual Property</h2>
       <p>
         At BioScience Writers, we recognize that your unpublished research, proprietary data, and
         grant strategies are your most valuable assets. We have established a multi-layered security
@@ -85,8 +84,6 @@ export default function SecurityConfidentiality() {
         specific security documentation to clear our service for use with grant funds, our
         compliance team is available to assist.
       </p>
-
-      <p className="prose-cta">Have questions about our security protocols?</p>
     </ProsePage>
   );
 }

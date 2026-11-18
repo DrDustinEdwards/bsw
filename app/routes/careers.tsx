@@ -9,7 +9,6 @@ export function meta() {
 export default function Careers() {
   return (
     <ProsePage title="Careers">
-      <h2>Scientific Editing Jobs</h2>
       <p>
         We are seeking applications from editors and writers who can provide extensive grant editing
         and writing assistance. In particular, we are interested in applicants who have extensive

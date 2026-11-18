@@ -1,4 +1,3 @@
-import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -10,12 +9,9 @@ export function meta() {
 export default function EditingGuarantee() {
   return (
     <ProsePage title="Editing Guarantee">
-      <h2 className="prose-sub">MD/PhD Oversight for Peer-Review Success</h2>
       <p>
         At BioScience Writers, we believe that scientific editing requires more than just linguistic
-        correction, it requires subject-matter expertise. We have consolidated our quality standards
-        into a single, comprehensive guarantee to give our authors absolute confidence in their
-        submission.
+        correction, it requires subject-matter expertise.
       </p>
 
       <h2 className="prose-sub">The Universal Quality Standard</h2>
@@ -77,8 +73,6 @@ export default function EditingGuarantee() {
         follow-up. We provide a clear channel for feedback to ensure the final document reflects
         your research accurately and professionally.
       </p>
-
-      <CtaBand title="Ready to submit with confidence?" actions={null} />
     </ProsePage>
   );
 }

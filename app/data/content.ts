@@ -27,7 +27,6 @@ export const STATS: Stat[] = [
 
 type Flagship = {
   title: string;
-  subhead: string;
   desc: string;
   note: string;
   cta: string;
@@ -37,7 +36,6 @@ type Flagship = {
 
 export const FLAGSHIP: Flagship = {
   title: "Grant Review and Editing",
-  subhead: "Maximize Your Funding Potential",
   desc: "Strategic PhD-level review, writing, and alignment for NIH, NSF, and Foundation submissions.",
   note: "Rapid Turnaround, most returned in 7-10 days.",
   cta: "Your Quote",
@@ -47,7 +45,6 @@ export const FLAGSHIP: Flagship = {
 
 export type ServiceCard = {
   title: string;
-  subhead: string;
   desc: string;
   accent: string;
 };
@@ -56,25 +53,21 @@ export type ServiceCard = {
 export const SERVICE_CARDS: ServiceCard[] = [
   {
     title: "Manuscript Writing",
-    subhead: "Journal-Ready Editing",
     desc: "Precision polishing for clarity, logic, and impact to secure acceptance in top-tier journals.",
     accent: "var(--color-accent-blue)",
   },
   {
     title: "Medical Writing",
-    subhead: "Clinical & Regulatory Writing",
     desc: "Expert documentation for Pharma and Biotech, fully compliant with global regulatory standards.",
     accent: "var(--color-accent-blue)",
   },
   {
     title: "Journal Formatting",
-    subhead: "Zero-Error Formatting",
     desc: "We handle the technical layout requirements for any target journal, guaranteed.",
     accent: "var(--color-accent-green)",
   },
   {
     title: "Scientific Translation",
-    subhead: "Multilingual Support",
     desc: "Nuance-aware translation that preserves scientific accuracy.",
     accent: "var(--color-accent-orange)",
   },

@@ -11,16 +11,7 @@ export function meta() {
 export default function GrantProposalSupport() {
   return (
     <ProsePage title="Grant and Proposal Support">
-      <h2>Maximizing Your Competitive Edge in Research Funding</h2>
-      <p>
-        Securing research funding requires more than just good data; it requires a strategic
-        narrative that aligns with agency priorities. BioScience Writers has consolidated our
-        grant-related expertise into a specialized Funding Hub, providing a comprehensive support
-        system for PIs navigating the complex lifecycle of NIH, NSF, DoD, and private foundation
-        applications.
-      </p>
-
-      <h3>The Strategic Review Advantage</h3>
+      <h2 className="prose-sub">The Strategic Review Advantage</h2>
       <p>
         Our grant services go beyond proofreading to provide deep-level structural and strategic
         feedback. Every proposal is reviewed by a subject-matter expert with a track record of
@@ -45,7 +36,7 @@ export default function GrantProposalSupport() {
         </li>
       </ul>
 
-      <h3>Integrated Support for the Grant Lifecycle</h3>
+      <h2 className="prose-sub">Integrated Support for the Grant Lifecycle</h2>
       <ol>
         <li>
           <strong>Specific Aims &amp; Proposal Strategy.</strong> The Specific Aims page is the most
@@ -69,7 +60,7 @@ export default function GrantProposalSupport() {
         </li>
       </ol>
 
-      <h3>Resources for Continued Success</h3>
+      <h2 className="prose-sub">Resources for Continued Success</h2>
       <p>
         Beyond project-specific support, our hub provides a library of grant-writing tips and
         technical guides focused on navigating federal agency nuances. We empower researchers with
