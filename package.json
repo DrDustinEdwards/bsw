@@ -23,7 +23,7 @@
   "dependencies": {
     "@drdustinedwards/site-helpers": "github:DrDustinEdwards/prelum#v0.63.1",
     "@dustinedwards/d1-dump": "github:DrDustinEdwards/d1-dump#v0.16.1",
-    "@dustinedwards/site-api": "github:DrDustinEdwards/site-api#v0.42.1",
+    "@dustinedwards/site-api": "github:DrDustinEdwards/site-api#v0.45.0",
     "@dustinedwards/site-runtime": "github:DrDustinEdwards/site-runtime#v0.167.0",
     "@fontsource-variable/open-sans": "5.3.0",
     "capsomer": "github:DrDustinEdwards/capsomer#v0.159.0",
@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "1.70.0",
-    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.51.0",
+    "@dustinedwards/devkit": "github:DrDustinEdwards/devkit#v0.51.2",
     "@fontsource/open-sans": "5.3.0",
     "@react-router/dev": "8.5.1",
     "@resvg/resvg-wasm": "2.6.2",
