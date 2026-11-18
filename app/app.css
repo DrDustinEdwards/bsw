@@ -105,11 +105,8 @@
   --color-accent-green-ink: #46691a;
   --color-accent-orange-ink: #b3560f;
   /*
-    Light accent tints for eyebrow text and links on the dark band. Values are
-    tuned to clear WCAG 2.2 AA (4.5:1) against --color-band: blue #93c7f0 is
-    lightened from the reference #6cb2e6 (which failed at 3.73:1).
+    Light accent tint for text on the dark band, tuned to clear WCAG 2.2 AA (4.5:1) against --color-band.
   */
-  --color-accent-blue-soft: #93c7f0;
   --color-accent-green-soft: #a4d65e;
 
   /* Editing-demo annotation categories, aliased to the accent scale. */
@@ -849,30 +846,9 @@ body {
     line-height: var(--leading-tight-5);
     color: var(--color-ink);
   }
-  .section-heading-subtitle {
-    margin-top: 0.5rem;
-    font-size: var(--title-3);
-    line-height: var(--leading-snug-5);
-    font-weight: var(--weight-regular);
-    color: var(--color-band);
-  }
-  .section-heading-intro {
-    margin-inline: auto;
-    margin-top: var(--space-5-5);
-    max-width: 48rem;
-    font-size: var(--fs-page);
-    line-height: var(--leading-relaxed-5);
-    color: var(--color-muted);
-  }
   .section-heading[data-dark] {
     & .section-heading-title {
       color: #fff;
-    }
-    & .section-heading-subtitle {
-      color: var(--color-slate-200);
-    }
-    & .section-heading-intro {
-      color: var(--color-slate-300);
     }
   }
   .commitment-title {
@@ -883,9 +859,6 @@ body {
   @media (width >= 40rem) {
     .section-heading-title {
       font-size: var(--title-1);
-    }
-    .section-heading-subtitle {
-      font-size: var(--title-2);
     }
     .commitment-title {
       font-size: var(--title-1);
@@ -902,13 +875,6 @@ body {
     }
   }
 
-  .prose-cta {
-    font-family: var(--font-display);
-    font-size: var(--title-4);
-    line-height: var(--line-box-7);
-    font-weight: var(--weight-bold);
-    color: var(--color-ink);
-  }
   /* A service page's closing "Ready to ..." line is Capsomer's call to action band (cta-band.md) in the site's
      own plain look, through its tokens: left-aligned words and the site button under them, no tinted band. */
   .cap-cta-band {
@@ -1173,17 +1139,6 @@ body {
     background-color: var(--color-band);
     padding: var(--space-7);
   }
-  .band-eyebrow {
-    font-size: var(--fs-small);
-    line-height: var(--line-box-4);
-    font-weight: var(--weight-bold);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-spread);
-    color: var(--color-accent-blue-soft);
-  }
-  .band-eyebrow-green {
-    color: var(--color-accent-green-soft);
-  }
   .band-card-title {
     margin-top: 0.5rem;
     font-family: var(--font-display);
@@ -1191,13 +1146,6 @@ body {
     line-height: var(--line-box-8);
     font-weight: var(--weight-bold);
     color: #fff;
-  }
-  .band-card-subhead {
-    margin-top: 0.25rem;
-    font-size: var(--fs-body);
-    line-height: var(--line-box-5);
-    font-weight: var(--weight-bold);
-    color: color-mix(in oklab, #fff 90%, transparent);
   }
   .band-card-text,
   .band-card-note {
@@ -1260,12 +1208,6 @@ body {
   }
   .service-card-body {
     position: relative;
-  }
-  .service-card-subhead {
-    font-size: var(--fs-body);
-    line-height: var(--line-box-5);
-    font-weight: var(--weight-bold);
-    color: color-mix(in oklab, var(--color-ink) 80%, transparent);
   }
   .service-card-desc {
     margin-top: 0.75rem;
@@ -1441,13 +1383,6 @@ body {
   .faq-more {
     margin-top: var(--space-7);
     text-align: center;
-  }
-  .faq-more-title {
-    font-family: var(--font-display);
-    font-size: 1.125rem;
-    line-height: var(--line-box-7);
-    font-weight: var(--weight-semibold);
-    color: var(--color-ink);
   }
   .faq-more-action {
     margin-top: var(--space-5);

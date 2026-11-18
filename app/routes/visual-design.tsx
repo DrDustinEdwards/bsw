@@ -11,17 +11,6 @@ export function meta() {
 export default function VisualDesign() {
   return (
     <ProsePage title="Visual Design">
-      <h2 className="prose-sub">
-        Professional Design and Technical Precision for Scientific Content
-      </h2>
-      <p>
-        In the competitive world of peer-reviewed publishing, how your data is presented is as
-        important as the data itself. BioScience Writers has consolidated our design and technical
-        services into a specialized Visuals Hub. We combine scientific expertise with professional
-        graphic design to ensure your figures, tables, and layouts meet the highest standards of
-        international publishing and regulatory compliance.
-      </p>
-
       <h2 className="prose-sub">Scientific Figure &amp; Table Optimization</h2>
       <p>
         We transform raw data and rough sketches into publication-ready assets. Our team ensures

@@ -35,9 +35,6 @@ export default function Home() {
         actions={<PrimaryButton href="/pricing">View Pricing</PrimaryButton>}
       >
         <p className="hero-body">
-          Fast turnaround, 100% confidentiality, and an uncompromising quality guarantee.
-        </p>
-        <p className="hero-body">
           Trusted by PIs at top-tier universities and global research institutions for NIH, NSF, and
           high-impact journal submissions.
         </p>
@@ -91,11 +88,7 @@ export default function Home() {
       <section id="services" className="section-alt">
         <div className="section-inner">
           <div className="cap-reveal">
-            <SectionHeading
-              title="Our Services"
-              subtitle="Personal Expert Scientists for High-Impact Research"
-              intro="We provide the highest quality scientific editing, writing, and strategy services. Our editors are PhD and MD-credentialed professionals who understand that competing successfully for grant funding is critical to your career success."
-            />
+            <SectionHeading title="Our Services" />
           </div>
 
           <div className="services-grid">
@@ -109,9 +102,7 @@ export default function Home() {
                   })}
                 />
                 <div className="flagship-body">
-                  <p className="band-eyebrow">Flagship Service</p>
                   <h3 className="band-card-title">{FLAGSHIP.title}</h3>
-                  <p className="band-card-subhead">{FLAGSHIP.subhead}</p>
                   <p className="band-card-text">{FLAGSHIP.desc}</p>
                   <p className="band-card-note">{FLAGSHIP.note}</p>
                   <div className="band-card-actions">
@@ -134,11 +125,7 @@ export default function Home() {
               {/* BSW Academy banner */}
               <div className="cap-reveal academy">
                 <div className="academy-card">
-                  <p className="band-eyebrow band-eyebrow-green">
-                    eCourse &middot; Self-Paced Learning
-                  </p>
                   <h3 className="band-card-title">BSW Academy</h3>
-                  <p className="band-card-subhead">Elite Scientific Writing Curriculum</p>
                   <p className="band-card-text">
                     Master the mechanics of high-impact publishing and grant-winning through our
                     expert-led eCourses.{" "}
@@ -158,11 +145,7 @@ export default function Home() {
       <section className="section-plain">
         <div className="section-inner">
           <div className="cap-reveal">
-            <SectionHeading
-              title="Precision Editing, Demonstrated"
-              subtitle="The Difference Expert Editing Makes"
-              intro="Every manuscript edited by BioScience Writers receives both line-level editorial review and field-specific scientific commentary from a credentialed PhD or MD expert. Select any highlighted passage to examine the rationale behind each revision."
-            />
+            <SectionHeading title="Precision Editing, Demonstrated" />
           </div>
           <div className="cap-reveal section-body">
             <EditingDemo />
@@ -174,11 +157,7 @@ export default function Home() {
       <section className="section-alt">
         <div className="section-inner">
           <div className="cap-reveal">
-            <SectionHeading
-              title="Trusted Worldwide"
-              subtitle="What Our Clients Say"
-              intro="From Nobel Laureates and Academy members to deans and principal investigators at top institutions worldwide, researchers trust BioScience Writers to help secure funding and publish in high-impact journals."
-            />
+            <SectionHeading title="Trusted Worldwide" />
           </div>
           <div className="cap-reveal section-body">
             <Testimonials />
@@ -190,24 +169,16 @@ export default function Home() {
       <section className="section-plain">
         <div className="section-inner section-inner-narrow">
           <div className="cap-reveal">
-            <SectionHeading
-              title="Streamlined Process, Start to Finish"
-              subtitle="Your Path from Submission to Success"
-              intro={
-                <>
-                  Every order follows our proven four-step workflow: expert matching, comprehensive
-                  editing, track changes delivery, and our satisfaction guarantee. See exactly what
-                  happens from the moment you submit your document.{" "}
-                  <a href="/editing-process" className="text-link">
-                    See our full process &rarr;
-                  </a>
-                </>
-              }
-            />
+            <SectionHeading title="Streamlined Process, Start to Finish" />
           </div>
           <div className="section-body-lg">
             <Timeline />
           </div>
+          <p className="cap-reveal section-body">
+            <a href="/editing-process" className="text-link">
+              See our full process &rarr;
+            </a>
+          </p>
         </div>
       </section>
 
@@ -215,11 +186,7 @@ export default function Home() {
       <section className="section-alt">
         <div className="section-inner">
           <div className="cap-reveal">
-            <SectionHeading
-              title="Behind Every Edit"
-              subtitle="Experienced Professionals Managing Every Detail"
-              intro="Our core team personally oversees every project from first submission to final delivery. Each document is matched with a field-specific PhD or MD specialist, ensuring your work receives the scientific expertise it deserves."
-            />
+            <SectionHeading title="Behind Every Edit" />
           </div>
           <div className="team-grid">
             {TEAM.map((member) => (
@@ -235,17 +202,12 @@ export default function Home() {
       <section className="section-plain">
         <div className="section-inner">
           <div className="cap-reveal">
-            <SectionHeading
-              title="Clear Answers, No Surprises"
-              subtitle="Frequently Asked Questions"
-              intro="Find quick answers to the most common questions about our editing process, turnaround times, credentials, and satisfaction guarantee."
-            />
+            <SectionHeading title="Clear Answers, No Surprises" />
           </div>
           <div className="cap-reveal section-body faq">
             <Faq items={FAQS} openFirst />
           </div>
           <div className="cap-reveal faq-more">
-            <p className="faq-more-title">Still have questions?</p>
             <p className="faq-more-text">Our team responds within one business day.</p>
             <PrimaryButton href="/contact-us" className="faq-more-action">
               Ask Us a Question

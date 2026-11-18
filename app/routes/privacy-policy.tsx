@@ -95,8 +95,6 @@ export default function PrivacyPolicy() {
         significant changes will be notified to active account holders via email or a prominent
         notice on our portal.
       </p>
-
-      <p className="prose-cta">Questions regarding your data privacy?</p>
     </ProsePage>
   );
 }

@@ -34,21 +34,13 @@ export function PrimaryButton({
   );
 }
 
-/*
-  Section heading matched to the reference: a large uppercase title, an optional
-  lighter-weight subtitle beneath it, and an optional intro paragraph. `intro`
-  accepts a node so a section (e.g. the process) can inline a trailing link.
-*/
+// Section heading: a large uppercase title.
 export function SectionHeading({
   title,
-  subtitle,
-  intro,
   center = true,
   dark = false,
 }: {
   title: string;
-  subtitle?: string;
-  intro?: React.ReactNode;
   center?: boolean;
   dark?: boolean;
 }) {
@@ -58,8 +50,6 @@ export function SectionHeading({
       data-dark={dark || undefined}
     >
       <h2 className="section-heading-title">{title}</h2>
-      {subtitle && <p className="section-heading-subtitle">{subtitle}</p>}
-      {intro && <p className="section-heading-intro">{intro}</p>}
     </div>
   );
 }

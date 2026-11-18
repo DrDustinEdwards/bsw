@@ -40,7 +40,6 @@ export function ServiceCard({ card }: { card: ServiceCardData }) {
       />
       <h3 className="service-card-title">{card.title}</h3>
       <div className="service-card-body">
-        <p className="service-card-subhead">{card.subhead}</p>
         <p className="service-card-desc">{card.desc}</p>
       </div>
       <footer className="service-card-foot">

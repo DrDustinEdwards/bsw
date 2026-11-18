@@ -11,17 +11,7 @@ export function meta() {
 export default function KnowledgeHub() {
   return (
     <ProsePage title="Knowledge Hub">
-      <h2>Master the Art of Scientific Communication</h2>
-      <p>
-        The BioScience Writers Knowledge Hub is a centralized repository of expertise designed to
-        empower researchers, clinicians, and students. By consolidating our extensive library of
-        articles, news updates, and instructional media, we provide the tools you need to navigate
-        the complexities of peer-reviewed publishing and federal grant applications. Explore our
-        curated resources to sharpen your writing and stay informed on the evolving standards of
-        global science.
-      </p>
-
-      <h3>The Scientific Writing &amp; Grant Library</h3>
+      <h2 className="prose-sub">The Scientific Writing &amp; Grant Library</h2>
       <p>
         Access a comprehensive collection of evidence-based guides tailored to the nuances of
         academic and medical writing. Our library is categorized to support you at every stage of
@@ -47,7 +37,7 @@ export default function KnowledgeHub() {
         </li>
       </ul>
 
-      <h3>Video Library &amp; Visual Tutorials</h3>
+      <h2 className="prose-sub">Video Library &amp; Visual Tutorials</h2>
       <p>
         For visual learners, our Video Library offers concise, expert-led tutorials on the most
         critical aspects of scientific communication. These resources provide a "behind-the-curtain"
@@ -68,12 +58,7 @@ export default function KnowledgeHub() {
         </li>
       </ul>
 
-      <h3>Frequently Asked Questions (FAQ)</h3>
-      <p>
-        Find immediate answers to the most common questions regarding our processes, security
-        standards, and service levels. We believe in complete transparency to ensure you feel
-        confident in our partnership:
-      </p>
+      <h2 className="prose-sub">Frequently Asked Questions (FAQ)</h2>
       <ul>
         <li>
           <strong>Service &amp; Logistics:</strong> How do I choose between proofreading and
@@ -93,7 +78,7 @@ export default function KnowledgeHub() {
         </li>
       </ul>
 
-      <h3>Interactive Tools &amp; Research Utilities</h3>
+      <h2 className="prose-sub">Interactive Tools &amp; Research Utilities</h2>
       <p>
         To further support your daily workflow, we provide a suite of specialized utilities designed
         for the working scientist:

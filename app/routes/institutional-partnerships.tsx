@@ -11,18 +11,6 @@ export function meta() {
 export default function InstitutionalPartnerships() {
   return (
     <ProsePage title="Institutional Partnerships">
-      <h2 className="prose-sub">
-        Centralized Research Support for Universities, Biotech, and Research Hospitals
-      </h2>
-      <p>
-        BioScience Writers provides scalable, enterprise-grade scientific support through our
-        Institutional Solutions hub. We partner with academic departments, corporate research
-        divisions, and medical centers to provide a seamless bridge between administrative
-        procurement and high-level scientific editing. By consolidating individual projects into
-        centralized accounts, we help institutions increase their publication output while
-        significantly reducing administrative overhead.
-      </p>
-
       <h2 className="prose-sub">Enterprise Account Management</h2>
       <p>
         We simplify the way institutions manage scientific support. Our centralized account

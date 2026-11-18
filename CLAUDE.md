@@ -24,3 +24,4 @@ Stack and layout are in README.md. Single production Worker, no staging. The pag
 
 1. The site's content claims (stats, endorsements, turnaround, guarantee, pricing) are Dustin's to change (`bsw/content-notes.md`). Do not add new factual claims without his confirmation.
 2. UI mechanisms have documented gotchas (marquee loop). Read `bsw/architecture.md` before touching them. The hero's hex field, the slanted band and the editing demo are Capsomer's ambient, section band and annotated document.
+3. UI copy: let the layout explain. No eyebrows, restating subtitles, "this page lets you" intros, descriptions under obvious buttons, hints a label already gives, repeated captions or empty-state essays; labels, accessible names, errors, one-way warnings and legal text stay (Dustin, 2026-11-18; Capsid capsid/conventions.md).

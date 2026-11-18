@@ -15,13 +15,7 @@ export function meta() {
 export default function Pricing() {
   return (
     <ProsePage title="Pricing">
-      <h2>No Compromise</h2>
-      <p>Transparent, Expert-Led Pricing</p>
-      <p>
-        Premium scientific editing is an investment in your career. We provide flat-rate, per-word
-        pricing. Very small documents, such as abstracts, typically carry a minimum order fee (for
-        example, $50.00).
-      </p>
+      <p>Flat per-word rates. Minimum order for very small documents, such as abstracts: $50.00.</p>
 
       <PriceGrid>
         <PriceCard
@@ -48,10 +42,6 @@ export default function Pricing() {
       </PriceGrid>
 
       <h2 id="quote">Request a Quote</h2>
-      <p>
-        Tell us your word count, field, and deadline, and we will reply with a quote. The button
-        opens an email to {SITE.email} with the details to include.
-      </p>
       <p>
         <PrimaryButton href={QUOTE_MAILTO}>Email Us for a Quote</PrimaryButton>
       </p>
@@ -84,7 +74,6 @@ export default function Pricing() {
       </ul>
 
       <h2>Exclusive Discount Programs</h2>
-      <p>Maximize Your Budget</p>
       <ul>
         <li>
           <strong>New Client Initiative:</strong> 10% off your first submission to experience the

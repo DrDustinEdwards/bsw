@@ -9,16 +9,6 @@ export function meta() {
 export default function EditingProcess() {
   return (
     <ProsePage title="Our Process: The BSW Scientific Pipeline">
-      <h2 className="prose-sub">
-        PhD-Led Precision. Urgent Turnaround. Global Publication Success.
-      </h2>
-      <p>
-        At BioScience Writers, our workflow is engineered to meet the high-pressure demands of
-        modern research. By combining an elite network of MD/PhD editors with a streamlined
-        logistical system, we ensure your work moves from draft to submission-ready with surgical
-        precision.
-      </p>
-
       <h2 className="prose-sub">Phase 1: The Expert Match (Editorial Experience)</h2>
       <p>We don't just assign an editor; we match a Subject Matter Expert.</p>
       <ul>

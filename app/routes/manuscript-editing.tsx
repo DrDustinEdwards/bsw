@@ -11,17 +11,7 @@ export function meta() {
 export default function ManuscriptEditing() {
   return (
     <ProsePage title="Manuscript Editing">
-      <h2>Manuscript &amp; Publication Success</h2>
-      <h3>Comprehensive Editing for the Modern Researcher</h3>
-      <p>
-        From initial draft to final publication, BioScience Writers provides the expert MD/PhD
-        oversight required for high-impact results. We have consolidated our specialized editing
-        tracks into a single center of excellence, ensuring that whether you are submitting a
-        clinical trial, a theoretical paper, or a conference poster, your work meets the highest
-        standards of the global scientific community.
-      </p>
-
-      <h3>The Universal Quality Standard</h3>
+      <h2 className="prose-sub">The Universal Quality Standard</h2>
       <p>
         Every document processed through our hub undergoes a rigorous transformation. Unlike general
         proofreading, our scientific review optimizes your work for peer-reviewed success:
@@ -45,7 +35,7 @@ export default function ManuscriptEditing() {
         </li>
       </ul>
 
-      <h3>Specialized Publication Tracks</h3>
+      <h2 className="prose-sub">Specialized Publication Tracks</h2>
       <ol>
         <li>
           <strong>Medical &amp; Clinical Manuscripts.</strong> Tailored for clinical researchers,
@@ -67,7 +57,7 @@ export default function ManuscriptEditing() {
         </li>
       </ol>
 
-      <h3>Finalization &amp; Submission Support</h3>
+      <h2 className="prose-sub">Finalization &amp; Submission Support</h2>
       <p>
         Don't let technicalities trigger a "desktop rejection." Our finalization service ensures
         your manuscript, references, citations, and figures meet the exact "Instructions for
