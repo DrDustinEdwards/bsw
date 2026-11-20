@@ -10,7 +10,7 @@ Standalone, Cloudflare-native marketing site for BioScience Writers, a scientifi
 - TypeScript throughout
 - Pictures through site-runtime `./image`: every photograph is a `<picture>` (AVIF and WebP at the sizes it is drawn) served by `/media/<key>` through the Images binding, from `public/` (the site's own photographs, hashed names) or from the media library
 - The media library: Carrel uploads to it through `@dustinedwards/site-api` at `/api/carrel/v1` (key: the `CARREL_SITE_KEY` secret), stored in R2 (`MEDIA`) and indexed in D1 (`DB`, `drizzle/`); d1-dump backs both up nightly into `BACKUPS`. The page's copy is code, so Carrel lists no content for bsw
-- A share card per page, drawn at build time from `app/config/pages.ts` (`scripts/share-cards.ts`, satori and resvg) to `/og/<page>.png`
+- A share card per page, drawn at build time from `app/config/pages.ts` (`scripts/share-cards.ts`, site-runtime's card layout drawn by Takumi) to `/og/<page>.png`
 
 ## Develop
 

@@ -3,7 +3,7 @@ import { cloudflare } from "@cloudflare/vite-plugin";
 import { siteScript } from "@dustinedwards/devkit/vite/site-script";
 import { defineConfig, type Plugin } from "vite";
 import { PAGES, shareCardPath } from "./app/config/pages.ts";
-import { drawShareCard } from "./scripts/share-cards.ts";
+import { pageCard } from "./scripts/share-cards.ts";
 
 // public/_headers is written before the build by site-runtime-headers from the registry entry (npm run headers).
 
@@ -18,7 +18,7 @@ function shareCards(): Plugin {
         this.emitFile({
           type: "asset",
           fileName: shareCardPath(page.path).slice(1),
-          source: await drawShareCard(page),
+          source: await pageCard(page),
         });
       }
     },
