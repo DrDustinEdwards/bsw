@@ -9,7 +9,7 @@ export function meta() {
 }
 
 // The statement is the network's shared text (Prelum); the name, the contact, the date and the two facts about the build
-// are this site's: bsw is built with Tailwind, not Capsomer, and its links in running text are semibold in the link color.
+// are this site's: the site's pages are not built from Capsomer's parts alone, and its links in running text are semibold in the link color.
 export function loader() {
   const { html } = accessibilityStatement({
     siteName: SITE.name,

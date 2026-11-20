@@ -776,7 +776,7 @@ body {
 
 /*
   The pages' parts: frame, sections, cards and type. In the site layer, above Capsomer's parts and below the
-  unlayered look above, as Tailwind's utilities were. Breakpoints: 40rem, 48rem and 64rem (sm, md, lg).
+  unlayered look above. Breakpoints: 40rem, 48rem and 64rem (sm, md, lg).
 */
 @layer site {
   .site-frame {
