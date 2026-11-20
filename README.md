@@ -6,7 +6,7 @@ Standalone, Cloudflare-native marketing site for BioScience Writers, a scientifi
 
 - React Router v8, server-side rendered
 - Cloudflare Workers (via `@cloudflare/vite-plugin`)
-- Tailwind CSS v4 with a tokenized theme in `app/app.css`
+- Plain CSS on Capsomer's tokens and layers, the site's own parts in `app/app.css`
 - TypeScript throughout
 - Pictures through site-runtime `./image`: every photograph is a `<picture>` (AVIF and WebP at the sizes it is drawn) served by `/media/<key>` through the Images binding, from `public/` (the site's own photographs, hashed names) or from the media library
 - The media library: Carrel uploads to it through `@dustinedwards/site-api` at `/api/carrel/v1` (key: the `CARREL_SITE_KEY` secret), stored in R2 (`MEDIA`) and indexed in D1 (`DB`, `drizzle/`); d1-dump backs both up nightly into `BACKUPS`. The page's copy is code, so Carrel lists no content for bsw
