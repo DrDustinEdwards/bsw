@@ -19,6 +19,7 @@ export default function Pricing() {
 
       <PriceGrid>
         <PriceCard
+          headingLevel="h2"
           name="Standard"
           price="$0.07"
           unit="/ word"
@@ -26,6 +27,7 @@ export default function Pricing() {
           text={["PhD-Level Review", "Best for Manuscripts"]}
         />
         <PriceCard
+          headingLevel="h2"
           name="Accelerated"
           price="$0.10"
           unit="/ word"
@@ -33,6 +35,7 @@ export default function Pricing() {
           text={["Priority Placement", "Best for Resubmissions"]}
         />
         <PriceCard
+          headingLevel="h2"
           name="Critical Rush"
           price="$0.14"
           unit="/ word"
@@ -58,34 +61,24 @@ export default function Pricing() {
         </li>
       </ul>
 
-      <h2 className="prose-sub">Institutional &amp; Volume Discounts</h2>
-      <ul>
-        <li>
-          <strong>Referral Program:</strong> Discounts for PIs who refer their colleagues.
-        </li>
-        <li>
-          <strong>Institutional Accounts:</strong> Pre-paid accounts for departments, so individual
-          researchers do not need a purchase order.
-        </li>
-        <li>
-          <strong>Volume Discount:</strong> Lower per-word rates for documents over 10,000 words
-          (theses/books).
-        </li>
-      </ul>
-
-      <h2>Exclusive Discount Programs</h2>
+      <h2 className="prose-sub">Discounts</h2>
       <ul>
         <li>
           <strong>New Client Initiative:</strong> 10% off your first submission to experience the
           BSW difference.
         </li>
         <li>
-          <strong>Institutional Partners:</strong> We offer streamlined billing and discounted rates
-          for University departments and Research Centers.
-        </li>
-        <li>
           <strong>The Referral Credit:</strong> Refer a colleague and both receive a $50 credit
           toward your next project.
+        </li>
+        <li>
+          <strong>Institutional Accounts:</strong> Pre-paid accounts with streamlined billing and
+          discounted rates for departments and research centers, so individual researchers do not
+          need a purchase order.
+        </li>
+        <li>
+          <strong>Volume Discount:</strong> Lower per-word rates for documents over 10,000 words
+          (theses/books).
         </li>
       </ul>
     </ProsePage>
