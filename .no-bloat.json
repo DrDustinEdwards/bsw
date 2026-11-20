@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "measured_at": "759deca",
+    "measured_at": "a5e104f",
     "knip": {
       "files": 4,
       "devDependencies": 1,
@@ -22,9 +22,9 @@
       "cases": 1
     },
     "comments": {
-      "lines": 446,
-      "code": 4917,
-      "percentage": 8.32
+      "lines": 438,
+      "code": 4680,
+      "percentage": 8.56
     }
   }
 }
