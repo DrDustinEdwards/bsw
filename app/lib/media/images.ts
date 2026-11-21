@@ -17,8 +17,10 @@ export const UPLOAD_PREFIX = "uploads/";
 /** Where a file is served. */
 export const mediaUrl = (key: string) => `/media/${key}`;
 
-/** A picture on the page (a library upload or a brand file): its path and its real size, so the page offers only sizes it has. */
-export type SitePhoto = { src: string; width: number; height: number };
+/** A picture on the page (a library upload or a brand file): its path and its real size, so the page offers only sizes it has.
+ * A library upload carries `version`, the first 12 characters of its bytes' sha256 (the 8 its key ends in, extended), which its
+ * size URLs write as `v=`, so /media caches them for good and a replaced file is a new address once its version is changed here. */
+export type SitePhoto = { src: string; width: number; height: number; version?: string };
 
 /** The public/ brand files /media serves, by key (the path without its leading slash): a hashed .webp in public/brand. */
 const SITE_PHOTO = /^brand\/[A-Za-z0-9-]+\.[0-9a-f]{8}\.webp$/;
@@ -50,7 +52,12 @@ export type ImageUse = "wordmark" | "mark" | "team" | "flagship";
 /** A picture's attributes, served through /media at the use's sizes in AVIF and WebP. */
 export function sitePhoto(photo: SitePhoto, use: ImageUse): ImageAttributes {
   return images.attributes(
-    { src: mediaUrl(photo.src.slice(1)), width: photo.width, height: photo.height },
+    {
+      src: mediaUrl(photo.src.slice(1)),
+      width: photo.width,
+      height: photo.height,
+      version: photo.version,
+    },
     use,
   );
 }

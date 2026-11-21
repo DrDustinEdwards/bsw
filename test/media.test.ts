@@ -57,6 +57,8 @@ test("/media serves a library upload and a brand file, and nothing else", async 
   const upload = await get(UPLOAD);
   assert.equal(upload.status, 200);
   assert.equal(upload.headers.get("cache-control"), "public, max-age=86400");
+  const versioned = await get(`${UPLOAD}?v=0a1b2c3d4e5f`);
+  assert.equal(versioned.headers.get("cache-control"), "public, max-age=31536000, immutable");
 
   const photo = await get(PHOTO);
   assert.equal(photo.status, 200);

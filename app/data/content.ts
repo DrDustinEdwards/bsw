@@ -40,7 +40,12 @@ export const FLAGSHIP: Flagship = {
   note: "Rapid Turnaround, most returned in 7-10 days.",
   cta: "Your Quote",
   href: "/pricing#quote",
-  photo: { src: "/uploads/2026/11/grant-review-6b238865.webp", width: 512, height: 512 },
+  photo: {
+    src: "/uploads/2026/11/grant-review-6b238865.webp",
+    width: 512,
+    height: 512,
+    version: "6b238865c729",
+  },
 };
 
 export type ServiceCard = {
@@ -85,31 +90,56 @@ export const TEAM: TeamMember[] = [
   {
     name: "Susan Marriott",
     role: "President",
-    photo: { src: "/uploads/2026/11/susan-marriott-845ab814.webp", width: 200, height: 300 },
+    photo: {
+      src: "/uploads/2026/11/susan-marriott-845ab814.webp",
+      width: 200,
+      height: 300,
+      version: "845ab81486ff",
+    },
     accent: "var(--color-accent-orange)",
   },
   {
     name: "Charlene Emerson",
     role: "Director of Business Development",
-    photo: { src: "/uploads/2026/11/charlene-emerson-627d30e3.webp", width: 200, height: 300 },
+    photo: {
+      src: "/uploads/2026/11/charlene-emerson-627d30e3.webp",
+      width: 200,
+      height: 300,
+      version: "627d30e3e18d",
+    },
     accent: "var(--color-accent-blue)",
   },
   {
     name: "Julie Edwards",
     role: "Director of Publication Services",
-    photo: { src: "/uploads/2026/11/julie-edwards-ceed20d5.webp", width: 200, height: 300 },
+    photo: {
+      src: "/uploads/2026/11/julie-edwards-ceed20d5.webp",
+      width: 200,
+      height: 300,
+      version: "ceed20d5860f",
+    },
     accent: "var(--color-accent-blue)",
   },
   {
     name: "Lisa Giles",
     role: "Lead Technical Writer",
-    photo: { src: "/uploads/2026/11/lisa-giles-630f0b9c.webp", width: 200, height: 300 },
+    photo: {
+      src: "/uploads/2026/11/lisa-giles-630f0b9c.webp",
+      width: 200,
+      height: 300,
+      version: "630f0b9ccb23",
+    },
     accent: "var(--color-accent-green)",
   },
   {
     name: "Laura Marinelli",
     role: "Senior Technical Writer",
-    photo: { src: "/uploads/2026/11/laura-marinelli-f07ccc1d.webp", width: 200, height: 300 },
+    photo: {
+      src: "/uploads/2026/11/laura-marinelli-f07ccc1d.webp",
+      width: 200,
+      height: 300,
+      version: "f07ccc1d9bd0",
+    },
     accent: "var(--color-accent-green)",
   },
 ];
