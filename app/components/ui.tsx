@@ -1,10 +1,5 @@
 import type { Logo } from "../data/logos";
 
-/*
-  Small shared building blocks: the section heading and the logo
-  tile the home page's marquees show.
-*/
-
 // Section heading: a large uppercase title.
 export function SectionHeading({
   title,

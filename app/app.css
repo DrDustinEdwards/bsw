@@ -118,7 +118,7 @@
 
   /* Secondary text grays. */
   --color-ink-soft: #4f5e6b; /* hero subtitle, timeline step title */
-  --color-body-soft: #5a7581; /* hero body, AA on white (was #607d8b, 4.37:1) */
+  --color-body-soft: #5a7581; /* hero body, AA on white */
   --color-icon-muted: #8a8f98; /* inactive UI arrow glyphs */
 
   /* Neutral surfaces. */
@@ -242,7 +242,7 @@ body {
   --ring: var(--color-brand);
   --primary: #c3dcf0;
   --primary-fg: var(--color-brand);
-  /* The old bar: 64px tall, its row in the 72rem content column with 20px sides, semibold section buttons, white
+  /* 64px tall, its row in the 72rem content column with 20px sides, semibold section buttons, white
      at 70% under an 8px blur with no edge; once the page scrolls, 90% white and a hairline. */
   --header-max-inline-size: 72rem;
   --header-side: 1.25rem;
@@ -281,7 +281,7 @@ body {
   }
 }
 
-/* In the phone sheet, Get a Quote is the full-width glass button it was (its .cap-btn would make it inline). */
+/* In the phone sheet, Get a Quote is the full-width glass button (its .cap-btn would make it inline). */
 .cap-site-header-sheet-cta.cap-btn {
   display: flex;
   padding: 0.75rem 1.5rem;
@@ -530,15 +530,15 @@ body {
     --cap-prose-page-body-pad: var(--space-9-5);
   }
 }
-/* Items were spaced by a gap, so the last one adds nothing under its list. */
+/* The last item adds nothing under its list. */
 .cap-prose-page-body li:last-child {
   --prose-item-space: 0;
 }
-/* A button in the prose keeps the prose links' semibold, as it always had. */
+/* A button in the prose keeps the prose links' semibold. */
 .cap-prose-page-body .cap-btn {
   font-weight: var(--weight-semibold);
 }
-/* An h3: 2rem above, bold, at the body's leading, as it always had. */
+/* An h3: 2rem above, bold, at the body's leading. */
 .cap-prose-page-body h3 {
   --prose-heading-space: var(--space-7);
   --prose-heading-weight: var(--weight-bold);
@@ -1026,7 +1026,7 @@ body {
       --tiles-columns: repeat(3, minmax(0, 1fr));
     }
   }
-  /* The icon above the figure, as it was: the label's contents join the tile's grid so the icon can lead. */
+  /* The icon above the figure: the label's contents join the tile's grid so the icon can lead. */
   .stats-grid .cap-tile-label {
     display: contents;
   }

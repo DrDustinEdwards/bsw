@@ -3,11 +3,6 @@ import { Outlet } from "react-router";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 
-/*
-  Pathless layout shared by every route. Renders the sticky header (Capsomer's, with the skip link), the single
-  <main> landmark, and the footer once, so route modules only return their own
-  page sections. This is the single source of the page shell.
-*/
 // Every page under this layout is the same for every reader (no sign-in, no cookie, no form), so each is stored at
 // the edge: a day fresh, a week stale (site-runtime ./edge-cache). A route with no headers of its own inherits these.
 // Nothing purges, since bsw has no writes; a deploy starts the cache cold. A 404 or error is never stored

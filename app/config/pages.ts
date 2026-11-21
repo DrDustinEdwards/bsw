@@ -128,7 +128,6 @@ export const PAGES = [
 
 export type PagePath = (typeof PAGES)[number]["path"];
 
-/** The page at `path`. */
 export function page(path: PagePath): Page {
   return PAGES.find((p) => p.path === path)!;
 }
