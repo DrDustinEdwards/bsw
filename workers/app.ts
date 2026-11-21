@@ -6,7 +6,12 @@ import { standardFiles } from "@drdustinedwards/site-helpers/files";
 import { markdownCopies } from "@drdustinedwards/site-helpers/markdown-copy";
 import { cronCheck, operatorJobTools } from "@dustinedwards/site-runtime/cron";
 import { deployedAt, deployedSha } from "@dustinedwards/site-runtime/deploy";
-import { durableObjectCheck, healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
+import {
+  durableObjectCheck,
+  healthResponse,
+  imagesCheck,
+  r2Check,
+} from "@dustinedwards/site-runtime/health";
 import { defineSite, siteRenderer, siteWorker } from "@dustinedwards/site-runtime/worker";
 import { FONT_PRELOADS } from "../app/preloads";
 import { INDEXNOW_KEY, SITE } from "../app/config/site";
