@@ -6,7 +6,7 @@ import { standardFiles } from "@drdustinedwards/site-helpers/files";
 import { markdownCopies } from "@drdustinedwards/site-helpers/markdown-copy";
 import { cronCheck, operatorJobTools } from "@dustinedwards/site-runtime/cron";
 import { deployedAt, deployedSha } from "@dustinedwards/site-runtime/deploy";
-import { healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
+import { durableObjectCheck, healthResponse, imagesCheck, r2Check } from "@dustinedwards/site-runtime/health";
 import { defineSite, siteRenderer, siteWorker } from "@dustinedwards/site-runtime/worker";
 import { FONT_PRELOADS } from "../app/preloads";
 import { INDEXNOW_KEY, SITE } from "../app/config/site";
@@ -53,7 +53,7 @@ const site = defineSite<Env>({
     // 503 only when D1 does not answer, since Carrel's library needs it; the pages do not, so everything else warns: the
     // newest complete nightly dump or media files pass older than 26 hours (both under `backup`), the MEDIA bucket, the
     // Images binding, and a job that failed, stopped or never ran (`cron_runs`). Not probed: BACKUPS (a dead bucket
-    // shows as a stale backup) and the rate limits, which have no read that spends nothing.
+    // shows as a stale backup). RATE_LIMITER only mints an id, which wakes no object.
     (_request, env, _ctx, { url }) =>
       url.pathname === "/health"
         ? healthResponse({
@@ -63,6 +63,7 @@ const site = defineSite<Env>({
             checks: [
               { ...r2Check("media", env.MEDIA), level: "warn" },
               imagesCheck("images", env.IMAGES),
+              durableObjectCheck("rate_limiter", env.RATE_LIMITER),
               cronCheck(env.DB, {
                 jobs: allCronJobs(env),
                 deployedAt: deployedAt(env),
