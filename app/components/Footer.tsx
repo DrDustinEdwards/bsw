@@ -34,7 +34,7 @@ export function Footer() {
           {/* Link columns: Services, Company, Legal and Support */}
           {footerGroups.map((group) => (
             <div key={group.label}>
-              <h3 className="site-footer-heading">{group.label}</h3>
+              <h2 className="site-footer-heading">{group.label}</h2>
               <ul className="site-footer-links">
                 {group.links.map((link) => (
                   <li key={link.href}>
