@@ -1,5 +1,4 @@
 import { CtaBand } from "capsomer/react/cta-band";
-import { ButtonLink } from "capsomer/react/link";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -78,7 +77,11 @@ export default function LanguageSupport() {
 
       <CtaBand
         title="Ready to communicate your research to the world?"
-        actions={<ButtonLink to="/contact-us">Submit Your Project</ButtonLink>}
+        actions={
+          <a href="/contact-us" className="cap-btn">
+            Submit Your Project
+          </a>
+        }
       />
     </ProsePage>
   );

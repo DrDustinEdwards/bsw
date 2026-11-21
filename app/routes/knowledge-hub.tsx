@@ -1,5 +1,4 @@
 import { CtaBand } from "capsomer/react/cta-band";
-import { ButtonLink } from "capsomer/react/link";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -93,9 +92,9 @@ export default function KnowledgeHub() {
       <CtaBand
         title="Ready to elevate your scientific writing?"
         actions={
-          <ButtonLink to="/contact-us" data-accent="green">
+          <a href="/contact-us" data-accent="green" className="cap-btn">
             Ask About Our Resources
-          </ButtonLink>
+          </a>
         }
       />
     </ProsePage>

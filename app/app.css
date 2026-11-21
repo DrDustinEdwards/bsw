@@ -552,7 +552,7 @@ body {
 }
 
 /*
-  Buttons: Capsomer's button (ButtonLink, `.cap-btn`) in the site's glass look, a near-white face tinted with the
+  Buttons: Capsomer's button (`.cap-btn` on a link) in the site's glass look, a near-white face tinted with the
   brand color, a soft color-matched glow plus inset highlights, brand-colored text with a matching halo, and a lift
   on hover. Blue is the default; data-accent="green" and "orange" are used where a section leans that way (careers /
   learning, and grant / deadline work). Each color sets three custom properties: --btn-tint1/--btn-tint2 (the

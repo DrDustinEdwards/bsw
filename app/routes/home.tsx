@@ -1,5 +1,4 @@
 import { Ambient } from "capsomer/react/ambient";
-import { ButtonLink } from "capsomer/react/link";
 import { Icon, iconArrowRight } from "capsomer/react/icons";
 import { StaticStatTile, StatTiles } from "capsomer/react/stat-tile";
 import { Faq } from "capsomer/react/faq";
@@ -34,7 +33,11 @@ export default function Home() {
         backdrop={<Ambient variant="hex-field" />}
         title="Funding Secured. Science Perfected."
         lead="Strategic Grant Review & Manuscript Editing by PhD/MD Experts."
-        actions={<ButtonLink to="/pricing">View Pricing</ButtonLink>}
+        actions={
+          <a href="/pricing" className="cap-btn">
+            View Pricing
+          </a>
+        }
       >
         <p className="hero-body">
           Trusted by PIs at top-tier universities and global research institutions for NIH, NSF, and
@@ -116,7 +119,9 @@ export default function Home() {
                   <p className="band-card-text">{FLAGSHIP.desc}</p>
                   <p className="band-card-note">{FLAGSHIP.note}</p>
                   <div className="band-card-actions">
-                    <ButtonLink to={FLAGSHIP.href}>{FLAGSHIP.cta}</ButtonLink>
+                    <a href={FLAGSHIP.href} className="cap-btn">
+                      {FLAGSHIP.cta}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -219,9 +224,9 @@ export default function Home() {
           </div>
           <div className="cap-reveal faq-more">
             <p className="faq-more-text">Our team responds within one business day.</p>
-            <ButtonLink to="/contact-us" className="faq-more-action">
+            <a href="/contact-us" className="cap-btn faq-more-action">
               Ask Us a Question
-            </ButtonLink>
+            </a>
           </div>
         </div>
       </section>

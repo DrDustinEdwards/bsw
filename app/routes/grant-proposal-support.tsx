@@ -1,5 +1,4 @@
 import { CtaBand } from "capsomer/react/cta-band";
-import { ButtonLink } from "capsomer/react/link";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -70,7 +69,11 @@ export default function GrantProposalSupport() {
 
       <CtaBand
         title="Ready to secure your next research grant?"
-        actions={<ButtonLink to="/contact-us">Submit Your Proposal</ButtonLink>}
+        actions={
+          <a href="/contact-us" className="cap-btn">
+            Submit Your Proposal
+          </a>
+        }
       />
     </ProsePage>
   );
