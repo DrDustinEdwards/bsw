@@ -4,6 +4,8 @@ import { SITE } from "../config/site";
 import { PAGES } from "../config/pages";
 import { FLAGSHIP, TEAM } from "../data/content";
 import { mediaUrl } from "../lib/media/images";
+import { pageRecordStore } from "../lib/page-dates.server";
+import { env } from "cloudflare:workers";
 
 /*
   Dynamic sitemap covering every indexable route (config/pages.ts). Resource route: returns XML directly with no HTML
@@ -14,10 +16,12 @@ const HOME_PHOTOS = [FLAGSHIP.photo, ...TEAM.map((member) => member.photo)].map(
   absoluteUrl(SITE.url, mediaUrl(photo.src.slice(1))),
 );
 
-export function loader() {
+export async function loader() {
+  const dates = await pageRecordStore(env).load();
   const xml = sitemapDocument(
     PAGES.map(({ path }) => ({
       loc: absoluteUrl(SITE.url, path),
+      lastmod: dates?.[path]?.lastmod,
       changefreq: "monthly",
       priority: path === "/" ? 1 : 0.7,
       ...(path === "/" ? { images: HOME_PHOTOS } : {}),
