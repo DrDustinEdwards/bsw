@@ -32,5 +32,8 @@ export default [
     route("terms-of-service", "routes/terms-of-service.tsx"),
     route("cookie-policy", "routes/cookie-policy.tsx"),
     route("accessibility", "routes/accessibility.tsx"),
+
+    // Every other address: a 404 drawn inside this layout, so the header and footer stay.
+    route("*", "routes/not-found.tsx"),
   ]),
 ] satisfies RouteConfig;
