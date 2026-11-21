@@ -1,8 +1,8 @@
 import { CtaBand } from "capsomer/react/cta-band";
+import { ButtonLink } from "capsomer/react/link";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
-import { PrimaryButton } from "../components/ui";
 
 export function meta() {
   return pageMeta(page("/visual-design"));
@@ -80,7 +80,7 @@ export default function VisualDesign() {
 
       <CtaBand
         title="Ready to professionalize your research visuals?"
-        actions={<PrimaryButton href="/contact-us">Submit Your Project</PrimaryButton>}
+        actions={<ButtonLink to="/contact-us">Submit Your Project</ButtonLink>}
       />
     </ProsePage>
   );

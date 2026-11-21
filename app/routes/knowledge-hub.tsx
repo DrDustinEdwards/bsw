@@ -1,8 +1,8 @@
 import { CtaBand } from "capsomer/react/cta-band";
+import { ButtonLink } from "capsomer/react/link";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
-import { PrimaryButton } from "../components/ui";
 
 export function meta() {
   return pageMeta(page("/knowledge-hub"));
@@ -93,9 +93,9 @@ export default function KnowledgeHub() {
       <CtaBand
         title="Ready to elevate your scientific writing?"
         actions={
-          <PrimaryButton href="/contact-us" color="green">
+          <ButtonLink to="/contact-us" data-accent="green">
             Ask About Our Resources
-          </PrimaryButton>
+          </ButtonLink>
         }
       />
     </ProsePage>

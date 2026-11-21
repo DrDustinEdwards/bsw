@@ -1,8 +1,8 @@
 import { CtaBand } from "capsomer/react/cta-band";
+import { ButtonLink } from "capsomer/react/link";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
-import { PrimaryButton } from "../components/ui";
 
 export function meta() {
   return pageMeta(page("/institutional-partnerships"));
@@ -79,7 +79,7 @@ export default function InstitutionalPartnerships() {
 
       <CtaBand
         title="Ready to streamline research support for your institution?"
-        actions={<PrimaryButton href="/contact-us">Request a Consultation</PrimaryButton>}
+        actions={<ButtonLink to="/contact-us">Request a Consultation</ButtonLink>}
       />
     </ProsePage>
   );

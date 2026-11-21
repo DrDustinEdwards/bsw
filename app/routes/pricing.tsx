@@ -1,5 +1,5 @@
 import { pageMeta, SITE } from "../config/site";
-import { PrimaryButton } from "../components/ui";
+import { ButtonLink } from "capsomer/react/link";
 import { page } from "../config/pages";
 import { PriceCard, PriceGrid } from "capsomer/react/price-card";
 import { ProsePage } from "capsomer/react/prose-page";
@@ -46,7 +46,7 @@ export default function Pricing() {
 
       <h2 id="quote">Request a Quote</h2>
       <p>
-        <PrimaryButton href={QUOTE_MAILTO}>Email Us for a Quote</PrimaryButton>
+        <ButtonLink href={QUOTE_MAILTO}>Email Us for a Quote</ButtonLink>
       </p>
 
       <h2 className="prose-sub">The Quality Seal</h2>

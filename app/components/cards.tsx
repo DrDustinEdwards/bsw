@@ -1,9 +1,5 @@
 import { Icon, iconArrowRight } from "capsomer/react/icons";
-import type {
-  Stat,
-  ServiceCard as ServiceCardData,
-  TeamMember as TeamMemberData,
-} from "../data/content";
+import type { ServiceCard as ServiceCardData, TeamMember as TeamMemberData } from "../data/content";
 import { sitePicture } from "../lib/media/images";
 import { Picture } from "capsomer/react/picture";
 
@@ -11,17 +7,6 @@ import { Picture } from "capsomer/react/picture";
   Small presentational cards used by the home page, extracted so each repeated
   block is a single component mapped over its data array (see app/data/content).
 */
-
-// One impact statistic on the dark band: icon, big value, uppercase label.
-export function StatItem({ stat }: { stat: Stat }) {
-  return (
-    <div className="stat">
-      <Icon d={stat.icon} className="stat-icon" />
-      <div className="stat-value">{stat.value}</div>
-      <p className="stat-label">{stat.label}</p>
-    </div>
-  );
-}
 
 // Secondary service card, Capsomer's card: heading, one content block, a footer with the accent arrow, and an accent
 // inner-glow revealed on hover.
