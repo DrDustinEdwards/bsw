@@ -18,6 +18,7 @@ import { INDEXNOW_KEY, SITE } from "../app/config/site";
 import { backupStatus } from "../app/lib/backup.server";
 import { carrelApi } from "../app/lib/carrel/handler.server";
 import { allCronJobs, cronJobs } from "../app/lib/cron.server";
+import { setPageRenderer } from "../app/lib/page-dates.server";
 import { serveMedia } from "../app/lib/media/serve.server";
 import { withSecurityHeaders } from "./security-headers";
 
@@ -97,6 +98,13 @@ const site = defineSite<Env>({
         path.startsWith("/media/") || path.startsWith("/api/") || path.startsWith("/preview/"),
     }),
   cron: cronJobs,
+});
+
+// The daily page-dates job reads each page as the Renderer would render it (app/lib/page-dates.server.ts).
+setPageRenderer(async (path, env) => {
+  const noContext = { waitUntil() {} } as unknown as ExecutionContext;
+  const response = await site.render(new Request(`${SITE.url}${path}`), env, noContext);
+  return response.ok ? response.text() : null;
 });
 
 export class Renderer extends siteRenderer(WorkerEntrypoint<Env>, site) {}
