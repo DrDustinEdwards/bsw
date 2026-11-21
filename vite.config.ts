@@ -1,5 +1,6 @@
 import { reactRouter } from "@react-router/dev/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
+import { nativeBuiltins } from "@dustinedwards/devkit/vite/native-builtins";
 import { siteScript } from "@dustinedwards/devkit/vite/site-script";
 import { defineConfig, type Plugin } from "vite";
 import { PAGES, shareCardPath } from "./app/config/pages.ts";
@@ -27,6 +28,7 @@ function shareCards(): Plugin {
 
 export default defineConfig({
   plugins: [
+    nativeBuiltins(),
     siteScript(),
     cloudflare({ viteEnvironment: { name: "ssr" } }),
     reactRouter(),
