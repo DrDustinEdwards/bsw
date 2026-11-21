@@ -11,7 +11,7 @@ import { organizationLd } from "./structured-data";
 export const SITE = {
   name: "BioScience Writers",
   legalName: "BioScience Writers LLC",
-  // Absolute origin, no trailing slash. Currently the live Cloudflare Worker.
+  // Absolute origin, no trailing slash.
   url: "https://bsw.dustin-edwards.workers.dev",
   founded: "2001",
   description:

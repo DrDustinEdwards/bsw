@@ -35,7 +35,6 @@ export const { withSecurityHeaders } = pageSecurity({
     // Trusted Types is enforced: every sink takes a policy's value (site-runtime ./trusted-types, installed by startPage).
     trustedTypes: TRUSTED_TYPES_NAMES,
   }),
-  // Nothing is staged any more, so there is no Report-Only companion.
   staged: false,
   corp: true,
   // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).

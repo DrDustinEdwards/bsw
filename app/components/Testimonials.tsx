@@ -2,12 +2,6 @@ import { Carousel } from "capsomer/react/carousel";
 import { Icon, iconQuote } from "capsomer/react/icons";
 import { TESTIMONIALS, type Testimonial } from "../data/content";
 
-/*
-  Client testimonials carousel. Quotes, names, honors, and institutions come
-  from app/data/content. Each card is tinted with one of the four brand accent
-  colors: green, blue, orange, and slate.
-*/
-
 // Two cards per slide, matching the reference carousel.
 const PER_SLIDE = 2;
 

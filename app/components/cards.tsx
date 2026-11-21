@@ -3,11 +3,6 @@ import type { ServiceCard as ServiceCardData, TeamMember as TeamMemberData } fro
 import { sitePicture } from "../lib/media/images";
 import { Picture } from "capsomer/react/picture";
 
-/*
-  Small presentational cards used by the home page, extracted so each repeated
-  block is a single component mapped over its data array (see app/data/content).
-*/
-
 // Secondary service card, Capsomer's card: heading, one content block, a footer with the accent arrow, and an accent
 // inner-glow revealed on hover.
 export function ServiceCard({ card }: { card: ServiceCardData }) {
