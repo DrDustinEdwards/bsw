@@ -16,7 +16,8 @@ export const pageRecordStore = ({ DB }: Env) =>
   kvPageRecord(
     {
       get: () => DB.prepare("SELECT value FROM page_dates").first<string>("value"),
-      put: (_key, value) => DB.prepare("REPLACE INTO page_dates VALUES ('sitemap', ?1)").bind(value).run(),
+      put: (_key, value) =>
+        DB.prepare("REPLACE INTO page_dates VALUES ('sitemap', ?1)").bind(value).run(),
     },
     "sitemap",
   );

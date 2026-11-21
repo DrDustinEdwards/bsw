@@ -102,7 +102,7 @@ const site = defineSite<Env>({
 
 // The daily page-dates job reads each page as the Renderer would render it (app/lib/page-dates.server.ts).
 setPageRenderer(async (path, env) => {
-  const noContext = { waitUntil() {} } as ExecutionContext;
+  const noContext = { waitUntil() {} } as unknown as ExecutionContext;
   const response = await site.render(new Request(`${SITE.url}${path}`), env, noContext);
   return response.ok ? response.text() : null;
 });
