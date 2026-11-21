@@ -32,7 +32,7 @@ export function Header() {
           label: "Get a Quote",
           kind: "button",
           href: "/pricing#quote",
-          className: "btn btn-blue btn-sm",
+          className: "cap-btn",
         },
       ]}
     />

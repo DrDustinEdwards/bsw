@@ -1,6 +1,6 @@
 /*
   Centralized homepage content, separated from presentation. Each array is
-  typed and consumed by a matching presentational component (StatItem,
+  typed and consumed by a matching presentational component (Capsomer's StaticStatTile,
   ServiceCard, TeamMember, Capsomer's Faq, Testimonials). Copy is carried over from
   the reference site.
 */

@@ -2,7 +2,6 @@ import { CtaBand } from "capsomer/react/cta-band";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
-import { PrimaryButton } from "../components/ui";
 
 export function meta() {
   return pageMeta(page("/career-development"));
@@ -80,9 +79,9 @@ export default function CareerDevelopment() {
       <CtaBand
         title="Ready to accelerate your academic career?"
         actions={
-          <PrimaryButton href="/contact-us" color="green">
+          <a href="/contact-us" data-accent="green" className="cap-btn">
             Submit Your Career Materials
-          </PrimaryButton>
+          </a>
         }
       />
     </ProsePage>

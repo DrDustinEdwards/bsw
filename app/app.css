@@ -27,6 +27,7 @@
 @import "capsomer/prose-page.css";
 @import "capsomer/faq.css";
 @import "capsomer/section-band.css";
+@import "capsomer/stat-tile.css";
 @import "capsomer/ambient.css";
 @import "capsomer/segmented.css";
 @import "capsomer/annotated-document.css";
@@ -252,7 +253,7 @@ body {
   --header-edge: transparent;
   --header-scrolled-edge: #e2e8f0;
   --header-scrolled-mix: 90%;
-  /* Section buttons 8px by 12px, 4px apart, with 14px chevrons; Get a Quote is the site's glass .btn (its face is the
+  /* Section buttons 8px by 12px, 4px apart, with 14px chevrons; Get a Quote is the site's glass .cap-btn (its face is the
      button's gradient); the menu button 40px with a 24px glyph, 12px after Get a Quote. */
   --header-link-pad: 8px 12px;
   --header-links-gap: 4px;
@@ -280,8 +281,8 @@ body {
   }
 }
 
-/* In the phone sheet, Get a Quote is the full-width glass button it was (its .btn would make it inline). */
-.cap-site-header-sheet-cta.btn {
+/* In the phone sheet, Get a Quote is the full-width glass button it was (its .cap-btn would make it inline). */
+.cap-site-header-sheet-cta.cap-btn {
   display: flex;
   padding: 0.75rem 1.5rem;
   font-size: var(--fs-body);
@@ -534,7 +535,7 @@ body {
   --prose-item-space: 0;
 }
 /* A button in the prose keeps the prose links' semibold, as it always had. */
-.cap-prose-page-body .btn {
+.cap-prose-page-body .cap-btn {
   font-weight: var(--weight-semibold);
 }
 /* An h3: 2rem above, bold, at the body's leading, as it always had. */
@@ -551,27 +552,31 @@ body {
 }
 
 /*
-  Buttons. Glassy light treatment ported from the old site: a near-white face
-  tinted with the brand color, a soft color-matched outer glow plus inset
-  highlights for a raised glass look, brand-colored text with a matching halo,
-  and a lift on hover. Three colors (blue default, green, orange) chosen per
-  context. Each color sets three custom properties: --btn-tint1/--btn-tint2
-  (the gradient tint), --btn-ink (text/arrow color), and --btn-glow (the RGB
-  triple used for the glow, inset shade, and text halo).
+  Buttons: Capsomer's button (`.cap-btn` on a link) in the site's glass look, a near-white face tinted with the
+  brand color, a soft color-matched glow plus inset highlights, brand-colored text with a matching halo, and a lift
+  on hover. Blue is the default; data-accent="green" and "orange" are used where a section leans that way (careers /
+  learning, and grant / deadline work). Each color sets three custom properties: --btn-tint1/--btn-tint2 (the
+  gradient tint), --btn-ink (text/arrow color), and --btn-glow (the RGB triple used for the glow, inset shade, and
+  text halo).
 */
-.btn,
-.cap-error-page .cap-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+.cap-btn {
+  --cap-btn-bg: transparent;
+  --cap-btn-hover: transparent;
+  --cap-btn-press: transparent;
+  --cap-btn-h: auto;
+  --cap-btn-fg: var(--btn-ink);
+  --cap-btn-line: rgba(255, 255, 255, 0.9);
+  --cap-btn-gap: 0.5rem;
+  --cap-btn-icon: var(--title-6);
+  --btn-tint1: rgba(195, 220, 240, 0.88);
+  --btn-tint2: rgba(170, 208, 232, 0.8);
+  --btn-ink: var(--color-accent-blue);
+  --btn-glow: 0, 102, 161;
   border-radius: var(--radius-btn);
   padding: 0.75rem 1.5rem;
   font-size: var(--fs-body);
   font-weight: var(--weight-bold);
   line-height: var(--leading-tight);
-  color: var(--btn-ink);
-  border: var(--line-w) solid rgba(255, 255, 255, 0.9);
   text-shadow: 0 0 10px rgba(var(--btn-glow), 0.25);
   background-image: linear-gradient(
     135deg,
@@ -579,6 +584,7 @@ body {
     var(--btn-tint1) 45%,
     var(--btn-tint2) 100%
   );
+  background-size: 100% 100%;
   box-shadow:
     0 4px 22px rgba(var(--btn-glow), 0.22),
     inset 0 var(--line-w) 0 #fff,
@@ -589,8 +595,7 @@ body {
     filter var(--dur-base) var(--ease-out);
   will-change: transform;
 }
-.btn:hover,
-.cap-error-page .cap-btn:hover {
+.cap-btn:hover {
   transform: translateY(-2px);
   box-shadow:
     0 8px 30px rgba(var(--btn-glow), 0.3),
@@ -598,39 +603,36 @@ body {
     inset 0 calc(-1 * var(--line-w)) 0 rgba(var(--btn-glow), 0.25);
   filter: brightness(1.02);
 }
-.btn:active,
-.cap-error-page .cap-btn:active {
+.cap-btn:active {
   transform: translateY(0);
   filter: brightness(0.98);
 }
-.btn .btn-arrow,
-.cap-error-page .cap-btn .btn-arrow {
+/* The trailing arrow, drawn here so no caller repeats it; the header's buttons have none. */
+.cap-btn:not(.cap-site-header-cta, .cap-site-header-sheet-cta)::after {
+  content: "";
+  flex: none;
+  width: var(--cap-btn-icon);
+  height: var(--cap-btn-icon);
+  background-color: currentColor;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M12 5l7 7-7 7'/%3E%3C/svg%3E")
+    center / contain no-repeat;
   transition: transform var(--dur-base) var(--ease-out);
 }
-.btn:hover .btn-arrow,
-.cap-error-page .cap-btn:hover .btn-arrow {
+.cap-btn:hover::after {
   transform: translateX(3px);
 }
-/* Compact variant for dense spots like the header. */
-.btn-sm {
+/* Compact in the header. */
+.cap-site-header-extras .cap-btn {
   padding: 0.5rem var(--space-5);
   font-size: 0.8125rem;
 }
-
-.btn-blue,
-.cap-error-page .cap-btn {
-  --btn-tint1: rgba(195, 220, 240, 0.88);
-  --btn-tint2: rgba(170, 208, 232, 0.8);
-  --btn-ink: var(--color-accent-blue);
-  --btn-glow: 0, 102, 161;
-}
-.btn-green {
+.cap-btn[data-accent="green"] {
   --btn-tint1: rgba(225, 240, 195, 0.88);
   --btn-tint2: rgba(205, 230, 165, 0.8);
   --btn-ink: var(--color-accent-green-ink);
   --btn-glow: 87, 126, 32;
 }
-.btn-orange {
+.cap-btn[data-accent="orange"] {
   --btn-tint1: rgba(255, 228, 200, 0.88);
   --btn-tint2: rgba(250, 212, 175, 0.8);
   --btn-ink: var(--color-accent-orange-ink);
@@ -638,16 +640,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .btn,
-  .btn .btn-arrow,
-  .cap-error-page .cap-btn .btn-arrow {
+  .cap-btn,
+  .cap-btn::after {
     transition: none;
   }
-  .btn:hover {
-    transform: none;
-  }
-  .btn:hover .btn-arrow,
-  .cap-error-page .cap-btn:hover .btn-arrow {
+  .cap-btn:hover,
+  .cap-btn:hover::after {
     transform: none;
   }
 }
@@ -968,12 +966,6 @@ body {
       margin-top: 0.75rem;
     }
   }
-  /* The site button's trailing arrow. */
-  .btn-arrow {
-    --icon-size: var(--title-6);
-    --icon-stroke: 2.5;
-  }
-
   /* Home: the dark bands, Capsomer's section band (section-band.md) in the brand slate. The slanted one already pads
      past its slants (the slant's depth and 1.5rem), so its content adds only what the old band had beyond that. */
   .cap-section-band {
@@ -1001,52 +993,47 @@ body {
       padding-top: 0;
     }
   }
+  /* The impact figures: Capsomer's static stat tile (stat-tile.md) on the dark band, bare and centered: the tile's
+     surface and edge are clear, and the tile's tokens set the type. */
   .stats-grid {
     margin-top: var(--space-8-5);
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-8) var(--space-7);
+    --surface: transparent;
+    --line: transparent;
+    --text: #fff;
+    --muted: var(--color-slate-300);
+    --tiles-columns: repeat(2, minmax(0, 1fr));
+    --tiles-gap: var(--space-8) var(--space-7);
+    --tile-align: center;
+    --tile-pad: 0;
+    --tile-gap: 0.5rem;
+    --tile-figure-face: var(--font-display);
+    --tile-figure-size: var(--title-1);
+    --tile-figure-weight: var(--weight-bold);
+    --tile-label-size: var(--fs-small);
+    --tile-label-weight: var(--weight-semibold);
+    --tile-label-case: uppercase;
+    --tile-label-tracking: var(--tracking-spaced);
+    --tile-icon-size: var(--title-2);
+  }
+  @media (width >= 40rem) {
+    .stats-grid {
+      --tile-figure-size: var(--display-3);
+      --tile-label-size: var(--fs-body);
+    }
   }
   @media (width >= 64rem) {
     .stats-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      --tiles-columns: repeat(3, minmax(0, 1fr));
     }
   }
-  .stat {
-    text-align: center;
+  /* The icon above the figure, as it was: the label's contents join the tile's grid so the icon can lead. */
+  .stats-grid .cap-tile-label {
+    display: contents;
   }
-  .stat-icon {
-    --icon-size: var(--title-2);
-    --icon-stroke: 2;
-    margin-inline: auto;
+  .stats-grid .cap-tile-icon {
+    order: -1;
+    justify-self: center;
     color: color-mix(in oklab, #fff 80%, transparent);
-  }
-  .stat-value {
-    margin-top: 0.75rem;
-    font-family: var(--font-display);
-    font-size: var(--title-1);
-    line-height: var(--line-box-10);
-    font-weight: var(--weight-bold);
-    color: #fff;
-  }
-  .stat-label {
-    margin-top: 0.5rem;
-    font-size: var(--fs-small);
-    line-height: var(--line-box-4);
-    font-weight: var(--weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-spaced);
-    color: var(--color-slate-300);
-  }
-  @media (width >= 40rem) {
-    .stat-value {
-      font-size: var(--display-3);
-      line-height: var(--leading-none);
-    }
-    .stat-label {
-      font-size: var(--fs-body);
-      line-height: var(--line-box-5);
-    }
   }
   .logo-band {
     padding-bottom: var(--space-5);

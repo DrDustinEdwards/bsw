@@ -1,4 +1,6 @@
 import { Ambient } from "capsomer/react/ambient";
+import { Icon, iconArrowRight } from "capsomer/react/icons";
+import { StaticStatTile, StatTiles } from "capsomer/react/stat-tile";
 import { Faq } from "capsomer/react/faq";
 import { Hero } from "capsomer/react/hero";
 import { SectionBand } from "capsomer/react/section-band";
@@ -6,8 +8,8 @@ import { EditingDemo } from "../components/EditingDemo";
 import { Timeline } from "../components/Timeline";
 import { Testimonials } from "../components/Testimonials";
 import { Marquee, MarqueePause } from "capsomer/react/marquee";
-import { LogoTile, PrimaryButton, SectionHeading } from "../components/ui";
-import { StatItem, ServiceCard, TeamMember } from "../components/cards";
+import { LogoTile, SectionHeading } from "../components/ui";
+import { ServiceCard, TeamMember } from "../components/cards";
 import { Picture } from "capsomer/react/picture";
 import { sitePicture } from "../lib/media/images";
 import { homeLd } from "../config/structured-data";
@@ -16,7 +18,6 @@ import { institutions, journals } from "../data/logos";
 import { STATS, FLAGSHIP, SERVICE_CARDS, TEAM, FAQS } from "../data/content";
 import { pageMeta } from "../config/site";
 import { page } from "../config/pages";
-import { Icon, iconArrowRight } from "capsomer/react/icons";
 
 export function meta() {
   return [...pageMeta(page("/")), ...homeLd().map(jsonLd)];
@@ -32,7 +33,11 @@ export default function Home() {
         backdrop={<Ambient variant="hex-field" />}
         title="Funding Secured. Science Perfected."
         lead="Strategic Grant Review & Manuscript Editing by PhD/MD Experts."
-        actions={<PrimaryButton href="/pricing">View Pricing</PrimaryButton>}
+        actions={
+          <a href="/pricing" className="cap-btn">
+            View Pricing
+          </a>
+        }
       >
         <p className="hero-body">
           Trusted by PIs at top-tier universities and global research institutions for NIH, NSF, and
@@ -51,9 +56,17 @@ export default function Home() {
             <SectionHeading dark title="Our Impact, by the Numbers" />
           </div>
           <div className="cap-reveal stats-grid">
-            {STATS.map((s) => (
-              <StatItem key={s.label} stat={s} />
-            ))}
+            <StatTiles layout="grid" label="Our impact">
+              {STATS.map((s) => (
+                <StaticStatTile
+                  key={s.label}
+                  figureFirst
+                  icon={<Icon d={s.icon} />}
+                  figure={s.value}
+                  label={s.label}
+                />
+              ))}
+            </StatTiles>
           </div>
         </div>
 
@@ -106,7 +119,9 @@ export default function Home() {
                   <p className="band-card-text">{FLAGSHIP.desc}</p>
                   <p className="band-card-note">{FLAGSHIP.note}</p>
                   <div className="band-card-actions">
-                    <PrimaryButton href={FLAGSHIP.href}>{FLAGSHIP.cta}</PrimaryButton>
+                    <a href={FLAGSHIP.href} className="cap-btn">
+                      {FLAGSHIP.cta}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -209,9 +224,9 @@ export default function Home() {
           </div>
           <div className="cap-reveal faq-more">
             <p className="faq-more-text">Our team responds within one business day.</p>
-            <PrimaryButton href="/contact-us" className="faq-more-action">
+            <a href="/contact-us" className="cap-btn faq-more-action">
               Ask Us a Question
-            </PrimaryButton>
+            </a>
           </div>
         </div>
       </section>

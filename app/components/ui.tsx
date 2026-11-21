@@ -1,38 +1,9 @@
-import { Icon, iconArrowRight } from "capsomer/react/icons";
 import type { Logo } from "../data/logos";
 
 /*
-  Small shared building blocks: the site button, section heading, and the logo
+  Small shared building blocks: the section heading and the logo
   tile the home page's marquees show.
 */
-
-/*
-  The single button used everywhere. One dimensional style (gradient face,
-  color-matched shadow, hover lift, trailing arrow) with three brand colors:
-  blue is the default; green and orange are used where a section leans that way
-  (careers / learning, and grant / deadline work). All visual detail lives in
-  the .btn / .btn-{color} classes in app.css so there is one source of truth.
-*/
-export function PrimaryButton({
-  href,
-  children,
-  color = "blue",
-  arrow = true,
-  className = "",
-}: {
-  href: string;
-  children: React.ReactNode;
-  color?: "blue" | "green" | "orange";
-  arrow?: boolean;
-  className?: string;
-}) {
-  return (
-    <a href={href} className={`btn btn-${color} ${className}`}>
-      {children}
-      {arrow && <Icon d={iconArrowRight} className="btn-arrow" />}
-    </a>
-  );
-}
 
 // Section heading: a large uppercase title.
 export function SectionHeading({

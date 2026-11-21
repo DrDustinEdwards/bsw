@@ -4,7 +4,6 @@ import { SITE_SCRIPT } from "virtual:islands";
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 import { cloudflareBeaconAttributes } from "@dustinedwards/site-runtime/csp";
 import { ErrorPage, errorTitle } from "capsomer/react/error-page";
-import { Icon, iconArrowRight } from "capsomer/react/icons";
 import { ProsePageHead } from "capsomer/react/prose-page";
 
 import type { Route } from "./+types/root";
@@ -67,7 +66,6 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
       home="/"
       dev={import.meta.env.DEV}
       hero={({ title }) => <ProsePageHead title={title} />}
-      homeIcon={<Icon d={iconArrowRight} className="btn-arrow" />}
     />
   );
 }
