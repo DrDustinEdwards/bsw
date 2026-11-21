@@ -7,6 +7,7 @@
     "0002_site_api_store.sql": "84d19b08368179c2fcec3094c663ff0e14594d89ab2b4d70e8fec4ffa6449e03",
     "0003_site_api_media_uploads.sql": "71837aaddecc277d799d8a2443b6f781d6833f206c5baaa7062e6b36aad31367",
     "0004_site_api_store_v0_22.sql": "f424282b5ef683b146043c17bebc90eae8080e57c8527e5b946eab905434556c",
-    "0005_not_found.sql": "fdbc1fb9b0ec8e14a0b8bafb6b4214e2b3e300cb1647612e0c3369f578fe1b63"
+    "0005_not_found.sql": "fdbc1fb9b0ec8e14a0b8bafb6b4214e2b3e300cb1647612e0c3369f578fe1b63",
+    "0006_page_dates.sql": "7c91d42bfeda2dcbc561a6b30f3c1e977156f5b746335554708e882936ab305d"
   }
 }
