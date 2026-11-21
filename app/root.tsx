@@ -1,4 +1,5 @@
 import { Links, Meta, Outlet } from "react-router";
+import { SITE_SCRIPT } from "virtual:islands";
 
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 import { cloudflareBeaconAttributes } from "@dustinedwards/site-runtime/csp";
@@ -43,7 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         {children}
         {/* The page's one script tag: app/site.ts, bundled by vite.config.ts, which loads the page's islands. No React reaches the browser. */}
-        <script src="/site.js" defer />
+        <script {...SITE_SCRIPT} defer />
         {/* Cloudflare Web Analytics, manual setup (the site is on workers.dev, which the edge does not inject into). The token is the public site tag. */}
         <script {...cloudflareBeaconAttributes(WEB_ANALYTICS_TOKEN)} />
       </body>
