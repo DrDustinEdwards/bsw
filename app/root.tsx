@@ -3,8 +3,6 @@ import { SITE_SCRIPT } from "virtual:islands";
 
 import { iconLinks } from "@drdustinedwards/site-helpers/icons";
 import { cloudflareBeaconAttributes } from "@dustinedwards/site-runtime/csp";
-import { ErrorPage, errorTitle } from "capsomer/react/error-page";
-import { ProsePageHead } from "capsomer/react/prose-page";
 
 import type { Route } from "./+types/root";
 // Open Sans from the site's own origin (Fontsource, the files Google Fonts serves, bundled under /assets/): no
@@ -12,14 +10,14 @@ import type { Route } from "./+types/root";
 import "@fontsource-variable/open-sans/wght.css";
 import "@fontsource-variable/open-sans/wght-italic.css";
 import "./app.css";
+import { SiteError, siteErrorMeta } from "./components/site-error";
 import { PRELOADS } from "./preloads";
-import { SITE } from "./config/site";
 
 const WEB_ANALYTICS_TOKEN = "82f973a0cfb6496f92a3919629cbfbd2";
 
-// An unmatched address matches only the root, so the error path's title is set here (WCAG 2.4.2).
+// The error path's title for an error the root itself shows (WCAG 2.4.2).
 export function meta({ error }: Route.MetaArgs): Route.MetaDescriptors {
-  return error ? [{ title: errorTitle(error, SITE.name) }] : [];
+  return siteErrorMeta(error);
 }
 
 export const links: Route.LinksFunction = () => [
@@ -55,17 +53,7 @@ export default function App() {
   return <Outlet />;
 }
 
-// The error page is Capsomer's, on BioScience Writers' own look, since the site keeps its client's brand rather than
-// Capsomer's (.shared.json "waive"): `hero` is the title band of an interior page (Capsomer's prose-page head, since
-// the error page brings its own body), then the sentence and the ways out follow in the page's
-// column. The stack shows only in development.
+// An error the root itself shows; the public pages' own are drawn inside their layout (routes/layout.tsx).
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
-  return (
-    <ErrorPage
-      error={error}
-      home="/"
-      dev={import.meta.env.DEV}
-      hero={({ title }) => <ProsePageHead title={title} />}
-    />
-  );
+  return <SiteError error={error} />;
 }
