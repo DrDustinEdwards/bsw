@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "measured_at": "a5e104f",
+    "measured_at": "862c71c",
     "knip": {
       "files": 4,
       "devDependencies": 1,
@@ -17,14 +17,17 @@
       "lines": 0
     },
     "legacy": {},
+    "size": {
+      "app/app.css": 1494
+    },
     "tests": {
       "files": 1,
       "cases": 1
     },
     "comments": {
-      "lines": 406,
-      "code": 4680,
-      "percentage": 8.01
+      "lines": 424,
+      "code": 4782,
+      "percentage": 8.14
     }
   }
 }
