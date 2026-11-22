@@ -1,8 +1,7 @@
 {
   "baseline": {
-    "measured_at": "862c71c",
+    "measured_at": "ab8368f",
     "knip": {
-      "files": 4,
       "devDependencies": 1,
       "exports": 1
     },
@@ -25,8 +24,8 @@
       "cases": 1
     },
     "comments": {
-      "lines": 424,
-      "code": 4782,
+      "lines": 423,
+      "code": 4772,
       "percentage": 8.14
     }
   }
