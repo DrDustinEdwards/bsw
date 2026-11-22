@@ -4,18 +4,17 @@ import type { ServerBuild } from "react-router";
 import { siteApiStep } from "@dustinedwards/site-api";
 import { standardFiles } from "@drdustinedwards/site-helpers/files";
 import { markdownCopies } from "@drdustinedwards/site-helpers/markdown-copy";
-import { cronCheck, operatorJobTools } from "@dustinedwards/site-runtime/cron";
-import { deployedAt, deployedSha } from "@dustinedwards/site-runtime/deploy";
+import { operatorJobTools } from "@dustinedwards/site-runtime/cron";
 import {
   durableObjectCheck,
-  healthResponse,
   imagesCheck,
   r2Check,
+  siteHealthResponse,
 } from "@dustinedwards/site-runtime/health";
 import { defineSite, siteRenderer, siteWorker } from "@dustinedwards/site-runtime/worker";
 import { FONT_PRELOADS } from "../app/preloads";
 import { INDEXNOW_KEY, SITE } from "../app/config/site";
-import { backupStatus } from "../app/lib/backup.server";
+import { backup } from "../app/lib/backup.server";
 import { carrelApi } from "../app/lib/carrel/handler.server";
 import { allCronJobs, cronJobs } from "../app/lib/cron.server";
 import { setPageRenderer } from "../app/lib/page-dates.server";
@@ -51,7 +50,7 @@ const site = defineSite<Env>({
     operatorJobTools({
       db: env.DB,
       jobs: () => allCronJobs(env),
-      backupStatus: () => backupStatus(env),
+      backupStatus: () => backup.status(env),
       files: ["media"],
     }),
   steps: [
@@ -62,18 +61,13 @@ const site = defineSite<Env>({
     // shows as a stale backup). RATE_LIMITER only mints an id, which wakes no object.
     (_request, env, _ctx, { url }) =>
       url.pathname === "/health"
-        ? healthResponse({
-            ping: () => env.DB.prepare("select 1").first(),
-            backup: () => backupStatus(env),
-            sha: deployedSha(env),
+        ? siteHealthResponse(env, {
+            backup: () => backup.status(env),
+            jobs: allCronJobs(env),
             checks: [
               { ...r2Check("media", env.MEDIA), level: "warn" },
               imagesCheck("images", env.IMAGES),
               durableObjectCheck("rate_limiter", env.RATE_LIMITER),
-              cronCheck(env.DB, {
-                jobs: allCronJobs(env),
-                deployedAt: deployedAt(env),
-              }),
             ],
           })
         : undefined,
