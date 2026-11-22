@@ -3,7 +3,7 @@
 // intervals only), so a job whose trigger never fires warns as "never ran". Nightly: the D1 dump and the media files (a
 // pass stops itself at three minutes and goes on the next night), nine minutes in all, inside a scheduled invocation's 15.
 import { backupJob, DAILY_MINUTES, type CronJob } from "@dustinedwards/site-runtime/cron";
-import { runBackup, runMediaBackup } from "~/lib/backup.server";
+import { backup } from "~/lib/backup.server";
 import { runPageDates } from "~/lib/page-dates.server";
 
 const NIGHTLY_CRON = "47 3 * * *";
@@ -13,8 +13,8 @@ const MINUTE = 60_000;
 export function cronJobs(env: Env): Record<string, CronJob[]> {
   return {
     [NIGHTLY_CRON]: [
-      backupJob(() => runBackup(env), { timeoutMs: 5 * MINUTE }),
-      backupJob(() => runMediaBackup(env), { name: "media-backup", timeoutMs: 4 * MINUTE }),
+      backupJob(() => backup.runBackup(env), { timeoutMs: 5 * MINUTE }),
+      backupJob(() => backup.runFilesBackup(env), { name: "media-backup", timeoutMs: 4 * MINUTE }),
       // The day each page's text last changed, for /sitemap.xml's lastmod (app/lib/page-dates.server.ts).
       {
         name: "page-dates",

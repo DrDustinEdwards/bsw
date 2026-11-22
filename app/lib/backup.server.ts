@@ -9,7 +9,7 @@
 // Not backed up: BACKUPS, which is the backup, and the site's own photographs, which are files in the repository.
 import { createSiteBackup } from "@dustinedwards/d1-dump";
 
-const backup = createSiteBackup<Env>({
+export const backup = createSiteBackup<Env>({
   dump: {
     required: ["media", "media_revisions"],
     exclude: ["preview_links"],
@@ -19,11 +19,3 @@ const backup = createSiteBackup<Env>({
   // timeout (cron.server.ts).
   files: [{ name: "media", source: (env) => env.MEDIA, timeBudgetMs: 180_000 }],
 });
-
-export const runBackup = async (env: Env): Promise<void> => void (await backup.runBackup(env));
-
-export const runMediaBackup = async (env: Env): Promise<void> =>
-  void (await backup.runFilesBackup(env));
-
-/** The newest complete dump and the media files pass, for /health's backup check and the operator API: it warns when either is stale. Never throws. */
-export const backupStatus = (env: Env) => backup.status(env);
