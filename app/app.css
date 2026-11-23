@@ -73,7 +73,7 @@
     shadow doubles as the scheme's red accent (--color-hex-red). These are the
     single source of truth for the hero hexagons and any brand-color usage.
   */
-  --color-hex-blue: #006db7; /* matches the SVG logo mark (Logo.tsx) */
+  --color-hex-blue: #006db7; /* matches the logo mark */
   --color-hex-blue-light: #0183cb;
   --color-hex-blue-dark: #2b3492; /* indigo shadow face */
 
@@ -81,7 +81,7 @@
   --color-hex-green-light: #b6d434;
   --color-hex-green-dark: #00a652; /* emerald shadow face */
 
-  --color-hex-orange: #f58220; /* matches the SVG logo mark (Logo.tsx) */
+  --color-hex-orange: #f58220; /* matches the logo mark */
   --color-hex-orange-light: #fba719; /* amber highlight */
   --color-hex-orange-dark: #ec1c24; /* red shadow face */
 
@@ -221,7 +221,7 @@ body {
 /*
   The site header (Capsomer's, components/Header.tsx) in bsw's look: white and translucent over the page, the
   section buttons in ink turning brand blue under the pointer, a light blue Get a Quote, and a hairline only once
-  the page scrolls (app/site.ts sets data-scrolled).
+  the page scrolls (Capsomer's site-header behavior sets data-scrolled).
 */
 .cap-site-header {
   --header-bg: #fff;

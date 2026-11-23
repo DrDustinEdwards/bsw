@@ -142,10 +142,9 @@ export default function Home() {
                 <div className="academy-card">
                   <h3 className="band-card-title">BSW Academy</h3>
                   <p className="band-card-text">
-                    Master the mechanics of high-impact publishing and grant-winning through our
-                    expert-led eCourses.{" "}
-                    <a href="/knowledge-hub" className="academy-link">
-                      Explore courses
+                    Answers to common questions about our editing services.{" "}
+                    <a href="/#faq" className="academy-link">
+                      Read the FAQ
                       <Icon d={iconArrowRight} />
                     </a>
                   </p>
@@ -214,7 +213,7 @@ export default function Home() {
       </section>
 
       {/* 8. FAQ */}
-      <section className="section-plain">
+      <section id="faq" className="section-plain">
         <div className="section-inner">
           <div className="cap-reveal">
             <SectionHeading title="Clear Answers, No Surprises" />

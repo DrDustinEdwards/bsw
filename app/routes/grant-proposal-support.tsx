@@ -61,10 +61,10 @@ export default function GrantProposalSupport() {
 
       <h2 className="prose-sub">Resources for Continued Success</h2>
       <p>
-        Beyond project-specific support, our hub provides a library of grant-writing tips and
-        technical guides focused on navigating federal agency nuances. We empower researchers with
-        the tools needed to build a sustainable, well-funded research program through professional
-        development and evidence-based writing strategies.
+        Beyond project-specific support, our team can advise on grant-writing and technical guides
+        focused on navigating federal agency nuances. We empower researchers with the tools needed
+        to build a sustainable, well-funded research program through professional development and
+        evidence-based writing strategies.
       </p>
 
       <CtaBand
