@@ -163,7 +163,7 @@ export const FAQS: Faq[] = [
   {
     question: "How long will it take to edit my document?",
     answer:
-      "Typical turnaround time for a 3,000-5,000-word manuscript is 5-7 days. Longer documents may require more time, but can usually be completed in 7-10 days. Rush service is available upon request and can be as quick as next-day for most documents.",
+      "Standard turnaround for a 3,000-5,000-word manuscript is 7-10 business days. Rush service is available upon request and can be as quick as next-day for most documents.",
   },
   {
     question: "Can you revise my grant or manuscript quickly or on short notice?",

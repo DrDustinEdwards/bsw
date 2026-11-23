@@ -102,7 +102,7 @@ export default function OurExperts() {
           including Nature, Science, The Lancet, and Cell.
         </li>
         <li>
-          <strong>Global Impact:</strong> We support researchers from over 50 countries, providing a
+          <strong>Global Impact:</strong> We support researchers in 185 countries, providing a
           bridge between local data and global scientific conversation.
         </li>
       </ul>
