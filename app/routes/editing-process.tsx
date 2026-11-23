@@ -15,7 +15,7 @@ export default function EditingProcess() {
         <li>
           <strong>The "Experience" Standard:</strong> Every editor in our network is a native
           English speaker with a terminal degree (PhD, MD, or DVM). We draw from a talent pool with
-          active experience in over 200 scientific disciplines.
+          active experience in more than 170 scientific disciplines.
         </li>
         <li>
           <strong>Specialized Expertise:</strong> Whether your research involves complex clinical
