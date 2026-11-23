@@ -67,8 +67,7 @@ export const PAGES = [
   {
     path: "/knowledge-hub",
     title: "Knowledge Hub",
-    description:
-      "A centralized library of articles, video tutorials, FAQs, and tools for scientific writing and grant applications.",
+    description: "Where to find answers about BioScience Writers' services, and how to reach us.",
   },
   {
     path: "/about-us",

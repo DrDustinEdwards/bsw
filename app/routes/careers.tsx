@@ -1,4 +1,4 @@
-import { pageMeta } from "../config/site";
+import { pageMeta, SITE } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
 
@@ -47,8 +47,8 @@ export default function Careers() {
       </ul>
 
       <p>
-        Click here to complete our applicant prescreening information. Once you complete this form,
-        you will receive directions for subsequent application steps.
+        To apply, email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and we will send
+        directions for the next application steps.
       </p>
     </ProsePage>
   );

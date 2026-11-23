@@ -23,13 +23,13 @@ export default function AboutUs() {
         disciplines. Each member of our editing team has authored peer-reviewed journal articles,
         review articles, book chapters, brochures, reports, or grant proposals. Many have served as
         reviewers for manuscripts and grants. Our editors have experience helping non-native English
-        speakers perfect their scientific texts. Learn more about our editors.
+        speakers perfect their scientific texts.
       </p>
       <p>
         We operate on a policy of transparency. Our pricing is easy to understand, and we are proud
-        to show the expertise of our scientific and medical editors. You can easily browse our
-        editor list for your specific area of research. We understand that having a properly matched
-        editor with expertise in your area of research is critical to your success.
+        to show the expertise of our scientific and medical editors. We match each manuscript to an
+        editor in your area of research. We understand that having a properly matched editor with
+        expertise in your area of research is critical to your success.
       </p>
       <p>
         Many journals recommend our services, and all journals allow you to choose the best

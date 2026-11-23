@@ -183,7 +183,7 @@ export const FAQS: Faq[] = [
   {
     question: "What if I am not happy with the work?",
     answer:
-      "Please let us know immediately! We will respond quickly to completely resolve your concerns. If we cannot completely satisfy you within 30 days of receiving your revisions, we will provide a complete refund.",
+      "Please let us know immediately! We will respond quickly to completely resolve your concerns. If a journal still objects to the English after our edit, we will re-edit it for free under our Editing Guarantee.",
   },
   {
     question: "How will I receive my revisions?",
