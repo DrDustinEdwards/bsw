@@ -17,7 +17,7 @@ import { INDEXNOW_KEY, SITE } from "../app/config/site";
 import { backup } from "../app/lib/backup.server";
 import { carrelApi } from "../app/lib/carrel/handler.server";
 import { allCronJobs, cronJobs } from "../app/lib/cron.server";
-import { setPageRenderer } from "../app/lib/page-dates.server";
+import { setPageRenderer } from "@drdustinedwards/site-helpers/lastmod";
 import { serveMedia } from "../app/lib/media/serve.server";
 import { withSecurityHeaders } from "./security-headers";
 
