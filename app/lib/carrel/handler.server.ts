@@ -16,3 +16,11 @@ export function carrelApi(env: Env, origin: string) {
     indexNow: { origin: SITE.url, key: INDEXNOW_KEY },
   });
 }
+
+/**
+ * The per-minute cron's job (app/lib/cron.server.ts): site-api's pass, which publishes schedules that are due, tries
+ * failed hooks again and prunes its replay store and hook runs after seven days. A failed pass is tried next minute.
+ */
+export async function runCarrelSchedules(env: Env, now: Date): Promise<void> {
+  await carrelApi(env, SITE.url).runSchedulesOrThrow({ now });
+}
