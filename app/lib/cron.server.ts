@@ -1,8 +1,12 @@
 // The scheduled jobs, keyed by the cron that fires them (wrangler.jsonc triggers.crons). workers/app.ts runs the list
 // for the cron it receives through site-runtime's runJobs, and /health's cronCheck reads every list (names and
 // intervals only), so a job whose trigger never fires warns as "never ran". Nightly: the D1 dump and the media files (a
-// pass stops itself at three minutes and goes on the next night), eleven minutes in all, inside a scheduled invocation's 15.
+// pass stops itself at three minutes and goes on the next night), the page dates and the 404 and site-api prunes,
+// thirteen minutes in all, inside a scheduled invocation's 15.
 import { backupJob, DAILY_MINUTES, type CronJob } from "@dustinedwards/site-runtime/cron";
+import { pruneNotFoundJob } from "@dustinedwards/site-runtime/not-found";
+import { SITE } from "~/config/site";
+import { carrelApi } from "~/lib/carrel/handler.server";
 import { backup } from "~/lib/backup.server";
 import { runPageDates } from "~/lib/page-dates.server";
 
@@ -21,6 +25,14 @@ export function cronJobs(env: Env): Record<string, CronJob[]> {
         everyMinutes: DAILY_MINUTES,
         timeoutMs: 2 * MINUTE,
         run: () => runPageDates(env),
+      },
+      pruneNotFoundJob(env.DB),
+      // site-api's replay answers, hook runs and probe markers keep seven days; its prune runs inside runSchedules.
+      {
+        name: "site-api-prune",
+        everyMinutes: DAILY_MINUTES,
+        timeoutMs: MINUTE,
+        run: () => carrelApi(env, SITE.url).runSchedulesOrThrow(),
       },
     ],
   };
