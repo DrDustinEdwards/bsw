@@ -71,6 +71,7 @@ jobs:
     uses: DrDustinEdwards/devkit/.github/workflows/worker-deploy.yml@1f148951b94eb9c495dc94c1f7d5bb79fd5db7b1 # v0.61.0
     with:
       worker-name: bsw
+      rebuild: "@dustinedwards/site-api @dustinedwards/d1-dump"
       d1-database: bsw
       health-url: https://bsw.dustin-edwards.workers.dev/health
       verify-command: >-
