@@ -1,6 +1,6 @@
 // Every page's title, description and address, in the order the sitemap lists them: the one list the route meta
 // (config/site.ts pageMeta), the sitemap and the share cards (vite.config.ts) read. Imports nothing, so the build can
-// read it. Copy carried over from the reference site; its claims are Dustin's to change (CLAUDE.md, hard rule 1).
+// read it. Copy carried over from the reference site; its claims are Dustin's to change (CLAUDE.md, Claims).
 export type Page = { path: string; title: string; description: string; fullTitle?: boolean };
 
 export const PAGES = [

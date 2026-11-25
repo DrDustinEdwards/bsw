@@ -1,4 +1,4 @@
-// The site's side of Carrel's contract (@dustinedwards/site-api): the media library and no content. The copy is code (CLAUDE.md, hard rule 1), so no item is listed and a content write is refused.
+// The site's side of Carrel's contract (@dustinedwards/site-api): the media library and no content. The copy is code, so no item is listed and a content write is refused.
 import {
   previewDocument,
   RefusedError,
