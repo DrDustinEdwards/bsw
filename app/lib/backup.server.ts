@@ -1,12 +1,5 @@
-// Nightly D1 backup into the BACKUPS bucket, by d1-dump's runCheckedBackup: dump without the marker, check, mark
-// complete, prune. A dump that fails a check keeps its objects without the marker, so the run fails and /health's backup
-// age keeps growing toward its 26 hour warning. The media library's files (uploads/ and history/ in MEDIA) are copied
-// beside the dumps under files/media/ by d1-dump's backupFiles, each run going on where the last stopped.
-//
-// Never in a dump: preview_links (site-api's store, empty here), the hash of a preview link's token. The
-// credential-column check refuses a dump that carries any other column named like a credential.
-//
-// Not backed up: BACKUPS, which is the backup, and the site's own photographs, which are files in the repository.
+// Nightly D1 backup and media-file copy into BACKUPS (d1-dump's runCheckedBackup, backupFiles). A failed check keeps the dump unmarked so /health's backup age warns.
+// Never in a dump: preview_links. Not backed up: BACKUPS itself and the photographs in the repository.
 import { createSiteBackup } from "@dustinedwards/d1-dump";
 
 export const backup = createSiteBackup<Env>({

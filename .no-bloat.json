@@ -1,9 +1,8 @@
 {
   "baseline": {
-    "measured_at": "ab8368f",
+    "measured_at": "1f2b7d7",
     "knip": {
-      "devDependencies": 1,
-      "exports": 1
+      "devDependencies": 1
     },
     "jscpd": {
       "clones": 0,
@@ -24,9 +23,9 @@
       "cases": 1
     },
     "comments": {
-      "lines": 423,
-      "code": 4772,
-      "percentage": 8.14
+      "lines": 389,
+      "code": 4630,
+      "percentage": 7.75
     }
   }
 }

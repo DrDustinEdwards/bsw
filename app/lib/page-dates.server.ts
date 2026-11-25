@@ -2,9 +2,7 @@ import { kvPageRecord, trackRenderedPageDates } from "@drdustinedwards/site-help
 import { PAGES } from "~/config/pages";
 import { SITE } from "~/config/site";
 
-// The day each page of /sitemap.xml last changed. The copy is code, so no row dates a page: the daily page-dates job reads
-// each as Markdown, the way a Markdown copy is made, with Prelum's trackPageDates (the job germomics, Foxing and txasm run),
-// and keeps the day its text last changed in the one row of `page_dates` (D1, because bsw has no KV). The sitemap reads it back.
+// The day each page of /sitemap.xml last changed: the daily job reads each as Markdown (Prelum's trackPageDates) and keeps the day in the one `page_dates` row.
 
 /** The record the job keeps: the table's one row. */
 export const pageRecordStore = ({ DB }: Env) =>

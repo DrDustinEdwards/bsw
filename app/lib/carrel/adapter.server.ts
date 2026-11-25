@@ -1,7 +1,4 @@
-// The site's side of Carrel's contract (@dustinedwards/site-api): the media library, and no content. bsw's copy is code
-// (app/data, app/routes), and its claims are Dustin's to change in the repository (CLAUDE.md, hard rule 1), so Carrel
-// lists no item here and every content write is refused: a write naming a version is a version conflict, as the contract
-// asks for an item the site does not hold, and a new item is refused in words.
+// The site's side of Carrel's contract (@dustinedwards/site-api): the media library and no content. The copy is code (CLAUDE.md, hard rule 1), so no item is listed and a content write is refused.
 import {
   previewDocument,
   RefusedError,

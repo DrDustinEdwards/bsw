@@ -1,10 +1,5 @@
-// Pictures on the page: where a file is served and the sizes the page offers (site-runtime ./image). One
-// `defineImages`, so the page never asks /media for a size the route refuses.
-//
-// Two kinds of file reach /media/<key>. The media library Carrel uploads to (MEDIA, keys under uploads/), which holds
-// every photograph (the team portraits and the grant review picture), and the brand files, which stay in public/brand
-// and are read through the ASSETS binding (isSitePhotoKey): each name carries a hash of its bytes
-// (bsw-logo-web.2a9980c8.webp), so a changed logo is a new address and every size is cached for good.
+// Pictures on the page: one `defineImages`, so the page never asks /media for a size the route refuses.
+// Library uploads (MEDIA, uploads/) and hashed brand files in public/brand (through ASSETS, isSitePhotoKey) both reach /media/<key>.
 import {
   defineImages,
   pictureProps,
@@ -50,7 +45,7 @@ export const images = defineImages({
 export type ImageUse = "wordmark" | "mark" | "team" | "flagship";
 
 /** A picture's attributes, served through /media at the use's sizes in AVIF and WebP. */
-export function sitePhoto(photo: SitePhoto, use: ImageUse): ImageAttributes {
+function sitePhoto(photo: SitePhoto, use: ImageUse): ImageAttributes {
   return images.attributes(
     {
       src: mediaUrl(photo.src.slice(1)),

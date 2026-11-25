@@ -1,6 +1,4 @@
-// /media/<key>: the original or one size for `?w=` (site-runtime ./image, from the page's one defineImages in images.ts)
-// of a library file (MEDIA, uploads/) or of one of the site's brand files (public/brand, through ASSETS). Nothing else is
-// served: not the earlier bytes under history/, not any other public/ file.
+// /media/<key>: the original or one size (`?w=`) of a library file (MEDIA, uploads/) or a brand file (public/brand, through ASSETS). Nothing else is served, not history/ and not other public/ files.
 import { assetsObject, IMMUTABLE_CACHE, versionedCache } from "@dustinedwards/site-runtime/image";
 import { images, isSitePhotoKey, UPLOAD_PREFIX } from "./images";
 
