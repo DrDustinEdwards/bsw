@@ -7,6 +7,7 @@ import { defineHead } from "@drdustinedwards/site-helpers/head";
 import { jsonLd } from "@drdustinedwards/site-helpers/schema";
 import { shareCardPath, type Page } from "./pages";
 import { organizationLd } from "./structured-data";
+import { PRE_LAUNCH } from "./launch";
 
 export const SITE = {
   name: "BioScience Writers",
@@ -64,6 +65,7 @@ export function pageMeta({ title, description, path, fullTitle }: Page): Record<
       description,
       path,
       fullTitle,
+      noindex: PRE_LAUNCH,
       image,
       socialTitle: fullTitle ? undefined : `${title} | ${SITE.name}`,
     }),

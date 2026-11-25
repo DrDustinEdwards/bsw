@@ -144,8 +144,7 @@ export const TEAM: TeamMember[] = [
   },
 ];
 
-// Prelum's { question, answer } shape: one list feeds Capsomer's Faq on the page and the FAQPage JSON-LD
-// (structured-data.ts).
+// Prelum's { question, answer } shape: one list feeds Capsomer's Faq on the page.
 type Faq = { question: string; answer: string };
 
 // Question set and answers verbatim from the reference site.
@@ -188,7 +187,7 @@ export const FAQS: Faq[] = [
   {
     question: "How will I receive my revisions?",
     answer:
-      "You can download your revisions from our secure website or receive them via email as attachments. Either way, we'll send an email notification when your revisions are complete. You'll receive two files: one showing all changes with Track Changes, and one with all changes accepted.",
+      "We email your revisions to you as attachments and let you know when they are complete. You'll receive two files: one showing all changes with Track Changes, and one with all changes accepted.",
   },
 ];
 

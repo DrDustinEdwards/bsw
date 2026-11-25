@@ -1,4 +1,4 @@
-import { pageMeta } from "../config/site";
+import { pageMeta, SITE } from "../config/site";
 import { page } from "../config/pages";
 import { ProsePage } from "capsomer/react/prose-page";
 
@@ -9,92 +9,45 @@ export function meta() {
 export default function PrivacyPolicy() {
   return (
     <ProsePage title="Privacy Policy">
-      <h2 className="prose-sub">Your Data Integrity and Professional Privacy</h2>
       <p>
-        BioScience Writers is committed to protecting the personal and professional information of
-        the global research community. This policy outlines how we collect, use, and safeguard your
-        data to ensure your identity and research history remain private and secure.
+        {SITE.legalName}, of {SITE.locality}, Texas, operates this website. This page says what the
+        site collects and what we do with what you send us.
       </p>
 
-      <h2 className="prose-sub">1. Information Collection and Use</h2>
-      <p>
-        We collect only the essential data required to provide high-level editorial and consultative
-        services:
-      </p>
+      <h2 className="prose-sub">What this website collects</h2>
       <ul>
         <li>
-          <strong>Account Information:</strong> Name, institutional affiliation, and contact details
-          (email and phone) to facilitate project communication and billing.
+          <strong>Visit counts:</strong> Cloudflare Web Analytics measures aggregate visits and page
+          speed. It sets no cookie and does not follow you to other sites.
         </li>
         <li>
-          <strong>Project Metadata:</strong> Information regarding your research field and target
-          journal to ensure accurate editor matching.
+          <strong>Server logs:</strong> Cloudflare, which hosts the site, handles each request your
+          browser makes, including your IP address, to deliver the page and to protect the site from
+          abuse.
         </li>
         <li>
-          <strong>Payment Data:</strong> Secure processing of financial information through
-          encrypted gateways; we do not store full credit card details on our local servers.
+          <strong>Nothing else:</strong> The site has no accounts, forms, payments or newsletter
+          sign-up, and it stores nothing about you in your browser.
         </li>
       </ul>
 
-      <h2 className="prose-sub">2. Data Protection and Sharing</h2>
+      <h2 className="prose-sub">What you send us</h2>
       <p>
-        Your trust is the foundation of our business. We adhere to the following strict data
-        boundaries:
+        If you email or call us, we use your name, contact details and anything you send, such as a
+        manuscript or grant proposal, to answer you, quote a price and do the work. We share it only
+        with the editors and staff assigned to your project, and with a payment or email provider
+        when needed to bill you or reply. We do not sell your personal information or use it for
+        targeted advertising. We disclose it when the law requires.
       </p>
-      <ul>
-        <li>
-          <strong>No Third-Party Sales:</strong> We never sell, lease, or trade your personal
-          information or research history to marketing firms or third parties.
-        </li>
-        <li>
-          <strong>Selective Disclosure:</strong> Your information is only shared with the specific
-          editors and project managers assigned to your manuscript or grant.
-        </li>
-        <li>
-          <strong>Legal Compliance:</strong> We disclose personal information only when required by
-          law or to protect the safety and rights of our users and the public.
-        </li>
-      </ul>
 
-      <h2 className="prose-sub">3. Global Privacy Standards (GDPR &amp; CCPA)</h2>
+      <h2 className="prose-sub">Your requests</h2>
       <p>
-        We comply with international data protection regulations to provide our global clients with
-        control over their information:
+        To see, correct or delete what we hold about you, email {SITE.email} or call{" "}
+        {SITE.telephone}. If we decline, you may ask us to reconsider by replying to our answer.
       </p>
-      <ul>
-        <li>
-          <strong>Right to Access:</strong> You may request a copy of the personal data we hold
-          about you at any time.
-        </li>
-        <li>
-          <strong>Right to Erasure:</strong> You may request that we delete your account and
-          associated personal data, subject to necessary financial record-keeping requirements.
-        </li>
-        <li>
-          <strong>Data Portability:</strong> We provide tools for you to download and move your
-          project history as needed.
-        </li>
-      </ul>
 
-      <h2 className="prose-sub">4. Communication Preferences</h2>
-      <p>We value your time and inbox. You have full control over how we contact you:</p>
-      <ul>
-        <li>
-          <strong>Service Notifications:</strong> Essential emails regarding your order status,
-          quotes, and file deliveries.
-        </li>
-        <li>
-          <strong>Educational Updates:</strong> Optional newsletters containing grant writing tips
-          and library resources, which you may opt out of at any time via the "Unsubscribe" link.
-        </li>
-      </ul>
-
-      <h2 className="prose-sub">5. Policy Updates</h2>
-      <p>
-        As global privacy laws evolve, we may update this policy to reflect new protections. Any
-        significant changes will be notified to active account holders via email or a prominent
-        notice on our portal.
-      </p>
+      <h2 className="prose-sub">Changes</h2>
+      <p>We post any change to this policy on this page.</p>
     </ProsePage>
   );
 }

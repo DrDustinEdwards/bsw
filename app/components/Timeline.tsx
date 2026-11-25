@@ -26,7 +26,7 @@ const STEPS: {
     num: "01",
     title: "Submit Your Document",
     color: "var(--color-accent-blue)",
-    desc: "Upload your manuscript or grant proposal. Select your turnaround time and any special requirements.",
+    desc: "Send us your manuscript or grant proposal. Select your turnaround time and any special requirements.",
     icon: iconUpload,
   },
   {

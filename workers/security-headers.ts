@@ -5,6 +5,7 @@ import { buildSecurityHeaders } from "@dustinedwards/site-runtime/headers";
 import { pageSecurity } from "@dustinedwards/site-runtime/page-headers";
 import { bsw } from "@dustinedwards/site-runtime/sites";
 import { TRUSTED_TYPES_NAMES } from "@dustinedwards/site-runtime/trusted-types";
+import { PRE_LAUNCH } from "../app/config/launch";
 
 // The site's registry entry (site-runtime ./sites: COEP and the Integrity-Policy Report-Only come from it) plus
 // Prelum's TDMRep header, which reserves training rights as /ai.txt says; the CSP is below. public/_headers is written
@@ -37,7 +38,7 @@ export const { withSecurityHeaders } = pageSecurity({
   }),
   staged: false,
   corp: true,
-  // Pre-launch: keep the mockup out of search until BioScience Writers has confirmed its claims (bsw/content-notes.md).
-  // public/_headers takes the same header (the `--header` in package.json's headers script); remove both at launch.
-  noindex: () => true,
+  // Pre-launch switch (PRE_LAUNCH in app/config/site.ts). public/_headers takes the same header (the `--header` in
+  // package.json's headers script); remove it there at launch.
+  noindex: () => PRE_LAUNCH,
 });

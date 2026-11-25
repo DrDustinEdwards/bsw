@@ -103,7 +103,7 @@ export const PAGES = [
     path: "/privacy-policy",
     title: "Privacy Policy",
     description:
-      "How BioScience Writers collects, uses, and safeguards your personal and research data, including GDPR and CCPA compliance.",
+      "What BioScience Writers collects when you visit this site or contact us, and how it is used.",
   },
   {
     path: "/terms-of-service",
@@ -115,7 +115,7 @@ export const PAGES = [
     path: "/cookie-policy",
     title: "Cookie Policy",
     description:
-      "How BioScience Writers uses cookies and similar tracking technologies, and how you can manage your preferences.",
+      "This site sets no cookies and shows no banner. It measures visits with Cloudflare Web Analytics.",
   },
   {
     path: "/accessibility",

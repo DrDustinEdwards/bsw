@@ -4,7 +4,8 @@
     "vite.config.ts",
     "workers/security-headers.ts",
     "scripts/share-cards.ts",
-    "app/config/pages.ts"
+    "app/config/pages.ts",
+    "app/config/launch.ts"
   ],
   "compilerOptions": {
     "composite": true,

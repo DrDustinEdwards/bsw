@@ -29,7 +29,7 @@ export function organizationLd() {
   });
 }
 
-/** Home-page WebSite (the node every page's WebPage names by its @id), Service and FAQPage. */
+/** Home-page WebSite (the node every page's WebPage names by its @id), and Service. */
 export function homeLd() {
   return [
     website({ origin: SITE.url, name: SITE.name, description: SITE.description }),
@@ -39,7 +39,7 @@ export function homeLd() {
       areaServed: "Worldwide",
       description:
         "Strategic grant review, manuscript editing, medical writing, journal formatting, and scientific translation by PhD and MD experts.",
-      offers: { "@type": "Offer", priceCurrency: "USD", url: absoluteUrl(SITE.url, "/pricing") },
+      offers: { "@type": "Offer", url: absoluteUrl(SITE.url, "/pricing") },
     }),
   ];
 }

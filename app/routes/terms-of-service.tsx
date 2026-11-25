@@ -44,9 +44,9 @@ export default function TermsOfService() {
           payment, or an authorized University Purchase Order.
         </li>
         <li>
-          <strong>Delivery:</strong> Completed files are delivered via our secure Client Portal. We
-          are not responsible for delays caused by technical issues on the client's network or
-          failure to retrieve files.
+          <strong>Delivery:</strong> Completed files are delivered by email. We are not responsible
+          for delays caused by technical issues on the client's network or failure to retrieve
+          files.
         </li>
         <li>
           <strong>Expedited Services:</strong> Rush orders are subject to availability and
