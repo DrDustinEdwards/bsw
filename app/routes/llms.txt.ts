@@ -1,5 +1,5 @@
 // /llms.txt (llmstxt.org): Prelum's llmsResponse, the company in plain prose for AI readers. Its claims are
-// Dustin's to change (CLAUDE.md, hard rule 1).
+// Dustin's to change (CLAUDE.md, Claims).
 import { llmsResponse } from "@drdustinedwards/site-helpers/llms";
 import { SITE } from "../config/site";
 
