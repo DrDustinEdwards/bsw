@@ -111,7 +111,7 @@ export default function OurExperts() {
         title="Ready to connect with an expert in your field?"
         actions={
           <a href="/contact-us" className="cap-btn">
-            Meet Your Editor in the Client Portal
+            Contact Us to Meet Your Editor
           </a>
         }
       />

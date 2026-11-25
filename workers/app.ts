@@ -14,6 +14,7 @@ import {
 import { defineSite, siteRenderer, siteWorker } from "@dustinedwards/site-runtime/worker";
 import { FONT_PRELOADS } from "../app/preloads";
 import { INDEXNOW_KEY, SITE } from "../app/config/site";
+import { PRE_LAUNCH } from "../app/config/launch";
 import { backup } from "../app/lib/backup.server";
 import { carrelApi } from "../app/lib/carrel/handler.server";
 import { allCronJobs, cronJobs } from "../app/lib/cron.server";
@@ -35,13 +36,14 @@ const site = defineSite<Env>({
   withSecurityHeaders,
   // robots.txt, ai.txt, site.webmanifest and the IndexNow key file (Prelum ./files).
   files: standardFiles({
+    ...(PRE_LAUNCH && { robots: { contentSignal: "search=no, ai-input=no, ai-train=no" } }),
     origin: SITE.url,
     indexNowKey: INDEXNOW_KEY,
     ai: { name: SITE.name, contact: SITE.email },
     manifest: {
       name: SITE.name,
       description: SITE.description,
-      themeColor: "#0066a1",
+      themeColor: "#3f4e5c",
       backgroundColor: "#0066a1",
       lang: "en",
     },

@@ -12,7 +12,7 @@ export default function SecurityConfidentiality() {
       <p>
         At BioScience Writers, we recognize that your unpublished research, proprietary data, and
         grant strategies are your most valuable assets. We have established a multi-layered security
-        framework to ensure that every document you upload remains confidential, secure, and
+        framework to ensure that every document you send us remains confidential, secure, and
         protected throughout the entire editorial process.
       </p>
 
@@ -23,9 +23,8 @@ export default function SecurityConfidentiality() {
       </p>
       <ul>
         <li>
-          <strong>Enterprise-Grade Encryption:</strong> Our platform utilizes 256-bit SSL encryption
-          for all file transfers. This ensures that your data is protected from the moment it leaves
-          your computer until it is safely stored on our secure servers.
+          <strong>Encrypted Connection:</strong> This website is served only over HTTPS, so what you
+          read and send on it is encrypted in transit.
         </li>
         <li>
           <strong>Mandatory Non-Disclosure Agreements (NDAs):</strong> Access to your work is

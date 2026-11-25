@@ -144,13 +144,6 @@ const NOTES: AnnotatedNote[] = [
     text: "Aim 3 is underdeveloped; add detail on how the hypothesis will be tested and how subdominant antigens will be identified.",
   },
   {
-    id: "c138",
-    kind: "Impact / Framing",
-    icon: "I",
-    tone: "ok",
-    text: "Add a closing impact statement summarizing how all three aims advance the field and public health.",
-  },
-  {
     id: "c137",
     kind: "Impact / Framing",
     icon: "I",

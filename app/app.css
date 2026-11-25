@@ -95,7 +95,7 @@
 
   /* Secondary text grays. */
   --color-ink-soft: #4f5e6b; /* hero subtitle, timeline step title */
-  --color-body-soft: #5a7581; /* hero body, AA on white */
+  --color-body-soft: #5a7581; /* hero body, AA on the hero card (96% white over the hexagons) */
   --color-icon-muted: #8a8f98; /* inactive UI arrow glyphs */
 
   /* Neutral surfaces. */
@@ -217,7 +217,7 @@ body {
   --header-side: 1.25rem;
   --header-link-weight: var(--weight-semibold);
   --header-link-current-weight: var(--weight-semibold);
-  --header-translucent-mix: 70%;
+  --header-translucent-mix: 90%;
   --header-blur: 8px;
   --header-edge: transparent;
   --header-scrolled-edge: #e2e8f0;
@@ -368,7 +368,7 @@ body {
   --hero-lead-size: 1.6rem;
   --hero-lead-weight: var(--weight-semibold);
   --hero-lead-leading: var(--leading-snug);
-  --hero-card-bg: rgba(255, 255, 255, 0.45);
+  --hero-card-bg: rgba(255, 255, 255, 0.96);
   --hero-card-max: 42rem;
   --hero-card-pad: var(--space-8-5);
   --hero-card-radius: 40px;
