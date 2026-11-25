@@ -2,6 +2,5 @@
   "$schema": "https://unpkg.com/knip@6/schema.json",
   // workers/*.ts is wrangler's `main` and its imports; the real wrangler.jsonc is gitignored, so Knip's wrangler plugin cannot read it.
   // app/site.ts and app/islands/*.ts are devkit siteScript's entries (/site.js and its islands, vite.config.ts), loaded by convention, not imported.
-  "entry": ["workers/*.ts", "app/site.ts", "app/islands/*.ts"],
-  "ignoreDependencies": ["cloudflare"]
+  "entry": ["workers/*.ts", "app/site.ts", "app/islands/*.ts"]
 }

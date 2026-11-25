@@ -1,7 +1,5 @@
-// Carrel's site API, mounted by workers/app.ts at /api/carrel/v1 with its preview links at /preview/<token>. One key
-// (CARREL_SITE_KEY, a Worker secret) reaches only that prefix and nothing else on the site. Carrel writes only the media
-// library here (adapter.server.ts), so the standard hooks (IndexNow, the purge and webmentions) have no publish to act
-// on; they are the network's same set, ready when a page is written in Carrel.
+// Carrel's site API, mounted by workers/app.ts at /api/carrel/v1 with preview links at /preview/<token>. CARREL_SITE_KEY reaches only that prefix.
+// Carrel writes only the media library, so the standard hooks have no publish to act on yet.
 import { standardSiteApi } from "@dustinedwards/site-api";
 import { INDEXNOW_KEY, SITE } from "~/config/site";
 import { createCarrelAdapter } from "./adapter.server";
