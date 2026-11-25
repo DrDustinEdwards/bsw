@@ -55,10 +55,6 @@ const site = defineSite<Env>({
     }),
   steps: [
     // site-runtime's healthResponse, with the deployed commit devkit's shared deploy waits for (CI passes DEPLOY_SHA).
-    // 503 only when D1 does not answer, since Carrel's library needs it; the pages do not, so everything else warns: the
-    // newest complete nightly dump or media files pass older than 26 hours (both under `backup`), the MEDIA bucket, the
-    // Images binding, and a job that failed, stopped or never ran (`cron_runs`). Not probed: BACKUPS (a dead bucket
-    // shows as a stale backup). RATE_LIMITER only mints an id, which wakes no object.
     (_request, env, _ctx, { url }) =>
       url.pathname === "/health"
         ? siteHealthResponse(env, {
