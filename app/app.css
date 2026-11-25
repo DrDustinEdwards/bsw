@@ -36,20 +36,12 @@
 @import "capsomer/hero.css";
 @import "capsomer/cta-band.css";
 
-/*
-  BioScience Writers design tokens.
-  Values taken verbatim from bsw/design-system.md and the build spec.
-  No em dashes anywhere per house conventions.
-*/
+/* BioScience Writers design tokens. */
 :root {
   --font-sans:
     "Open Sans Variable", "Open Sans", "Open Sans Fallback", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  /*
-    The reference site sets every heading in Open Sans (no serif display face).
-    --font-display therefore points at the same sans stack so section headings,
-    stat values, and card titles match the reference typography.
-  */
+  /* The reference site sets every heading in Open Sans (no serif display face). */
   --font-display:
     "Open Sans Variable", "Open Sans", "Open Sans Fallback", ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -65,14 +57,7 @@
   --color-brand: #0066a1;
   --color-brand-hover: #004d7a;
 
-  /*
-    Brand mark palette. Sampled directly from the four-cube logo. Each cube is a
-    single hue with a lit "base" face, a lighter highlight, and a shadow face.
-    The shadow faces are hue-shifted (blue->indigo, green->emerald,
-    orange->red), which is what gives the mark its depth. The orange cube's
-    shadow doubles as the scheme's red accent (--color-hex-red). These are the
-    single source of truth for the hero hexagons and any brand-color usage.
-  */
+  /* Brand mark palette. */
   --color-hex-blue: #006db7; /* matches the logo mark */
   --color-hex-blue-light: #0183cb;
   --color-hex-blue-dark: #2b3492; /* indigo shadow face */
@@ -91,13 +76,7 @@
 
   --color-hex-red: #ec1c24; /* accent, shared with orange's shadow face */
 
-  /*
-    Brand accent scale. The four text-safe accent hues used across service
-    cards, team captions, the timeline, testimonials, and the editing-demo
-    categories. Single source of truth: adjust a hue here and every usage,
-    plus the annotation aliases below, follow. All four clear WCAG 2.2 AA
-    (4.5:1) as text on white and 3:1 as icons.
-  */
+  /* Brand accent scale. */
   --color-accent-blue: #0066a1;
   --color-accent-green: #577e20;
   --color-accent-orange: #b75b15;
@@ -105,9 +84,7 @@
   /* Darker inks so accent-colored button text stays AA on the glass face. */
   --color-accent-green-ink: #46691a;
   --color-accent-orange-ink: #b3560f;
-  /*
-    Light accent tint for text on the dark band, tuned to clear WCAG 2.2 AA (4.5:1) against --color-band.
-  */
+  /* Light accent tint for text on the dark band, tuned to clear WCAG 2.2 AA (4.5:1) against --color-band. */
   --color-accent-green-soft: #a4d65e;
 
   /* Editing-demo annotation categories, aliased to the accent scale. */
@@ -154,11 +131,7 @@
   --header-h: calc(4rem + 1px);
 }
 
-/*
-  BioScience Writers' look on Capsomer's tokens (the site keeps its client's brand, not Capsomer's purple family;
-  .shared.json "waive"). Capsomer's parts read these names, so the shared header, carousel, marquee, cards and
-  scroll area wear the site's colors. The site is light only.
-*/
+/* BioScience Writers' look on Capsomer's tokens: the site keeps its client's brand, not Capsomer's. */
 :root {
   color-scheme: light;
   --ground: #fff;
@@ -218,11 +191,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/*
-  The site header (Capsomer's, components/Header.tsx) in bsw's look: white and translucent over the page, the
-  section buttons in ink turning brand blue under the pointer, a light blue Get a Quote, and a hairline only once
-  the page scrolls (Capsomer's site-header behavior sets data-scrolled).
-*/
+/* The site header (Capsomer's, components/Header.tsx) in bsw's look. */
 .cap-site-header {
   --header-bg: #fff;
   --header-fs: var(--fs-body);
@@ -288,11 +257,7 @@ body {
   font-size: var(--fs-body);
 }
 
-/*
-  Visible keyboard focus for every interactive element. Uses :focus-visible so
-  it only shows for keyboard/AT users, not mouse clicks. One token-driven ring
-  site-wide (WCAG 2.4.7, 2.4.11).
-*/
+/* Visible keyboard focus for every interactive element. */
 :focus-visible {
   outline: var(--focus-width) solid var(--color-brand);
   outline-offset: var(--focus-offset);
@@ -317,10 +282,7 @@ body {
   );
 }
 
-/*
-  FAQ answers: Capsomer's faq (faq.md), an accordion of its Disclosure (capsomer/disclosure.css), which also animates
-  the open and close. The question and answer type and spacing and the circled chevron are the site's own.
-*/
+/* FAQ answers: Capsomer's faq with the site's type and chevron. */
 .faq summary {
   padding: var(--space-5-5);
   border-radius: 0;
@@ -372,11 +334,7 @@ body {
   rotate: 180deg;
 }
 
-/*
-  Logo marquees (trusted-by / published-in), Capsomer's marquee on the dark band (home.tsx): the marks sit directly
-  on the band with no card, each forced solid white via brightness(0) invert(1). The loop's length and the space
-  between marks are --marquee-duration and --marquee-gap above.
-*/
+/* Logo marquees (trusted-by / published-in), Capsomer's marquee on the dark band (home.tsx). */
 .logo-box {
   display: flex;
   align-items: center;
@@ -401,12 +359,7 @@ body {
   }
 }
 
-/*
-  Hero: Capsomer's hero (hero.md) in the site's own look. Exact source spec: translucent blurred card
-  over the hex field (the backdrop), with a three-tier type scale that shrinks on mobile (max-width 767px).
-  The section is full width; its words sit in a 6xl column (the 72rem the page uses) and the card is 2xl wide.
-  The type and the card are Capsomer's hero tokens; margins, inks and wrapping have no token.
-*/
+/* Hero: Capsomer's hero in the site's own look. */
 .home-hero {
   --hero-title: 3.2rem;
   --hero-title-weight: var(--weight-heavy);
@@ -466,11 +419,7 @@ body {
   }
 }
 
-/*
-  Interior pages: Capsomer's prose page (prose-page.md) in bsw's look. The title band is the dark brand band with the
-  large uppercase title; the column is Capsomer's reading context, whose size, leading and links are set here because
-  Capsomer gives them in base.css, which this site does not load. The 1.25rem sides are the page's own.
-*/
+/* Interior pages. */
 .cap-prose-page-head,
 .cap-prose-page-body {
   --page-gutter: var(--space-5-5);
@@ -551,14 +500,7 @@ body {
   line-height: inherit;
 }
 
-/*
-  Buttons: Capsomer's button (`.cap-btn` on a link) in the site's glass look, a near-white face tinted with the
-  brand color, a soft color-matched glow plus inset highlights, brand-colored text with a matching halo, and a lift
-  on hover. Blue is the default; data-accent="green" and "orange" are used where a section leans that way (careers /
-  learning, and grant / deadline work). Each color sets three custom properties: --btn-tint1/--btn-tint2 (the
-  gradient tint), --btn-ink (text/arrow color), and --btn-glow (the RGB triple used for the glow, inset shade, and
-  text halo).
-*/
+/* Buttons. */
 .cap-btn {
   --cap-btn-bg: transparent;
   --cap-btn-hover: transparent;
@@ -650,11 +592,7 @@ body {
   }
 }
 
-/*
-  The process timeline is Capsomer's (capsomer/timeline.css, Timeline.tsx). BioScience Writers'
-  look is set here, on its custom properties and the few Capsomer tokens it reads, since this site
-  does not load Capsomer's tokens.
-*/
+/* The process timeline is Capsomer's (capsomer/timeline.css, Timeline.tsx). */
 .cap-timeline {
   --cap-timeline-node: 64px;
   --cap-timeline-node-bg: #ffffff;
@@ -703,11 +641,7 @@ body {
   }
 }
 
-/*
-  Precision editing demo: Capsomer's annotated document (annotated-document.md) in the demo's own frame and type,
-  each note's tone one of the demo's annotation colors (Editorial warn, Scientific info, Impact ok, Rhetorical the
-  accent); insertions and deletions in the tracked-changes colors.
-*/
+/* Precision editing demo. */
 .editing-demo {
   max-width: 1140px;
   margin: 0 auto;
@@ -742,11 +676,7 @@ body {
   font-weight: var(--weight-bold);
 }
 
-/*
-  The error page under its title band, as the interior pages' prose was: the sentence in the prose size and leading,
-  64px above and below (80px from 640px), the button a prose paragraph's space under it in the prose's Open Sans
-  semibold, on the site button's own glass face.
-*/
+/* The error page under its title band, as the interior pages' prose was. */
 .cap-error-page {
   --error-page-hero-gap: 0;
   --error-page-body-pad-block: var(--space-9);
@@ -772,10 +702,7 @@ body {
   font-weight: var(--weight-semibold);
 }
 
-/*
-  The pages' parts: frame, sections, cards and type. In the site layer, above Capsomer's parts and below the
-  unlayered look above. Breakpoints: 40rem, 48rem and 64rem (sm, md, lg).
-*/
+/* The pages' parts. */
 @layer site {
   .site-frame {
     display: flex;
