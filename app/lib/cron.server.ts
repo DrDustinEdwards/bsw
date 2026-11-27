@@ -1,5 +1,6 @@
 // The scheduled jobs by cron (wrangler.jsonc triggers.crons), run by workers/app.ts through site-runtime's runJobs and read by /health's cronCheck.
-// Nightly total: thirteen minutes, inside a scheduled invocation's 15.
+// Every minute: site-api's schedules, failed hook reruns and unfinished writes (it also prunes its old rows).
+// Nightly total: twelve minutes, inside a scheduled invocation's 15.
 import { backupJob, DAILY_MINUTES, type CronJob } from "@dustinedwards/site-runtime/cron";
 import { pruneNotFoundJob } from "@dustinedwards/site-runtime/not-found";
 import { SITE } from "~/config/site";
@@ -7,12 +8,21 @@ import { carrelApi } from "~/lib/carrel/handler.server";
 import { backup } from "~/lib/backup.server";
 import { runPageDates } from "~/lib/page-dates.server";
 
+const SCHEDULES_CRON = "* * * * *";
 const NIGHTLY_CRON = "47 3 * * *";
 
 const MINUTE = 60_000;
 
 export function cronJobs(env: Env): Record<string, CronJob[]> {
   return {
+    [SCHEDULES_CRON]: [
+      {
+        name: "site-api-schedules",
+        everyMinutes: 1,
+        timeoutMs: 50_000,
+        run: () => carrelApi(env, SITE.url).runSchedulesOrThrow(),
+      },
+    ],
     [NIGHTLY_CRON]: [
       backupJob(() => backup.runBackup(env), { timeoutMs: 5 * MINUTE }),
       backupJob(() => backup.runFilesBackup(env), { name: "media-backup", timeoutMs: 4 * MINUTE }),
@@ -24,13 +34,6 @@ export function cronJobs(env: Env): Record<string, CronJob[]> {
         run: () => runPageDates(env),
       },
       pruneNotFoundJob(env.DB),
-      // site-api's replay answers, hook runs and probe markers keep seven days; its prune runs inside runSchedules.
-      {
-        name: "site-api-prune",
-        everyMinutes: DAILY_MINUTES,
-        timeoutMs: MINUTE,
-        run: () => carrelApi(env, SITE.url).runSchedulesOrThrow(),
-      },
     ],
   };
 }
