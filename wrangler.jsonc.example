@@ -59,6 +59,7 @@
 	// exported from workers/app.ts, one SQLite-backed instance per key.
 	"durable_objects": { "bindings": [{ "name": "RATE_LIMITER", "class_name": "RateLimiter" }] },
 	"migrations": [{ "tag": "v1", "new_sqlite_classes": ["RateLimiter"] }],
-	// 03:47 UTC nightly: the D1 dump and the media files backup (workers/app.ts scheduled).
-	"triggers": { "crons": ["47 3 * * *"] }
+	// 03:47 UTC nightly: the D1 dump and the media files backup. Every minute: site-api's schedules and unfinished
+	// writes (workers/app.ts scheduled).
+	"triggers": { "crons": ["47 3 * * *", "* * * * *"] }
 }
